@@ -1,6 +1,7 @@
 import type { LegalContent } from "./content/legal-types";
+import type { LanguageCode } from "./language-registry";
 
-export type Locale = "hu" | "en";
+export type Locale = LanguageCode;
 
 export type PlatformModule = {
   id: string;

@@ -73,7 +73,9 @@ Contact: info@vianexis.eu
 | Backend e2e | **551/551 PASS** at `18deac6` |
 | Public site deploy | **Pending** — see `hostinger-or-public-deploy-checklist.md` |
 | Signed AAB (not debug) | **Pending** — upload keystore owner action |
-| Privacy URL | Stable: `/hu/privacy`, `/en/privacy` on vianexis.eu |
+| Privacy URL | Stable: `/hu/privacy`, `/en/privacy` on vianexis.eu (Play primary); 33 draft locales at `/{code}/privacy` with review notice |
+| Localization | Driver app: HU/EN reviewed + 33 draft; **no Google Translate widget** |
+| Public site i18n | 35 locale foundation — see `transdoc-backend/docs/localization/` |
 
 ---
 

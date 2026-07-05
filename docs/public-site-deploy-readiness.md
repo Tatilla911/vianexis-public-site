@@ -1,9 +1,26 @@
 # Public site deployment readiness
 
-**Updated:** 2026-07-05 (platform release checkpoint)  
-**Baseline commit:** `daa93c2`  
-**Baseline commit:** f105806+  
+**Updated:** 2026-07-05 (35-language localization foundation)  
+**Baseline commit:** `daa93c2` + 35-locale foundation  
 **Scope:** Next.js marketing / legal site — not driver app, backend, or admin app.
+
+---
+
+## 35-language localization foundation
+
+| Item | Status |
+|------|--------|
+| Locale count | **35/35** (backend registry: `nb`, `be`, `mt`, `is`, `ar`, …) |
+| HU / EN | **reviewed** (verified in registry) |
+| 33 expanded | **draftMachine** — EN structural fallback + review notice |
+| Google Translate widget | **Not used** |
+| Browser auto-translate | **Not relied on** |
+| Legal draft locales | Translation under review notice + `noindex` on legal pages |
+| Validate script | `node scripts/validate-locales.mjs` + lint + build |
+
+**i18n layout:** `src/lib/i18n/language-registry.ts`, `translation-status.ts`, `get-content.ts`, `content/hu.ts`, `content/en.ts`
+
+**Review priority:** DE, RO, PL, SK, FR — see `transdoc-backend/docs/localization/35-language-rollout-plan.md`
 
 ---
 
@@ -11,9 +28,10 @@
 
 | Check | Command | Status |
 |-------|---------|--------|
+| Locale gate | `node scripts/validate-locales.mjs` | Run before deploy |
 | Lint | `npm run lint` | Run before deploy |
 | Build | `npm run build` | Run before deploy |
-| Validate | `npm run validate` | **Not defined** in `package.json` |
+| Validate | `npm run validate` | Locale gate + lint + build |
 
 **Platform checkpoint (2026-07-05):** lint PASS · build PASS · routes verified in build output · deploy to vianexis.eu **pending**
 
@@ -68,10 +86,11 @@ CONTACT_INTAKE_ENABLED=true
 
 ## Privacy URL (Play Console)
 
-| Locale | Stable URL | Page title |
-|--------|------------|------------|
-| HU | https://vianexis.eu/hu/privacy | Adatvédelmi tájékoztató — belső tesztelési verzió |
-| EN | https://vianexis.eu/en/privacy | Privacy notice — internal testing version |
+| Locale | Stable URL | Status |
+|--------|------------|--------|
+| HU | https://vianexis.eu/hu/privacy | reviewed + legalReviewRequired badge |
+| EN | https://vianexis.eu/en/privacy | reviewed + legalReviewRequired badge |
+| DE…AR (33) | https://vianexis.eu/{code}/privacy | draftMachine + under review notice + noindex |
 
 Internal testing version badge shown — legal expert review in progress. **Do not change URL path** after Play listing — update text only.
 
@@ -79,13 +98,18 @@ Internal testing version badge shown — legal expert review in progress. **Do n
 
 ## Legal pages
 
-| HU | EN |
-|----|-----|
-| `/hu/terms` | `/en/terms` |
-| `/hu/legal` | `/en/legal` |
-| `/hu/disclaimers` | `/en/disclaimers` |
+All **35 locales** have routes:
 
-All show internal testing version notice. Disclaimers include: ADR, AI/OCR, notifications/push, truck map, pallet evidence, legal validity, eFTI.
+| Pattern | Example |
+|---------|---------|
+| Privacy | `/de/privacy`, `/ro/privacy`, … |
+| Terms | `/de/terms`, … |
+| Legal notice | `/de/legal`, … |
+| Disclaimers | `/de/disclaimers`, … |
+
+HU/EN show internal testing version notice. Draft locales show translation under review banner (not presented as final legal counsel review).
+
+Disclaimers include: ADR, AI/OCR, notifications/push, truck map, pallet evidence, legal validity, eFTI.
 
 ---
 
@@ -94,13 +118,12 @@ All show internal testing version notice. Disclaimers include: ADR, AI/OCR, noti
 | Route | Purpose |
 |-------|---------|
 | `/` | → `/hu` (middleware) |
-| `/hu`, `/en` | Locale home |
-| `/hu/privacy`, `/en/privacy` | Play privacy URL |
-| `/hu/contact`, `/en/contact` | Lead form |
-| `/hu/disclaimers`, `/en/disclaimers` | Full disclaimer set |
+| `/{locale}` | 35 locale homes (`hu`, `en`, `de`, `ro`, …) |
+| `/{locale}/privacy` | Play privacy URL pattern |
+| `/{locale}/contact` | Lead form |
 | Legacy `/contact` etc. | → `/hu/...` redirect |
 
-**SEO:** `sitemap.xml`, `robots.txt` generated via `src/app/sitemap.ts`, `src/app/robots.ts`.
+**SEO:** `sitemap.xml` (35 locales × public paths), `robots.txt`, `alternates.languages` for all 35 locales.
 
 ---
 
@@ -110,16 +133,16 @@ See **[hostinger-or-public-deploy-checklist.md](./hostinger-or-public-deploy-che
 
 ## Prelaunch checklist
 
-- [ ] `npm run lint` PASS
-- [ ] `npm run build` PASS
+- [ ] `npm run validate` PASS (locale gate + lint + build)
 - [ ] `/hu` and `/en` home render
-- [ ] Language switcher preserves path slug
+- [ ] Sample draft locale `/de` home + `/de/privacy` render with review notice
+- [ ] Language switcher (35-locale select) preserves path slug
 - [ ] `/hu/privacy` and `/en/privacy` reachable (Play URL)
 - [ ] Contact form: **disabled** without env OR succeeds with backend
 - [ ] Mailto fallback works when intake disabled
 - [ ] Legal pages show internal testing version badge
 - [ ] Disclaimers: ADR, AI/OCR, push, eFTI present
-- [ ] SEO meta + OG alternates HU/EN
+- [ ] SEO meta + OG alternates for **35 locales**
 - [ ] `sitemap.xml` lists key routes
 - [ ] No “Download on Google Play” CTA
 - [ ] No certified eFTI claim
@@ -133,8 +156,8 @@ See **[hostinger-or-public-deploy-checklist.md](./hostinger-or-public-deploy-che
 - Privacy/terms are **internal testing version** — not final legal counsel approval
 - Contact intake disabled by default until env configured
 - Production push/FCM described as backend dependency only
-- Subpages beyond home/features use module summaries
-- `npm run validate` script not defined
+- Subpages beyond home/features use module summaries (draft locales: EN fallback)
+- `npm run validate` runs locale coverage gate before lint/build
 
 ---
 

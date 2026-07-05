@@ -1,22 +1,16 @@
-import { contentEn } from "./content/en";
-import { contentHu } from "./content/hu";
-import { isLocale } from "./locales";
-import type { Locale, SiteContent } from "./types";
-
-const contentByLocale: Record<Locale, SiteContent> = {
-  hu: contentHu,
-  en: contentEn,
-};
-
-export function getContent(locale: Locale): SiteContent {
-  return contentByLocale[locale];
-}
+import { defaultLocale, isLocale } from "./locales";
+import { getContent } from "./get-content";
+import type { Locale } from "./types";
 
 export function resolveLocale(value: string | undefined): Locale {
   if (value && isLocale(value)) return value;
-  return "hu";
+  return defaultLocale;
 }
 
+export { getContent };
+export type { ResolvedSiteContent } from "./get-content";
 export * from "./locales";
 export * from "./paths";
 export * from "./types";
+export * from "./translation-status";
+export * from "./language-registry";

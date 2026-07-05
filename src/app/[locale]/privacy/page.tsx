@@ -1,8 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { LegalDocumentSection } from "@/components/site/LegalDocumentSection";
 import { LegalStatusBadge } from "@/components/site/LegalStatusBadge";
 import { Section } from "@/components/site/Section";
 import { getContent, resolveLocale } from "@/lib/i18n";
+import { buildLegalPageMetadata } from "@/lib/i18n/metadata";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
 
@@ -10,9 +12,16 @@ type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-export default async function PrivacyPage({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const locale = resolveLocale((await params).locale) as Locale;
   const { legal } = getContent(locale);
+  return buildLegalPageMetadata(locale, "/privacy", legal.privacy.title);
+}
+
+export default async function PrivacyPage({ params }: PageProps) {
+  const locale = resolveLocale((await params).locale) as Locale;
+  const content = getContent(locale);
+  const { legal, lastUpdatedLabel } = content;
   const privacy = legal.privacy;
 
   return (
@@ -21,8 +30,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
         <h1 className="text-3xl font-bold text-navy">{privacy.title}</h1>
         <p className="mt-4 text-sm text-text/50">
-          {locale === "hu" ? "Utolsó frissítés:" : "Last updated:"}{" "}
-          {privacy.lastUpdated}
+          {lastUpdatedLabel} {privacy.lastUpdated}
         </p>
         <p className="mt-4 leading-relaxed text-text/70">{privacy.intro}</p>
 
