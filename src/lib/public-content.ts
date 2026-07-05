@@ -12,9 +12,9 @@ export const heroContent = {
 export const platformStatus = {
   title: "Aktuális állapot",
   items: [
-    "Google Play belső tesztelés előkészítés alatt.",
+    "Google Play belső tesztelés előkészítés alatt — nem nyilvános store letöltés.",
     "A sofőr app release readiness és Samsung UAT folyamatban.",
-    "Production backend, push értesítések és partneri integrációk fokozatosan kerülnek bekötésre.",
+    "Platform integráció: backend E2E zöld, admin app céges exchange beállítások alap, production push és partneri integrációk fokozatosan.",
   ],
   disclaimer:
     "A ViaNexis nem állítja, hogy a rendszer éles, tanúsított vagy minden országban hivatalosan elfogadott platform.",
@@ -46,7 +46,7 @@ export const platformModules: PlatformModule[] = [
     appFoundation:
       "Sofőr oldali adatok és műveletek a céges szabályoknak megfelelően jelennek meg.",
     backendDependency:
-      "Webes céges portál, admin app, szerepkörök, fuvarkezelés, dokumentumkövetelmények, céges exchange és értesítési beállítások.",
+      "Webes céges portál, platform admin app (regisztrációk, support, billing, céges exchange flag-ek), szerepkörök, fuvarkezelés, dokumentumkövetelmények.",
   },
   {
     id: "cmr-documents",
@@ -88,7 +88,7 @@ export const platformModules: PlatformModule[] = [
     appFoundation:
       "Külön raklapcsere és göngyöleg modul a fuvar részletein. Cégesen kapcsolható. A cég előre megadhatja a cseretárgyakat; a sofőr egyedi göngyöleget is felvehet, ha engedélyezett. Offline mentés és későbbi szinkron.",
     backendDependency:
-      "Exchange settings API, rekord szinkron, portál admin UI, completed package PDF szekció — utóbbi dependency, nem teljesen kész.",
+      "Exchange settings API kész; admin app céges kapcsolók alap; rekord szinkron; completed package PDF szekció — utóbbi dependency, nem teljesen kész.",
     disclaimer:
       "A PDF evidence szekció a lezárt fuvar csomagban még nem minden esetben teljes. A rögzítés támogatja a vitás helyzet dokumentálását, de nem dönt vitában.",
   },
@@ -119,7 +119,7 @@ export const platformModules: PlatformModule[] = [
     title: "Többnyelvű működés",
     goal: "Többnyelvű csapatok egy platformon dolgozhassanak — felület, üzenetek és dokumentum-metaadat támogatással.",
     appFoundation:
-      "Sofőr app többnyelvű felület (35 locale alap), eredeti üzenet megőrzése, fordítás segítségként.",
+      "Sofőr app többnyelvű felület (több tucat locale alap), eredeti üzenet megőrzése, fordítás segítségként.",
     backendDependency:
       "Portál és public site locale bővítés, fordítási review workflow, verified vs draft locale jelölés.",
     disclaimer:
