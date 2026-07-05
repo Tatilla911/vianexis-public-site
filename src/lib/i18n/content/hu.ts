@@ -1,4 +1,5 @@
 import type { SiteContent } from "../types";
+import { legalHu } from "./legal/hu";
 
 export const contentHu: SiteContent = {
   meta: {
@@ -316,48 +317,5 @@ export const contentHu: SiteContent = {
       submitFailed: "Az üzenet küldése sikertelen. Próbálja e-mailben.",
     },
   },
-  legal: {
-    draftBadge: "DRAFT — jogi/adatvédelmi szakértői felülvizsgálat szükséges.",
-    privacy: {
-      title: "Adatvédelmi tájékoztató",
-      intro:
-        "Ez az adatvédelmi tájékoztató draft státuszban van. A végleges szöveg szakértői felülvizsgálat után kerül publikálásra.",
-      controller: "Adatkezelő (draft)",
-      data: "Kezelt adatok (draft)",
-      purpose: "Adatkezelés célja (draft)",
-      purposeItems: [
-        "Kapcsolatfelvétel és érdeklődés kezelése",
-        "Pilot hozzáférés értékelése",
-        "Platform bemutatása és céges együttműködés előkészítése",
-      ],
-      rights: "Érintetti jogok (draft)",
-      dataContactTitle: "Adatkezelési kapcsolat",
-      dataContactBody:
-        "Adatvédelmi kérdésekben: info@vianexis.eu — a végleges adatkezelői elérhetőség a publikált tájékoztatóban szerepel.",
-      playUrlNote:
-        "Play Console-hoz stabil HTTPS privacy URL szükséges: https://vianexis.eu/hu/privacy (draft — jogi review után véglegesítendő).",
-    },
-    terms: {
-      title: "Felhasználási feltételek",
-      intro:
-        "A felhasználási feltételek draft státuszban vannak. A végleges szöveg szakértői felülvizsgálat után kerül publikálásra.",
-    },
-    legalNotice: {
-      title: "Jogi információk",
-      intro:
-        "Ez az oldal draft státuszban van. A végleges jogi szövegek szakértői felülvizsgálat után kerülnek publikálásra.",
-      platformNature: "Platform jellege",
-      platformNatureBody:
-        "A ViaNexis digitális fuvarbizonyítékot és sofőrplatformot nyújt. eFTI-ready foundation — nem minősített eFTI platform.",
-      liability: "Felelősségkorlátozás (draft)",
-      liabilityBody:
-        "A ViaNexis nem ígér hatósági elfogadást, automatikus jogi bizonyító erőt, hibátlan OCR/AI/fordítást vagy vészhelyzeti szolgáltatást.",
-      relatedDocs: "Kapcsolódó dokumentumok",
-    },
-    disclaimersPage: {
-      title: "Felelős használat — disclaimerek",
-      intro:
-        "Az alábbi szövegek a platform használatának fontos korlátait írják le. Nem helyettesítik a jogi tanácsadást.",
-    },
-  },
+  legal: legalHu,
 };

@@ -1,3 +1,5 @@
+import type { LegalContent } from "./content/legal-types";
+
 export type Locale = "hu" | "en";
 
 export type PlatformModule = {
@@ -123,36 +125,5 @@ export type SiteContent = {
       submitFailed: string;
     };
   };
-  legal: {
-    draftBadge: string;
-    privacy: {
-      title: string;
-      intro: string;
-      controller: string;
-      data: string;
-      purpose: string;
-      purposeItems: string[];
-      rights: string;
-      dataContactTitle: string;
-      dataContactBody: string;
-      playUrlNote: string;
-    };
-    terms: {
-      title: string;
-      intro: string;
-    };
-    legalNotice: {
-      title: string;
-      intro: string;
-      platformNature: string;
-      platformNatureBody: string;
-      liability: string;
-      liabilityBody: string;
-      relatedDocs: string;
-    };
-    disclaimersPage: {
-      title: string;
-      intro: string;
-    };
-  };
+  legal: LegalContent;
 };

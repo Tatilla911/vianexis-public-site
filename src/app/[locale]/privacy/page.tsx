@@ -1,9 +1,10 @@
+import Link from "next/link";
+import { LegalDocumentSection } from "@/components/site/LegalDocumentSection";
 import { LegalStatusBadge } from "@/components/site/LegalStatusBadge";
 import { Section } from "@/components/site/Section";
 import { getContent, resolveLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
-import Link from "next/link";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -11,59 +12,34 @@ type PageProps = {
 
 export default async function PrivacyPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale) as Locale;
-  const legal = getContent(locale).legal;
+  const { legal } = getContent(locale);
+  const privacy = legal.privacy;
 
   return (
     <Section className="pt-12">
       <div className="mx-auto max-w-3xl">
-        <LegalStatusBadge label={legal.draftBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-navy">{legal.privacy.title}</h1>
-        <p className="mt-4 text-text/70 leading-relaxed">{legal.privacy.intro}</p>
+        <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
+        <h1 className="text-3xl font-bold text-navy">{privacy.title}</h1>
+        <p className="mt-4 text-sm text-text/50">
+          {locale === "hu" ? "Utolsó frissítés:" : "Last updated:"}{" "}
+          {privacy.lastUpdated}
+        </p>
+        <p className="mt-4 leading-relaxed text-text/70">{privacy.intro}</p>
 
-        <div className="mt-8 space-y-6 text-sm leading-relaxed text-text/70">
+        <div className="mt-8 space-y-6 text-sm">
+          <LegalDocumentSection section={privacy.controller} />
+          <LegalDocumentSection section={privacy.scope} />
+          <LegalDocumentSection section={privacy.dataCategories} />
+          <LegalDocumentSection section={privacy.purposes} />
+          <LegalDocumentSection section={privacy.sharing} />
+          <LegalDocumentSection section={privacy.rights} />
+          <LegalDocumentSection section={privacy.notifications} />
+          <LegalDocumentSection section={privacy.location} />
+          <LegalDocumentSection section={privacy.importantNotices} />
+          <LegalDocumentSection section={privacy.dataContact} />
           <section>
-            <h2 className="text-lg font-semibold text-navy">
-              {legal.privacy.controller}
-            </h2>
-            <p className="mt-2">ViaNexis — vianexis.eu</p>
-          </section>
-          <section>
-            <h2 className="text-lg font-semibold text-navy">{legal.privacy.data}</h2>
-            <p className="mt-2">
-              {locale === "hu"
-                ? "Kapcsolatfelvételi adatok: név, cég, e-mail, telefon, üzenet."
-                : "Contact data: name, company, email, phone, message."}
-            </p>
-          </section>
-          <section>
-            <h2 className="text-lg font-semibold text-navy">
-              {legal.privacy.purpose}
-            </h2>
-            <ul className="mt-2 list-inside list-disc space-y-1">
-              {legal.privacy.purposeItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-          <section>
-            <h2 className="text-lg font-semibold text-navy">
-              {legal.privacy.dataContactTitle}
-            </h2>
-            <p className="mt-2">{legal.privacy.dataContactBody}</p>
-          </section>
-          <section>
-            <h2 className="text-lg font-semibold text-navy">Play Console URL</h2>
-            <p className="mt-2">{legal.privacy.playUrlNote}</p>
-          </section>
-          <section>
-            <h2 className="text-lg font-semibold text-navy">
-              {legal.privacy.rights}
-            </h2>
-            <p className="mt-2">
-              {locale === "hu"
-                ? "Az érintettek a GDPR szerinti jogokkal élhetnek."
-                : "Data subjects may exercise rights under applicable law."}
-            </p>
+            <h2 className="text-lg font-semibold text-navy">Play Console</h2>
+            <p className="mt-2 leading-relaxed text-text/70">{privacy.playUrl}</p>
           </section>
         </div>
 

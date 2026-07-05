@@ -1,4 +1,5 @@
 import type { SiteContent } from "../types";
+import { legalEn } from "./legal/en";
 
 export const contentEn: SiteContent = {
   meta: {
@@ -315,48 +316,5 @@ export const contentEn: SiteContent = {
       submitFailed: "Message could not be sent. Try email instead.",
     },
   },
-  legal: {
-    draftBadge: "DRAFT — legal/privacy expert review required.",
-    privacy: {
-      title: "Privacy policy",
-      intro:
-        "This privacy policy is in draft status. The final text will be published after expert review.",
-      controller: "Data controller (draft)",
-      data: "Data processed (draft)",
-      purpose: "Purpose of processing (draft)",
-      purposeItems: [
-        "Handling contact and interest requests",
-        "Evaluating pilot access",
-        "Platform presentation and partnership preparation",
-      ],
-      rights: "Data subject rights (draft)",
-      dataContactTitle: "Data protection contact",
-      dataContactBody:
-        "For privacy questions: info@vianexis.eu — final controller contact will appear in the published policy.",
-      playUrlNote:
-        "Play Console requires a stable HTTPS privacy URL: https://vianexis.eu/en/privacy (draft — to be finalised after legal review).",
-    },
-    terms: {
-      title: "Terms of use",
-      intro:
-        "Terms of use are in draft status. The final text will be published after expert review.",
-    },
-    legalNotice: {
-      title: "Legal notice",
-      intro:
-        "This page is in draft status. Final legal texts will be published after expert review.",
-      platformNature: "Nature of the platform",
-      platformNatureBody:
-        "ViaNexis provides digital transport evidence and a driver operations platform. eFTI-ready foundation — not a certified eFTI platform.",
-      liability: "Limitation of liability (draft)",
-      liabilityBody:
-        "ViaNexis does not promise authority acceptance, automatic legal probative force, flawless OCR/AI/translation, or emergency services.",
-      relatedDocs: "Related documents",
-    },
-    disclaimersPage: {
-      title: "Responsible use — disclaimers",
-      intro:
-        "The texts below describe important limits of platform use. They do not replace legal advice.",
-    },
-  },
+  legal: legalEn,
 };
