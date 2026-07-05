@@ -57,10 +57,10 @@ export function Hero({
 
         <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[
-            { label: "Dokumentum", value: "QR + audit" },
-            { label: "Aláírás", value: "Szabályozott" },
-            { label: "Hatóság", value: "Csomagolt hozzáférés" },
-            { label: "eFTI", value: "Ready foundation" },
+            { label: "Sofőr app", value: "Fuvar + offline" },
+            { label: "Dokumentum", value: "CMR + audit" },
+            { label: "Üzenet", value: "Többnyelvű" },
+            { label: "Állapot", value: "Belső teszt prep" },
           ].map((item) => (
             <div
               key={item.label}

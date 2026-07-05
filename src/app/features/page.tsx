@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DisclaimerBox } from "@/components/site/DisclaimerBox";
-import { FeatureCard } from "@/components/site/FeatureCard";
 import { Hero } from "@/components/site/Hero";
+import { ModuleCard } from "@/components/site/ModuleCard";
+import { PlatformStatusBanner } from "@/components/site/PlatformStatusBanner";
 import { Section } from "@/components/site/Section";
+import {
+  adrDisclaimer,
+  aiOcrDisclaimer,
+  eftiDisclaimer,
+  heroContent,
+  platformModules,
+} from "@/lib/public-content";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -15,31 +23,36 @@ export default function FeaturesPage() {
   return (
     <>
       <Hero
-        title="Platformfunkciók"
-        subtitle="Fuvar-, dokumentum- és ellenőrzési támogatás egy helyen — auditálható, strukturált, céges szinten konfigurálható."
-        primaryCta={{ href: "/pilot", label: "Céges hozzáférés igénylése" }}
-        secondaryCta={{ href: "/contact", label: "Kapcsolat" }}
+        title="Platformmodulok"
+        subtitle="Fuvarbizonyíték, dokumentumok, üzenetek, értesítések, raklap/göngyöleg, ADR segédlet és audit — modulonként, felelős megfogalmazással."
+        primaryCta={heroContent.primaryCta}
+        secondaryCta={heroContent.secondaryCta}
       />
 
-      <Section title="Alapmodulok">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard title="Sofőr app" description="Mobil fuvarfolyamat, dokumentumok, aláírások, QR és offline szinkron." />
-          <FeatureCard title="Céges portál" description="Fuvarok, követelmények, jogosultságok és audit egy webes felületen." />
-          <FeatureCard title="Dokumentumkezelés" description="CMR, szállítólevél, számla és egyéb iratok fuvarhoz kötve." />
-          <FeatureCard title="Aláírások" description="Digitális aláírás-capture, kötelező aláírási szabályok." />
-          <FeatureCard title="Auditnapló" description="Eseményalapú naplózás — támogatja az ellenőrizhetőséget." />
-          <FeatureCard title="Hatósági csomag" description="Scope- és időkorlátozott ellenőrzési hozzáférés QR-en keresztül." />
+      <Section>
+        <PlatformStatusBanner />
+      </Section>
+
+      <Section title="Modulok">
+        <div className="grid gap-6 lg:grid-cols-2">
+          {platformModules.map((module) => (
+            <ModuleCard key={module.id} module={module} />
+          ))}
         </div>
       </Section>
 
-      <Section variant="muted" title="eFTI-ready foundation">
-        <DisclaimerBox>
-          <p>
-            A ViaNexis eFTI-ready foundation technikai felkészültséget jelent —
-            <strong> nem minősített eFTI platform</strong>, és nem ígér hatósági
-            elfogadást.
-          </p>
-        </DisclaimerBox>
+      <Section variant="muted" title="Kötelező disclaimerek">
+        <div className="grid gap-4 lg:grid-cols-3">
+          <DisclaimerBox title={adrDisclaimer.title}>
+            <p>{adrDisclaimer.body}</p>
+          </DisclaimerBox>
+          <DisclaimerBox title={aiOcrDisclaimer.title}>
+            <p>{aiOcrDisclaimer.body}</p>
+          </DisclaimerBox>
+          <DisclaimerBox title={eftiDisclaimer.title}>
+            <p>{eftiDisclaimer.body}</p>
+          </DisclaimerBox>
+        </div>
       </Section>
 
       <Section title="További oldalak">
@@ -50,6 +63,7 @@ export default function FeaturesPage() {
             { href: "/documents-signatures", label: "Dokumentumok" },
             { href: "/authority-efti", label: "Hatóság / eFTI" },
             { href: "/security-audit", label: "Biztonság és audit" },
+            { href: "/contact", label: "Kapcsolat" },
           ].map((link) => (
             <Link
               key={link.href}

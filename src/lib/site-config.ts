@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "ViaNexis",
   domain: "https://vianexis.eu",
-  title: "ViaNexis — Digitális fuvar-, dokumentum- és ellenőrzési támogatás",
+  title: "ViaNexis — digitális fuvarbizonyíték és sofőrplatform",
   description:
-    "Modern logisztikai platform sofőröknek, diszpécsereknek és fuvarozó cégeknek. Dokumentumkezelés, aláírások, audit, hatósági ellenőrzési csomag és eFTI-ready foundation.",
+    "Sofőralkalmazás, céges irányítás, dokumentumkezelés, üzenetek, értesítések és többnyelvű fuvarfolyamat egy rendszerben. Belső tesztelés előkészítés alatt.",
   contactEmail: "info@vianexis.eu",
 } as const;
 

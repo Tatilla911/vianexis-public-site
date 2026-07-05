@@ -2,19 +2,37 @@ import Link from "next/link";
 import { DisclaimerBox } from "@/components/site/DisclaimerBox";
 import { FeatureCard } from "@/components/site/FeatureCard";
 import { Hero } from "@/components/site/Hero";
+import { ModuleCard } from "@/components/site/ModuleCard";
 import { PilotAccessForm } from "@/components/site/PilotAccessForm";
+import { PlatformStatusBanner } from "@/components/site/PlatformStatusBanner";
 import { Section } from "@/components/site/Section";
+import {
+  adrDisclaimer,
+  aiOcrDisclaimer,
+  eftiDisclaimer,
+  heroContent,
+  platformModules,
+} from "@/lib/public-content";
 import { siteConfig } from "@/lib/site-config";
 
 export default function HomePage() {
+  const messagingModule = platformModules.find(
+    (m) => m.id === "messaging-notifications",
+  );
+  const palletModule = platformModules.find((m) => m.id === "pallet-packaging");
+
   return (
     <>
       <Hero
-        title="Kontrollált fuvarfolyamat. Rendezett dokumentumok. Auditálható döntések."
-        subtitle="ViaNexis mint digitális fuvar-, dokumentum- és ellenőrzési támogatás."
-        primaryCta={{ href: "/pilot", label: "Céges hozzáférés igénylése" }}
-        secondaryCta={{ href: "/features", label: "Funkciók megtekintése" }}
+        title={heroContent.title}
+        subtitle={heroContent.subtitle}
+        primaryCta={heroContent.primaryCta}
+        secondaryCta={heroContent.secondaryCta}
       />
+
+      <Section>
+        <PlatformStatusBanner />
+      </Section>
 
       <Section
         id="problem"
@@ -32,145 +50,84 @@ export default function HomePage() {
           />
           <FeatureCard
             title="Nehezen bizonyítható események"
-            description="Átvétel, leadás, incidens — anélkül, hogy strukturált auditnapló lenne, nehéz visszakeresni, mi történt."
+            description="Átvétel, leadás, raklapcsere, incidens — strukturált napló nélkül nehéz visszakeresni, mi történt."
           />
           <FeatureCard
-            title="Hatósági ellenőrzési nehézségek"
-            description="Ellenőrzéskor nehéz gyorsan, rendezett csomagban átadni a releváns dokumentumokat és eseményeket."
+            title="Többnyelvű csapat"
+            description="Üzenetek és utasítások félreértése napi szinten — az eredeti szöveg megőrzése és ellenőrzött fordítás szükséges."
           />
         </div>
       </Section>
 
       <Section
         variant="muted"
-        title="ViaNexis megoldás"
-        subtitle="Egy platform, amely összekapcsolja a sofőr folyamatot, a céges irányítást és az auditálható dokumentációt."
+        id="modules"
+        title="Platformmodulok"
+        subtitle="Minden modulnál: cél, app-side foundation, backend/admin dependency — jogilag óvatos megfogalmazással."
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard
-            title="Sofőr app"
-            description="Fuvarinformáció, dokumentumfeltöltés, aláírás, hatósági QR és offline szinkron — a sofőr számára."
-          />
-          <FeatureCard
-            title="Céges portál"
-            description="Fuvarok, dokumentumkövetelmények, aláírási szabályok, jogosultságok és auditnapló egy helyen."
-          />
-          <FeatureCard
-            title="Dokumentumkezelés"
-            description="CMR, szállítólevél, számla, jármű- és sofőriratok — strukturált, fuvarhoz kötött kezelés."
-          />
-          <FeatureCard
-            title="Audit és nyomon követés"
-            description="Eseményalapú naplózás, amely támogatja az ellenőrizhetőséget — nem helyettesíti a jogi bizonyítást."
-          />
-          <FeatureCard
-            title="Jogosultságok"
-            description="Szerepkör-alapú hozzáférés, céges beállítások és rugalmas munkafolyamatok."
-          />
-          <FeatureCard
-            title="eFTI-ready foundation"
-            description="Felkészült alap a jövőbeli eFTI-kompatibilis folyamatokhoz — nem minősített eFTI platform."
-          />
-        </div>
-      </Section>
-
-      <Section
-        id="driver-app"
-        title="Sofőr app"
-        subtitle="Mit kap a sofőr, és milyen korlátokkal dolgozik."
-      >
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-4">
-            <FeatureCard
-              title="Fuvarinformáció és feladatok"
-              description="A sofőr a fuvarhoz tartozó adatokat és teendőket egy helyen látja."
-            />
-            <FeatureCard
-              title="Dokumentumfeltöltés"
-              description="Fénykép, scan vagy fájl — a fuvarhoz rendelve, követelmények szerint."
-            />
-            <FeatureCard
-              title="Aláírás rögzítése"
-              description="Digitális aláírás-capture a fuvar eseményeihez kötve."
-            />
-            <FeatureCard
-              title="Hatósági QR"
-              description="Ellenőrzési csomag megosztására szolgáló, idő- és scope-korlátozott hozzáférés."
-            />
-          </div>
-          <div className="space-y-4">
-            <FeatureCard
-              title="Offline szinkron"
-              description="Alapvető működés kapcsolat nélkül is, szinkronizálás amikor újra online."
-            />
-            <FeatureCard
-              title="Incidensjelentés"
-              description="Strukturált eseményrögzítés — nem vészhelyzeti vagy SOS szolgáltatás."
-            />
-            <DisclaimerBox title="Korlátok">
-              <p>
-                A sofőr app nem garantál hibátlan OCR-t, AI-feldolgozást vagy
-                fordítást. Nem nyújt vészhelyzeti segítséget. Az aláírások és
-                dokumentumok nem jelentenek automatikus jogi bizonyító erőt.
-              </p>
-            </DisclaimerBox>
-            <Link
-              href="/driver-app"
-              className="inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
-            >
-              Részletek a sofőr appról →
-            </Link>
-          </div>
-        </div>
-      </Section>
-
-      <Section
-        variant="muted"
-        id="company-portal"
-        title="Céges portál"
-        subtitle="Fuvarozó cégek számára: irányítás, követelmények és auditálhatóság."
-      >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard title="Fuvarok" description="Fuvarok nyomon követése, státuszok és események." />
-          <FeatureCard title="Dokumentumkövetelmények" description="Fuvarhoz, járműhöz vagy sofőrhöz kötött kötelező iratok." />
-          <FeatureCard title="Aláírási szabályok" description="Ki, mikor és milyen dokumentumon írhat alá." />
-          <FeatureCard title="Jogosultságok" description="Szerepkör-alapú hozzáférés diszpécser, admin és egyéb szerepekhez." />
-          <FeatureCard title="Auditnapló" description="Események visszakereshető naplója — támogatja, de nem helyettesíti a jogi bizonyítást." />
-          <FeatureCard title="Rugalmas beállítások" description="Céges munkafolyamatok, nyelv, duty routing és support hozzáférés." />
-        </div>
-        <Link
-          href="/company-portal"
-          className="mt-6 inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
-        >
-          Részletek a céges portálról →
-        </Link>
-      </Section>
-
-      <Section
-        id="documents"
-        title="Dokumentumok és aláírások"
-        subtitle="Strukturált kezelés a fuvar teljes dokumentációs láncához."
-      >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            "CMR",
-            "Szkennelt dokumentumok",
-            "Szállítólevél",
-            "Számla",
-            "Jármű / pótkocsi iratok",
-            "Sofőriratok",
-            "Aláírás rögzítése",
-            "Kötelező aláírások",
-          ].map((item) => (
-            <FeatureCard key={item} title={item} description="Fuvarhoz kötött, követelmény-alapú kezelés és nyomon követés." />
+        <div className="grid gap-6 lg:grid-cols-2">
+          {platformModules.map((module) => (
+            <ModuleCard key={module.id} module={module} />
           ))}
         </div>
-        <div className="mt-6">
-          <FeatureCard
-            title="Elsődleges dokumentum"
-            description="Minden fuvarhoz meghatározható primary document, amely összefoglalja a fuvar dokumentációs állapotát."
-            className="max-w-2xl"
-          />
+      </Section>
+
+      {palletModule && (
+        <Section
+          id="pallet-packaging"
+          title="Raklapcsere és göngyölegcsere"
+          subtitle="Külön modulok, cégesen kapcsolhatók — offline mentéssel és audit irányba."
+        >
+          <ModuleCard module={palletModule} className="max-w-3xl" />
+        </Section>
+      )}
+
+      {messagingModule && (
+        <Section
+          variant="muted"
+          id="notifications"
+          title="Üzenetek és értesítések"
+          subtitle="App-oldali foundation kész — production push külön backend dependency."
+        >
+          <div className="grid gap-6 lg:grid-cols-2">
+            <ModuleCard module={messagingModule} />
+            <div className="space-y-4">
+              <FeatureCard
+                title="Értesítési eseménytípusok"
+                description="Új üzenet, fuvarmódosítás, dokumentum teendő, sync probléma — app-oldali foundation alapján."
+              />
+              <FeatureCard
+                title="Tap routing és PIN"
+                description="Értesítésből célképernyő megnyitható; PIN zárolás után deep link csak sikeres feloldás után."
+              />
+              <FeatureCard
+                title="Privacy-safe lockscreen"
+                description="Alapértelmezésben nem jelenik meg teljes dokumentum- vagy üzenettartalom a zárolási képernyőn."
+              />
+              <DisclaimerBox title="Backend dependency">
+                <p>
+                  Production push (FCM/APNs), device token regisztráció és
+                  szerveroldali küldés még nem éles — külön bekötési folyamat
+                  szükséges. A jelenlegi foundation helyi és hook-alapú
+                  értesítésekre készült.
+                </p>
+              </DisclaimerBox>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      <Section id="disclaimers" title="Felelős használat — fontos tudnivalók">
+        <div className="grid gap-4 lg:grid-cols-3">
+          <DisclaimerBox title={adrDisclaimer.title}>
+            <p>{adrDisclaimer.body}</p>
+          </DisclaimerBox>
+          <DisclaimerBox title={aiOcrDisclaimer.title}>
+            <p>{aiOcrDisclaimer.body}</p>
+          </DisclaimerBox>
+          <DisclaimerBox title={eftiDisclaimer.title}>
+            <p>{eftiDisclaimer.body}</p>
+          </DisclaimerBox>
         </div>
       </Section>
 
@@ -187,7 +144,7 @@ export default function HomePage() {
           />
           <FeatureCard
             title="Sofőr védelme"
-            description="Strukturált folyamat, amely csökkenti a vitás helyzeteket és támogatja az események dokumentálását."
+            description="Strukturált folyamat, amely támogatja az események dokumentálását vitás helyzetekben."
           />
           <FeatureCard
             title="Dokumentációs háttér"
@@ -210,75 +167,18 @@ export default function HomePage() {
       </Section>
 
       <Section
-        id="authority-efti"
-        title="Hatóság / eFTI"
-        subtitle="Ellenőrzési csomag és eFTI-ready foundation — felelős megfogalmazással."
-      >
-        <div className="grid gap-4 sm:grid-cols-2">
-          <FeatureCard
-            title="Authority inspection package"
-            description="Hatósági ellenőrzéshez szükséges dokumentumok és események csomagolt, scope- és időkorlátozott megosztása."
-          />
-          <FeatureCard
-            title="Scope / time limited access"
-            description="QR-alapú, korlátozott hozzáférés — nem nyilvános, nem korlátlan."
-          />
-          <FeatureCard
-            title="Audit"
-            description="Hozzáférések és megosztások naplózása, visszakereshető eseményekkel."
-          />
-          <FeatureCard
-            title="eFTI-ready foundation"
-            description="Felkészült technikai alap a jövőbeli eFTI-kompatibilis folyamatok integrálásához."
-          />
-        </div>
-        <DisclaimerBox className="mt-6" title="Fontos">
-          <p>
-            A ViaNexis <strong>nem minősített eFTI platform</strong>. Nem ígér
-            hatósági elfogadást. Az eFTI-ready foundation azt jelenti, hogy a
-            rendszer architektúrája felkészült a jövőbeli követelmények
-            integrálására — ez nem egyenértékű minősítéssel vagy engedéllyel.
-          </p>
-        </DisclaimerBox>
-        <Link
-          href="/authority-efti"
-          className="mt-4 inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
-        >
-          Részletek a hatósági / eFTI funkciókról →
-        </Link>
-      </Section>
-
-      <Section
         variant="muted"
-        title="Beállítások és rugalmasság"
-        subtitle="Minden cég más — a platform alkalmazkodik."
-      >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { title: "Szerepkörök és jogosultságok", desc: "Admin, diszpécser, sofőr és egyéni szerepek." },
-            { title: "Dokumentumkövetelmények", desc: "Fuvar-, jármű- és sofőr-szintű kötelező iratok." },
-            { title: "Aláírási szabályok", desc: "Ki írhat alá, milyen sorrendben, milyen dokumentumon." },
-            { title: "Nyelv", desc: "Többnyelvű felület és dokumentumkezelés támogatása." },
-            { title: "Céges munkafolyamatok", desc: "Fuvar- és duty routing testreszabása." },
-            { title: "Support hozzáférés", desc: "Kontrollált támogatói hozzáférés auditálható módon." },
-          ].map((item) => (
-            <FeatureCard key={item.title} title={item.title} description={item.desc} />
-          ))}
-        </div>
-      </Section>
-
-      <Section
         id="pilot"
-        title="Pilot hozzáférés"
-        subtitle="Kontrollált céges hozzáférés-igénylés — nem automatikus éles regisztráció."
+        title="Kapcsolat és belső tesztelés"
+        subtitle="Kontrollált céges hozzáférés-igénylés — nem automatikus éles regisztráció, nincs nyilvános Play letöltés."
       >
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <p className="text-text/70 leading-relaxed">
-              A ViaNexis pilot program célja, hogy kiválasztott fuvarozó cégek
-              kontrollált körülmények között ismerhessék meg a platformot. Az
-              igénylés után csapatunk felveszi Önnel a kapcsolatot — az
-              aktiválás nem automatikus.
+              A ViaNexis sofőr app Google Play belső tesztelés előkészítés
+              alatt áll. A release readiness és Samsung UAT folyamatban. Ha
+              érdekli a platform vagy pilot hozzáférés, vegye fel velünk a
+              kapcsolatot — az aktiválás nem automatikus.
             </p>
             <DisclaimerBox className="mt-6">
               <p>
@@ -287,33 +187,24 @@ export default function HomePage() {
                 értékelésen megy keresztül.
               </p>
             </DisclaimerBox>
+            <p className="mt-6">
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="text-lg font-semibold text-vianexis-blue hover:underline"
+              >
+                {siteConfig.contactEmail}
+              </a>
+            </p>
+            <Link
+              href="/contact"
+              className="mt-4 inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
+            >
+              Kapcsolatfelvétel →
+            </Link>
           </div>
           <div className="lg:col-span-3">
             <PilotAccessForm />
           </div>
-        </div>
-      </Section>
-
-      <Section variant="muted" id="contact" title="Kapcsolat">
-        <div className="max-w-xl">
-          <p className="text-text/70 leading-relaxed">
-            Kérdése van a ViaNexis platformról, pilot hozzáférésről vagy
-            céges bevezetésről? Vegye fel velünk a kapcsolatot.
-          </p>
-          <p className="mt-4">
-            <a
-              href={`mailto:${siteConfig.contactEmail}`}
-              className="text-lg font-semibold text-vianexis-blue hover:underline"
-            >
-              {siteConfig.contactEmail}
-            </a>
-          </p>
-          <Link
-            href="/contact"
-            className="mt-4 inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
-          >
-            Kapcsolati oldal →
-          </Link>
         </div>
       </Section>
     </>
