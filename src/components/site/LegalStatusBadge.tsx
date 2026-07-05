@@ -1,10 +1,11 @@
 import { cn } from "@/lib/utils";
 
 type LegalStatusBadgeProps = {
+  label?: string;
   className?: string;
 };
 
-export function LegalStatusBadge({ className }: LegalStatusBadgeProps) {
+export function LegalStatusBadge({ label, className }: LegalStatusBadgeProps) {
   return (
     <div
       className={cn(
@@ -12,7 +13,7 @@ export function LegalStatusBadge({ className }: LegalStatusBadgeProps) {
         className,
       )}
     >
-      DRAFT — jogi/adatvédelmi szakértői felülvizsgálat szükséges.
+      {label ?? "DRAFT — jogi/adatvédelmi szakértői felülvizsgálat szükséges."}
     </div>
   );
 }

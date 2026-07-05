@@ -1,7 +1,40 @@
 import Link from "next/link";
-import { footerLinks, siteConfig } from "@/lib/site-config";
+import { getContent } from "@/lib/i18n";
+import { localePath } from "@/lib/i18n/paths";
+import type { Locale } from "@/lib/i18n/types";
+import { siteConfig } from "@/lib/site-config";
 
-export function Footer() {
+type FooterProps = {
+  locale: Locale;
+};
+
+export function Footer({ locale }: FooterProps) {
+  const content = getContent(locale);
+
+  const productLinks = [
+    { href: localePath(locale, "/features"), label: content.nav.features },
+    { href: localePath(locale, "/driver-app"), label: content.nav.driverApp },
+    {
+      href: localePath(locale, "/company-portal"),
+      label: content.nav.companyPortal,
+    },
+    { href: localePath(locale, "/pilot"), label: content.nav.pilot },
+  ];
+
+  const legalLinks = [
+    { href: localePath(locale, "/legal"), label: content.footer.legalNotice },
+    { href: localePath(locale, "/privacy"), label: content.footer.privacy },
+    { href: localePath(locale, "/terms"), label: content.footer.terms },
+    {
+      href: localePath(locale, "/disclaimers"),
+      label: content.footer.disclaimers,
+    },
+    {
+      href: `mailto:${siteConfig.contactEmail}`,
+      label: content.footer.dataContact,
+    },
+  ];
+
   return (
     <footer className="border-t border-deep-blue/10 bg-navy text-white">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
@@ -14,8 +47,7 @@ export function Footer() {
               <span className="text-lg font-bold">{siteConfig.name}</span>
             </div>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
-              Digitális fuvar-, dokumentum- és ellenőrzési támogatás fuvarozó
-              cégeknek. eFTI-ready foundation — nem minősített eFTI platform.
+              {content.footer.tagline}
             </p>
             <p className="mt-4 text-sm text-white/40">
               {siteConfig.domain.replace("https://", "")}
@@ -24,10 +56,10 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Termék
+              {content.footer.product}
             </h3>
             <ul className="mt-4 space-y-2">
-              {footerLinks.product.map((link) => (
+              {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -42,11 +74,11 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Jogi
+              {content.footer.legal}
             </h3>
             <ul className="mt-4 space-y-2">
-              {footerLinks.legal.map((link) => (
-                <li key={link.href}>
+              {legalLinks.map((link) => (
+                <li key={link.label}>
                   <Link
                     href={link.href}
                     className="text-sm text-white/60 transition-colors hover:text-white"
@@ -61,9 +93,7 @@ export function Footer() {
 
         <div className="mt-10 border-t border-white/10 pt-6">
           <p className="text-xs leading-relaxed text-white/40">
-            © {new Date().getFullYear()} ViaNexis. A platform nem minősített eFTI
-            platform, nem ígér hatósági elfogadást, automatikus jogi bizonyító
-            erőt, hibátlan OCR/AI/fordítást vagy vészhelyzeti/SOS szolgáltatást.
+            © {new Date().getFullYear()} ViaNexis. {content.footer.copyright}
           </p>
         </div>
       </div>

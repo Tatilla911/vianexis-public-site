@@ -1,0 +1,71 @@
+import Link from "next/link";
+import { LegalStatusBadge } from "@/components/site/LegalStatusBadge";
+import { Section } from "@/components/site/Section";
+import { getContent, resolveLocale } from "@/lib/i18n";
+import { localePath } from "@/lib/i18n/paths";
+import type { Locale } from "@/lib/i18n/types";
+
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function LegalPage({ params }: PageProps) {
+  const locale = resolveLocale((await params).locale) as Locale;
+  const legal = getContent(locale).legal;
+
+  return (
+    <Section className="pt-12">
+      <div className="mx-auto max-w-3xl">
+        <LegalStatusBadge label={legal.draftBadge} className="mb-6" />
+        <h1 className="text-3xl font-bold text-navy">{legal.legalNotice.title}</h1>
+        <p className="mt-4 text-text/70 leading-relaxed">{legal.legalNotice.intro}</p>
+
+        <div className="mt-8 space-y-6 text-sm leading-relaxed text-text/70">
+          <section>
+            <h2 className="text-lg font-semibold text-navy">
+              {legal.legalNotice.platformNature}
+            </h2>
+            <p className="mt-2">{legal.legalNotice.platformNatureBody}</p>
+          </section>
+          <section>
+            <h2 className="text-lg font-semibold text-navy">
+              {legal.legalNotice.liability}
+            </h2>
+            <p className="mt-2">{legal.legalNotice.liabilityBody}</p>
+          </section>
+          <section>
+            <h2 className="text-lg font-semibold text-navy">
+              {legal.legalNotice.relatedDocs}
+            </h2>
+            <ul className="mt-2 list-inside list-disc space-y-1">
+              <li>
+                <Link
+                  href={localePath(locale, "/privacy")}
+                  className="text-vianexis-blue hover:underline"
+                >
+                  {getContent(locale).footer.privacy}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localePath(locale, "/terms")}
+                  className="text-vianexis-blue hover:underline"
+                >
+                  {getContent(locale).footer.terms}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={localePath(locale, "/disclaimers")}
+                  className="text-vianexis-blue hover:underline"
+                >
+                  {getContent(locale).footer.disclaimers}
+                </Link>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </Section>
+  );
+}

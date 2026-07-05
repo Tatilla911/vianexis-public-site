@@ -6,6 +6,7 @@ type HeroProps = {
   subtitle: string;
   primaryCta: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
+  stats?: { label: string; value: string }[];
   className?: string;
 };
 
@@ -14,6 +15,7 @@ export function Hero({
   subtitle,
   primaryCta,
   secondaryCta,
+  stats,
   className,
 }: HeroProps) {
   return (
@@ -56,12 +58,12 @@ export function Hero({
         </div>
 
         <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {[
-            { label: "Sofőr app", value: "Fuvar + offline" },
-            { label: "Dokumentum", value: "CMR + audit" },
-            { label: "Üzenet", value: "Többnyelvű" },
-            { label: "Állapot", value: "Belső teszt prep" },
-          ].map((item) => (
+          {(stats ?? [
+            { label: "Driver app", value: "Trip + offline" },
+            { label: "Documents", value: "CMR + audit" },
+            { label: "Messaging", value: "Multilingual" },
+            { label: "Status", value: "Internal test prep" },
+          ]).map((item) => (
             <div
               key={item.label}
               className="rounded-lg border border-white/10 bg-white/5 p-4 backdrop-blur-sm"

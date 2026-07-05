@@ -1,11 +1,20 @@
-import { platformStatus } from "@/lib/public-content";
 import { cn } from "@/lib/utils";
 
+type PlatformStatus = {
+  title: string;
+  items: string[];
+  disclaimer: string;
+};
+
 type PlatformStatusBannerProps = {
+  content: PlatformStatus;
   className?: string;
 };
 
-export function PlatformStatusBanner({ className }: PlatformStatusBannerProps) {
+export function PlatformStatusBanner({
+  content,
+  className,
+}: PlatformStatusBannerProps) {
   return (
     <div
       className={cn(
@@ -14,14 +23,14 @@ export function PlatformStatusBanner({ className }: PlatformStatusBannerProps) {
       )}
     >
       <p className="text-sm font-semibold uppercase tracking-wide text-navy">
-        {platformStatus.title}
+        {content.title}
       </p>
       <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-text/80">
-        {platformStatus.items.map((item) => (
+        {content.items.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <p className="mt-4 text-sm text-text/60">{platformStatus.disclaimer}</p>
+      <p className="mt-4 text-sm text-text/60">{content.disclaimer}</p>
     </div>
   );
 }

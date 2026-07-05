@@ -1,6 +1,6 @@
 # ViaNexis public site — jogilag óvatos tartalom (HU master)
 
-> **Státusz:** HU master — a site `src/lib/public-content.ts` forrása.  
+> **Státusz:** HU master — a site `src/lib/i18n/content/hu.ts` forrása.  
 > **EN draft:** `public-site-legal-safe-copy-en.md`  
 > **Utolsó frissítés:** 2026-07-05
 

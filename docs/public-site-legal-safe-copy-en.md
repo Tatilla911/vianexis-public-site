@@ -2,7 +2,7 @@
 
 > **Status:** EN draft — for future `/en` locale routes.  
 > **HU master:** `public-site-legal-safe-copy-hu.md`  
-> **Source of truth (site):** `src/lib/public-content.ts` (currently HU)  
+> **Source of truth (site):** `src/lib/i18n/content/hu.ts` and `src/lib/i18n/content/en.ts`  
 > **Last updated:** 2026-07-05
 
 ---
