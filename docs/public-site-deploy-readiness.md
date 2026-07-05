@@ -1,7 +1,7 @@
 # Public site deployment readiness
 
-**Updated:** 2026-07-05  
-**Repo:** `vianexis-public-site`  
+**Updated:** 2026-07-05 (platform release checkpoint)  
+**Baseline commit:** `daa93c2`  
 **Baseline commit:** f105806+  
 **Scope:** Next.js marketing / legal site — not driver app, backend, or admin app.
 
@@ -14,6 +14,8 @@
 | Lint | `npm run lint` | Run before deploy |
 | Build | `npm run build` | Run before deploy |
 | Validate | `npm run validate` | **Not defined** in `package.json` |
+
+**Platform checkpoint (2026-07-05):** lint PASS · build PASS · routes verified in build output · deploy to vianexis.eu **pending**
 
 **Build command:**
 
@@ -101,6 +103,10 @@ All show internal testing version notice. Disclaimers include: ADR, AI/OCR, noti
 **SEO:** `sitemap.xml`, `robots.txt` generated via `src/app/sitemap.ts`, `src/app/robots.ts`.
 
 ---
+
+## Deploy checklist
+
+See **[hostinger-or-public-deploy-checklist.md](./hostinger-or-public-deploy-checklist.md)** for step-by-step deploy, smoke URLs, env vars, and rollback.
 
 ## Prelaunch checklist
 

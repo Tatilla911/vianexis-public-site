@@ -66,7 +66,12 @@ Contact: info@vianexis.eu
 | Production push / FCM | Backend dependency — not fully live |
 | Truck Map tile provider | Separate config dependency |
 | Backend account | Staging/prod tenant account required for testers |
-| Samsung manual UAT | **Pending** — see driver app `app-google-play-internal-test-readiness.md` |
+| Samsung manual UAT | **PENDING** — see driver app `docs/samsung-final-manual-uat-checklist.md` |
+| Signed AAB | `build/app/outputs/bundle/release/app-release.aab` (149.8 MB, 2026-07-05) — **debug-signed** (`ANDROIDD.RSA`; upload keystore missing) |
+| Signed APK | `build/app/outputs/flutter-apk/app-release.apk` (177.6 MB, 2026-07-05) |
+| Driver automated tests | **801/801 PASS** at `ba6c1f2` |
+| Backend e2e | **551/551 PASS** at `18deac6` |
+| Public site deploy | **Pending** — see `hostinger-or-public-deploy-checklist.md` |
 | Signed AAB (not debug) | **Pending** — upload keystore owner action |
 | Privacy URL | Stable: `/hu/privacy`, `/en/privacy` on vianexis.eu |
 
