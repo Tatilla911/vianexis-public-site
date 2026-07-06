@@ -51,19 +51,42 @@ async function checkPage({ path, expectStatus }) {
   }
 }
 
+function normalizePath(location, baseUrl) {
+  if (!location) return "";
+  try {
+    const url = new URL(location, baseUrl);
+    const path = url.pathname.replace(/\/$/, "") || "/";
+    return path;
+  } catch {
+    return location;
+  }
+}
+
 async function checkRedirect({ path, expectedLocation }) {
   const url = `${baseUrl}${path}`;
   try {
-    const response = await fetch(url, { redirect: "manual" });
+    let response = await fetch(url, { redirect: "manual" });
+    let location = response.headers.get("location") ?? "";
+
+    // Apex → www hop (common on Vercel) — re-check redirect on resolved host.
+    if (
+      response.status >= 300 &&
+      response.status < 400 &&
+      location &&
+      !normalizePath(location, baseUrl).includes(expectedLocation)
+    ) {
+      const hopUrl = new URL(location, baseUrl).toString();
+      response = await fetch(hopUrl, { redirect: "manual" });
+      location = response.headers.get("location") ?? location;
+    }
+
     const status = response.status;
-    const location = response.headers.get("location") ?? "";
-    const locationPath = location.replace(baseUrl, "").replace(/^https?:\/\/[^/]+/, "");
+    const locationPath = normalizePath(location, baseUrl);
+    const expectedPath = normalizePath(expectedLocation, baseUrl);
     const ok =
       status >= 300 &&
       status < 400 &&
-      (locationPath === expectedLocation ||
-        locationPath.endsWith(expectedLocation) ||
-        location.endsWith(expectedLocation));
+      (locationPath === expectedPath || locationPath.endsWith(expectedPath));
     record(
       `${path} redirect → ${expectedLocation}`,
       ok,
