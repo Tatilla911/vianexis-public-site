@@ -3,8 +3,8 @@
 **App:** ViaNexis Driver  
 **Package:** `com.vianexis.driver`  
 **Track:** Google Play Internal testing  
-**Public site commit baseline:** f105806+  
-**Updated:** 2026-07-05  
+**Public site commit baseline:** production deploy readiness pack  
+**Updated:** 2026-07-06  
 **Status:** Preparation — **not** publicly available on Play Store
 
 ---
@@ -71,7 +71,10 @@ Contact: info@vianexis.eu
 | Signed APK | `build/app/outputs/flutter-apk/app-release.apk` (177.6 MB, 2026-07-05) |
 | Driver automated tests | **801/801 PASS** at `ba6c1f2` |
 | Backend e2e | **551/551 PASS** at `18deac6` |
-| Public site deploy | **Pending** — see `hostinger-or-public-deploy-checklist.md` |
+| Public site deploy | **Ready to deploy** — Node/Next host at `vianexis.eu`; see `production-deploy-vianexis-eu.md` |
+| Public site smoke | `npm run smoke:public -- https://vianexis.eu` after deploy |
+| Public site build | `npm ci && npm run build && npm run start` |
+| Public site env | `API_BASE_URL=https://api.vianexis.hu`, `CONTACT_INTAKE_ENABLED=true` (when intake verified) |
 | Signed AAB (not debug) | **Pending** — upload keystore owner action |
 | Privacy URL | Stable: `/hu/privacy`, `/en/privacy` on vianexis.eu (Play primary); 33 draft locales at `/{code}/privacy` with review notice |
 | Localization | Driver app: HU/EN reviewed + 33 draft; **no Google Translate widget** |
@@ -216,29 +219,56 @@ Driver app source: `transdoc-driver-app/android/app/src/main/AndroidManifest.xml
 | Item | Status |
 |------|--------|
 | Signed AAB verified **not** debug | **Pending** — upload keystore |
-| Privacy URL stable and reachable | **Ready** — https://vianexis.eu/hu/privacy |
+| Privacy URL stable and reachable | **Ready after deploy** — https://vianexis.eu/hu/privacy (verify with smoke script) |
 | Screenshots (phone) | **Pending** |
 | Feature graphic | **Pending** |
 | App icon | Present in app (`ic_launcher`) |
 | Internal tester email list | **Pending** |
 | App access credentials / instructions | This doc + staging accounts |
 | Data Safety form completed | **Draft above** — Console entry pending |
-| Contact / support email | info@vianexis.eu |
+| Contact / support email | info@vianexis.eu — **required** in Play Console |
 | Samsung manual UAT result | **Pending** |
 
 ---
 
 ## 7. Public site legal URLs (Play Console)
 
+**Production domain:** https://vianexis.eu  
+**Hosting:** Node/Next.js (`npm run start`) — not static-only. See `production-deploy-vianexis-eu.md`.
+
 | Purpose | URL |
 |---------|-----|
-| Privacy (HU) | https://vianexis.eu/hu/privacy |
+| Privacy (HU) — **Play primary** | https://vianexis.eu/hu/privacy |
 | Privacy (EN) | https://vianexis.eu/en/privacy |
 | Terms (HU) | https://vianexis.eu/hu/terms |
 | Legal (HU) | https://vianexis.eu/hu/legal |
 | Disclaimers (HU) | https://vianexis.eu/hu/disclaimers |
+| Contact (HU) | https://vianexis.eu/hu/contact |
+
+**Post-deploy verification:**
+
+```bash
+npm run smoke:public -- https://vianexis.eu
+```
+
+**Manual checks after deploy:**
+
+- Privacy URLs load in browser without login (no 404/500)
+- Root `https://vianexis.eu` redirects to `/hu`
+- `sitemap.xml` and `robots.txt` use `https://vianexis.eu`
+- Contact form: disabled by default OR backend intake works — no false success
 
 Pages labelled **internal testing version** — legal expert review in progress. URL paths are stable for Play Console.
+
+### Play Console fields checklist
+
+| Field | Value / action |
+|-------|----------------|
+| Privacy policy URL | https://vianexis.eu/hu/privacy (or EN) |
+| App access instructions | Section 3 of this doc |
+| Data Safety | Section 5 draft — complete in Console |
+| Support email | info@vianexis.eu — **still required** |
+| Website | https://vianexis.eu (optional listing field) |
 
 ---
 
@@ -261,4 +291,6 @@ Pages labelled **internal testing version** — legal expert review in progress.
 | `app-google-play-internal-test-readiness.md` | transdoc-driver-app | UAT, blockers |
 | `permissions-and-data-usage.md` | transdoc-driver-app | Permission audit |
 | `public-site-deploy-readiness.md` | vianexis-public-site | Site deploy |
+| `production-deploy-vianexis-eu.md` | vianexis-public-site | Node vs static decision |
+| `hostinger-or-public-deploy-checklist.md` | vianexis-public-site | Deploy steps + smoke |
 | `play-internal-release-notes.md` | transdoc-driver-app | Release notes HU/EN |
