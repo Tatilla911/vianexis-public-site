@@ -1,7 +1,6 @@
 import {
   listLanguagesForPublicSite,
   VIANEXIS_LANGUAGE_REGISTRY,
-  type LanguageCode,
 } from "./language-registry";
 import type { Locale } from "./types";
 

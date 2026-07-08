@@ -71,26 +71,49 @@ export const translationUnderReviewNotices: Partial<Record<LanguageCode, string>
 
 export function getTranslationUnderReviewNotice(code: LanguageCode): string | null {
   if (toPublicTranslationStatus(code) === "reviewed") return null;
-  return (
-    translationUnderReviewNotices[code] ??
-    translationUnderReviewNotices.en ??
-    "This translation is under review."
-  );
+  return translationUnderReviewNotices[code] ?? null;
 }
 
 export const lastUpdatedLabels: Partial<Record<LanguageCode, string>> = {
   hu: "Utolsó frissítés:",
   en: "Last updated:",
   de: "Zuletzt aktualisiert:",
+  ro: "Ultima actualizare:",
+  sk: "Naposledy aktualizované:",
+  pl: "Ostatnia aktualizacja:",
+  cs: "Naposledy aktualizováno:",
+  bg: "Последна актуализация:",
+  hr: "Zadnje ažuriranje:",
+  sr: "Poslednje ažuriranje:",
+  sl: "Zadnja posodobitev:",
+  et: "Viimati uuendatud:",
+  lv: "Pēdējoreiz atjaunināts:",
+  lt: "Paskutinį kartą atnaujinta:",
+  fi: "Viimeksi päivitetty:",
+  sv: "Senast uppdaterad:",
+  da: "Sidst opdateret:",
+  nb: "Sist oppdatert:",
+  nl: "Laatst bijgewerkt:",
   fr: "Dernière mise à jour :",
   es: "Última actualización:",
+  pt: "Última atualização:",
   it: "Ultimo aggiornamento:",
-  pl: "Ostatnia aktualizacja:",
-  ro: "Ultima actualizare:",
+  el: "Τελευταία ενημέρωση:",
+  tr: "Son güncelleme:",
+  uk: "Останнє оновлення:",
+  ru: "Последнее обновление:",
+  sq: "Përditësimi i fundit:",
+  mk: "Последно ажурирано:",
+  bs: "Posljednje ažuriranje:",
+  be: "Апошняе абнаўленне:",
+  ga: "Nuashonraithe go deireanach:",
+  mt: "Aġġornat l-aħħar:",
+  is: "Síðast uppfært:",
+  ar: "آخر تحديث:",
 };
 
 export function getLastUpdatedLabel(code: LanguageCode): string {
-  return lastUpdatedLabels[code] ?? lastUpdatedLabels.en ?? "Last updated:";
+  return lastUpdatedLabels[code] ?? "Last updated:";
 }
 
 /** Draft locale legal pages are not indexed; HU/EN remain indexable with review badge. */

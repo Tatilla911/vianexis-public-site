@@ -317,5 +317,26 @@ export const contentHu: SiteContent = {
       submitFailed: "Az üzenet küldése sikertelen. Próbálja e-mailben.",
     },
   },
+  authorityEfti: {
+    cards: [
+      {
+        title: "Hatósági ellenőrzési csomag",
+        description:
+          "Fuvarhoz tartozó dokumentumok és események csomagolt, scope-korlátozott megosztása.",
+      },
+      {
+        title: "Scope / time limited access",
+        description: "QR-alapú, korlátozott hozzáférés — nem nyilvános.",
+      },
+      {
+        title: "Audit",
+        description: "Hozzáférések és megosztások naplózása.",
+      },
+      {
+        title: "eFTI-ready foundation",
+        description: "Technikai alap jövőbeli integrációkhoz — nem minősítés.",
+      },
+    ],
+  },
   legal: legalHu,
 };

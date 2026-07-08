@@ -126,5 +126,8 @@ export type SiteContent = {
       submitFailed: string;
     };
   };
+  authorityEfti: {
+    cards: { title: string; description: string }[];
+  };
   legal: LegalContent;
 };

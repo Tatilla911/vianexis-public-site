@@ -13,47 +13,6 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
   const content = getContent(locale);
   const efti = content.disclaimers.efti;
 
-  const cards =
-    locale === "hu"
-      ? [
-          {
-            title: "Hatósági ellenőrzési csomag",
-            description:
-              "Fuvarhoz tartozó dokumentumok és események csomagolt, scope-korlátozott megosztása.",
-          },
-          {
-            title: "Scope / time limited access",
-            description: "QR-alapú, korlátozott hozzáférés — nem nyilvános.",
-          },
-          {
-            title: "Audit",
-            description: "Hozzáférések és megosztások naplózása.",
-          },
-          {
-            title: "eFTI-ready foundation",
-            description: "Technikai alap jövőbeli integrációkhoz — nem minősítés.",
-          },
-        ]
-      : [
-          {
-            title: "Authority inspection package",
-            description:
-              "Trip-linked documents and events in a scope-limited shared package.",
-          },
-          {
-            title: "Scope / time limited access",
-            description: "QR-based limited access — not public.",
-          },
-          {
-            title: "Audit",
-            description: "Logged access and sharing events.",
-          },
-          {
-            title: "eFTI-ready foundation",
-            description: "Technical base for future integration — not certification.",
-          },
-        ];
-
   return (
     <>
       <Hero
@@ -66,7 +25,7 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
       />
       <Section>
         <div className="grid gap-4 sm:grid-cols-2">
-          {cards.map((card) => (
+          {content.authorityEfti.cards.map((card) => (
             <FeatureCard
               key={card.title}
               title={card.title}
