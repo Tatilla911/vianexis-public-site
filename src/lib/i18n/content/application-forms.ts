@@ -1,0 +1,146 @@
+export const applicationFormsEn = {
+  common: {
+    privacy: "I accept the privacy policy and consent to data processing. *",
+    submit: "Submit application",
+    intakeDisabled:
+      "Online applications are being prepared. Contact support@vianexis.eu or try again later.",
+    successTitle: "Application received",
+    successBody:
+      "Thank you. Your application is in review. Access is not automatic until approved.",
+    newSubmission: "New application",
+    errors: {
+      required: "This field is required.",
+      email: "Email is required.",
+      emailInvalid: "Enter a valid email address.",
+      password: "Password must be at least 8 characters.",
+      privacy: "Privacy acceptance is required.",
+      submitFailed: "Application could not be sent. Try again later.",
+    },
+  },
+  company: {
+    title: "Company application",
+    subtitle: "Apply for ViaNexis company platform access.",
+    companyName: "Company name *",
+    country: "Country *",
+    vatNumber: "VAT / tax ID",
+    contactName: "Contact name *",
+    contactEmail: "Contact email *",
+    contactPhone: "Phone *",
+    fleetSize: "Fleet size",
+    moduleInterests: "Modules of interest",
+    moduleOptions: [
+      { value: "driver_app", label: "Driver app" },
+      { value: "dispatch_portal", label: "Dispatch portal" },
+      { value: "documents", label: "Documents" },
+      { value: "fleet_workshop", label: "Fleet / workshop" },
+      { value: "pallet_packaging", label: "Pallet / packaging" },
+      { value: "external_shipper_receiver", label: "External shipper / receiver" },
+    ],
+    notes: "Notes",
+  },
+  driver: {
+    title: "Driver application",
+    subtitle: "Self-registration — pending approval before login.",
+    fullName: "Full name *",
+    email: "Email *",
+    password: "Password *",
+    phone: "Phone",
+    country: "Country",
+    companyNameHint: "Company name (optional)",
+    companyCode: "Invite / company code (optional)",
+    licenseNotes: "License / ADR / GKI notes (optional)",
+  },
+  partner: {
+    title: "Partner interest",
+    subtitle: "Shipper, receiver, warehouse or customs partner inquiry.",
+    companyName: "Company name *",
+    role: "Role *",
+    roleOptions: [
+      { value: "shipper", label: "Shipper" },
+      { value: "receiver", label: "Receiver" },
+      { value: "warehouse", label: "Warehouse" },
+      { value: "customs_broker", label: "Customs broker" },
+      { value: "other_partner", label: "Other partner" },
+    ],
+    contactName: "Contact name *",
+    email: "Email *",
+    phone: "Phone",
+    notes: "Notes",
+  },
+} as const;
+
+export const applicationFormsHu = {
+  common: {
+    privacy:
+      "Elfogadom az adatvédelmi tájékoztatót és hozzájárulok az adatkezeléshez. *",
+    submit: "Jelentkezés beküldése",
+    intakeDisabled:
+      "Az online jelentkezés előkészítés alatt áll. Írj a support@vianexis.eu címre, vagy próbáld később.",
+    successTitle: "Jelentkezés fogadva",
+    successBody:
+      "Köszönjük. Jelentkezésed felülvizsgálat alatt van. A hozzáférés jóváhagyásig nem automatikus.",
+    newSubmission: "Új jelentkezés",
+    errors: {
+      required: "A mező kitöltése kötelező.",
+      email: "Az e-mail megadása kötelező.",
+      emailInvalid: "Érvényes e-mail címet adj meg.",
+      password: "A jelszó legalább 8 karakter legyen.",
+      privacy: "Az adatvédelmi hozzájárulás kötelező.",
+      submitFailed: "A jelentkezést nem sikerült elküldeni. Próbáld később.",
+    },
+  },
+  company: {
+    title: "Cég jelentkezés",
+    subtitle: "ViaNexis céges platform hozzáférés igénylése.",
+    companyName: "Cég neve *",
+    country: "Ország *",
+    vatNumber: "Adószám / VAT",
+    contactName: "Kapcsolattartó neve *",
+    contactEmail: "Kapcsolattartó e-mail *",
+    contactPhone: "Telefon *",
+    fleetSize: "Flotta mérete",
+    moduleInterests: "Érdeklődő modulok",
+    moduleOptions: [
+      { value: "driver_app", label: "Sofőr app" },
+      { value: "dispatch_portal", label: "Diszpécser portál" },
+      { value: "documents", label: "Dokumentumkezelés" },
+      { value: "fleet_workshop", label: "Flotta / műhely" },
+      { value: "pallet_packaging", label: "Raklap / göngyöleg" },
+      { value: "external_shipper_receiver", label: "Külső feladó / címzett" },
+    ],
+    notes: "Megjegyzés",
+  },
+  driver: {
+    title: "Sofőr jelentkezés",
+    subtitle: "Önjelentkezés — bejelentkezés jóváhagyás után lehetséges.",
+    fullName: "Teljes név *",
+    email: "E-mail *",
+    password: "Jelszó *",
+    phone: "Telefon",
+    country: "Ország",
+    companyNameHint: "Cég neve (opcionális)",
+    companyCode: "Meghívó / cégkód (opcionális)",
+    licenseNotes: "Jogosítvány / ADR / GKI (opcionális)",
+  },
+  partner: {
+    title: "Partner érdeklődés",
+    subtitle: "Feladó, címzett, raktár vagy vámügynök partner jelentkezés.",
+    companyName: "Cég neve *",
+    role: "Szerep *",
+    roleOptions: [
+      { value: "shipper", label: "Feladó" },
+      { value: "receiver", label: "Címzett" },
+      { value: "warehouse", label: "Raktár" },
+      { value: "customs_broker", label: "Vámügynök" },
+      { value: "other_partner", label: "Egyéb partner" },
+    ],
+    contactName: "Kapcsolattartó *",
+    email: "E-mail *",
+    phone: "Telefon",
+    notes: "Megjegyzés",
+  },
+} as const;
+
+export function resolveApplicationForms(locale: string) {
+  return locale === "hu" ? applicationFormsHu : applicationFormsEn;
+}

@@ -126,6 +126,61 @@ export type SiteContent = {
       submitFailed: string;
     };
   };
+  applicationForms: {
+    common: {
+      privacy: string;
+      submit: string;
+      intakeDisabled: string;
+      successTitle: string;
+      successBody: string;
+      newSubmission: string;
+      errors: {
+        required: string;
+        email: string;
+        emailInvalid: string;
+        password: string;
+        privacy: string;
+        submitFailed: string;
+      };
+    };
+    company: {
+      title: string;
+      subtitle: string;
+      companyName: string;
+      country: string;
+      vatNumber: string;
+      contactName: string;
+      contactEmail: string;
+      contactPhone: string;
+      fleetSize: string;
+      moduleInterests: string;
+      moduleOptions: { value: string; label: string }[];
+      notes: string;
+    };
+    driver: {
+      title: string;
+      subtitle: string;
+      fullName: string;
+      email: string;
+      password: string;
+      phone: string;
+      country: string;
+      companyNameHint: string;
+      companyCode: string;
+      licenseNotes: string;
+    };
+    partner: {
+      title: string;
+      subtitle: string;
+      companyName: string;
+      role: string;
+      roleOptions: { value: string; label: string }[];
+      contactName: string;
+      email: string;
+      phone: string;
+      notes: string;
+    };
+  };
   authorityEfti: {
     cards: { title: string; description: string }[];
   };

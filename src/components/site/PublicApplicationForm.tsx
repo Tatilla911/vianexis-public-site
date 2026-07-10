@@ -1,0 +1,146 @@
+"use client";
+
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { getContent } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n/types";
+import { cn } from "@/lib/utils";
+
+type ApplicationType = "company" | "driver" | "partner";
+
+type PublicApplicationFormProps = {
+  locale: Locale;
+  type: ApplicationType;
+  className?: string;
+  children: (ctx: {
+    values: Record<string, string | boolean | string[]>;
+    setValue: (key: string, value: string | boolean | string[]) => void;
+    errors: Record<string, string>;
+  }) => ReactNode;
+  validate: (values: Record<string, string | boolean | string[]>) => Record<string, string>;
+  buildPayload: (values: Record<string, string | boolean | string[]>) => Record<string, unknown>;
+};
+
+export function PublicApplicationForm({
+  locale,
+  type,
+  className,
+  children,
+  validate,
+  buildPayload,
+}: PublicApplicationFormProps) {
+  const copy = getContent(locale).applicationForms;
+  const [values, setValues] = useState<Record<string, string | boolean | string[]>>({
+    privacyAccepted: false,
+    website: "",
+    moduleInterests: [],
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [enabled, setEnabled] = useState<boolean | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/applications/status")
+      .then((res) => res.json())
+      .then((data: { enabled?: boolean }) => setEnabled(Boolean(data.enabled)))
+      .catch(() => setEnabled(false));
+  }, []);
+
+  function setValue(key: string, value: string | boolean | string[]) {
+    setValues((prev) => ({ ...prev, [key]: value }));
+    if (errors[key]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[key];
+        return next;
+      });
+    }
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const nextErrors = validate(values);
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      return;
+    }
+    if (!enabled) return;
+
+    setSubmitting(true);
+    setErrors({});
+    try {
+      const response = await fetch(`/api/applications/${type}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...buildPayload(values),
+          preferredLanguage: locale,
+          privacyAccepted: true,
+          website: "",
+        }),
+      });
+      if (!response.ok) {
+        setErrors({ submit: copy.common.errors.submitFailed });
+        return;
+      }
+      setSubmitted(true);
+      setValues({ privacyAccepted: false, website: "", moduleInterests: [] });
+    } catch {
+      setErrors({ submit: copy.common.errors.submitFailed });
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (submitted) {
+    return (
+      <div className={cn("rounded-xl border border-emerald-200 bg-emerald-50 p-6", className)}>
+        <h3 className="text-lg font-semibold text-emerald-900">{copy.common.successTitle}</h3>
+        <p className="mt-2 text-emerald-800">{copy.common.successBody}</p>
+        <button
+          type="button"
+          className="mt-4 text-sm font-medium text-emerald-700 underline"
+          onClick={() => setSubmitted(false)}
+        >
+          {copy.common.newSubmission}
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form className={cn("space-y-4", className)} onSubmit={handleSubmit} noValidate>
+      {enabled === false ? (
+        <p className="rounded-md bg-amber-50 p-3 text-sm text-amber-900">{copy.common.intakeDisabled}</p>
+      ) : null}
+      {children({ values, setValue, errors })}
+      <label className="flex items-start gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={Boolean(values.privacyAccepted)}
+          onChange={(e) => setValue("privacyAccepted", e.target.checked)}
+        />
+        <span>{copy.common.privacy}</span>
+      </label>
+      {errors.privacy ? <p className="text-sm text-red-600">{errors.privacy}</p> : null}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        value={String(values.website ?? "")}
+        onChange={(e) => setValue("website", e.target.value)}
+        aria-hidden
+      />
+      {errors.submit ? <p className="text-sm text-red-600">{errors.submit}</p> : null}
+      <button
+        type="submit"
+        disabled={!enabled || submitting}
+        className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+      >
+        {copy.common.submit}
+      </button>
+    </form>
+  );
+}

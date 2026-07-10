@@ -317,6 +317,20 @@ export const contentHu: SiteContent = {
       submitFailed: "Az üzenet küldése sikertelen. Próbálja e-mailben.",
     },
   },
+  applicationForms: {
+    common: {
+      privacy: "Elfogadom az adatvédelmi tájékoztatót és hozzájárulok az adatkezeléshez. *",
+      submit: "Jelentkezés beküldése",
+      intakeDisabled: "Az online jelentkezés előkészítés alatt áll. Írj a support@vianexis.eu címre, vagy próbáld később.",
+      successTitle: "Jelentkezés fogadva",
+      successBody: "Köszönjük. Jelentkezésed felülvizsgálat alatt van. A hozzáférés jóváhagyásig nem automatikus.",
+      newSubmission: "Új jelentkezés",
+      errors: { required: "A mező kitöltése kötelező.", email: "Az e-mail megadása kötelező.", emailInvalid: "Érvényes e-mail címet adj meg.", password: "A jelszó legalább 8 karakter legyen.", privacy: "Az adatvédelmi hozzájárulás kötelező.", submitFailed: "A jelentkezést nem sikerült elküldeni. Próbáld később." },
+    },
+    company: { title: "Cég jelentkezés", subtitle: "ViaNexis céges platform hozzáférés igénylése.", companyName: "Cég neve *", country: "Ország *", vatNumber: "Adószám / VAT", contactName: "Kapcsolattartó neve *", contactEmail: "Kapcsolattartó e-mail *", contactPhone: "Telefon *", fleetSize: "Flotta mérete", moduleInterests: "Érdeklődő modulok", moduleOptions: [{ value: "driver_app", label: "Sofőr app" },{ value: "dispatch_portal", label: "Diszpécser portál" },{ value: "documents", label: "Dokumentumkezelés" },{ value: "fleet_workshop", label: "Flotta / műhely" },{ value: "pallet_packaging", label: "Raklap / göngyöleg" },{ value: "external_shipper_receiver", label: "Külső feladó / címzett" }], notes: "Megjegyzés" },
+    driver: { title: "Sofőr jelentkezés", subtitle: "Önjelentkezés — bejelentkezés jóváhagyás után lehetséges.", fullName: "Teljes név *", email: "E-mail *", password: "Jelszó *", phone: "Telefon", country: "Ország", companyNameHint: "Cég neve (opcionális)", companyCode: "Meghívó / cégkód (opcionális)", licenseNotes: "Jogosítvány / ADR / GKI (opcionális)" },
+    partner: { title: "Partner érdeklődés", subtitle: "Feladó, címzett, raktár vagy vámügynök partner jelentkezés.", companyName: "Cég neve *", role: "Szerep *", roleOptions: [{ value: "shipper", label: "Feladó" },{ value: "receiver", label: "Címzett" },{ value: "warehouse", label: "Raktár" },{ value: "customs_broker", label: "Vámügynök" },{ value: "other_partner", label: "Egyéb partner" }], contactName: "Kapcsolattartó *", email: "E-mail *", phone: "Telefon", notes: "Megjegyzés" },
+  },
   authorityEfti: {
     cards: [
       {
