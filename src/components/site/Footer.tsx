@@ -39,7 +39,7 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer className="relative overflow-hidden border-t border-navy-700 bg-navy-1000 text-white">
-      <div className="pointer-events-none absolute inset-0 opacity-55">
+      <div className="pointer-events-none absolute inset-0 opacity-70">
         <WorldNetworkWatermark variant="background" />
       </div>
       <div className="container-site relative z-10 py-12">

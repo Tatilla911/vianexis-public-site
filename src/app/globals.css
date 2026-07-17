@@ -3,7 +3,7 @@
 /*
   ViaNexis Design System Foundations
   Source: Figma Brand System — Color / Typography / Icons / Landing
-  Logo: gold route monogram + ViaNexis wordmark (not Figma W / bare VN)
+  Logo: official gold VN mark asset (/brand/vianexis-mark.png)
 */
 
 :root {
@@ -329,16 +329,17 @@ html {
 }
 
 @keyframes globe-drift {
-  from {
-    transform: translateX(0);
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
   }
-  to {
-    transform: translateX(-440px);
+  50% {
+    transform: translateY(-6px) scale(1.015);
   }
 }
 
 .animate-globe-drift {
-  animation: globe-drift 56s linear infinite;
+  animation: globe-drift 8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

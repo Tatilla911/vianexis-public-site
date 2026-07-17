@@ -1,7 +1,5 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { useId } from "react";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +11,7 @@ type BrandLogoProps = {
 };
 
 /**
- * ViaNexis brand mark — Figma gold badge + angular route monogram + wordmark.
+ * Official ViaNexis mark (uploaded gold VN monogram) + wordmark.
  */
 export function BrandLogo({
   href,
@@ -21,8 +19,7 @@ export function BrandLogo({
   className,
   size = "md",
 }: BrandLogoProps) {
-  const gradId = useId().replace(/:/g, "");
-  const markSize = size === "sm" ? "h-8 w-8" : "h-9 w-9";
+  const markPx = size === "sm" ? 32 : 36;
   const wordSize = size === "sm" ? "text-base" : "text-lg";
 
   return (
@@ -31,38 +28,14 @@ export function BrandLogo({
       className={cn("focus-ring flex items-center gap-2.5 rounded-md", className)}
       aria-label={siteConfig.name}
     >
-      <svg
-        className={cn(markSize, "shrink-0")}
-        viewBox="0 0 32 32"
-        role="img"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#E7C27B" />
-            <stop offset="55%" stopColor="#D4AF37" />
-            <stop offset="100%" stopColor="#8C6F3D" />
-          </linearGradient>
-        </defs>
-        <rect width="32" height="32" rx="8" fill={`url(#${gradId})`} />
-        {/* Angular route monogram — reads as Via / path, not “VN” text */}
-        <path
-          d="M9 11 L16 23 L23 11"
-          fill="none"
-          stroke="#0A111A"
-          strokeWidth="2.35"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M10.5 11 H21.5"
-          stroke="#FFFFFF"
-          strokeWidth="2.05"
-          strokeLinecap="round"
-        />
-        <circle cx="16" cy="11" r="1.4" fill="#00BFFF" />
-      </svg>
+      <Image
+        src="/brand/vianexis-mark.png"
+        alt=""
+        width={markPx}
+        height={markPx}
+        className="shrink-0 rounded-[22%] shadow-[0_0_20px_rgb(212_175_55_/_0.25)]"
+        priority
+      />
       <span
         className={cn(
           "font-bold tracking-tight",
