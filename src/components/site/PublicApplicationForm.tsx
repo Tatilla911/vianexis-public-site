@@ -94,12 +94,12 @@ export function PublicApplicationForm({
 
   if (submitted) {
     return (
-      <div className={cn("rounded-xl border border-emerald-200 bg-emerald-50 p-6", className)}>
-        <h3 className="text-lg font-semibold text-emerald-900">{copy.common.successTitle}</h3>
-        <p className="mt-2 text-emerald-800">{copy.common.successBody}</p>
+      <div className={cn("rounded-md border border-success/30 bg-success/10 p-6", className)}>
+        <h3 className="text-lg font-semibold text-white">{copy.common.successTitle}</h3>
+        <p className="mt-2 text-neutral-grey">{copy.common.successBody}</p>
         <button
           type="button"
-          className="mt-4 text-sm font-medium text-emerald-700 underline"
+          className="mt-4 text-sm font-medium text-cyan-accent underline"
           onClick={() => setSubmitted(false)}
         >
           {copy.common.newSubmission}
@@ -109,9 +109,9 @@ export function PublicApplicationForm({
   }
 
   return (
-    <form className={cn("space-y-4", className)} onSubmit={handleSubmit} noValidate>
+    <form className={cn("panel-glass space-y-4 rounded-md p-6", className)} onSubmit={handleSubmit} noValidate>
       {enabled === false ? (
-        <p className="rounded-md bg-amber-50 p-3 text-sm text-amber-900">{copy.common.intakeDisabled}</p>
+        <p className="rounded-md border border-gold-core/30 bg-gold-core/10 p-3 text-sm text-gold-pale">{copy.common.intakeDisabled}</p>
       ) : null}
       {children({ values, setValue, errors })}
       <label className="flex items-start gap-2 text-sm">
@@ -137,7 +137,7 @@ export function PublicApplicationForm({
       <button
         type="submit"
         disabled={!enabled || submitting}
-        className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+        className="rounded-md bg-gold-core px-4 py-2 text-sm font-medium text-navy-1000 hover:bg-gold-light disabled:opacity-50"
       >
         {copy.common.submit}
       </button>

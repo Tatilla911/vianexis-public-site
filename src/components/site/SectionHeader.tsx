@@ -14,7 +14,7 @@ export function SectionHeader({
   title,
   subtitle,
   align = "left",
-  dark = false,
+  dark = true,
   className,
 }: SectionHeaderProps) {
   return (
@@ -29,12 +29,13 @@ export function SectionHeader({
         <p
           className={cn(
             "text-overline mb-3",
-            dark ? "text-gold-core" : "text-deep-blue",
+            dark ? "text-cyan-accent" : "text-deep-blue",
           )}
         >
           {eyebrow}
         </p>
       ) : null}
+      {dark ? <div className="accent-beam mb-4" aria-hidden="true" /> : null}
       <h2
         className={cn(
           "text-h1 tracking-tight",

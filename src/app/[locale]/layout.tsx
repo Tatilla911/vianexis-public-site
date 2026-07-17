@@ -42,14 +42,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         {visual.skipToContent}
       </a>
       {content.translationUnderReviewNotice ? (
-        <div className="border-b border-amber-100 bg-amber-50/80">
+        <div className="border-b border-navy-700 bg-navy-900">
           <div className="container-site py-2">
             <TranslationReviewBanner notice={content.translationUnderReviewNotice} />
           </div>
         </div>
       ) : null}
       <Header locale={raw as Locale} />
-      <main id="main-content" className="flex-1" tabIndex={-1}>
+      <main id="main-content" className="flex-1 bg-navy-1000" tabIndex={-1}>
         {children}
       </main>
       <Footer locale={raw as Locale} />

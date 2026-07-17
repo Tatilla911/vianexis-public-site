@@ -9,7 +9,7 @@ export function LegalStatusBadge({ label, className }: LegalStatusBadgeProps) {
   return (
     <div
       className={cn(
-        "inline-flex items-center rounded-md border border-gold/40 bg-gold/10 px-3 py-1.5 text-sm font-medium text-navy",
+        "inline-flex items-center rounded-md border border-gold-core/40 bg-gold-core/10 px-3 py-1.5 text-sm font-medium text-gold-light",
         className,
       )}
     >

@@ -24,8 +24,8 @@ export default async function TermsPage({ params }: PageProps) {
     <Section className="pt-12">
       <div className="mx-auto max-w-3xl">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-navy">{legal.terms.title}</h1>
-        <p className="mt-4 leading-relaxed text-text/70">{legal.terms.intro}</p>
+        <h1 className="text-3xl font-bold text-white">{legal.terms.title}</h1>
+        <p className="mt-4 leading-relaxed text-neutral-grey">{legal.terms.intro}</p>
         <div className="mt-8 space-y-6 text-sm">
           {legal.terms.sections.map((section) => (
             <LegalDocumentSection key={section.title} section={section} />

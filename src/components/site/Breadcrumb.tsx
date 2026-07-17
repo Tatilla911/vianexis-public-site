@@ -14,7 +14,7 @@ type BreadcrumbProps = {
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
     <nav aria-label="Breadcrumb" className={cn("text-sm", className)}>
-      <ol className="flex flex-wrap items-center gap-2 text-text-muted">
+      <ol className="flex flex-wrap items-center gap-2 text-neutral-grey">
         {items.map((item, index) => {
           const last = index === items.length - 1;
           return (
@@ -23,13 +23,13 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
               {item.href && !last ? (
                 <Link
                   href={item.href}
-                  className="focus-ring rounded text-vianexis-blue hover:underline"
+                  className="focus-ring rounded text-cyan-accent hover:underline"
                 >
                   {item.label}
                 </Link>
               ) : (
                 <span
-                  className={cn(last && "font-medium text-navy")}
+                  className={cn(last && "font-medium text-white")}
                   aria-current={last ? "page" : undefined}
                 >
                   {item.label}

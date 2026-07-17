@@ -14,14 +14,12 @@ export function DisclaimerBox({
   return (
     <div
       className={cn(
-        "rounded-xl border border-deep-blue/15 bg-white p-5 shadow-sm",
+        "rounded-md border border-gold-core/30 bg-gold-core/[0.06] p-5",
         className,
       )}
     >
-      <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-deep-blue">
-        {title}
-      </p>
-      <div className="text-sm leading-relaxed text-text/80">{children}</div>
+      <p className="text-overline mb-2 text-gold-core">{title}</p>
+      <div className="text-sm leading-relaxed text-neutral-grey">{children}</div>
     </div>
   );
 }

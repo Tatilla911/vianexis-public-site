@@ -24,10 +24,10 @@ export default async function DisclaimersPage({ params }: PageProps) {
     <Section className="pt-12">
       <div className="mx-auto max-w-3xl">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-navy">
+        <h1 className="text-3xl font-bold text-white">
           {legal.disclaimersPage.title}
         </h1>
-        <p className="mt-4 leading-relaxed text-text/70">
+        <p className="mt-4 leading-relaxed text-neutral-grey">
           {legal.disclaimersPage.intro}
         </p>
         <div className="mt-8 grid gap-4">

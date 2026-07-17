@@ -65,10 +65,7 @@ export function ModuleSubpage({
         subtitle={visual.productPage.capabilitiesTitle}
       >
         <div className="mb-6 flex flex-wrap gap-2">
-          <StatusBadge
-            label={visual.statusLabels.available}
-            tone="available"
-          />
+          <StatusBadge label={visual.statusLabels.available} tone="available" />
           <StatusBadge label={visual.statusLabels.pilot} tone="pilot" />
           <StatusBadge
             label={visual.statusLabels.development}
@@ -77,18 +74,15 @@ export function ModuleSubpage({
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((item) => (
-            <article
-              key={item.title}
-              className="rounded-xl border border-border bg-white p-5 shadow-sm"
-            >
+            <article key={item.title} className="panel-glass rounded-md p-5">
               <div className="mb-3">
                 <StatusBadge
                   label={statusLabel(item.status)}
                   tone={item.status as StatusTone}
                 />
               </div>
-              <h3 className="text-base font-semibold text-navy">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+              <h3 className="text-base font-semibold text-white">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
                 {item.description}
               </p>
             </article>
@@ -123,7 +117,7 @@ export function ModuleSubpage({
               />
               <Link
                 href={localePath(locale, "/security-audit")}
-                className="inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
+                className="inline-flex text-sm font-semibold text-cyan-accent hover:underline"
               >
                 {content.nav.security} →
               </Link>
@@ -154,7 +148,10 @@ export function ModuleSubpage({
       ) : null}
 
       {moduleId === "audit-support" ? (
-        <Section title={content.home.security.title}>
+        <Section
+          variant="dark"
+          title={content.home.security.title}
+        >
           <div className="grid gap-4 sm:grid-cols-2">
             {content.home.security.cards.map((card) => (
               <FeatureCard

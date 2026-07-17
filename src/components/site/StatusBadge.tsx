@@ -40,7 +40,7 @@ export function StatusBadge({
   label,
   tone = "neutral",
   className,
-  onDark = false,
+  onDark = true,
 }: StatusBadgeProps) {
   return (
     <span

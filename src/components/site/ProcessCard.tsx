@@ -14,17 +14,14 @@ export function ProcessCard({
   className,
 }: ProcessCardProps) {
   return (
-    <div
-      className={cn(
-        "relative rounded-xl border border-deep-blue/10 bg-white p-6 shadow-sm",
-        className,
-      )}
-    >
-      <span className="mb-3 inline-block rounded-full bg-gold/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-deep-blue">
+    <div className={cn("panel-glass relative rounded-md p-6", className)}>
+      <span className="mb-3 inline-block rounded-md bg-gold-core/15 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-gold-core">
         {step}
       </span>
-      <h3 className="text-lg font-semibold text-navy">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-text/70">{description}</p>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
+        {description}
+      </p>
     </div>
   );
 }

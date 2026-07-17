@@ -57,7 +57,7 @@ export function PhoneMockup({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-center text-xs text-text-muted">
+        <figcaption className="mt-3 text-center text-xs text-neutral-grey">
           {caption}
         </figcaption>
       ) : null}

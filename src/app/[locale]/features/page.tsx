@@ -30,7 +30,7 @@ export default async function FeaturesPage({ params }: PageProps) {
         }}
         stats={content.hero.stats}
       />
-      <Section>
+      <Section variant="muted">
         <PlatformStatusBanner content={content.platformStatus} />
       </Section>
       <Section title={content.home.modules.title}>
@@ -44,7 +44,7 @@ export default async function FeaturesPage({ params }: PageProps) {
           ))}
         </div>
       </Section>
-      <Section variant="muted" title={content.home.disclaimersSection.title}>
+      <Section variant="dark" title={content.home.disclaimersSection.title}>
         <div className="grid gap-4 lg:grid-cols-3">
           <DisclaimerBox title={content.disclaimers.adr.title}>
             <p>{content.disclaimers.adr.body}</p>

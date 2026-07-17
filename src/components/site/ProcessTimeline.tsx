@@ -14,7 +14,7 @@ type ProcessTimelineProps = {
 export function ProcessTimeline({
   steps,
   className,
-  variant = "light",
+  variant = "dark",
 }: ProcessTimelineProps) {
   const dark = variant === "dark";
 
@@ -29,15 +29,15 @@ export function ProcessTimeline({
         <li
           key={step.title}
           className={cn(
-            "relative rounded-md border p-5",
+            "relative rounded-md border p-5 panel-glass",
             dark
-              ? "border-navy-700 bg-navy-900"
+              ? "border-navy-700"
               : "border-border bg-white shadow-sm",
           )}
         >
           <span
             className={cn(
-              "mb-3 inline-flex h-9 min-w-9 items-center justify-center rounded-md px-2 text-sm font-bold",
+              "mb-3 inline-flex h-9 min-w-9 items-center justify-center rounded-md px-2 font-mono text-sm font-bold",
               dark
                 ? "bg-gold-core/15 text-gold-core"
                 : "bg-navy text-gold-core",

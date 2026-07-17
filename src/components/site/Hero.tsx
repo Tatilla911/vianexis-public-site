@@ -50,11 +50,20 @@ export function Hero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-navy-1000 text-white hero-grid-bg",
+        "relative overflow-hidden bg-navy-950 text-white hero-grid-bg",
         className,
       )}
     >
-      <div className="container-site relative py-16 sm:py-20 lg:py-24">
+      <div
+        className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-cyan-glow/20 blur-3xl animate-pulse-glow"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-gold-core/15 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div className="container-site relative py-20 sm:py-24 lg:py-28">
         <div
           className={cn(
             "grid gap-12",
@@ -63,16 +72,15 @@ export function Hero({
           )}
         >
           <div className="max-w-2xl">
-            <p className="text-overline mb-4 text-cyan-accent">
-              ViaNexis
-            </p>
-            <h1 className="text-display-md text-balance text-white">
+            <p className="text-overline mb-3 text-cyan-accent">ViaNexis</p>
+            <div className="accent-beam mb-5" aria-hidden="true" />
+            <h1 className="text-display-lg text-balance text-white">
               {renderTitle(title, highlightWord)}
             </h1>
-            <p className="text-subtitle mt-5 text-pretty text-neutral-grey">
+            <p className="text-subtitle mt-6 max-w-xl text-pretty text-neutral-grey">
               {subtitle}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href={primaryCta.href} size="lg">
                 {primaryCta.label}
               </Button>
@@ -90,11 +98,11 @@ export function Hero({
         </div>
 
         {(stats?.length ?? 0) > 0 ? (
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+          <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
             {stats!.map((item) => (
               <div
                 key={item.label}
-                className="rounded-md border border-navy-700 bg-navy-900 p-4"
+                className="panel-glass rounded-md p-4"
               >
                 <p className="text-overline text-navy-600">{item.label}</p>
                 <p className="mt-1 text-sm font-semibold text-gold-core">

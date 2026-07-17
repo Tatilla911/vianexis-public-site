@@ -44,8 +44,8 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
           />
         </div>
         <DisclaimerBox title={efti.title}>
-          <p className="font-medium text-navy">{efti.body}</p>
-          <p className="mt-3 text-sm text-text-muted">
+          <p className="font-medium text-white">{efti.body}</p>
+          <p className="mt-3 text-sm text-neutral-grey">
             {visual.authority.extraDisclaimer}
           </p>
         </DisclaimerBox>
@@ -57,9 +57,10 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
         subtitle={visual.authority.foundationSubtitle}
       >
         <div className="grid gap-4 sm:grid-cols-2">
-          {content.authorityEfti.cards.map((card) => (
+          {content.authorityEfti.cards.map((card, index) => (
             <FeatureCard
               key={card.title}
+              index={index}
               title={card.title}
               description={card.description}
             />

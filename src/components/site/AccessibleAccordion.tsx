@@ -29,19 +29,19 @@ export function AccessibleAccordion({
         return (
           <div
             key={item.title}
-            className="overflow-hidden rounded-xl border border-border bg-white"
+            className="overflow-hidden rounded-md border border-navy-700 bg-navy-900"
           >
             <h3>
               <button
                 id={buttonId}
                 type="button"
-                className="focus-ring flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-navy"
+                className="focus-ring flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-white"
                 aria-expanded={open}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(open ? null : index)}
               >
                 {item.title}
-                <span aria-hidden="true" className="text-text-muted">
+                <span aria-hidden="true" className="text-gold-core">
                   {open ? "−" : "+"}
                 </span>
               </button>
@@ -51,7 +51,7 @@ export function AccessibleAccordion({
               role="region"
               aria-labelledby={buttonId}
               hidden={!open}
-              className="border-t border-border px-4 py-3 text-sm leading-relaxed text-text-muted"
+              className="border-t border-navy-700 px-4 py-3 text-sm leading-relaxed text-neutral-grey"
             >
               {item.body}
             </div>

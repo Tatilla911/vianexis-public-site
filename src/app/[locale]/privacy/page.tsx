@@ -28,11 +28,11 @@ export default async function PrivacyPage({ params }: PageProps) {
     <Section className="pt-12">
       <div className="mx-auto max-w-3xl">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-navy">{privacy.title}</h1>
-        <p className="mt-4 text-sm text-text/50">
+        <h1 className="text-3xl font-bold text-white">{privacy.title}</h1>
+        <p className="mt-4 text-sm text-neutral-grey/70">
           {lastUpdatedLabel} {privacy.lastUpdated}
         </p>
-        <p className="mt-4 leading-relaxed text-text/70">{privacy.intro}</p>
+        <p className="mt-4 leading-relaxed text-neutral-grey">{privacy.intro}</p>
 
         <div className="mt-8 space-y-6 text-sm">
           <LegalDocumentSection section={privacy.controller} />
@@ -46,21 +46,21 @@ export default async function PrivacyPage({ params }: PageProps) {
           <LegalDocumentSection section={privacy.importantNotices} />
           <LegalDocumentSection section={privacy.dataContact} />
           <section>
-            <h2 className="text-lg font-semibold text-navy">Play Console</h2>
-            <p className="mt-2 leading-relaxed text-text/70">{privacy.playUrl}</p>
+            <h2 className="text-lg font-semibold text-white">Play Console</h2>
+            <p className="mt-2 leading-relaxed text-neutral-grey">{privacy.playUrl}</p>
           </section>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-4 text-sm">
           <Link
             href={localePath(locale, "/legal")}
-            className="text-vianexis-blue hover:underline"
+            className="text-cyan-accent hover:underline"
           >
             {legal.legalNotice.title}
           </Link>
           <Link
             href={localePath(locale, "/disclaimers")}
-            className="text-vianexis-blue hover:underline"
+            className="text-cyan-accent hover:underline"
           >
             {legal.disclaimersPage.title}
           </Link>

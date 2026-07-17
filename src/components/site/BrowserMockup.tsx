@@ -71,7 +71,7 @@ export function BrowserMockup({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-xs text-text-muted">
+        <figcaption className="mt-3 text-xs text-neutral-grey">
           {caption}
         </figcaption>
       ) : null}

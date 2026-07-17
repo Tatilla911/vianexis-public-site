@@ -8,7 +8,8 @@ type SectionProps = {
   eyebrow?: string;
   children: React.ReactNode;
   className?: string;
-  variant?: "default" | "dark" | "muted";
+  /** default/muted/dark = Figma dark system; light = rare light escape hatch */
+  variant?: "default" | "muted" | "dark" | "light";
 };
 
 export function Section({
@@ -21,9 +22,10 @@ export function Section({
   variant = "default",
 }: SectionProps) {
   const variants = {
-    default: "bg-light-bg text-text",
-    dark: "bg-navy-1000 text-white",
-    muted: "bg-white text-text",
+    default: "bg-navy-1000 text-white",
+    muted: "bg-navy-900 text-white",
+    dark: "bg-navy-950 text-white hero-grid-bg",
+    light: "bg-light-bg text-text",
   };
 
   return (
@@ -37,7 +39,7 @@ export function Section({
             eyebrow={eyebrow}
             title={title ?? ""}
             subtitle={subtitle}
-            dark={variant === "dark"}
+            dark={variant !== "light"}
           />
         )}
         {children}

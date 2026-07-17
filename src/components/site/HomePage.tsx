@@ -47,7 +47,7 @@ export function HomePage({ locale }: HomePageProps) {
         preview={visual.preview}
       />
 
-      <Section>
+      <Section variant="muted">
         <PlatformStatusBanner content={content.platformStatus} />
       </Section>
 
@@ -58,9 +58,10 @@ export function HomePage({ locale }: HomePageProps) {
         subtitle={content.home.problem.subtitle}
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {content.home.problem.cards.map((card) => (
+          {content.home.problem.cards.map((card, index) => (
             <FeatureCard
               key={card.title}
+              index={index}
               title={card.title}
               description={card.description}
             />
@@ -69,16 +70,17 @@ export function HomePage({ locale }: HomePageProps) {
       </Section>
 
       <Section
-        variant="muted"
+        variant="dark"
         id="pillars"
         eyebrow="Solution"
         title={visual.pillars.title}
         subtitle={visual.pillars.subtitle}
       >
         <div className="grid gap-4 md:grid-cols-3">
-          {visual.pillars.items.map((item) => (
+          {visual.pillars.items.map((item, index) => (
             <FeatureCard
               key={item.title}
+              index={index}
               title={item.title}
               description={item.description}
             />
@@ -87,6 +89,7 @@ export function HomePage({ locale }: HomePageProps) {
       </Section>
 
       <Section
+        variant="muted"
         id="process"
         title={visual.process.title}
         subtitle={visual.process.subtitle}
@@ -95,7 +98,6 @@ export function HomePage({ locale }: HomePageProps) {
       </Section>
 
       <Section
-        variant="muted"
         id="surfaces"
         title={visual.surfaces.title}
         subtitle={visual.surfaces.subtitle}
@@ -105,20 +107,24 @@ export function HomePage({ locale }: HomePageProps) {
             <Link
               key={item.title}
               href={localePath(locale, item.href)}
-              className="focus-ring group block rounded-xl border border-border bg-white p-6 shadow-sm transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-md motion-reduce:transform-none"
+              className="focus-ring panel-glass panel-glass-hover group block rounded-md p-6 motion-reduce:transform-none"
             >
-              <h3 className="text-lg font-semibold text-navy group-hover:text-vianexis-blue">
+              <h3 className="text-lg font-semibold text-white group-hover:text-cyan-accent">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+              <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
                 {item.description}
               </p>
+              <span className="mt-4 inline-flex text-sm font-semibold text-gold-core">
+                →
+              </span>
             </Link>
           ))}
         </div>
       </Section>
 
       <Section
+        variant="muted"
         id="documents-flow"
         title={visual.documentsFlow.title}
         subtitle={visual.documentsFlow.subtitle}
@@ -132,7 +138,7 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="mt-6">
           <Link
             href={localePath(locale, "/documents-signatures")}
-            className="text-sm font-semibold text-vianexis-blue hover:underline"
+            className="text-sm font-semibold text-cyan-accent hover:underline"
           >
             {content.nav.documents} →
           </Link>
@@ -140,7 +146,6 @@ export function HomePage({ locale }: HomePageProps) {
       </Section>
 
       <Section
-        variant="muted"
         id="modules"
         title={content.home.modules.title}
         subtitle={content.home.modules.subtitle}
@@ -158,6 +163,7 @@ export function HomePage({ locale }: HomePageProps) {
 
       {palletModule ? (
         <Section
+          variant="muted"
           id="pallet-packaging"
           title={content.home.pallet.title}
           subtitle={content.home.pallet.subtitle}
@@ -172,7 +178,6 @@ export function HomePage({ locale }: HomePageProps) {
 
       {messagingModule ? (
         <Section
-          variant="muted"
           id="notifications"
           title={content.home.notifications.title}
           subtitle={content.home.notifications.subtitle}
@@ -199,14 +204,16 @@ export function HomePage({ locale }: HomePageProps) {
       ) : null}
 
       <Section
+        variant="dark"
         id="offline"
         title={visual.offline.title}
         subtitle={visual.offline.subtitle}
       >
         <div className="grid gap-4 md:grid-cols-3">
-          {visual.offline.cards.map((card) => (
+          {visual.offline.cards.map((card, index) => (
             <FeatureCard
               key={card.title}
+              index={index}
               title={card.title}
               description={card.description}
             />
@@ -214,7 +221,11 @@ export function HomePage({ locale }: HomePageProps) {
         </div>
       </Section>
 
-      <Section id="disclaimers" title={content.home.disclaimersSection.title}>
+      <Section
+        variant="muted"
+        id="disclaimers"
+        title={content.home.disclaimersSection.title}
+      >
         <div className="grid gap-4 lg:grid-cols-3">
           <DisclaimerBox title={content.disclaimers.adr.title}>
             <p>{content.disclaimers.adr.body}</p>
@@ -236,12 +247,9 @@ export function HomePage({ locale }: HomePageProps) {
       >
         <div className="grid gap-4 sm:grid-cols-2">
           {content.home.security.cards.map((card) => (
-            <article
-              key={card.title}
-              className="rounded-xl border border-white/10 bg-white/5 p-6"
-            >
+            <article key={card.title} className="panel-glass rounded-md p-6">
               <h3 className="text-lg font-semibold text-white">{card.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">
+              <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
                 {card.description}
               </p>
             </article>
@@ -249,9 +257,7 @@ export function HomePage({ locale }: HomePageProps) {
         </div>
         <div className="mt-6">
           <DisclaimerBox title={content.home.security.notPromiseTitle}>
-            <p className="text-white/80">
-              {content.home.security.notPromiseBody}
-            </p>
+            <p>{content.home.security.notPromiseBody}</p>
           </DisclaimerBox>
         </div>
       </Section>
@@ -277,7 +283,7 @@ export function HomePage({ locale }: HomePageProps) {
       >
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <p className="leading-relaxed text-text-muted">
+            <p className="leading-relaxed text-neutral-grey">
               {content.home.contact.body}
             </p>
             <DisclaimerBox className="mt-6">
@@ -286,14 +292,14 @@ export function HomePage({ locale }: HomePageProps) {
             <p className="mt-6">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="text-lg font-semibold text-vianexis-blue hover:underline"
+                className="text-lg font-semibold text-cyan-accent hover:underline"
               >
                 {siteConfig.contactEmail}
               </a>
             </p>
             <Link
               href={localePath(locale, "/contact")}
-              className="mt-4 inline-flex text-sm font-semibold text-vianexis-blue hover:underline"
+              className="mt-4 inline-flex text-sm font-semibold text-gold-core hover:underline"
             >
               {content.home.contact.contactLink}
             </Link>

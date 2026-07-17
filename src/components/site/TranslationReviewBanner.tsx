@@ -13,7 +13,7 @@ export function TranslationReviewBanner({
     <div
       role="status"
       className={cn(
-        "rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950",
+        "rounded-md border border-gold-core/30 bg-gold-core/10 px-4 py-3 text-sm text-gold-pale",
         className,
       )}
     >

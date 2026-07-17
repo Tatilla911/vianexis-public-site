@@ -27,22 +27,22 @@ export default async function LegalPage({ params }: PageProps) {
     <Section className="pt-12">
       <div className="mx-auto max-w-3xl">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-navy">{legal.legalNotice.title}</h1>
-        <p className="mt-4 leading-relaxed text-text/70">{legal.legalNotice.intro}</p>
+        <h1 className="text-3xl font-bold text-white">{legal.legalNotice.title}</h1>
+        <p className="mt-4 leading-relaxed text-neutral-grey">{legal.legalNotice.intro}</p>
 
         <div className="mt-8 space-y-6 text-sm">
           {legal.legalNotice.sections.map((section) => (
             <LegalDocumentSection key={section.title} section={section} />
           ))}
           <section>
-            <h2 className="text-lg font-semibold text-navy">
+            <h2 className="text-lg font-semibold text-white">
               {legal.legalNotice.relatedDocs}
             </h2>
-            <ul className="mt-2 list-inside list-disc space-y-1 leading-relaxed text-text/70">
+            <ul className="mt-2 list-inside list-disc space-y-1 leading-relaxed text-neutral-grey">
               <li>
                 <Link
                   href={localePath(locale, "/privacy")}
-                  className="text-vianexis-blue hover:underline"
+                  className="text-cyan-accent hover:underline"
                 >
                   {content.footer.privacy}
                 </Link>
@@ -50,7 +50,7 @@ export default async function LegalPage({ params }: PageProps) {
               <li>
                 <Link
                   href={localePath(locale, "/terms")}
-                  className="text-vianexis-blue hover:underline"
+                  className="text-cyan-accent hover:underline"
                 >
                   {content.footer.terms}
                 </Link>
@@ -58,7 +58,7 @@ export default async function LegalPage({ params }: PageProps) {
               <li>
                 <Link
                   href={localePath(locale, "/disclaimers")}
-                  className="text-vianexis-blue hover:underline"
+                  className="text-cyan-accent hover:underline"
                 >
                   {content.footer.disclaimers}
                 </Link>

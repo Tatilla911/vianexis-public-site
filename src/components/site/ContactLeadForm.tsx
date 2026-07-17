@@ -141,18 +141,18 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
       <div
         id={id}
         className={cn(
-          "rounded-xl border border-vianexis-blue/20 bg-vianexis-blue/5 p-8",
+          "rounded-md border border-success/30 bg-success/10 p-8",
           className,
         )}
       >
-        <h3 className="text-lg font-semibold text-navy">{copy.successTitle}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-text/70">
+        <h3 className="text-lg font-semibold text-white">{copy.successTitle}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
           {copy.successBody}
         </p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-6 text-sm font-medium text-vianexis-blue hover:underline"
+          className="mt-6 text-sm font-medium text-cyan-accent hover:underline"
         >
           {copy.newSubmission}
         </button>
@@ -161,7 +161,7 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
   }
 
   const inputClass =
-    "w-full rounded-lg border border-deep-blue/15 bg-white px-4 py-2.5 text-sm text-text placeholder:text-text/40 focus:border-vianexis-blue focus:outline-none focus:ring-2 focus:ring-vianexis-blue/20";
+    "w-full rounded-md border border-navy-700 bg-navy-800 px-4 py-2.5 text-sm text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25";
 
   const intakeReady = intakeEnabled === true;
 
@@ -169,17 +169,14 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
     <form
       id={id}
       onSubmit={handleSubmit}
-      className={cn(
-        "rounded-xl border border-deep-blue/10 bg-white p-6 shadow-sm sm:p-8",
-        className,
-      )}
+      className={cn("panel-glass rounded-md p-6 sm:p-8", className)}
       noValidate
     >
-      <h3 className="text-xl font-semibold text-navy">{copy.title}</h3>
-      <p className="mt-2 text-sm text-text/60">{copy.subtitle}</p>
+      <h3 className="text-xl font-semibold text-white">{copy.title}</h3>
+      <p className="mt-2 text-sm text-neutral-grey">{copy.subtitle}</p>
 
       {intakeEnabled === false && (
-        <p className="mt-4 rounded-lg border border-gold/30 bg-gold/5 p-3 text-sm text-text/70">
+        <p className="mt-4 rounded-md border border-gold-core/30 bg-gold-core/10 p-3 text-sm text-neutral-grey">
           {copy.intakeDisabled}
         </p>
       )}
@@ -256,30 +253,30 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
             type="checkbox"
             checked={formData.consent}
             onChange={(e) => handleChange("consent", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-deep-blue/20 text-vianexis-blue focus:ring-vianexis-blue/20"
+            className="mt-1 h-4 w-4 rounded border-navy-600 bg-navy-800 text-gold-core focus:ring-gold-core/30"
           />
-          <span className="text-sm text-text/70">{copy.consent}</span>
+          <span className="text-sm text-neutral-grey">{copy.consent}</span>
         </label>
         {errors.consent && (
-          <p className="mt-1 text-xs text-red-600">{errors.consent}</p>
+          <p className="mt-1 text-xs text-error">{errors.consent}</p>
         )}
       </div>
 
       {errors.submit && (
-        <p className="mt-4 text-sm text-red-600">{errors.submit}</p>
+        <p className="mt-4 text-sm text-error">{errors.submit}</p>
       )}
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="submit"
           disabled={!intakeReady || submitting}
-          className="rounded-lg bg-vianexis-blue px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-vianexis-blue/90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-md bg-gold-core px-6 py-3 text-sm font-semibold text-navy-1000 transition-colors hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-50"
         >
           {copy.submit}
         </button>
         <a
           href={buildMailtoHref()}
-          className="inline-flex items-center justify-center rounded-lg border border-deep-blue/15 px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-light-bg"
+          className="inline-flex items-center justify-center rounded-md border border-navy-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-800"
         >
           {copy.submitMailto}
         </a>
@@ -299,11 +296,11 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium text-navy">
+      <label className="mb-1.5 block text-sm font-medium text-white">
         {label}
       </label>
       {children}
-      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+      {error && <p className="mt-1 text-xs text-error">{error}</p>}
     </div>
   );
 }

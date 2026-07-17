@@ -6,6 +6,7 @@ type FeatureCardProps = {
   description: string;
   href?: string;
   className?: string;
+  index?: number;
 };
 
 export function FeatureCard({
@@ -13,26 +14,28 @@ export function FeatureCard({
   title,
   description,
   className,
+  index,
 }: FeatureCardProps) {
   return (
     <article
       className={cn(
-        "group rounded-md border border-border bg-white p-6 shadow-sm transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-md motion-reduce:transform-none",
+        "panel-glass panel-glass-hover group rounded-md p-6 motion-reduce:transform-none",
         className,
       )}
     >
-      {icon ? (
+      {typeof index === "number" ? (
+        <span className="mb-3 inline-flex h-9 min-w-9 items-center justify-center rounded-md bg-gold-core/15 px-2 font-mono text-sm font-bold text-gold-core">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      ) : icon ? (
         <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-cyan-accent/10 text-cyan-accent">
           {icon}
         </div>
       ) : (
-        <div
-          className="mb-4 h-1 w-8 rounded-full bg-gold-core"
-          aria-hidden="true"
-        />
+        <div className="accent-beam mb-4" aria-hidden="true" />
       )}
-      <h3 className="text-lg font-semibold text-navy">{title}</h3>
-      <p className="text-body mt-2 text-text-muted">{description}</p>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <p className="text-body mt-2 text-neutral-grey">{description}</p>
     </article>
   );
 }
