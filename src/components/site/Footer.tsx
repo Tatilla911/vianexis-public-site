@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/site/BrandLogo";
+import { WorldNetworkWatermark } from "@/components/site/visuals/WorldNetworkWatermark";
 import { getContent } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
@@ -37,8 +38,11 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   return (
-    <footer className="border-t border-navy-700 bg-navy-1000 text-white">
-      <div className="container-site py-12">
+    <footer className="relative overflow-hidden border-t border-navy-700 bg-navy-1000 text-white">
+      <div className="pointer-events-none absolute inset-0 opacity-55">
+        <WorldNetworkWatermark variant="background" />
+      </div>
+      <div className="container-site relative z-10 py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <BrandLogo href={localePath(locale)} tone="dark" />
@@ -59,7 +63,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-neutral-grey transition-colors hover:text-white"
+                    className="text-sm text-neutral-grey transition-colors hover:text-cyan-glow"
                   >
                     {link.label}
                   </Link>
@@ -77,7 +81,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-neutral-grey transition-colors hover:text-white"
+                    className="text-sm text-neutral-grey transition-colors hover:text-cyan-glow"
                   >
                     {link.label}
                   </Link>
