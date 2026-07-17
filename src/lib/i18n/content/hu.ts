@@ -35,11 +35,11 @@ export const contentHu: SiteContent = {
       "A platform nem minősített eFTI platform, nem ígér hatósági elfogadást, automatikus jogi bizonyító erőt, hibátlan OCR/AI/fordítást vagy vészhelyzeti/SOS szolgáltatást. Nincs nyilvános Play Store letöltés.",
   },
   hero: {
-    title: "ViaNexis — digitális fuvarbizonyíték és sofőrplatform",
+    title: "Kontrollált fuvarfolyamat. Rendezett dokumentumok. Auditálható döntések.",
     subtitle:
-      "Sofőralkalmazás, céges irányítás, dokumentumkezelés, üzenetek, értesítések és többnyelvű fuvarfolyamat egy rendszerben.",
-    primaryCta: "Kapcsolatfelvétel",
-    secondaryCta: "Belső tesztelés előkészítés alatt",
+      "Minden fontos fuvaradat, dokumentum, üzenet, aláírás és esemény egy helyen — jogosultságokkal, naplózással és szabályozott hozzáféréssel.",
+    primaryCta: "Hozzáférés igénylése",
+    secondaryCta: "Funkciók megtekintése",
     stats: [
       { label: "Sofőr app", value: "Fuvar + offline" },
       { label: "Dokumentum", value: "CMR + audit" },

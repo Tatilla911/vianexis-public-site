@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { Button } from "@/components/site/Button";
+import { ProductPreview } from "@/components/site/ProductPreview";
 import { cn } from "@/lib/utils";
 
 type HeroProps = {
@@ -7,8 +8,34 @@ type HeroProps = {
   primaryCta: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
   stats?: { label: string; value: string }[];
+  highlightWord?: string;
+  preview?: {
+    phoneTitle: string;
+    phoneSubtitle: string;
+    phoneRows: { label: string; value: string; status?: string }[];
+    phoneCaption: string;
+    browserTitle: string;
+    browserSubtitle: string;
+    browserColumns: string[];
+    browserRows: string[][];
+    browserCaption: string;
+  };
   className?: string;
 };
+
+function renderTitle(title: string, highlightWord?: string) {
+  if (!highlightWord || !title.includes(highlightWord)) {
+    return title;
+  }
+  const parts = title.split(highlightWord);
+  return (
+    <>
+      {parts[0]}
+      <span className="text-gradient-gold">{highlightWord}</span>
+      {parts.slice(1).join(highlightWord)}
+    </>
+  );
+}
 
 export function Hero({
   title,
@@ -16,65 +43,67 @@ export function Hero({
   primaryCta,
   secondaryCta,
   stats,
+  highlightWord,
+  preview,
   className,
 }: HeroProps) {
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-navy text-white",
+        "relative overflow-hidden bg-navy-1000 text-white hero-grid-bg",
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#123B63_0%,_transparent_50%)] opacity-60" />
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,_transparent_40%,_#1E88E5_200%)] opacity-10" />
-
-      <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
-        <div className="max-w-3xl">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-gold">
-            ViaNexis
-          </p>
-          <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            {title}
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-white/80 sm:text-xl">
-            {subtitle}
-          </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href={primaryCta.href}
-              className="inline-flex items-center justify-center rounded-lg bg-vianexis-blue px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-vianexis-blue/90"
-            >
-              {primaryCta.label}
-            </Link>
-            {secondaryCta && (
-              <Link
-                href={secondaryCta.href}
-                className="inline-flex items-center justify-center rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                {secondaryCta.label}
-              </Link>
-            )}
-          </div>
-        </div>
-
-        <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {(stats ?? [
-            { label: "Driver app", value: "Trip + offline" },
-            { label: "Documents", value: "CMR + audit" },
-            { label: "Messaging", value: "Multilingual" },
-            { label: "Status", value: "Internal test prep" },
-          ]).map((item) => (
-            <div
-              key={item.label}
-              className="rounded-lg border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
-            >
-              <p className="text-xs uppercase tracking-wide text-white/50">
-                {item.label}
-              </p>
-              <p className="mt-1 text-sm font-medium text-white">{item.value}</p>
+      <div className="container-site relative py-16 sm:py-20 lg:py-24">
+        <div
+          className={cn(
+            "grid gap-12",
+            preview &&
+              "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center",
+          )}
+        >
+          <div className="max-w-2xl">
+            <p className="text-overline mb-4 text-cyan-accent">
+              ViaNexis
+            </p>
+            <h1 className="text-display-md text-balance text-white">
+              {renderTitle(title, highlightWord)}
+            </h1>
+            <p className="text-subtitle mt-5 text-pretty text-neutral-grey">
+              {subtitle}
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={primaryCta.href} size="lg">
+                {primaryCta.label}
+              </Button>
+              {secondaryCta ? (
+                <Button href={secondaryCta.href} variant="onDark" size="lg">
+                  {secondaryCta.label}
+                </Button>
+              ) : null}
             </div>
-          ))}
+          </div>
+
+          {preview ? (
+            <ProductPreview {...preview} className="min-w-0" />
+          ) : null}
         </div>
+
+        {(stats?.length ?? 0) > 0 ? (
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            {stats!.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-md border border-navy-700 bg-navy-900 p-4"
+              >
+                <p className="text-overline text-navy-600">{item.label}</p>
+                <p className="mt-1 text-sm font-semibold text-gold-core">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );

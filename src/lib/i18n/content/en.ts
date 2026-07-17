@@ -35,11 +35,11 @@ export const contentEn: SiteContent = {
       "Not a certified eFTI platform. Does not promise authority acceptance, automatic legal probative force, flawless OCR/AI/translation, or emergency/SOS services. No public Play Store download.",
   },
   hero: {
-    title: "ViaNexis — digital transport evidence and driver operations platform",
+    title: "Controlled trip flow. Organised documents. Auditable decisions.",
     subtitle:
-      "Driver app, company control, document management, messaging, notifications, and multilingual trip workflows in one system.",
-    primaryCta: "Contact us",
-    secondaryCta: "Internal testing preparation in progress",
+      "Every important trip record, document, message, signature, and event in one place — with permissions, logging, and regulated access.",
+    primaryCta: "Request access",
+    secondaryCta: "Explore features",
     stats: [
       { label: "Driver app", value: "Trip + offline" },
       { label: "Documents", value: "CMR + audit" },

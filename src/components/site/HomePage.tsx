@@ -1,14 +1,18 @@
 import Link from "next/link";
+import { CTASection } from "@/components/site/CTASection";
 import { DisclaimerBox } from "@/components/site/DisclaimerBox";
 import { FeatureCard } from "@/components/site/FeatureCard";
 import { Hero } from "@/components/site/Hero";
 import { ModuleCard } from "@/components/site/ModuleCard";
 import { ContactLeadForm } from "@/components/site/ContactLeadForm";
 import { PlatformStatusBanner } from "@/components/site/PlatformStatusBanner";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { Section } from "@/components/site/Section";
+import { StatusBadge } from "@/components/site/StatusBadge";
 import { getContent } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
+import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
 import { siteConfig } from "@/lib/site-config";
 
 type HomePageProps = {
@@ -17,6 +21,7 @@ type HomePageProps = {
 
 export function HomePage({ locale }: HomePageProps) {
   const content = getContent(locale);
+  const visual = resolveVisualMarketing(locale);
   const messagingModule = content.platformModules.find(
     (m) => m.id === "messaging-notifications",
   );
@@ -29,15 +34,17 @@ export function HomePage({ locale }: HomePageProps) {
       <Hero
         title={content.hero.title}
         subtitle={content.hero.subtitle}
+        highlightWord={locale === "hu" ? "Auditálható" : "Auditable"}
         primaryCta={{
-          href: localePath(locale, "/contact"),
+          href: localePath(locale, "/pilot"),
           label: content.hero.primaryCta,
         }}
         secondaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/features"),
           label: content.hero.secondaryCta,
         }}
         stats={content.hero.stats}
+        preview={visual.preview}
       />
 
       <Section>
@@ -46,6 +53,7 @@ export function HomePage({ locale }: HomePageProps) {
 
       <Section
         id="problem"
+        eyebrow="ViaNexis"
         title={content.home.problem.title}
         subtitle={content.home.problem.subtitle}
       >
@@ -57,6 +65,77 @@ export function HomePage({ locale }: HomePageProps) {
               description={card.description}
             />
           ))}
+        </div>
+      </Section>
+
+      <Section
+        variant="muted"
+        id="pillars"
+        eyebrow="Solution"
+        title={visual.pillars.title}
+        subtitle={visual.pillars.subtitle}
+      >
+        <div className="grid gap-4 md:grid-cols-3">
+          {visual.pillars.items.map((item) => (
+            <FeatureCard
+              key={item.title}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="process"
+        title={visual.process.title}
+        subtitle={visual.process.subtitle}
+      >
+        <ProcessTimeline steps={visual.process.steps} />
+      </Section>
+
+      <Section
+        variant="muted"
+        id="surfaces"
+        title={visual.surfaces.title}
+        subtitle={visual.surfaces.subtitle}
+      >
+        <div className="grid gap-4 sm:grid-cols-2">
+          {visual.surfaces.items.map((item) => (
+            <Link
+              key={item.title}
+              href={localePath(locale, item.href)}
+              className="focus-ring group block rounded-xl border border-border bg-white p-6 shadow-sm transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-md motion-reduce:transform-none"
+            >
+              <h3 className="text-lg font-semibold text-navy group-hover:text-vianexis-blue">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                {item.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="documents-flow"
+        title={visual.documentsFlow.title}
+        subtitle={visual.documentsFlow.subtitle}
+      >
+        <ProcessTimeline steps={visual.documentsFlow.steps} />
+        <div className="mt-8 flex flex-wrap gap-2">
+          {visual.documentsFlow.statuses.map((status) => (
+            <StatusBadge key={status} label={status} tone="neutral" />
+          ))}
+        </div>
+        <div className="mt-6">
+          <Link
+            href={localePath(locale, "/documents-signatures")}
+            className="text-sm font-semibold text-vianexis-blue hover:underline"
+          >
+            {content.nav.documents} →
+          </Link>
         </div>
       </Section>
 
@@ -77,7 +156,7 @@ export function HomePage({ locale }: HomePageProps) {
         </div>
       </Section>
 
-      {palletModule && (
+      {palletModule ? (
         <Section
           id="pallet-packaging"
           title={content.home.pallet.title}
@@ -89,9 +168,9 @@ export function HomePage({ locale }: HomePageProps) {
             className="max-w-3xl"
           />
         </Section>
-      )}
+      ) : null}
 
-      {messagingModule && (
+      {messagingModule ? (
         <Section
           variant="muted"
           id="notifications"
@@ -117,12 +196,25 @@ export function HomePage({ locale }: HomePageProps) {
             </div>
           </div>
         </Section>
-      )}
+      ) : null}
 
       <Section
-        id="disclaimers"
-        title={content.home.disclaimersSection.title}
+        id="offline"
+        title={visual.offline.title}
+        subtitle={visual.offline.subtitle}
       >
+        <div className="grid gap-4 md:grid-cols-3">
+          {visual.offline.cards.map((card) => (
+            <FeatureCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+            />
+          ))}
+        </div>
+      </Section>
+
+      <Section id="disclaimers" title={content.home.disclaimersSection.title}>
         <div className="grid gap-4 lg:grid-cols-3">
           <DisclaimerBox title={content.disclaimers.adr.title}>
             <p>{content.disclaimers.adr.body}</p>
@@ -144,11 +236,15 @@ export function HomePage({ locale }: HomePageProps) {
       >
         <div className="grid gap-4 sm:grid-cols-2">
           {content.home.security.cards.map((card) => (
-            <FeatureCard
+            <article
               key={card.title}
-              title={card.title}
-              description={card.description}
-            />
+              className="rounded-xl border border-white/10 bg-white/5 p-6"
+            >
+              <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">
+                {card.description}
+              </p>
+            </article>
           ))}
         </div>
         <div className="mt-6">
@@ -160,6 +256,19 @@ export function HomePage({ locale }: HomePageProps) {
         </div>
       </Section>
 
+      <CTASection
+        title={visual.pilotCta.title}
+        subtitle={visual.pilotCta.subtitle}
+        primaryCta={{
+          href: localePath(locale, "/pilot"),
+          label: content.nav.requestAccess,
+        }}
+        secondaryCta={{
+          href: localePath(locale, "/contact"),
+          label: content.nav.contact,
+        }}
+      />
+
       <Section
         variant="muted"
         id="contact"
@@ -168,7 +277,7 @@ export function HomePage({ locale }: HomePageProps) {
       >
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <p className="text-text/70 leading-relaxed">
+            <p className="leading-relaxed text-text-muted">
               {content.home.contact.body}
             </p>
             <DisclaimerBox className="mt-6">

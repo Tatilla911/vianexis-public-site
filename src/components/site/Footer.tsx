@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/site/BrandLogo";
 import { getContent } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
@@ -36,26 +37,21 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   return (
-    <footer className="border-t border-deep-blue/10 bg-navy text-white">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <footer className="border-t border-navy-700 bg-navy-1000 text-white">
+      <div className="container-site py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-deep-blue text-sm font-bold text-gold">
-                VN
-              </span>
-              <span className="text-lg font-bold">{siteConfig.name}</span>
-            </div>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+            <BrandLogo href={localePath(locale)} tone="dark" />
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-neutral-grey">
               {content.footer.tagline}
             </p>
-            <p className="mt-4 text-sm text-white/40">
+            <p className="mt-4 text-sm text-navy-600">
               {siteConfig.domain.replace("https://", "")}
             </p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="text-overline text-gold-core">
               {content.footer.product}
             </h3>
             <ul className="mt-4 space-y-2">
@@ -63,7 +59,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-neutral-grey transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -73,7 +69,7 @@ export function Footer({ locale }: FooterProps) {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="text-overline text-gold-core">
               {content.footer.legal}
             </h3>
             <ul className="mt-4 space-y-2">
@@ -81,7 +77,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
+                    className="text-sm text-neutral-grey transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -91,8 +87,8 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6">
-          <p className="text-xs leading-relaxed text-white/40">
+        <div className="mt-10 border-t border-navy-700 pt-6">
+          <p className="text-xs leading-relaxed text-navy-600">
             © {new Date().getFullYear()} ViaNexis. {content.footer.copyright}
           </p>
         </div>
