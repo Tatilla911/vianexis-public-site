@@ -55,15 +55,17 @@ export const contentSq: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Statusi aktual",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Përgatitja e testimit të brendshëm të Google Play është në progres — jo një shkarkim publik në dyqan.",
-      "Gatishmëria për lëshimin e aplikacionit të shoferit dhe Samsung UAT në progres.",
-      "Mbështetja e prodhimit, njoftimet shtytëse dhe integrimet e partnerëve po lidhen gradualisht."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis nuk pretendon se sistemi është i drejtpërdrejtë, i certifikuar ose i pranuar zyrtarisht në çdo vend.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Qëllimi",
     appFoundation: "Baza nga ana e aplikacionit",
@@ -245,7 +247,7 @@ export const contentSq: SiteContent = {
     contact: {
       title: "Kontakti dhe testimi i brendshëm",
       subtitle: "Qasje e kontrolluar - jo regjistrim automatik, pa shkarkim publik i Play.",
-      body: "Aplikacioni i shoferit është në përgatitjen e testimit të brendshëm të Google Play. Gatishmëria e lëshimit dhe Samsung UAT në progres. Aktivizimi nuk është automatik.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Sistemi trajton dokumentet, flukset e punës së drejtuesve, të dhënat e kompanisë dhe lejet - çdo akses shqyrtohet individualisht.",
       contactLink: "Na kontaktoni →",
     },

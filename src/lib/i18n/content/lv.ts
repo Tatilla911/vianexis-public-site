@@ -55,15 +55,17 @@ export const contentLv: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Pašreizējais statuss",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Notiek Google Play iekšējās testēšanas sagatavošana — nevis publiskā veikala lejupielāde.",
-      "Gatavība draivera lietotnes izlaišanai un Samsung UAT.",
-      "Ražošanas aizmugursistēma, pašpiegādes paziņojumi un partneru integrācijas tiek pakāpeniski savienotas."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis neapgalvo, ka sistēma ir aktīva, sertificēta vai oficiāli pieņemta visās valstīs.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Mērķis",
     appFoundation: "Lietojumprogrammas puses tonālais krēms",
@@ -245,7 +247,7 @@ export const contentLv: SiteContent = {
     contact: {
       title: "Kontaktu un iekšējā pārbaude",
       subtitle: "Kontrolēta piekļuve — ne automātiska reģistrācija, ne publiska Play lejupielāde.",
-      body: "Draivera lietotne ir Google Play iekšējās testēšanas sagatavošanā. Gatavība izlaišanai un notiek Samsung UAT. Aktivizācija nav automātiska.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Sistēma apstrādā dokumentus, draiveru darbplūsmas, uzņēmuma datus un atļaujas — katra piekļuve tiek atsevišķi pārskatīta.",
       contactLink: "Sazinieties ar mums →",
     },

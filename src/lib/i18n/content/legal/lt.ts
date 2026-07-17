@@ -127,7 +127,7 @@ export const legalLt: LegalContent = {
       },
       {
         title: "Vidinio testavimo būsena",
-        body: "Vykdomas „Google Play“ vidinio testavimo rengimas. Vykdomas Samsung UAT ir išleidimo paruošimas. Neteigiame, kad programa yra viešai pasiekiama „Play“ parduotuvėje.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Atsakomybės apribojimas",

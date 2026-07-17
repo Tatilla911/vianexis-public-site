@@ -127,7 +127,7 @@ export const legalSk: LegalContent = {
       },
       {
         title: "Stav interného testovania",
-        body: "Prebieha príprava interného testovania služby Google Play. Samsung UAT a pripravuje sa vydanie. Netvrdíme, že aplikácia je verejne dostupná v Obchode Play.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Obmedzenie zodpovednosti",

@@ -4,11 +4,10 @@ export type VisualMarketingContent = {
     routeLabel: string;
     routeId: string;
     statusLabel: string;
-    motifTitle: string;
-    motifSubtitle: string;
-    motifSizes: { label: string; size: 16 | 20 | 24 | 32 | 48 }[];
+    networkOverline: string;
     networkTitle: string;
     networkSubtitle: string;
+    workflowEvents: string[];
   };
   pillars: {
     title: string;
@@ -20,27 +19,42 @@ export type VisualMarketingContent = {
     subtitle: string;
     steps: { title: string; description: string }[];
   };
-  surfaces: {
+  homeModules: {
     title: string;
     subtitle: string;
-    items: { title: string; description: string; href: string }[];
+    detailsLink: string;
+    items: {
+      title: string;
+      description: string;
+      href: string;
+      icon: "truck" | "portal" | "doc" | "message" | "audit" | "offline";
+    }[];
   };
   documentsFlow: {
     title: string;
     subtitle: string;
     steps: { title: string; description: string }[];
     statuses: string[];
+    detailsLink: string;
   };
   offline: {
     title: string;
     subtitle: string;
     cards: { title: string; description: string }[];
+    detailsLink: string;
+  };
+  responsibleUse: {
+    title: string;
+    subtitle: string;
+    items: string[];
+    detailsLink: string;
   };
   pilotCta: {
     title: string;
     subtitle: string;
   };
   preview: {
+    tripId: string;
     phoneTitle: string;
     phoneSubtitle: string;
     phoneRows: { label: string; value: string; status?: string }[];
@@ -50,6 +64,27 @@ export type VisualMarketingContent = {
     browserColumns: string[];
     browserRows: string[][];
     browserCaption: string;
+    driver: {
+      navHome: string;
+      navTrips: string;
+      navDocs: string;
+      navMore: string;
+      tripStatus: string;
+      nextStopLabel: string;
+      nextStopValue: string;
+      documentLabel: string;
+      documentValue: string;
+      documentAction: string;
+      syncLabel: string;
+      syncValue: string;
+    };
+    portal: {
+      roleLabel: string;
+      alertLabel: string;
+      alertValue: string;
+      auditLabel: string;
+      auditValue: string;
+    };
   };
   statusLabels: {
     available: string;
@@ -71,7 +106,11 @@ export type VisualMarketingContent = {
   };
   moduleCapabilities: Record<
     string,
-    { title: string; description: string; status: "available" | "pilot" | "development" }[]
+    {
+      title: string;
+      description: string;
+      status: "available" | "pilot" | "development";
+    }[]
   >;
 };
 
@@ -79,21 +118,21 @@ export const visualMarketingHu: VisualMarketingContent = {
   skipToContent: "Ugrás a tartalomra",
   brandVisuals: {
     routeLabel: "Aktív útvonal",
-    routeId: "Route VN-697",
-    statusLabel: "LIVE",
-    motifTitle: "Rácsrendszer és méretek",
-    motifSubtitle:
-      "A ViaNexis lineáris teherautó-szimbóluma 16–48 px skálán — egységes, azonnal dekódolható ikonnyelv.",
-    motifSizes: [
-      { label: "16 · Micro", size: 16 },
-      { label: "20 · Compact", size: 20 },
-      { label: "24 · Standard", size: 24 },
-      { label: "32 · Large", size: 32 },
-      { label: "48 · Hero", size: 48 },
-    ],
-    networkTitle: "Összekapcsolt útvonalak",
+    routeId: "VN-2407-A18",
+    statusLabel: "Élő",
+    networkOverline: "ViaNexis Network",
+    networkTitle: "Nem csak a fuvar útvonala kapcsolódik össze.",
     networkSubtitle:
-      "Digitális térképhálózat: fuvarok, csomópontok és auditálható események egy navy–arany operatív felületen.",
+      "A megállók, dokumentumok, aláírások, üzenetek és döntések ugyanahhoz a fuvarfolyamathoz kapcsolódnak — időrendben, jogosultságokkal és visszakereshető eseményekkel.",
+    workflowEvents: [
+      "Indulás",
+      "Átvétel",
+      "Dokumentum",
+      "Aláírás",
+      "Várakozás",
+      "Leadás",
+      "Lezárt csomag",
+    ],
   },
   pillars: {
     title: "Három pillér — egy kontrollált rendszer",
@@ -108,12 +147,12 @@ export const visualMarketingHu: VisualMarketingContent = {
       {
         title: "Céges kontroll",
         description:
-          "Irányítói áttekintés, jogosultságok, figyelmeztetések és dokumentumkövetés a Company Portalban.",
+          "Irányítói áttekintés, jogosultságok, figyelmeztetések és dokumentumkövetés a céges portálon.",
       },
       {
         title: "Auditálható működés",
         description:
-          "Események, aláírások és döntések visszakereshető naplóval — nem túlzó biztonsági ígérettel.",
+          "Események, aláírások és döntések visszakereshető naplóval — túlzó biztonsági ígéret nélkül.",
       },
     ],
   },
@@ -124,15 +163,15 @@ export const visualMarketingHu: VisualMarketingContent = {
     steps: [
       {
         title: "Fuvar létrehozása",
-        description: "Pickup/delivery megállók, feladatok és dokumentumkövetelmények.",
+        description: "Átvételi és leadási megállók, feladatok és dokumentumkövetelmények.",
       },
       {
         title: "Sofőr elfogadása",
-        description: "Hozzárendelés, elfogadás és munkamenet-indítás kontrolláltan.",
+        description: "Hozzárendelés, elfogadás és kontrollált munkamenet-indítás.",
       },
       {
         title: "Megállók és feladatok",
-        description: "Több stop, teendők, események és károk rögzítése.",
+        description: "Több megálló, teendők, események és károk rögzítése.",
       },
       {
         title: "Dokumentumok és aláírások",
@@ -140,52 +179,77 @@ export const visualMarketingHu: VisualMarketingContent = {
       },
     ],
   },
-  surfaces: {
+  homeModules: {
     title: "Termékfelületek",
-    subtitle: "Minden felület ugyanarra a fuvar- és dokumentumadat-modellre épül.",
+    subtitle:
+      "Minden felület ugyanarra a fuvar- és dokumentummodellre épül. A részletek a termékoldalakon.",
+    detailsLink: "Részletek",
     items: [
       {
-        title: "Driver App",
-        description: "Mobil sofőrfolyamat: fuvarok, CMR, aláírás, offline queue.",
+        title: "Sofőr alkalmazás",
+        description:
+          "Fuvarok, megállók, dokumentumok és aláírások egy offline-képes mobilfolyamatban. A sofőr tudja, mi a következő teendő.",
         href: "/driver-app",
+        icon: "truck",
       },
       {
-        title: "Company Portal",
-        description: "Operációs irányítás: fuvarkezelés, figyelmeztetések, audit.",
+        title: "Céges portál",
+        description:
+          "Operatív áttekintés: aktív fuvarok, hiányzó dokumentumok, figyelmeztetések és jogosultságok egy helyen.",
         href: "/company-portal",
+        icon: "portal",
       },
       {
-        title: "Platform Admin",
-        description: "Platformszintű üzemeltetés és tenant-kontroll.",
+        title: "Dokumentumok és aláírások",
+        description:
+          "Fuvarhoz kötött iratok, aláírási állapotok és exportálható lezárt fuvarcsomag.",
+        href: "/documents-signatures",
+        icon: "doc",
+      },
+      {
+        title: "Üzenetek és értesítések",
+        description:
+          "Fuvarhoz kötött kommunikáció. Az értesítési funkciók a pilotprogram részeként aktiválhatók.",
         href: "/features",
+        icon: "message",
       },
       {
-        title: "Hatósági / külső hozzáférés",
-        description: "Idő- és scope-korlátozott csomag — eFTI-ready foundation.",
-        href: "/authority-efti",
+        title: "Audit és jogosultságok",
+        description:
+          "Szerepköralapú hozzáférés, visszakereshető események és kontrollált support-hozzáférés.",
+        href: "/security-audit",
+        icon: "audit",
+      },
+      {
+        title: "Offline működés",
+        description:
+          "A sofőr gyenge hálózaton is folytathatja a munkát; a változások szinkronkor kerülnek véglegesítésre.",
+        href: "/driver-app",
+        icon: "offline",
       },
     ],
   },
   documentsFlow: {
     title: "Dokumentumok és aláírások",
     subtitle:
-      "A dokumentum a fuvarhoz, sofőrhöz vagy járműhöz kapcsolódik, és auditálható marad.",
+      "A dokumentum a fuvarhoz kapcsolódik, aláírható, ellenőrizhető, majd lezárt csomagba kerül.",
     steps: [
       {
-        title: "Létrejön vagy feltöltik",
-        description: "CMR, szállítólevél, scan vagy digitális sablon.",
+        title: "Feltöltés vagy létrehozás",
+        description: "CMR, szállítólevél, fénykép vagy digitális sablon.",
       },
       {
-        title: "Kapcsolódik",
-        description: "Fuvar, sofőr, jármű vagy cég kontextusához rendelődik.",
+        title: "Kapcsolás",
+        description: "Fuvar, sofőr vagy jármű kontextusához rendelődik.",
       },
       {
         title: "Aláírás és ellenőrzés",
-        description: "Aláírásra vár → aláírva → ellenőrzés alatt.",
+        description: "Állapotkövetés: aláírásra vár → aláírva → ellenőrzés.",
       },
       {
-        title: "Lezárt csomag",
-        description: "Exportálható, visszakereshető bizonyítékcsomag.",
+        title: "Lezárt fuvarcsomag",
+        description:
+          "Exportálható dokumentumokkal és eseményekkel — auditálható összefoglaló.",
       },
     ],
     statuses: [
@@ -194,55 +258,85 @@ export const visualMarketingHu: VisualMarketingContent = {
       "Aláírásra vár",
       "Aláírva",
       "Ellenőrzés alatt",
-      "Rontott",
-      "Lejáró",
-      "Hatósági",
-      "Belső",
     ],
+    detailsLink: "Dokumentumok részletesen",
   },
   offline: {
     title: "Offline működés és szinkron",
     subtitle:
-      "A sofőr offline is dolgozhat; a finalizálás backend-visszaigazolás után válik véglegessé.",
+      "A munka nem áll meg gyenge hálózaton sem — a véglegesítés szinkron után történik.",
     cards: [
       {
-        title: "Helyi változásnapló",
-        description: "Mezőszintű változtatások biztonságos helyi tárolása.",
+        title: "Helyi mentés",
+        description: "A sofőr változásai biztonságosan tárolódnak a készüléken.",
+      },
+      {
+        title: "Átlátható szinkron",
+        description: "A függő változtatások láthatók, amíg a kapcsolat helyreáll.",
       },
       {
         title: "Konfliktusjelzés",
-        description: "Eltérő források esetén nem csendes felülírás — auditált konfliktus.",
-      },
-      {
-        title: "Stabil sablon-snapshot",
-        description: "A fuvar közben a sablonverzió nem változik meg csendben.",
+        description: "Eltérő források esetén nem csendes felülírás — naplózott konfliktus.",
       },
     ],
+    detailsLink: "Sofőr alkalmazás",
+  },
+  responsibleUse: {
+    title: "Felelős használat",
+    subtitle: "Rövid, fontos korlátok — a részletek a jogi oldalakon.",
+    items: [
+      "A ViaNexis nem minősített eFTI platform, és nem ígér automatikus hatósági elfogadást.",
+      "Az OCR, AI és fordítás segédeszköz — emberi ellenőrzés szükséges.",
+      "A rendszer nem nyújt jogi tanácsot.",
+      "Nem vészhelyzeti vagy SOS szolgáltatás.",
+    ],
+    detailsLink: "Részletes felelős használat",
   },
   pilotCta: {
-    title: "Készen áll a kontrollált pilot hozzáférésre?",
+    title: "Kontrollált pilot hozzáférés",
     subtitle:
-      "Belső és partneri teszteléshez kérjen hozzáférést — nem nyilvános store letöltés.",
+      "A ViaNexis jelenleg kiválasztott fuvarozó cégekkel és sofőrökkel végzett pilotprogramon keresztül érhető el. A hozzáférés egyedi egyeztetés és jóváhagyás után aktiválható.",
   },
   preview: {
+    tripId: "VN-2407-A18",
     phoneTitle: "Aktív fuvar",
-    phoneSubtitle: "Demo · HU-AT-001",
+    phoneSubtitle: "Demo · VN-2407-A18",
     phoneRows: [
-      { label: "Megálló", value: "Budapest → Wien", status: "Úton" },
-      { label: "Dokumentum", value: "CMR digitális", status: "Kitöltés" },
-      { label: "Offline queue", value: "2 változás vár", status: "Sync" },
+      { label: "Következő megálló", value: "Átvétel · Budapest (demo)", status: "Úton" },
+      { label: "Dokumentum", value: "CMR — aláírásra vár", status: "Teendő" },
+      { label: "Szinkron", value: "1 változás várakozik", status: "Offline" },
     ],
-    phoneCaption: "Termékbemutató UI-kompozíció — anonimizált demo adatok.",
-    browserTitle: "Operatív áttekintés",
-    browserSubtitle: "Demo cég · irányítói nézet",
-    browserColumns: ["Fuvar", "Sofőr", "Dokumentum", "Állapot"],
+    phoneCaption: "Termékbemutató — anonimizált demo adatok.",
+    browserTitle: "Operatív irányítás",
+    browserSubtitle: "Demo flotta · diszpécser nézet",
+    browserColumns: ["Fuvar", "Megálló", "Dokumentum", "Állapot"],
     browserRows: [
-      ["HU-AT-001", "Sofőr A", "CMR", "Aláírásra vár"],
-      ["DE-NL-014", "Sofőr B", "POD", "Aláírva"],
-      ["IT-FR-008", "Sofőr C", "Scan", "Ellenőrzés"],
+      ["VN-2407-A18", "Budapest (demo)", "CMR hiányzik", "Figyelmeztetés"],
+      ["VN-2407-B03", "Győr (demo)", "POD aláírva", "Úton"],
+      ["VN-2407-C11", "Wien (demo)", "Ellenőrzés", "Lezárás előtt"],
     ],
-    browserCaption:
-      "Company Portal bemutató kompozíció — nem éles staging adat.",
+    browserCaption: "Céges portál bemutató — nem éles ügyféladat.",
+    driver: {
+      navHome: "Kezdőlap",
+      navTrips: "Fuvarok",
+      navDocs: "Iratok",
+      navMore: "Több",
+      tripStatus: "Fuvar folyamatban",
+      nextStopLabel: "Következő megálló",
+      nextStopValue: "Átvétel · Budapest (demo)",
+      documentLabel: "Dokumentum",
+      documentValue: "CMR digitális",
+      documentAction: "Aláírás szükséges",
+      syncLabel: "Kapcsolat",
+      syncValue: "Offline · 1 függő",
+    },
+    portal: {
+      roleLabel: "Szerepkör: Diszpécser",
+      alertLabel: "Figyelmeztetés",
+      alertValue: "VN-2407-A18 · CMR aláírásra vár",
+      auditLabel: "Utolsó audit esemény",
+      auditValue: "Dokumentum állapot változott · sofőr app",
+    },
   },
   statusLabels: {
     available: "Elérhető",
@@ -251,84 +345,63 @@ export const visualMarketingHu: VisualMarketingContent = {
   },
   productPage: {
     highlightsTitle: "Kiemelt képességek",
-    capabilitiesTitle: "Mit mutat be ez a modul",
-    statusesTitle: "Státuszjelölés",
+    capabilitiesTitle: "Mit nyújt ez a felület",
+    statusesTitle: "Állapotjelölések",
   },
   authority: {
     heroSubtitle:
-      "eFTI-ready foundation: strukturált, auditálható adatkezelés és idő-/scope-korlátozott hatósági hozzáférési csomag — nem eFTI-tanúsított platform.",
-    foundationBadge: "eFTI-ready foundation",
-    notCertifiedBadge: "Nem eFTI-tanúsított",
-    foundationTitle: "Mit jelent az eFTI-ready foundation",
+      "Idő- és hatókör-korlátozott hozzáférés a fuvarbizonyítékokhoz — nem minősített eFTI platform.",
+    foundationBadge: "Technikai felkészültség",
+    notCertifiedBadge: "Nem minősített eFTI",
+    foundationTitle: "Mit jelent a felkészültség?",
     foundationSubtitle:
-      "Technikai felkészültség auditálható adatkezelésre — nem tanúsítvány vagy engedély.",
+      "Strukturált adatok és kontrollált megosztás — tanúsítvány vagy engedély nélkül.",
     extraDisclaimer:
-      "A ViaNexis nem állítja, hogy a rendszer jelenleg eFTI-tanúsított, hatóságilag elfogadott minden országban, vagy automatikus jogi bizonyító erővel bír.",
+      "A ViaNexis nem ígér hatósági elfogadást minden országban. A jogi és hatósági megfelelés az ügyfél felelőssége.",
   },
   moduleCapabilities: {
     "driver-app": [
       {
-        title: "Profil és dokumentumok",
-        description:
-          "Sofőradatok és iratok kezelése a céges követelmények szerint.",
+        title: "Fuvarlista és megállók",
+        description: "Aktív fuvarok, következő teendők és megállófeladatok.",
         status: "available",
       },
       {
-        title: "Fuvarok és megállók",
-        description: "Több megálló, feladatok és fuvarállapot egy nézetben.",
+        title: "Dokumentumok és aláírás",
+        description: "Feltöltés, CMR teendők és aláírás rögzítése.",
         status: "available",
       },
       {
-        title: "CMR és feltöltés",
-        description: "Digitális és scanelt dokumentumok fuvarhoz kötve.",
+        title: "Offline munka",
+        description: "Helyi mentés és látható függő szinkron.",
+        status: "available",
+      },
+      {
+        title: "Üzenetek",
+        description: "Fuvarhoz kötött kommunikáció a sofőr számára.",
         status: "pilot",
-      },
-      {
-        title: "Aláírások és események",
-        description: "Aláírás-capture, károk és események naplózása.",
-        status: "available",
-      },
-      {
-        title: "Offline queue",
-        description: "Offline kitöltés, szinkron és konfliktusjelzés.",
-        status: "pilot",
-      },
-      {
-        title: "Authority mode / Driver ID",
-        description: "Hatósági és azonosító nézetek — fokozatos bekötés.",
-        status: "development",
       },
     ],
     "company-admin": [
       {
-        title: "Irányítói áttekintés",
-        description: "Fuvarok, figyelmeztetések és dokumentumhiányok.",
+        title: "Aktív fuvarlista",
+        description: "Operatív áttekintés megállókkal és állapotokkal.",
         status: "available",
       },
       {
-        title: "Fuvarbeadás és megállók",
-        description: "Pickup/delivery, várakozás és parkoltatott munkák.",
+        title: "Dokumentumhiány jelzése",
+        description: "Hiányzó vagy aláírásra váró iratok azonnal látszanak.",
         status: "available",
       },
       {
-        title: "Dokumentum- és aláíráskövetés",
-        description: "Státuszok, hiányok és ellenőrzési állapot.",
-        status: "pilot",
+        title: "Jogosultságok",
+        description: "Szerepköralapú hozzáférés a céges adatokhoz.",
+        status: "available",
       },
       {
-        title: "Jogosultságok és beállítások",
-        description: "Szerepkörök, céges szabályok, alvállalkozói hozzáférés.",
+        title: "Audit események",
+        description: "Visszakereshető döntési és dokumentumnyomvonal.",
         status: "pilot",
-      },
-      {
-        title: "Auditnapló és riportok",
-        description: "Visszakereshető döntések és exportálható bizonyíték.",
-        status: "pilot",
-      },
-      {
-        title: "Külső partner hozzáférés",
-        description: "Időkorlátos, scope-korlátozott partneri nézetek.",
-        status: "development",
       },
     ],
     "cmr-documents": [
@@ -338,25 +411,25 @@ export const visualMarketingHu: VisualMarketingContent = {
         status: "available",
       },
       {
-        title: "Aláírási workflow",
+        title: "Aláírási folyamat",
         description: "Aláírásra vár → aláírva → ellenőrzés.",
         status: "pilot",
       },
       {
-        title: "Lezárt csomag",
-        description: "Exportálható, auditálható fuvarbizonyíték.",
+        title: "Lezárt fuvarcsomag",
+        description: "Exportálható dokumentumokkal és eseményekkel.",
         status: "pilot",
       },
       {
-        title: "Sablonverziózás",
-        description: "Központi sablonrendszer — fokozatos bevezetés.",
+        title: "Sablonkezelés",
+        description: "Központi dokumentumsablonok — fokozatos bevezetés.",
         status: "development",
       },
     ],
     "audit-support": [
       {
         title: "Szerepköralapú hozzáférés",
-        description: "User- és company-scope elválasztás.",
+        description: "Felhasználói és céges hatókör elválasztása.",
         status: "available",
       },
       {
@@ -365,19 +438,14 @@ export const visualMarketingHu: VisualMarketingContent = {
         status: "available",
       },
       {
-        title: "Session és device",
-        description: "Munkamenet- és eszközkezelés támogatása.",
+        title: "Munkamenet és eszköz",
+        description: "Kontrollált session- és eszközkezelés.",
         status: "pilot",
       },
       {
-        title: "Support access grant",
-        description: "Időkorlátos, naplózott support hozzáférés.",
+        title: "Support hozzáférés",
+        description: "Időkorlátozott, naplózott támogatási belépés.",
         status: "pilot",
-      },
-      {
-        title: "Exportálható bizonyíték",
-        description: "Dokumentált döntések és exportcsomagok.",
-        status: "development",
       },
     ],
   },
@@ -387,26 +455,26 @@ export const visualMarketingEn: VisualMarketingContent = {
   skipToContent: "Skip to content",
   brandVisuals: {
     routeLabel: "Active route",
-    routeId: "Route VN-697",
-    statusLabel: "LIVE",
-    motifTitle: "Grid system & sizing",
-    motifSubtitle:
-      "The ViaNexis linear truck symbol across a 16–48 px scale — consistent, instantly readable icon language.",
-    motifSizes: [
-      { label: "16 · Micro", size: 16 },
-      { label: "20 · Compact", size: 20 },
-      { label: "24 · Standard", size: 24 },
-      { label: "32 · Large", size: 32 },
-      { label: "48 · Hero", size: 48 },
-    ],
-    networkTitle: "Connected routes",
+    routeId: "VN-2407-A18",
+    statusLabel: "Live",
+    networkOverline: "ViaNexis Network",
+    networkTitle: "It is not only the route that connects.",
     networkSubtitle:
-      "A digital map network: trips, hubs, and auditable events on a navy–gold operational surface.",
+      "Stops, documents, signatures, messages, and decisions belong to the same trip flow — in time order, with permissions and a searchable event trail.",
+    workflowEvents: [
+      "Departure",
+      "Pickup",
+      "Document",
+      "Signature",
+      "Waiting",
+      "Delivery",
+      "Closed package",
+    ],
   },
   pillars: {
     title: "Three pillars — one controlled system",
     subtitle:
-      "Driver-friendly mobile flow, company operational control, and an auditable decision trail.",
+      "A driver-friendly mobile flow, company operational control, and an auditable decision trail.",
     items: [
       {
         title: "Driver-friendly app",
@@ -416,7 +484,7 @@ export const visualMarketingEn: VisualMarketingContent = {
       {
         title: "Company control",
         description:
-          "Dispatcher overview, permissions, alerts, and document tracking in the Company Portal.",
+          "Dispatcher overview, permissions, alerts, and document tracking in the company portal.",
       },
       {
         title: "Auditable operations",
@@ -432,11 +500,11 @@ export const visualMarketingEn: VisualMarketingContent = {
     steps: [
       {
         title: "Create trip",
-        description: "Pickup/delivery stops, tasks, and document requirements.",
+        description: "Pickup and delivery stops, tasks, and document requirements.",
       },
       {
         title: "Driver acceptance",
-        description: "Assignment, acceptance, and controlled session start.",
+        description: "Assignment, acceptance, and a controlled session start.",
       },
       {
         title: "Stops and tasks",
@@ -448,52 +516,77 @@ export const visualMarketingEn: VisualMarketingContent = {
       },
     ],
   },
-  surfaces: {
+  homeModules: {
     title: "Product surfaces",
-    subtitle: "Every surface builds on the same trip and document data model.",
+    subtitle:
+      "Every surface shares the same trip and document model. Details live on the product pages.",
+    detailsLink: "Details",
     items: [
       {
-        title: "Driver App",
-        description: "Mobile driver flow: trips, CMR, signatures, offline queue.",
+        title: "Driver app",
+        description:
+          "Trips, stops, documents, and signatures in an offline-capable mobile flow. Drivers always see the next required action.",
         href: "/driver-app",
+        icon: "truck",
       },
       {
-        title: "Company Portal",
-        description: "Operations control: trip management, alerts, audit.",
+        title: "Company portal",
+        description:
+          "Operational overview: active trips, missing documents, alerts, and permissions in one place.",
         href: "/company-portal",
+        icon: "portal",
       },
       {
-        title: "Platform Admin",
-        description: "Platform-level operations and tenant control.",
+        title: "Documents & signatures",
+        description:
+          "Trip-linked paperwork, signature states, and an exportable closed trip package.",
+        href: "/documents-signatures",
+        icon: "doc",
+      },
+      {
+        title: "Messaging & alerts",
+        description:
+          "Trip-linked communication. Notification features can be activated as part of the pilot program.",
         href: "/features",
+        icon: "message",
       },
       {
-        title: "Authority / external access",
-        description: "Time- and scope-limited package — eFTI-ready foundation.",
-        href: "/authority-efti",
+        title: "Audit & permissions",
+        description:
+          "Role-based access, searchable events, and controlled support access.",
+        href: "/security-audit",
+        icon: "audit",
+      },
+      {
+        title: "Offline operation",
+        description:
+          "Drivers can keep working on weak networks; changes finalize when sync completes.",
+        href: "/driver-app",
+        icon: "offline",
       },
     ],
   },
   documentsFlow: {
-    title: "Documents and signatures",
+    title: "Documents & signatures",
     subtitle:
-      "Documents link to a trip, driver, or vehicle — and remain auditable.",
+      "Documents link to the trip, can be signed and reviewed, then closed into an exportable package.",
     steps: [
       {
-        title: "Created or uploaded",
-        description: "CMR, delivery note, scan, or digital template.",
+        title: "Upload or create",
+        description: "CMR, delivery note, photo, or digital template.",
       },
       {
-        title: "Linked",
-        description: "Assigned to trip, driver, vehicle, or company context.",
+        title: "Linking",
+        description: "Assigned to trip, driver, or vehicle context.",
       },
       {
         title: "Sign and review",
-        description: "Awaiting signature → signed → under review.",
+        description: "Status flow: awaiting signature → signed → under review.",
       },
       {
-        title: "Closed package",
-        description: "Exportable, searchable evidence package.",
+        title: "Closed trip package",
+        description:
+          "Exportable documents and events — an auditable summary.",
       },
     ],
     statuses: [
@@ -502,55 +595,85 @@ export const visualMarketingEn: VisualMarketingContent = {
       "Awaiting signature",
       "Signed",
       "Under review",
-      "Invalidated",
-      "Expiring",
-      "Authority",
-      "Internal",
     ],
+    detailsLink: "Documents in detail",
   },
   offline: {
-    title: "Offline operation and sync",
+    title: "Offline operation & sync",
     subtitle:
-      "Drivers can work offline; finalization becomes permanent only after backend confirmation.",
+      "Work continues on weak networks — finalization happens after sync.",
     cards: [
       {
-        title: "Local change log",
-        description: "Field-level changes stored securely on device.",
+        title: "Local save",
+        description: "Driver changes are stored safely on the device.",
       },
       {
-        title: "Conflict signals",
-        description: "No silent overwrite when sources diverge — audited conflict.",
+        title: "Visible sync",
+        description: "Pending changes stay visible until connectivity returns.",
       },
       {
-        title: "Stable template snapshot",
-        description: "Template version does not change silently mid-trip.",
+        title: "Conflict signalling",
+        description: "Conflicting sources are logged — never silently overwritten.",
       },
     ],
+    detailsLink: "Driver app",
+  },
+  responsibleUse: {
+    title: "Responsible use",
+    subtitle: "Short, important limits — details live on the legal pages.",
+    items: [
+      "ViaNexis is not a certified eFTI platform and does not promise automatic authority acceptance.",
+      "OCR, AI, and translation are assistive — human review is required.",
+      "The system does not provide legal advice.",
+      "It is not an emergency or SOS service.",
+    ],
+    detailsLink: "Full responsible-use notices",
   },
   pilotCta: {
-    title: "Ready for controlled pilot access?",
+    title: "Controlled pilot access",
     subtitle:
-      "Request access for internal and partner testing — not a public store download.",
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers. Access is activated after individual discussion and approval.",
   },
   preview: {
+    tripId: "VN-2407-A18",
     phoneTitle: "Active trip",
-    phoneSubtitle: "Demo · HU-AT-001",
+    phoneSubtitle: "Demo · VN-2407-A18",
     phoneRows: [
-      { label: "Stop", value: "Budapest → Wien", status: "En route" },
-      { label: "Document", value: "Digital CMR", status: "Filling" },
-      { label: "Offline queue", value: "2 pending changes", status: "Sync" },
+      { label: "Next stop", value: "Pickup · Budapest (demo)", status: "En route" },
+      { label: "Document", value: "CMR — awaiting signature", status: "Action" },
+      { label: "Sync", value: "1 change pending", status: "Offline" },
     ],
-    phoneCaption: "Product demo UI composition — anonymized demo data.",
-    browserTitle: "Operations overview",
-    browserSubtitle: "Demo company · dispatcher view",
-    browserColumns: ["Trip", "Driver", "Document", "Status"],
+    phoneCaption: "Product demo — anonymized sample data.",
+    browserTitle: "Operations control",
+    browserSubtitle: "Demo fleet · dispatcher view",
+    browserColumns: ["Trip", "Stop", "Document", "Status"],
     browserRows: [
-      ["HU-AT-001", "Driver A", "CMR", "Awaiting signature"],
-      ["DE-NL-014", "Driver B", "POD", "Signed"],
-      ["IT-FR-008", "Driver C", "Scan", "Under review"],
+      ["VN-2407-A18", "Budapest (demo)", "CMR missing", "Alert"],
+      ["VN-2407-B03", "Győr (demo)", "POD signed", "En route"],
+      ["VN-2407-C11", "Vienna (demo)", "Under review", "Pre-close"],
     ],
-    browserCaption:
-      "Company Portal demo composition — not live staging data.",
+    browserCaption: "Company portal demo — not live customer data.",
+    driver: {
+      navHome: "Home",
+      navTrips: "Trips",
+      navDocs: "Docs",
+      navMore: "More",
+      tripStatus: "Trip in progress",
+      nextStopLabel: "Next stop",
+      nextStopValue: "Pickup · Budapest (demo)",
+      documentLabel: "Document",
+      documentValue: "Digital CMR",
+      documentAction: "Signature required",
+      syncLabel: "Connection",
+      syncValue: "Offline · 1 pending",
+    },
+    portal: {
+      roleLabel: "Role: Dispatcher",
+      alertLabel: "Alert",
+      alertValue: "VN-2407-A18 · CMR awaiting signature",
+      auditLabel: "Latest audit event",
+      auditValue: "Document status changed · driver app",
+    },
   },
   statusLabels: {
     available: "Available",
@@ -559,84 +682,63 @@ export const visualMarketingEn: VisualMarketingContent = {
   },
   productPage: {
     highlightsTitle: "Key capabilities",
-    capabilitiesTitle: "What this module shows",
+    capabilitiesTitle: "What this surface provides",
     statusesTitle: "Status labels",
   },
   authority: {
     heroSubtitle:
-      "eFTI-ready foundation: structured, auditable data handling and time-/scope-limited authority access packages — not an eFTI-certified platform.",
-    foundationBadge: "eFTI-ready foundation",
-    notCertifiedBadge: "Not eFTI-certified",
-    foundationTitle: "What eFTI-ready foundation means",
+      "Time- and scope-limited access to trip evidence — not a certified eFTI platform.",
+    foundationBadge: "Technical readiness",
+    notCertifiedBadge: "Not certified eFTI",
+    foundationTitle: "What readiness means",
     foundationSubtitle:
-      "Technical readiness for auditable data handling — not a certificate or licence.",
+      "Structured data and controlled sharing — without a certificate or permit claim.",
     extraDisclaimer:
-      "ViaNexis does not claim the system is currently eFTI-certified, accepted by authorities in every country, or automatically legally probative.",
+      "ViaNexis does not promise authority acceptance in every country. Legal and regulatory compliance remains the customer’s responsibility.",
   },
   moduleCapabilities: {
     "driver-app": [
       {
-        title: "Profile and documents",
-        description:
-          "Driver profile and documents managed to company requirements.",
+        title: "Trip list and stops",
+        description: "Active trips, next actions, and stop tasks.",
         status: "available",
       },
       {
-        title: "Trips and stops",
-        description: "Multiple stops, tasks, and trip status in one view.",
+        title: "Documents and signature",
+        description: "Uploads, CMR tasks, and signature capture.",
         status: "available",
       },
       {
-        title: "CMR and upload",
-        description: "Digital and scanned documents linked to the trip.",
+        title: "Offline work",
+        description: "Local save with visible pending sync.",
+        status: "available",
+      },
+      {
+        title: "Messaging",
+        description: "Trip-linked communication for drivers.",
         status: "pilot",
-      },
-      {
-        title: "Signatures and events",
-        description: "Signature capture with damage and event logging.",
-        status: "available",
-      },
-      {
-        title: "Offline queue",
-        description: "Offline fill, sync, and conflict signalling.",
-        status: "pilot",
-      },
-      {
-        title: "Authority mode / Driver ID",
-        description: "Authority and ID views — rolled out gradually.",
-        status: "development",
       },
     ],
     "company-admin": [
       {
-        title: "Dispatcher overview",
-        description: "Trips, alerts, and missing documents.",
+        title: "Active trip list",
+        description: "Operational overview with stops and statuses.",
         status: "available",
       },
       {
-        title: "Trip intake and stops",
-        description: "Pickup/delivery, waiting, and parked jobs.",
+        title: "Missing-document alerts",
+        description: "Missing or unsigned documents are immediately visible.",
         status: "available",
       },
       {
-        title: "Document and signature tracking",
-        description: "Statuses, gaps, and review state.",
-        status: "pilot",
+        title: "Permissions",
+        description: "Role-based access to company data.",
+        status: "available",
       },
       {
-        title: "Permissions and settings",
-        description: "Roles, company rules, subcontractor access.",
+        title: "Audit events",
+        description: "Searchable decision and document trail.",
         status: "pilot",
-      },
-      {
-        title: "Audit log and reports",
-        description: "Searchable decisions and exportable evidence.",
-        status: "pilot",
-      },
-      {
-        title: "External partner access",
-        description: "Time- and scope-limited partner views.",
-        status: "development",
       },
     ],
     "cmr-documents": [
@@ -651,13 +753,13 @@ export const visualMarketingEn: VisualMarketingContent = {
         status: "pilot",
       },
       {
-        title: "Closed package",
-        description: "Exportable, auditable trip evidence.",
+        title: "Closed trip package",
+        description: "Exportable documents and events.",
         status: "pilot",
       },
       {
-        title: "Template versioning",
-        description: "Central template system — gradual rollout.",
+        title: "Template management",
+        description: "Central document templates — gradual rollout.",
         status: "development",
       },
     ],
@@ -674,25 +776,19 @@ export const visualMarketingEn: VisualMarketingContent = {
       },
       {
         title: "Session and device",
-        description: "Session and device management support.",
+        description: "Controlled session and device management.",
         status: "pilot",
       },
       {
-        title: "Support access grant",
-        description: "Time-limited, logged support access.",
+        title: "Support access",
+        description: "Time-limited, logged support entry.",
         status: "pilot",
-      },
-      {
-        title: "Exportable evidence",
-        description: "Documented decisions and export packages.",
-        status: "development",
       },
     ],
   },
 };
 
-export function resolveVisualMarketing(
-  locale: string,
-): VisualMarketingContent {
-  return locale === "hu" ? visualMarketingHu : visualMarketingEn;
+export function resolveVisualMarketing(locale: string): VisualMarketingContent {
+  if (locale === "hu") return visualMarketingHu;
+  return visualMarketingEn;
 }

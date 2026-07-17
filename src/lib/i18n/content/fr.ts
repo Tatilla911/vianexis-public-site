@@ -55,15 +55,17 @@ export const contentFr: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Statut actuel",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Préparation des tests internes de Google Play en cours – pas de téléchargement dans la boutique publique.",
-      "Préparation de la publication de l'application pilote et Samsung UAT en cours.",
-      "Le backend de production, les notifications push et les intégrations de partenaires sont progressivement connectés."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis ne prétend pas que le système est opérationnel, certifié ou officiellement accepté dans tous les pays.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "But",
     appFoundation: "Fondation côté application",
@@ -106,7 +108,7 @@ export const contentFr: SiteContent = {
       title: "Messagerie et notifications",
       goal: "Communication liée au trajet et alertes pour les événements importants du conducteur.",
       appFoundation: "Liste de messages, fils de discussion liés au voyage, base de notification côté application. Utilisable pour : nouveau message, changement de voyage, tâche de document, problème de synchronisation.",
-      backendDependency: "Production push (FCM/APNs), enregistrement du jeton de périphérique, répartition côté serveur — dépendance séparée, pas encore en ligne.",
+      backendDependency: "Notification features can be activated as part of the pilot program.",
       disclaimer: "L'écran cible s'ouvre après PIN. La poussée de production ne prétend pas que chaque événement arrive instantanément.",
     },
     {
@@ -245,7 +247,7 @@ export const contentFr: SiteContent = {
     contact: {
       title: "Contact et tests internes",
       subtitle: "Accès contrôlé – pas d’inscription automatique, pas de téléchargement Play public.",
-      body: "L'application pilote est en cours de préparation aux tests internes de Google Play. Préparation à la publication et Samsung UAT en cours. L'activation n'est pas automatique.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Le système gère les documents, les flux de travail des chauffeurs, les données de l'entreprise et les autorisations — chaque accès est examiné individuellement.",
       contactLink: "Contactez-nous →",
     },

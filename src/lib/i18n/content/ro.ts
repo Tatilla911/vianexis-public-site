@@ -55,15 +55,17 @@ export const contentRo: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Starea actuală",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Pregătirea pentru testarea internă Google Play este în desfășurare — nu o descărcare în magazin public.",
-      "Pregătirea pentru lansarea aplicației pentru șofer și Samsung UAT în curs.",
-      "Backend-ul de producție, notificările push și integrările de parteneri sunt conectate treptat."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis nu pretinde că sistemul este activ, certificat sau acceptat oficial în fiecare țară.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Scop",
     appFoundation: "Fundație din partea aplicației",
@@ -245,7 +247,7 @@ export const contentRo: SiteContent = {
     contact: {
       title: "Contact și testare internă",
       subtitle: "Acces controlat — nu înregistrare automată, fără descărcare publică Play.",
-      body: "Aplicația de șofer se află în pregătirea de testare internă Google Play. Pregătirea lansării și Samsung UAT în curs. Activarea nu este automată.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Sistemul gestionează documentele, fluxurile de lucru ale șoferului, datele companiei și permisiunile - fiecare acces este revizuit individual.",
       contactLink: "Contactează-ne →",
     },

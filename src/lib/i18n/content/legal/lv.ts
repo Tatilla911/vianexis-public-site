@@ -127,7 +127,7 @@ export const legalLv: LegalContent = {
       },
       {
         title: "Iekšējās pārbaudes statuss",
-        body: "Notiek Google Play iekšējās testēšanas sagatavošana. Notiek Samsung UAT un laidiena gatavība. Mēs neapgalvojam, ka lietotne ir publiski pieejama Play veikalā.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Atbildības ierobežojums",

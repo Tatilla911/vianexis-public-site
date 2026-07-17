@@ -127,7 +127,7 @@ export const legalMt: LegalContent = {
       },
       {
         title: "Stat tal-ittestjar intern",
-        body: "Tħejjija għall-ittestjar intern ta' Google Play għaddejja. Samsung UAT u prontezza għar-rilaxx għaddejjin. Aħna ma nippretendux li l-app hija disponibbli pubblikament fuq il-Play Store.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Limitazzjoni ta' responsabbiltà",

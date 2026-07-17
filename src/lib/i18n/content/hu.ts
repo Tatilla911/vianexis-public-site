@@ -5,7 +5,7 @@ export const contentHu: SiteContent = {
   meta: {
     title: "ViaNexis Driver és céges fuvarirányítás",
     description:
-      "Sofőralkalmazás, céges irányítás, dokumentumkezelés, üzenetek, értesítések és többnyelvű fuvarfolyamat egy rendszerben. Belső tesztelés előkészítés alatt.",
+      "Sofőralkalmazás, céges irányítás, dokumentumkezelés, üzenetek és többnyelvű fuvarfolyamat egy kontrollált rendszerben. Hozzáférés jelenleg pilotprogramon keresztül.",
     ogLocale: "hu_HU",
     ogAlternateLocale: "en_US",
   },
@@ -23,7 +23,7 @@ export const contentHu: SiteContent = {
   },
   footer: {
     tagline:
-      "Digitális fuvarbizonyíték és sofőrplatform fuvarozó cégeknek. eFTI-ready foundation — nem minősített eFTI platform.",
+      "Digitális fuvarbizonyíték és sofőrplatform fuvarozó cégeknek. Nem minősített eFTI platform.",
     product: "Termék",
     legal: "Jogi",
     legalNotice: "Jogi információk",
@@ -32,7 +32,7 @@ export const contentHu: SiteContent = {
     disclaimers: "Felelős használat",
     dataContact: "Adatkezelési kapcsolat",
     copyright:
-      "A platform nem minősített eFTI platform, nem ígér hatósági elfogadást, automatikus jogi bizonyító erőt, hibátlan OCR/AI/fordítást vagy vészhelyzeti/SOS szolgáltatást. Nincs nyilvános Play Store letöltés.",
+      "A ViaNexis nem minősített eFTI platform. OCR/AI/fordítás emberi ellenőrzést igényel. Nem jogi tanács és nem vészhelyzeti szolgáltatás.",
   },
   hero: {
     title: "Kontrollált fuvarfolyamat. Rendezett dokumentumok. Auditálható döntések.",
@@ -42,25 +42,25 @@ export const contentHu: SiteContent = {
     secondaryCta: "Funkciók megtekintése",
     stats: [
       { label: "Sofőr app", value: "Fuvar + offline" },
-      { label: "Dokumentum", value: "CMR + audit" },
-      { label: "Üzenet", value: "Többnyelvű" },
-      { label: "Állapot", value: "Belső teszt prep" },
+      { label: "Dokumentum", value: "CMR + aláírás" },
+      { label: "Portál", value: "Operatív kontroll" },
+      { label: "Hozzáférés", value: "Kontrollált pilot" },
     ],
   },
   platformStatus: {
-    title: "Aktuális állapot",
+    title: "Kontrollált pilot hozzáférés",
     items: [
-      "Google Play belső tesztelés előkészítés alatt — nem nyilvános store letöltés.",
-      "A sofőr app release readiness és Samsung UAT folyamatban.",
-      "Production backend, push értesítések és partneri integrációk fokozatosan kerülnek bekötésre.",
+      "A ViaNexis jelenleg kiválasztott fuvarozó cégekkel és sofőrökkel végzett pilotprogramon keresztül érhető el.",
+      "A hozzáférés egyedi egyeztetés és jóváhagyás után aktiválható.",
+      "A nyilvános alkalmazásbolt-letöltés nem elérhető.",
     ],
     disclaimer:
-      "A ViaNexis nem állítja, hogy a rendszer éles, tanúsított vagy minden országban hivatalosan elfogadott platform.",
+      "A ViaNexis nem állítja, hogy a rendszer minden országban hivatalosan elfogadott vagy tanúsított platform.",
   },
   moduleLabels: {
-    goal: "Cél",
-    appFoundation: "App-side foundation",
-    backendDependency: "Backend / admin dependency",
+    goal: "Mit nyújt",
+    appFoundation: "Főbb képességek",
+    backendDependency: "Kapcsolódó szolgáltatások",
     important: "Fontos",
   },
   platformModules: [
@@ -69,9 +69,9 @@ export const contentHu: SiteContent = {
       title: "Sofőr app",
       goal: "A sofőr fuvarhoz kötött feladatokat, dokumentumokat és eseményeket egy mobil felületen kezelje — online és offline is.",
       appFoundation:
-        "Fuvarlista és részletek, dokumentumfeltöltés, aláírás-capture, checklist, incidensrögzítés, offline mentés és szinkron, PIN-védett munkamenet.",
+        "Fuvarlista, megállók, dokumentumfeltöltés, aláírás, ellenőrzőlisták, incidensrögzítés, offline mentés és PIN-védett munkamenet.",
       backendDependency:
-        "Éles API, tenant scope, fuvar- és dokumentum-szinkron, céges beállítások feloldása.",
+        "Céges szabályok, fuvar- és dokumentumszinkron, jogosultságok.",
     },
     {
       id: "company-admin",
@@ -80,27 +80,27 @@ export const contentHu: SiteContent = {
       appFoundation:
         "Sofőr oldali adatok és műveletek a céges szabályoknak megfelelően jelennek meg.",
       backendDependency:
-        "Webes céges portál, platform admin app, szerepkörök, fuvarkezelés, dokumentumkövetelmények, céges exchange beállítások.",
+        "Webes céges portál, szerepkörök, fuvarkezelés és dokumentumkövetelmények.",
     },
     {
       id: "cmr-documents",
       title: "Digitális CMR és dokumentumok",
       goal: "Fuvarhoz kötött dokumentumok — CMR, szállítólevél, számla, jármű- és sofőriratok — strukturáltan kezelhetők legyenek.",
       appFoundation:
-        "Dokumentumfeltöltés, scan/fénykép, fuvarhoz rendelés, követelmény-alapú teendők, primary document koncepció.",
+        "Dokumentumfeltöltés, fénykép, fuvarhoz rendelés és követelmény-alapú teendők.",
       backendDependency:
-        "Dokumentum tárolás, metaadat, aláírási szabályok, hatósági megosztás scope-korlátozással.",
+        "Dokumentumtárolás, metaadat, aláírási szabályok és korlátozott megosztás.",
       disclaimer:
         "A digitális dokumentum nem jelent automatikus jogi bizonyító erőt. Az elfogadás országonként és ügyfelenként eltérhet.",
     },
     {
       id: "completed-package",
-      title: "Lezárt fuvar csomag",
+      title: "Lezárt fuvarcsomag",
       goal: "A teljesített fuvar bizonyítékai összefoglalhatók exportálható csomagban.",
       appFoundation:
         "Fuvar lezárása, helyi adatok és szinkronizált események alapja a csomag összeállításához.",
       backendDependency:
-        "Completed trip package generálás, PDF export, audit export. Egyes szekciók (pl. raklap/göngyöleg PDF) még dependency állapotban.",
+        "Lezárt fuvarcsomag exportálható dokumentumokkal és eseményekkel.",
       disclaimer:
         "A csomag támogatja a dokumentálást; nem helyettesíti a cég jogi értékelését vagy hatósági eljárását.",
     },
@@ -109,22 +109,22 @@ export const contentHu: SiteContent = {
       title: "Üzenetek és értesítések",
       goal: "Fuvarhoz kötött kommunikáció és fontos események jelzése a sofőr számára.",
       appFoundation:
-        "Üzenetlista, fuvarhoz kötött thread, app-oldali értesítési foundation. Használható: új üzenet, fuvarmódosítás, dokumentum teendő, sync probléma.",
+        "Üzenetlista, fuvarhoz kötött beszélgetés, értesítések új üzenetről, fuvarmódosításról és dokumentumteendőről.",
       backendDependency:
-        "Production push (FCM/APNs), device token regisztráció, szerveroldali küldés — külön dependency, még nem éles.",
+        "Az értesítési funkciók a pilotprogram részeként aktiválhatók.",
       disclaimer:
-        "Értesítésből célképernyő PIN után. Production push nem állítja, hogy minden esemény azonnal megérkezik.",
+        "Az értesítés nem garantálja, hogy minden esemény azonnal megérkezik.",
     },
     {
       id: "pallet-packaging",
       title: "Raklapcsere és göngyölegcsere",
       goal: "Raklap- és göngyölegcserék stop szinten rögzíthetők mennyiséggel, hiánnyal, sérüléssel és vitával.",
       appFoundation:
-        "Külön raklapcsere és göngyöleg modul. Cégesen kapcsolható. Cég előre megadhatja a cseretárgyakat; sofőr egyedi göngyöleget is felvehet, ha engedélyezett. Offline mentés és szinkron.",
+        "Külön modulok, cégesen kapcsolhatók. Offline mentés és szinkron támogatott.",
       backendDependency:
-        "Exchange settings API, rekord szinkron, portál admin UI, completed package PDF szekció — utóbbi dependency.",
+        "Céges cserebeállítások és portáloldali áttekintés.",
       disclaimer:
-        "A PDF evidence szekció még nem minden esetben teljes. A rögzítés támogatja a vitás helyzet dokumentálását, de nem dönt vitában.",
+        "A rögzítés támogatja a vitás helyzet dokumentálását, de nem dönt vitában.",
     },
     {
       id: "adr-border",
@@ -133,17 +133,17 @@ export const contentHu: SiteContent = {
       appFoundation:
         "ADR tájékoztató, UN szám keresés, alagút kód segédlet, határ/vám metaadat fuvarhoz kötve.",
       backendDependency:
-        "ADR adatbázis frissítés, országspecifikus szabály metaadat, határ checkpoint adatok.",
+        "ADR adatfrissítés és országspecifikus segédinformáció.",
       disclaimer:
         "ADR és alagút adatok segédinformációk. Az app nem helyettesíti a jogszabályt, oktatást, vállalati ADR felelőst vagy hatósági döntést.",
     },
     {
       id: "truck-map",
-      title: "Tehergépkocsi térkép alap",
+      title: "Tehergépkocsi térkép",
       goal: "Flotta és fuvar áttekintés térképen — operatív orientáció.",
       appFoundation: "Térkép alapú áttekintés, fuvar és jármű kontextus megjelenítése.",
       backendDependency:
-        "Telematika provider integráció, routing provider, élő pozíció — fokozatos bekötés.",
+        "Térkép- és pozíciószolgáltatások fokozatosan kapcsolhatók.",
       disclaimer:
         "A térkép nem garantálja a jogszabályi korlátozások vagy engedélyek betartását.",
     },
@@ -154,7 +154,7 @@ export const contentHu: SiteContent = {
       appFoundation:
         "Sofőr app többnyelvű felület, eredeti üzenet megőrzése, fordítás segítségként.",
       backendDependency:
-        "Portál és public site locale bővítés, fordítási review workflow.",
+        "Portál és nyilvános oldal nyelvi támogatása.",
       disclaimer:
         "A gépi vagy AI fordítás segédeszköz; emberi ellenőrzés szükséges. Az eredeti dokumentum marad elsődleges.",
     },
@@ -163,9 +163,9 @@ export const contentHu: SiteContent = {
       title: "Audit és support hozzáférés",
       goal: "Visszakereshető napló; kontrollált support hozzáférés hibaelhárításhoz.",
       appFoundation:
-        "Eseményrögzítés fuvar és dokumentum műveleteknél; support session auditálható módon.",
+        "Eseményrögzítés fuvar- és dokumentumműveleteknél; támogatási belépés naplózva.",
       backendDependency:
-        "Audit export, support access policy, enterprise jogosultság-mátrix.",
+        "Audit export és támogatási hozzáférési szabályok.",
       disclaimer:
         "Az auditnapló nem minősül automatikus jogi bizonyítéknak.",
     },
@@ -181,7 +181,7 @@ export const contentHu: SiteContent = {
     },
     efti: {
       title: "eFTI és hatósági megosztás",
-      body: "A ViaNexis nem minősített eFTI platform. Nem ígér hatósági elfogadást minden országban. Az eFTI-ready foundation technikai felkészültség — nem tanúsítvány vagy engedély.",
+      body: "A ViaNexis nem minősített eFTI platform, és nem ígér hatósági elfogadást minden országban. A technikai felkészültség nem tanúsítvány vagy engedély.",
     },
   },
   home: {
@@ -213,34 +213,34 @@ export const contentHu: SiteContent = {
       ],
     },
     modules: {
-      title: "Platformmodulok",
+      title: "Funkciók és modulok",
       subtitle:
-        "Cél, app-side foundation, backend/admin dependency — jogilag óvatos megfogalmazással.",
+        "Részletes képességek a sofőr alkalmazástól a dokumentumokig és auditig.",
     },
     pallet: {
       title: "Raklapcsere és göngyölegcsere",
-      subtitle: "Külön modulok, cégesen kapcsolhatók — offline mentéssel és audit irányba.",
+      subtitle: "Megálló szintű rögzítés mennyiséggel, hiánnyal és vitajelzéssel.",
     },
     notifications: {
       title: "Üzenetek és értesítések",
-      subtitle: "App-oldali foundation kész — production push külön backend dependency.",
+      subtitle: "Fuvarhoz kötött kommunikáció. Az értesítések a pilotprogram részeként aktiválhatók.",
       cards: [
         {
-          title: "Értesítési eseménytípusok",
-          description: "Új üzenet, fuvarmódosítás, dokumentum teendő, sync probléma.",
+          title: "Értesítési események",
+          description: "Új üzenet, fuvarmódosítás, dokumentumteendő.",
         },
         {
-          title: "Tap routing és PIN",
-          description: "Értesítésből célképernyő; PIN után deep link.",
+          title: "Biztonságos megnyitás",
+          description: "Értesítésből a célképernyő PIN után nyílik meg.",
         },
         {
-          title: "Privacy-safe lockscreen",
+          title: "Zárolási képernyő",
           description: "Alapból nem jelenik meg teljes dokumentum- vagy üzenettartalom.",
         },
       ],
-      backendDepTitle: "Backend dependency",
+      backendDepTitle: "Értesítések",
       backendDepBody:
-        "Production push (FCM/APNs), device token regisztráció és szerveroldali küldés még nem éles — külön bekötés szükséges.",
+        "Az értesítési funkciók a pilotprogram részeként aktiválhatók.",
     },
     disclaimersSection: { title: "Felelős használat — fontos tudnivalók" },
     security: {
@@ -269,10 +269,10 @@ export const contentHu: SiteContent = {
         "A ViaNexis nem ígér automatikus jogi bizonyító erőt. A jogi értékelés az adott kontextustól függ.",
     },
     contact: {
-      title: "Kapcsolat és belső tesztelés",
+      title: "Kapcsolat",
       subtitle:
-        "Kontrollált hozzáférés — nem automatikus regisztráció, nincs nyilvános Play letöltés.",
-      body: "A sofőr app Google Play belső tesztelés előkészítés alatt áll. Release readiness és Samsung UAT folyamatban. Az aktiválás nem automatikus.",
+        "Kontrollált hozzáférés — egyedi egyeztetés után, nem automatikus regisztráció.",
+      body: "A hozzáférés jelenleg kontrollált pilotprogramon keresztül érhető el. Az aktiválás egyedi értékelés után történik.",
       consentNote:
         "A rendszer dokumentumokat, sofőrfolyamatokat, céges adatokat és jogosultságokat kezel — minden hozzáférés egyedi értékelésen megy keresztül.",
       contactLink: "Kapcsolatfelvétel →",

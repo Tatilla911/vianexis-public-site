@@ -55,18 +55,20 @@ export const contentSv: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Aktuell status",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Förberedelser för interna tester på Google Play pågår – inte en nedladdning från en offentlig butik.",
-      "Beredskap för släpp av drivrutiner och Samsung UAT pågår.",
-      "Produktionsbackend, push-meddelanden och partnerintegrationer ansluts gradvis."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis hävdar inte att systemet är live, certifierat eller officiellt accepterat i alla länder.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Mål",
-    appFoundation: "App-side foundation",
+    appFoundation: "Key capabilities",
     backendDependency: "Backend / admin beroende",
     important: "Viktig",
   },
@@ -197,7 +199,7 @@ export const contentSv: SiteContent = {
     },
     notifications: {
       title: "Meddelanden och aviseringar",
-      subtitle: "App-side foundation redo - produktionspush är ett separat backend-beroende.",
+      subtitle: "produktionspush är ett separat backend-beroende.",
       cards: [
         {
           title: "Aviseringshändelsetyper",
@@ -245,7 +247,7 @@ export const contentSv: SiteContent = {
     contact: {
       title: "Kontakt och intern testning",
       subtitle: "Kontrollerad åtkomst — inte automatisk registrering, ingen offentlig nedladdning av Play.",
-      body: "Drivrutinsappen finns i Google Plays interna testförberedelser. Släppberedskap och Samsung UAT pågår. Aktiveringen sker inte automatiskt.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Systemet hanterar dokument, förararbetsflöden, företagsdata och behörigheter – varje åtkomst granskas individuellt.",
       contactLink: "Kontakta oss →",
     },

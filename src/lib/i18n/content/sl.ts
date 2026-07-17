@@ -55,15 +55,17 @@ export const contentSl: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Trenutno stanje",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Potekajo priprave na interno testiranje Google Play — ni prenos iz javne trgovine.",
-      "Pripravljenost za izdajo aplikacije gonilnika in Samsung UAT v teku.",
-      "Produkcijsko zaledje, potisna obvestila in partnerske integracije se povezujejo postopoma."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis ne trdi, da sistem deluje, certificiran ali uradno sprejet v vseh državah.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Cilj",
     appFoundation: "Osnova na strani aplikacije",
@@ -245,7 +247,7 @@ export const contentSl: SiteContent = {
     contact: {
       title: "Kontaktno in interno testiranje",
       subtitle: "Nadzorovan dostop — ni samodejna registracija, ni javnega prenosa Play.",
-      body: "Aplikacija gonilnika je v pripravi za interno testiranje v Googlu Play. Pripravljenost na izdajo in Samsung UAT v teku. Aktivacija ni samodejna.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Sistem obravnava dokumente, poteke dela gonilnika, podatke podjetja in dovoljenja — vsak dostop je pregledan posebej.",
       contactLink: "Kontaktirajte nas →",
     },

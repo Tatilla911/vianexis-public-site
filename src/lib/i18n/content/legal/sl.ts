@@ -127,7 +127,7 @@ export const legalSl: LegalContent = {
       },
       {
         title: "Stanje internega testiranja",
-        body: "Priprava internega testiranja Google Play je v teku. Samsung UAT in pripravljenost za izdajo v teku. Ne trdimo, da je aplikacija javno dostopna v Trgovini Play.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Omejitev odgovornosti",

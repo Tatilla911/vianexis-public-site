@@ -55,15 +55,17 @@ export const contentCs: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Aktuální stav",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Probíhá příprava interního testování Google Play – nejedná se o stahování z veřejného obchodu.",
-      "Připraveno k vydání aplikace ovladače a probíhá Samsung UAT.",
-      "Postupně se připojují produkční backend, push notifikace a integrace partnerů."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis netvrdí, že je systém aktivní, certifikovaný nebo oficiálně přijatý v každé zemi.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Gól",
     appFoundation: "Základ na straně aplikace",
@@ -107,7 +109,7 @@ export const contentCs: SiteContent = {
       goal: "Komunikace a upozornění na důležité události řidiče.",
       appFoundation: "Seznam zpráv, vlákna spojená s tripem, základ pro upozornění na straně aplikace. Použitelné pro: novou zprávu, změnu cesty, úkol dokumentu, problém se synchronizací.",
       backendDependency: "Produkční push (FCM/APNs), registrace tokenu zařízení, odeslání na straně serveru – samostatná závislost, zatím neaktivní.",
-      disclaimer: "Cílová obrazovka se otevře po PIN. Production push netvrdí, že každá událost dorazí okamžitě.",
+      disclaimer: "Cílová obrazovka se otevře po PIN. Notifications netvrdí, že každá událost dorazí okamžitě.",
     },
     {
       id: "pallet-packaging",
@@ -245,7 +247,7 @@ export const contentCs: SiteContent = {
     contact: {
       title: "Kontaktní a interní testování",
       subtitle: "Řízený přístup – žádná automatická registrace, žádné veřejné stahování Play.",
-      body: "Aplikace ovladače je v přípravě na interní testování Google Play. Připraveno k vydání a Samsung UAT probíhá. Aktivace není automatická.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Systém zpracovává dokumenty, pracovní postupy ovladačů, firemní data a oprávnění – každý přístup je individuálně kontrolován.",
       contactLink: "Kontaktujte nás →",
     },

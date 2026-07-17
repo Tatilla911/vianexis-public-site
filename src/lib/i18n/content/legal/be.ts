@@ -127,7 +127,7 @@ export const legalBe: LegalContent = {
       },
       {
         title: "Статус унутранага тэсціравання",
-        body: "Ідзе падрыхтоўка да ўнутранага тэсціравання Google Play. Samsung UAT і гатоўнасць да выпуску. Мы не сцвярджаем, што праграма агульнадаступная ў Play Store.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Абмежаванне адказнасці",

@@ -127,7 +127,7 @@ export const legalFi: LegalContent = {
       },
       {
         title: "Sisäisen testauksen tila",
-        body: "Google Playn sisäisen testauksen valmistelu käynnissä. Samsung UAT ja julkaisuvalmius meneillään. Emme väitä, että sovellus on julkisesti saatavilla Play Kaupassa.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Vastuun rajoitus",

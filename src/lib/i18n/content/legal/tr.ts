@@ -127,7 +127,7 @@ export const legalTr: LegalContent = {
       },
       {
         title: "Dahili test durumu",
-        body: "Google Play dahili test hazırlığı devam ediyor. Samsung UAT ve sürüm hazırlığı devam ediyor. Uygulamanın Play Store'da herkese açık olduğunu iddia etmiyoruz.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Sorumluluğun Sınırlandırılması",

@@ -55,15 +55,17 @@ export const contentGa: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Stádas reatha",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Ullmhúchán tástála inmheánach Google Play ar siúl - ní íoslódáil siopa poiblí.",
-      "Ullmhacht scaoileadh aip tiománaithe agus Samsung UAT ar siúl.",
-      "Tá inneall táirgeachta, fógraí brú, agus comhtháthú comhpháirtíochta á nascadh de réir a chéile."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "Ní éilíonn ViaNexis go bhfuil an córas beo, deimhnithe, nó glactha go hoifigiúil i ngach tír.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Sprioc",
     appFoundation: "Fondúireacht taobh app",
@@ -245,7 +247,7 @@ export const contentGa: SiteContent = {
     contact: {
       title: "Teagmháil agus tástáil inmheánach",
       subtitle: "Rochtain rialaithe - ní clárúchán uathoibríoch, gan aon íoslódáil poiblí Play.",
-      body: "Tá an aip tiománaithe in ullmhúchán tástála inmheánach Google Play. Ullmhacht scaoileadh agus Samsung UAT ar siúl. Níl an ghníomhachtú uathoibríoch.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Láimhseálann an córas doiciméid, sreafaí oibre tiománaithe, sonraí cuideachta, agus ceadanna - déantar athbhreithniú aonair ar gach rochtain.",
       contactLink: "Déan teagmháil linn →",
     },

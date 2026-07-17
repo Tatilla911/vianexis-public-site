@@ -127,7 +127,7 @@ export const legalSq: LegalContent = {
       },
       {
         title: "Statusi i testimit të brendshëm",
-        body: "Përgatitja e testimit të brendshëm të Google Play është në progres. Samsung UAT dhe gatishmëria e lëshimit në progres. Ne nuk pretendojmë se aplikacioni është i disponueshëm publikisht në Play Store.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Kufizimi i përgjegjësisë",

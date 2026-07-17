@@ -1,16 +1,15 @@
 import Link from "next/link";
+import { ConnectedWorkflowVisual } from "@/components/site/ConnectedWorkflowVisual";
 import { CTASection } from "@/components/site/CTASection";
-import { DisclaimerBox } from "@/components/site/DisclaimerBox";
 import { FeatureCard } from "@/components/site/FeatureCard";
+import { FeatureModuleCard } from "@/components/site/FeatureModuleCard";
 import { Hero } from "@/components/site/Hero";
-import { ModuleCard } from "@/components/site/ModuleCard";
-import { MotifStrip } from "@/components/site/MotifStrip";
 import { ContactLeadForm } from "@/components/site/ContactLeadForm";
-import { PlatformStatusBanner } from "@/components/site/PlatformStatusBanner";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
+import { ResponsibleUseSummary } from "@/components/site/ResponsibleUseSummary";
 import { Section } from "@/components/site/Section";
 import { StatusBadge } from "@/components/site/StatusBadge";
-import { GlobeNetwork } from "@/components/site/visuals/GlobeNetwork";
+import { NetworkGlobe } from "@/components/site/visuals/NetworkGlobe";
 import { NetworkMap } from "@/components/site/visuals/NetworkMap";
 import { TruckIcon } from "@/components/site/visuals/TruckIcon";
 import { getContent } from "@/lib/i18n";
@@ -26,12 +25,6 @@ type HomePageProps = {
 export function HomePage({ locale }: HomePageProps) {
   const content = getContent(locale);
   const visual = resolveVisualMarketing(locale);
-  const messagingModule = content.platformModules.find(
-    (m) => m.id === "messaging-notifications",
-  );
-  const palletModule = content.platformModules.find(
-    (m) => m.id === "pallet-packaging",
-  );
 
   return (
     <>
@@ -55,27 +48,16 @@ export function HomePage({ locale }: HomePageProps) {
         }}
       />
 
-      <Section variant="muted">
-        <PlatformStatusBanner content={content.platformStatus} />
-      </Section>
-
-      <Section id="brand-system" className="!pt-8">
-        <MotifStrip
-          title={visual.brandVisuals.motifTitle}
-          subtitle={visual.brandVisuals.motifSubtitle}
-          items={visual.brandVisuals.motifSizes}
-        />
-      </Section>
-
       <Section
         variant="dark"
         id="network"
-        eyebrow="Network"
+        className="section-reveal"
+        eyebrow={visual.brandVisuals.networkOverline}
         title={visual.brandVisuals.networkTitle}
         subtitle={visual.brandVisuals.networkSubtitle}
       >
         <div className="grid items-center gap-8 lg:grid-cols-2">
-          <div className="relative overflow-hidden rounded-lg border border-navy-600">
+          <div className="relative order-2 overflow-hidden rounded-lg border border-navy-600 lg:order-1">
             <NetworkMap variant="panel" />
             <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-md border border-gold-core/30 bg-navy-1000/80 px-3 py-1.5 backdrop-blur">
               <TruckIcon size={16} tone="gold" />
@@ -84,14 +66,19 @@ export function HomePage({ locale }: HomePageProps) {
               </span>
             </div>
           </div>
-          <div className="flex justify-center">
-            <GlobeNetwork compact className="mx-auto" />
+          <div className="order-1 flex justify-center lg:order-2">
+            <NetworkGlobe className="mx-auto w-full max-w-[360px] sm:max-w-[420px]" />
           </div>
         </div>
+        <ConnectedWorkflowVisual
+          events={visual.brandVisuals.workflowEvents}
+          className="mt-10"
+        />
       </Section>
 
       <Section
         id="problem"
+        className="section-reveal"
         eyebrow="ViaNexis"
         title={content.home.problem.title}
         subtitle={content.home.problem.subtitle}
@@ -111,6 +98,7 @@ export function HomePage({ locale }: HomePageProps) {
       <Section
         variant="dark"
         id="pillars"
+        className="section-reveal"
         eyebrow="Solution"
         title={visual.pillars.title}
         subtitle={visual.pillars.subtitle}
@@ -130,6 +118,7 @@ export function HomePage({ locale }: HomePageProps) {
       <Section
         variant="muted"
         id="process"
+        className="section-reveal"
         title={visual.process.title}
         subtitle={visual.process.subtitle}
       >
@@ -138,29 +127,20 @@ export function HomePage({ locale }: HomePageProps) {
 
       <Section
         id="surfaces"
-        title={visual.surfaces.title}
-        subtitle={visual.surfaces.subtitle}
+        className="section-reveal"
+        title={visual.homeModules.title}
+        subtitle={visual.homeModules.subtitle}
       >
-        <div className="grid gap-4 sm:grid-cols-2">
-          {visual.surfaces.items.map((item) => (
-            <Link
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {visual.homeModules.items.map((item) => (
+            <FeatureModuleCard
               key={item.title}
+              title={item.title}
+              description={item.description}
               href={localePath(locale, item.href)}
-              className="focus-ring panel-glass panel-glass-hover group block rounded-md p-6 motion-reduce:transform-none"
-            >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-md bg-cyan-glow/10">
-                <TruckIcon size={20} tone="cyan" />
-              </div>
-              <h3 className="text-lg font-semibold text-white group-hover:text-cyan-glow">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
-                {item.description}
-              </p>
-              <span className="mt-4 inline-flex text-sm font-semibold text-gold-core">
-                →
-              </span>
-            </Link>
+              detailsLabel={visual.homeModules.detailsLink}
+              icon={item.icon}
+            />
           ))}
         </div>
       </Section>
@@ -168,6 +148,7 @@ export function HomePage({ locale }: HomePageProps) {
       <Section
         variant="muted"
         id="documents-flow"
+        className="section-reveal"
         title={visual.documentsFlow.title}
         subtitle={visual.documentsFlow.subtitle}
       >
@@ -182,72 +163,15 @@ export function HomePage({ locale }: HomePageProps) {
             href={localePath(locale, "/documents-signatures")}
             className="text-sm font-semibold text-cyan-glow hover:underline"
           >
-            {content.nav.documents} →
+            {visual.documentsFlow.detailsLink} →
           </Link>
         </div>
       </Section>
 
       <Section
-        id="modules"
-        title={content.home.modules.title}
-        subtitle={content.home.modules.subtitle}
-      >
-        <div className="grid gap-6 lg:grid-cols-2">
-          {content.platformModules.map((module) => (
-            <ModuleCard
-              key={module.id}
-              module={module}
-              labels={content.moduleLabels}
-            />
-          ))}
-        </div>
-      </Section>
-
-      {palletModule ? (
-        <Section
-          variant="muted"
-          id="pallet-packaging"
-          title={content.home.pallet.title}
-          subtitle={content.home.pallet.subtitle}
-        >
-          <ModuleCard
-            module={palletModule}
-            labels={content.moduleLabels}
-            className="max-w-3xl"
-          />
-        </Section>
-      ) : null}
-
-      {messagingModule ? (
-        <Section
-          id="notifications"
-          title={content.home.notifications.title}
-          subtitle={content.home.notifications.subtitle}
-        >
-          <div className="grid gap-6 lg:grid-cols-2">
-            <ModuleCard
-              module={messagingModule}
-              labels={content.moduleLabels}
-            />
-            <div className="space-y-4">
-              {content.home.notifications.cards.map((card) => (
-                <FeatureCard
-                  key={card.title}
-                  title={card.title}
-                  description={card.description}
-                />
-              ))}
-              <DisclaimerBox title={content.home.notifications.backendDepTitle}>
-                <p>{content.home.notifications.backendDepBody}</p>
-              </DisclaimerBox>
-            </div>
-          </div>
-        </Section>
-      ) : null}
-
-      <Section
         variant="dark"
         id="offline"
+        className="section-reveal"
         title={visual.offline.title}
         subtitle={visual.offline.subtitle}
       >
@@ -261,29 +185,19 @@ export function HomePage({ locale }: HomePageProps) {
             />
           ))}
         </div>
-      </Section>
-
-      <Section
-        variant="muted"
-        id="disclaimers"
-        title={content.home.disclaimersSection.title}
-      >
-        <div className="grid gap-4 lg:grid-cols-3">
-          <DisclaimerBox title={content.disclaimers.adr.title}>
-            <p>{content.disclaimers.adr.body}</p>
-          </DisclaimerBox>
-          <DisclaimerBox title={content.disclaimers.aiOcr.title}>
-            <p>{content.disclaimers.aiOcr.body}</p>
-          </DisclaimerBox>
-          <DisclaimerBox title={content.disclaimers.efti.title}>
-            <p>{content.disclaimers.efti.body}</p>
-          </DisclaimerBox>
+        <div className="mt-6">
+          <Link
+            href={localePath(locale, "/driver-app")}
+            className="text-sm font-semibold text-gold-core hover:underline"
+          >
+            {visual.offline.detailsLink} →
+          </Link>
         </div>
       </Section>
 
       <Section
-        variant="dark"
         id="security"
+        className="section-reveal"
         title={content.home.security.title}
         subtitle={content.home.security.subtitle}
       >
@@ -298,10 +212,23 @@ export function HomePage({ locale }: HomePageProps) {
           ))}
         </div>
         <div className="mt-6">
-          <DisclaimerBox title={content.home.security.notPromiseTitle}>
-            <p>{content.home.security.notPromiseBody}</p>
-          </DisclaimerBox>
+          <Link
+            href={localePath(locale, "/security-audit")}
+            className="text-sm font-semibold text-cyan-glow hover:underline"
+          >
+            {content.nav.security} →
+          </Link>
         </div>
+      </Section>
+
+      <Section variant="muted" id="responsible-use" className="section-reveal">
+        <ResponsibleUseSummary
+          title={visual.responsibleUse.title}
+          subtitle={visual.responsibleUse.subtitle}
+          items={visual.responsibleUse.items}
+          detailsHref={localePath(locale, "/disclaimers")}
+          detailsLabel={visual.responsibleUse.detailsLink}
+        />
       </Section>
 
       <CTASection
@@ -320,6 +247,7 @@ export function HomePage({ locale }: HomePageProps) {
       <Section
         variant="muted"
         id="contact"
+        className="section-reveal"
         title={content.home.contact.title}
         subtitle={content.home.contact.subtitle}
       >
@@ -328,9 +256,6 @@ export function HomePage({ locale }: HomePageProps) {
             <p className="leading-relaxed text-neutral-grey">
               {content.home.contact.body}
             </p>
-            <DisclaimerBox className="mt-6">
-              <p>{content.home.contact.consentNote}</p>
-            </DisclaimerBox>
             <p className="mt-6">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}

@@ -55,15 +55,17 @@ export const contentAr: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "الوضع الحالي",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "جارٍ الإعداد للاختبار الداخلي لـ Google Play — وليس تنزيلًا من متجر عام.",
-      "جاهزية إصدار تطبيق برنامج التشغيل وSamsung UAT قيد التقدم.",
-      "يتم ربط الواجهة الخلفية للإنتاج والإشعارات وعمليات تكامل الشركاء تدريجيًا."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "لا تدعي ViaNexis أن النظام فعال أو معتمد أو مقبول رسميًا في كل بلد.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "هدف",
     appFoundation: "الأساس من جانب التطبيق",
@@ -245,7 +247,7 @@ export const contentAr: SiteContent = {
     contact: {
       title: "الاتصال والاختبار الداخلي",
       subtitle: "الوصول الخاضع للتحكم - ليس التسجيل التلقائي، ولا يوجد تنزيل عام على Play.",
-      body: "تطبيق برنامج التشغيل قيد الإعداد للاختبار الداخلي في Google Play. جاهزية الإصدار وSamsung UAT قيد التقدم. التنشيط ليس تلقائياً.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "يتعامل النظام مع المستندات وسير عمل برنامج التشغيل وبيانات الشركة والأذونات - تتم مراجعة كل وصول بشكل فردي.",
       contactLink: "اتصل بنا →",
     },

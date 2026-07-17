@@ -244,6 +244,52 @@ html {
   background: linear-gradient(90deg, var(--cyan-glow), var(--gold-core));
 }
 
+/* Subtle section entrance when `.is-visible` is toggled by an observer.
+   Default stays fully visible so content never disappears without JS. */
+.section-reveal.is-visible {
+  animation: section-fade-up 640ms ease both;
+}
+
+@keyframes section-fade-up {
+  from {
+    opacity: 0.72;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal.is-visible {
+    animation: none;
+  }
+}
+
+/* Subtle lift + glow for phone/browser product mockups on hover. */
+.mockup-hover-depth {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+  transform: translateZ(0);
+}
+
+.mockup-hover-depth:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockup-hover-depth {
+    transition: none;
+  }
+
+  .mockup-hover-depth:hover {
+    transform: none;
+  }
+}
+
 @keyframes pulse-glow {
   0%,
   100% {

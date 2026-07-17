@@ -51,23 +51,25 @@ export const contentNb: SiteContent = {
       },
       {
         label: "Status",
-        value: "Internal test prep",
+        value: "Controlled pilot",
       }
     ],
   },
-  platformStatus: {
-    title: "Current status",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Google Play internal testing preparation in progress — not a public store download.",
-      "Driver app release readiness and Samsung UAT in progress.",
-      "Production backend, push notifications, and partner integrations are being connected gradually."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis does not claim the system is live, certified, or officially accepted in every country.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Goal",
-    appFoundation: "App-side foundation",
-    backendDependency: "Backend / admin dependency",
+    appFoundation: "Key capabilities",
+    backendDependency: "Related services",
     important: "Important",
   },
   platformModules: [
@@ -106,8 +108,8 @@ export const contentNb: SiteContent = {
       title: "Messaging & notifications",
       goal: "Trip-linked communication and alerts for important driver events.",
       appFoundation: "Message list, trip-linked threads, app-side notification foundation. Usable for: new message, trip change, document task, sync issue.",
-      backendDependency: "Production push (FCM/APNs), device token registration, server-side dispatch — separate dependency, not live yet.",
-      disclaimer: "Target screen opens after PIN. Production push does not claim every event arrives instantly.",
+      backendDependency: "Notification features can be activated as part of the pilot program.",
+      disclaimer: "Target screen opens after PIN. Notifications do not claim every event arrives instantly.",
     },
     {
       id: "pallet-packaging",
@@ -189,7 +191,7 @@ export const contentNb: SiteContent = {
     },
     modules: {
       title: "Platform modules",
-      subtitle: "Goal, app-side foundation, backend/admin dependency — with legal-safe wording.",
+      subtitle: "Detailed capabilities from the driver app to documents and audit.",
     },
     pallet: {
       title: "Pallet & packaging exchange",
@@ -197,7 +199,7 @@ export const contentNb: SiteContent = {
     },
     notifications: {
       title: "Messaging & notifications",
-      subtitle: "App-side foundation ready — production push is a separate backend dependency.",
+      subtitle: "notifications can be activated as part of the pilot program.",
       cards: [
         {
           title: "Notification event types",
@@ -213,7 +215,7 @@ export const contentNb: SiteContent = {
         }
       ],
       backendDepTitle: "Backend dependency",
-      backendDepBody: "Production push (FCM/APNs), device token registration, and server-side dispatch are not live yet — separate integration required.",
+      backendDepBody: "Notification features can be activated as part of the pilot program.",
     },
     disclaimersSection: {
       title: "Responsible use — important notices",
@@ -245,7 +247,7 @@ export const contentNb: SiteContent = {
     contact: {
       title: "Contact and internal testing",
       subtitle: "Controlled access — not automatic registration, no public Play download.",
-      body: "The driver app is in Google Play internal testing preparation. Release readiness and Samsung UAT in progress. Activation is not automatic.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "The system handles documents, driver workflows, company data, and permissions — every access is individually reviewed.",
       contactLink: "Contact us →",
     },

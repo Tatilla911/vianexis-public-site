@@ -1,7 +1,6 @@
 import { DisclaimerBox } from "@/components/site/DisclaimerBox";
 import { Hero } from "@/components/site/Hero";
 import { ModuleCard } from "@/components/site/ModuleCard";
-import { PlatformStatusBanner } from "@/components/site/PlatformStatusBanner";
 import { Section } from "@/components/site/Section";
 import { getContent, resolveLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
@@ -23,23 +22,19 @@ export default async function FeaturesPage({ params }: PageProps) {
         title={content.home.modules.title}
         subtitle={content.home.modules.subtitle}
         primaryCta={{
-          href: localePath(locale, "/contact"),
-          label: content.hero.primaryCta,
+          href: localePath(locale, "/pilot"),
+          label: content.nav.requestAccess,
         }}
         secondaryCta={{
-          href: localePath(locale, "/pilot"),
-          label: content.hero.secondaryCta,
+          href: localePath(locale, "/contact"),
+          label: content.nav.contact,
         }}
-        stats={content.hero.stats}
         brandVisual={{
           routeLabel: visual.brandVisuals.routeLabel,
           routeId: visual.brandVisuals.routeId,
           statusLabel: visual.brandVisuals.statusLabel,
         }}
       />
-      <Section variant="muted">
-        <PlatformStatusBanner content={content.platformStatus} />
-      </Section>
       <Section title={content.home.modules.title}>
         <div className="grid gap-6 lg:grid-cols-2">
           {content.platformModules.map((module) => (

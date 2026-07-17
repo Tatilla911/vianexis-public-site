@@ -127,7 +127,7 @@ export const legalGa: LegalContent = {
       },
       {
         title: "Stádas tástála inmheánach",
-        body: "Ullmhúchán tástála inmheánach Google Play ar siúl. Samsung UAT agus ullmhacht a scaoileadh ar siúl. Nílimid ag éileamh go bhfuil an aip ar fáil go poiblí ar an Play Store.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Teorainn le dliteanas",

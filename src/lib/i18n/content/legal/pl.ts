@@ -127,7 +127,7 @@ export const legalPl: LegalContent = {
       },
       {
         title: "Stan testów wewnętrznych",
-        body: "Trwają przygotowania do wewnętrznych testów Google Play. Samsung UAT i przygotowanie do wydania w toku. Nie twierdzimy, że aplikacja jest publicznie dostępna w Sklepie Play.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Ograniczenie odpowiedzialności",

@@ -127,7 +127,7 @@ export const legalIs: LegalContent = {
       },
       {
         title: "Staða innri prófunar",
-        body: "Verið er að undirbúa innri prófun á Google Play. Samsung UAT og losunarbúnaður í gangi. Við fullyrðum ekki að appið sé aðgengilegt almenningi í Play Store.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Takmörkun ábyrgðar",

@@ -55,15 +55,17 @@ export const contentIs: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Núverandi staða",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Undirbúningur fyrir innri prófun á Google Play – ekki niðurhal í opinberri verslun.",
-      "Viðbúið að gefa út ökumannsforrit og Samsung UAT í vinnslu.",
-      "Framleiðslubakendi, ýttutilkynningar og samþættingar samstarfsaðila eru tengdar smám saman."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis heldur því ekki fram að kerfið sé lifandi, vottað eða opinberlega samþykkt í hverju landi.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Markmið",
     appFoundation: "Grunnur app hliðar",
@@ -245,7 +247,7 @@ export const contentIs: SiteContent = {
     contact: {
       title: "Snerting og innri prófun",
       subtitle: "Stýrður aðgangur — ekki sjálfvirk skráning, ekkert opinbert niðurhal á Play.",
-      body: "Ökumannsforritið er í Google Play innri prófunarundirbúningi. Losunarviðbúnaður og Samsung UAT í gangi. Virkjun er ekki sjálfvirk.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Kerfið sér um skjöl, verkflæði ökumanna, fyrirtækjagögn og heimildir - hver aðgangur er skoðaður fyrir sig.",
       contactLink: "Hafðu samband við okkur →",
     },

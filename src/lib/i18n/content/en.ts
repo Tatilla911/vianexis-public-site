@@ -5,7 +5,7 @@ export const contentEn: SiteContent = {
   meta: {
     title: "ViaNexis Driver and company transport operations",
     description:
-      "Driver app, company control, document management, messaging, notifications, and multilingual trip workflows in one system. Internal testing preparation in progress.",
+      "Driver app, company control, document management, messaging, notifications, and multilingual trip workflows in one system. Access is currently available through a pilot program.",
     ogLocale: "en_US",
     ogAlternateLocale: "hu_HU",
   },
@@ -23,7 +23,7 @@ export const contentEn: SiteContent = {
   },
   footer: {
     tagline:
-      "Digital transport evidence and driver operations platform for transport companies. eFTI-ready foundation — not a certified eFTI platform.",
+      "Digital transport evidence and driver operations platform for transport companies. Not a certified eFTI platform.",
     product: "Product",
     legal: "Legal",
     legalNotice: "Legal notice",
@@ -32,7 +32,7 @@ export const contentEn: SiteContent = {
     disclaimers: "Responsible use",
     dataContact: "Data protection contact",
     copyright:
-      "Not a certified eFTI platform. Does not promise authority acceptance, automatic legal probative force, flawless OCR/AI/translation, or emergency/SOS services. No public Play Store download.",
+      "ViaNexis is not a certified eFTI platform. OCR/AI/translation require human review. Not legal advice and not an emergency service.",
   },
   hero: {
     title: "Controlled trip flow. Organised documents. Auditable decisions.",
@@ -42,25 +42,25 @@ export const contentEn: SiteContent = {
     secondaryCta: "Explore features",
     stats: [
       { label: "Driver app", value: "Trip + offline" },
-      { label: "Documents", value: "CMR + audit" },
-      { label: "Messaging", value: "Multilingual" },
-      { label: "Status", value: "Internal test prep" },
+      { label: "Documents", value: "CMR + signature" },
+      { label: "Portal", value: "Ops control" },
+      { label: "Access", value: "Controlled pilot" },
     ],
   },
   platformStatus: {
-    title: "Current status",
+    title: "Controlled pilot access",
     items: [
-      "Google Play internal testing preparation in progress — not a public store download.",
-      "Driver app release readiness and Samsung UAT in progress.",
-      "Production backend, push notifications, and partner integrations are being connected gradually.",
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
     disclaimer:
-      "ViaNexis does not claim the system is live, certified, or officially accepted in every country.",
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
   moduleLabels: {
-    goal: "Goal",
-    appFoundation: "App-side foundation",
-    backendDependency: "Backend / admin dependency",
+    goal: "What it provides",
+    appFoundation: "Key capabilities",
+    backendDependency: "Related services",
     important: "Important",
   },
   platformModules: [
@@ -71,7 +71,7 @@ export const contentEn: SiteContent = {
       appFoundation:
         "Trip list and details, document upload, signature capture, checklists, incident logging, offline save and sync, PIN-protected session.",
       backendDependency:
-        "Live API, tenant scope, trip and document sync, company settings resolution.",
+        "Company rules, trip and document sync, permissions.",
     },
     {
       id: "company-admin",
@@ -79,7 +79,7 @@ export const contentEn: SiteContent = {
       goal: "Let transport companies manage trips, users, permissions, and workflows from one portal.",
       appFoundation: "Driver-side data and actions reflect company rules.",
       backendDependency:
-        "Web company portal, platform admin app, roles, trip management, document requirements, company exchange settings.",
+        "Web company portal, roles, trip management, and document requirements.",
     },
     {
       id: "cmr-documents",
@@ -88,7 +88,7 @@ export const contentEn: SiteContent = {
       appFoundation:
         "Document upload, scan/photo, trip assignment, requirement-based tasks, primary document concept.",
       backendDependency:
-        "Document storage, metadata, signature rules, authority sharing with scope limits.",
+        "Document storage, metadata, signature rules, and limited sharing.",
       disclaimer:
         "Digital documents do not automatically carry legal probative force. Acceptance varies by country and customer.",
     },
@@ -110,9 +110,9 @@ export const contentEn: SiteContent = {
       appFoundation:
         "Message list, trip-linked threads, app-side notification foundation. Usable for: new message, trip change, document task, sync issue.",
       backendDependency:
-        "Production push (FCM/APNs), device token registration, server-side dispatch — separate dependency, not live yet.",
+        "Notification features can be activated as part of the pilot program.",
       disclaimer:
-        "Target screen opens after PIN. Production push does not claim every event arrives instantly.",
+        "Notifications do not claim every event arrives instantly.",
     },
     {
       id: "pallet-packaging",
@@ -121,7 +121,7 @@ export const contentEn: SiteContent = {
       appFoundation:
         "Separate pallet and packaging modules. Company-toggleable. Company can preset items; driver can add custom packaging if allowed. Offline save and sync.",
       backendDependency:
-        "Exchange settings API, record sync, portal admin UI, completed package PDF section — latter is a dependency.",
+        "Company exchange settings and portal overview.",
       disclaimer:
         "PDF evidence section is not fully ready in all cases. Recording supports dispute documentation but does not decide disputes.",
     },
@@ -153,7 +153,7 @@ export const contentEn: SiteContent = {
       appFoundation:
         "Driver app multilingual UI, original message retention, translation as assistance.",
       backendDependency:
-        "Portal and public site locale expansion, translation review workflow.",
+        "Portal and public site language support.",
       disclaimer:
         "Machine or AI translation is assistive; human review is required. The original document remains primary.",
     },
@@ -164,7 +164,7 @@ export const contentEn: SiteContent = {
       appFoundation:
         "Event logging for trip and document actions; auditable support sessions.",
       backendDependency:
-        "Audit export, support access policy, enterprise permission matrix.",
+        "Audit export and support access rules.",
       disclaimer:
         "The audit log is not automatic legal proof.",
     },
@@ -212,34 +212,34 @@ export const contentEn: SiteContent = {
       ],
     },
     modules: {
-      title: "Platform modules",
+      title: "Features and modules",
       subtitle:
-        "Goal, app-side foundation, backend/admin dependency — with legal-safe wording.",
+        "Detailed capabilities from the driver app to documents and audit.",
     },
     pallet: {
       title: "Pallet & packaging exchange",
-      subtitle: "Separate modules, company-toggleable — offline save toward audit.",
+      subtitle: "Stop-level capture with quantities, shortages, and dispute flags.",
     },
     notifications: {
       title: "Messaging & notifications",
-      subtitle: "App-side foundation ready — production push is a separate backend dependency.",
+      subtitle: "Trip-linked communication. Notifications can be activated as part of the pilot program.",
       cards: [
         {
-          title: "Notification event types",
-          description: "New message, trip change, document task, sync issue.",
+          title: "Notification events",
+          description: "New message, trip change, document task.",
         },
         {
-          title: "Tap routing & PIN",
-          description: "Open target screen from notification; deep link after PIN.",
+          title: "Secure open",
+          description: "From notification to target screen after PIN.",
         },
         {
-          title: "Privacy-safe lockscreen",
-          description: "Full document or message content not shown on lockscreen by default.",
+          title: "Lockscreen privacy",
+          description: "Full document or message content is not shown by default.",
         },
       ],
-      backendDepTitle: "Backend dependency",
+      backendDepTitle: "Notifications",
       backendDepBody:
-        "Production push (FCM/APNs), device token registration, and server-side dispatch are not live yet — separate integration required.",
+        "Notification features can be activated as part of the pilot program.",
     },
     disclaimersSection: { title: "Responsible use — important notices" },
     security: {
@@ -268,10 +268,10 @@ export const contentEn: SiteContent = {
         "ViaNexis does not promise automatic legal probative force. Legal assessment depends on context.",
     },
     contact: {
-      title: "Contact and internal testing",
+      title: "Contact",
       subtitle:
-        "Controlled access — not automatic registration, no public Play download.",
-      body: "The driver app is in Google Play internal testing preparation. Release readiness and Samsung UAT in progress. Activation is not automatic.",
+        "Controlled access — after individual discussion, not automatic registration.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote:
         "The system handles documents, driver workflows, company data, and permissions — every access is individually reviewed.",
       contactLink: "Contact us →",

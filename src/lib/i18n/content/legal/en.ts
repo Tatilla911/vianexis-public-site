@@ -131,7 +131,7 @@ export const legalEn: LegalContent = {
       },
       {
         title: "Internal testing status",
-        body: "Google Play internal testing preparation in progress. Samsung UAT and release readiness in progress. We do not claim the app is publicly available on the Play Store.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Limitation of liability",

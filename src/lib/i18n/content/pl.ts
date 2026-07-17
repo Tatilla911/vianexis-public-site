@@ -55,15 +55,17 @@ export const contentPl: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Aktualny stan",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Trwają przygotowania do wewnętrznych testów Google Play – nie jest to pobieranie ze sklepu publicznego.",
-      "Gotowość do wydania aplikacji sterownika i Samsung UAT w toku.",
-      "Zaplecze produkcyjne, powiadomienia push i integracje partnerów są łączone stopniowo."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis nie twierdzi, że system działa, jest certyfikowany lub oficjalnie akceptowany w każdym kraju.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Bramka",
     appFoundation: "Podstawa po stronie aplikacji",
@@ -245,7 +247,7 @@ export const contentPl: SiteContent = {
     contact: {
       title: "Testy kontaktowe i wewnętrzne",
       subtitle: "Kontrolowany dostęp — nie automatyczna rejestracja, brak publicznego pobierania z Play.",
-      body: "Aplikacja sterownika znajduje się w fazie przygotowań do wewnętrznych testów Google Play. Gotowość do wydania i Samsung UAT w toku. Aktywacja nie jest automatyczna.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "System obsługuje dokumenty, obieg kierowców, dane firmowe i uprawnienia – każdy dostęp jest indywidualnie sprawdzany.",
       contactLink: "Skontaktuj się z nami →",
     },

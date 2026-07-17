@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { LocaleHtml } from "@/components/site/LocaleHtml";
+import { SectionRevealObserver } from "@/components/site/SectionRevealObserver";
 import { TranslationReviewBanner } from "@/components/site/TranslationReviewBanner";
 import { getContent, locales, resolveLocale } from "@/lib/i18n";
 import { buildLocaleMetadata } from "@/lib/i18n/metadata";
@@ -49,6 +50,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         </div>
       ) : null}
       <Header locale={raw as Locale} />
+      <SectionRevealObserver />
       <main id="main-content" className="flex-1 bg-navy-1000" tabIndex={-1}>
         {children}
       </main>

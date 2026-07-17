@@ -55,15 +55,17 @@ export const contentMt: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Status kurrenti",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Tħejjija għall-ittestjar intern ta' Google Play għaddejja — mhux download minn ħanut pubbliku.",
-      "Prontezza għar-rilaxx tal-app tas-sewwieq u Samsung UAT fil-progress.",
-      "Il-backend tal-produzzjoni, in-notifiki push, u l-integrazzjonijiet tal-imsieħba qed jiġu konnessi gradwalment."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis ma jippretendix li s-sistema hija attiva, iċċertifikata, jew aċċettata uffiċjalment f'kull pajjiż.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Goal",
     appFoundation: "Fondazzjoni tal-ġenb tal-app",
@@ -245,7 +247,7 @@ export const contentMt: SiteContent = {
     contact: {
       title: "Kuntatt u ttestjar intern",
       subtitle: "Aċċess ikkontrollat ​​— mhux reġistrazzjoni awtomatika, ebda download pubbliku Play.",
-      body: "L-app tas-sewwieq tinsab fil-preparazzjoni tal-ittestjar intern tal-Google Play. Prontezza tar-rilaxx u Samsung UAT fil-progress. L-attivazzjoni mhix awtomatika.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Is-sistema tieħu ħsieb id-dokumenti, il-flussi tax-xogħol tas-sewwieqa, id-dejta tal-kumpanija, u l-permessi — kull aċċess jiġi rivedut individwalment.",
       contactLink: "Ikkuntattjana →",
     },

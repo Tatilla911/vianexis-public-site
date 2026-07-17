@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { BrowserMockup } from "@/components/site/BrowserMockup";
+import { CompanyPortalMockup } from "@/components/site/CompanyPortalMockup";
 import { CTASection } from "@/components/site/CTASection";
 import { DisclaimerBox } from "@/components/site/DisclaimerBox";
+import { DriverAppMockup } from "@/components/site/DriverAppMockup";
 import { FeatureCard } from "@/components/site/FeatureCard";
 import { Hero } from "@/components/site/Hero";
 import { ModuleCard } from "@/components/site/ModuleCard";
-import { PhoneMockup } from "@/components/site/PhoneMockup";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { Section } from "@/components/site/Section";
 import { StatusBadge, type StatusTone } from "@/components/site/StatusBadge";
@@ -39,7 +39,7 @@ export function ModuleSubpage({
   const statusLabel = (status: "available" | "pilot" | "development") =>
     visual.statusLabels[status];
 
-  const showPhone = moduleId === "driver-app";
+  const showPhone = moduleId === "driver-app" || moduleId === "company-admin";
   const showBrowser =
     moduleId === "company-admin" || moduleId === "audit-support";
   const showDocFlow = moduleId === "cmr-documents";
@@ -58,20 +58,13 @@ export function ModuleSubpage({
           label: content.hero.secondaryCta,
         }}
         brandVisual={
-          moduleId === "driver-app"
+          moduleId === "driver-app" || moduleId === "company-admin"
             ? {
                 routeLabel: visual.brandVisuals.routeLabel,
                 routeId: visual.brandVisuals.routeId,
                 statusLabel: visual.brandVisuals.statusLabel,
               }
             : undefined
-        }
-        preview={
-          moduleId === "driver-app"
-            ? undefined
-            : moduleId === "company-admin" || moduleId === "audit-support"
-              ? visual.preview
-              : undefined
         }
       />
 
@@ -110,19 +103,22 @@ export function ModuleSubpage({
         <Section variant="muted" title={platformModule.title}>
           <div className="grid items-start gap-8 lg:grid-cols-2">
             {showPhone ? (
-              <PhoneMockup
+              <DriverAppMockup
+                tripId={visual.preview.tripId}
                 title={visual.preview.phoneTitle}
                 subtitle={visual.preview.phoneSubtitle}
-                rows={visual.preview.phoneRows}
                 caption={visual.preview.phoneCaption}
+                driver={visual.preview.driver}
               />
             ) : null}
             {showBrowser ? (
-              <BrowserMockup
+              <CompanyPortalMockup
+                tripId={visual.preview.tripId}
                 title={visual.preview.browserTitle}
                 subtitle={visual.preview.browserSubtitle}
                 columns={visual.preview.browserColumns}
                 rows={visual.preview.browserRows}
+                portal={visual.preview.portal}
                 caption={visual.preview.browserCaption}
               />
             ) : null}

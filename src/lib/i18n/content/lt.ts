@@ -55,15 +55,17 @@ export const contentLt: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Dabartinė būsena",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Vykdomas „Google Play“ vidinio testavimo rengimas – ne atsisiunčiama viešoje parduotuvėje.",
-      "Parengta tvarkyklės programai ir Samsung UAT.",
-      "Gamybos užpakalinė programa, tiesioginiai pranešimai ir partnerių integracijos sujungiami palaipsniui."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis neteigia, kad sistema veikia, yra sertifikuota arba oficialiai priimta visose šalyse.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Tikslas",
     appFoundation: "Programos pusės pagrindas",
@@ -245,7 +247,7 @@ export const contentLt: SiteContent = {
     contact: {
       title: "Kontaktinis ir vidinis testavimas",
       subtitle: "Kontroliuojama prieiga – ne automatinė registracija, nėra viešo „Play“ atsisiuntimo.",
-      body: "Vairuotojo programa yra ruošiama „Google Play“ vidiniam testavimui. Parengta išleidimui ir vyksta Samsung UAT. Aktyvinimas nėra automatinis.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Sistema tvarko dokumentus, vairuotojų darbo eigas, įmonės duomenis ir leidimus – kiekviena prieiga peržiūrima individualiai.",
       contactLink: "Susisiekite su mumis →",
     },

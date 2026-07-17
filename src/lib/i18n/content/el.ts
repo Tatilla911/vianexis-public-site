@@ -55,15 +55,17 @@ export const contentEl: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Τρέχουσα κατάσταση",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Προετοιμασία εσωτερικών δοκιμών του Google Play σε εξέλιξη — όχι λήψη δημόσιου καταστήματος.",
-      "Ετοιμότητα έκδοσης εφαρμογής προγράμματος οδήγησης και Samsung UAT σε εξέλιξη.",
-      "Το backend παραγωγής, οι ειδοποιήσεις push και οι ενσωματώσεις συνεργατών συνδέονται σταδιακά."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "Το ViaNexis δεν ισχυρίζεται ότι το σύστημα είναι ενεργό, πιστοποιημένο ή επίσημα αποδεκτό σε κάθε χώρα.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Γκολ",
     appFoundation: "Θεμέλιο από την πλευρά της εφαρμογής",
@@ -245,7 +247,7 @@ export const contentEl: SiteContent = {
     contact: {
       title: "Επαφή και εσωτερική δοκιμή",
       subtitle: "Ελεγχόμενη πρόσβαση — όχι αυτόματη εγγραφή, καμία δημόσια λήψη στο Play.",
-      body: "Η εφαρμογή προγράμματος οδήγησης βρίσκεται σε προετοιμασία εσωτερικών δοκιμών στο Google Play. Ετοιμότητα απελευθέρωσης και Samsung UAT σε εξέλιξη. Η ενεργοποίηση δεν είναι αυτόματη.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Το σύστημα χειρίζεται έγγραφα, ροές εργασίας προγραμμάτων οδήγησης, εταιρικά δεδομένα και άδειες — κάθε πρόσβαση ελέγχεται ξεχωριστά.",
       contactLink: "Επικοινωνήστε μαζί μας →",
     },

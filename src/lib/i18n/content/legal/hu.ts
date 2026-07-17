@@ -131,7 +131,7 @@ export const legalHu: LegalContent = {
       },
       {
         title: "Belső tesztelési státusz",
-        body: "Google Play belső tesztelés előkészítés alatt. Samsung UAT és release readiness folyamatban. Nem állítjuk, hogy az app nyilvánosan elérhető a Play Store-ban.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Felelősségkorlátozás",

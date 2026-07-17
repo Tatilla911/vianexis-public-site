@@ -55,15 +55,17 @@ export const contentFi: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Nykyinen tila",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Google Playn sisäisen testauksen valmistelu käynnissä – ei julkisen myymälän lataus.",
-      "Ohjainsovelluksen julkaisuvalmius ja Samsung UAT meneillään.",
-      "Tuotannon taustajärjestelmä, push-ilmoitukset ja kumppaniintegraatiot yhdistetään asteittain."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis ei väitä, että järjestelmä on käytössä, sertifioitu tai virallisesti hyväksytty kaikissa maissa.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Maali",
     appFoundation: "Sovelluspuolen meikki",

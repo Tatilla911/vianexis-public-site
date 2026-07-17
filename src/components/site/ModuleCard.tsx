@@ -15,6 +15,7 @@ type ModuleCardProps = {
   className?: string;
 };
 
+/** Public module summary — goal only; no internal dependency lists. */
 export function ModuleCard({ module, labels, className }: ModuleCardProps) {
   return (
     <article
@@ -23,29 +24,14 @@ export function ModuleCard({ module, labels, className }: ModuleCardProps) {
     >
       <div className="accent-beam mb-4" aria-hidden="true" />
       <h3 className="text-lg font-semibold text-white">{module.title}</h3>
-      <dl className="mt-4 space-y-3 text-sm leading-relaxed text-neutral-grey">
-        <div>
-          <dt className="font-medium text-gold-core">{labels.goal}</dt>
-          <dd className="mt-1">{module.goal}</dd>
-        </div>
-        <div>
-          <dt className="font-medium text-gold-core">{labels.appFoundation}</dt>
-          <dd className="mt-1">{module.appFoundation}</dd>
-        </div>
-        {module.backendDependency && (
-          <div>
-            <dt className="font-medium text-gold-core">
-              {labels.backendDependency}
-            </dt>
-            <dd className="mt-1">{module.backendDependency}</dd>
-          </div>
-        )}
-      </dl>
-      {module.disclaimer && (
+      <p className="mt-3 text-sm leading-relaxed text-neutral-grey">
+        {module.goal}
+      </p>
+      {module.disclaimer ? (
         <DisclaimerBox className="mt-4" title={labels.important}>
           <p>{module.disclaimer}</p>
         </DisclaimerBox>
-      )}
+      ) : null}
     </article>
   );
 }

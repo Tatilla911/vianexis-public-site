@@ -55,15 +55,17 @@ export const contentRu: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Текущий статус",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Идет подготовка к внутреннему тестированию Google Play, а не загрузка из общедоступного магазина.",
-      "Готовность к выпуску приложения для драйверов и Samsung UAT находятся в стадии разработки.",
-      "Серверная часть производства, push-уведомления и партнерские интеграции подключаются постепенно."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis не утверждает, что система работает, сертифицирована или официально принята во всех странах.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Цель",
     appFoundation: "Основа приложения",
@@ -107,7 +109,7 @@ export const contentRu: SiteContent = {
       goal: "Связь, связанная с поездкой, и оповещения о важных событиях для водителя.",
       appFoundation: "Список сообщений, темы, связанные с поездками, основа уведомлений на стороне приложения. Используется для: нового сообщения, изменения поездки, задачи документа, проблемы с синхронизацией.",
       backendDependency: "Производственная передача (FCM/APNs), регистрация токена устройства, отправка на стороне сервера — отдельная зависимость, еще не реализованная.",
-      disclaimer: "Целевой экран открывается после PIN. Production push не требует, чтобы все события происходили мгновенно.",
+      disclaimer: "Целевой экран открывается после PIN. Notifications не требует, чтобы все события происходили мгновенно.",
     },
     {
       id: "pallet-packaging",
@@ -245,7 +247,7 @@ export const contentRu: SiteContent = {
     contact: {
       title: "Контактное и внутреннее тестирование",
       subtitle: "Контролируемый доступ — ни автоматическая регистрация, ни загрузка общедоступной Play.",
-      body: "Приложение-драйвер находится на стадии подготовки к внутреннему тестированию Google Play. Готовность к выпуску и Samsung UAT находятся в процессе. Активация не автоматическая.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Система обрабатывает документы, рабочие процессы драйверов, данные компании и разрешения — каждый доступ рассматривается индивидуально.",
       contactLink: "Свяжитесь с нами →",
     },

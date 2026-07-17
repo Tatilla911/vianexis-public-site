@@ -55,15 +55,17 @@ export const contentTr: SiteContent = {
       }
     ],
   },
-  platformStatus: {
-    title: "Mevcut durum",
+    platformStatus: {
+    title: "Controlled pilot access",
     items: [
-      "Google Play'in dahili test hazırlığı devam ediyor; herkese açık bir mağazadan indirme değil.",
-      "Sürücü uygulamasının yayına hazırlığı ve Samsung UAT devam ediyor.",
-      "Üretim arka ucu, anında bildirimler ve iş ortağı entegrasyonları kademeli olarak birbirine bağlanıyor."
+      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
+      "Access is activated after individual discussion and approval.",
+      "No public app-store download.",
     ],
-    disclaimer: "ViaNexis sistemin canlı olduğunu, sertifikalı olduğunu veya her ülkede resmi olarak kabul edildiğini iddia etmez.",
+    disclaimer:
+      "ViaNexis does not claim the system is officially accepted or certified in every country.",
   },
+
   moduleLabels: {
     goal: "Amaç",
     appFoundation: "Uygulama tarafı temeli",
@@ -245,7 +247,7 @@ export const contentTr: SiteContent = {
     contact: {
       title: "İletişim ve dahili testler",
       subtitle: "Kontrollü erişim; otomatik kayıt değil, herkese açık Play indirmesi yok.",
-      body: "Sürücü uygulaması Google Play'in dahili test hazırlığındadır. Sürüm hazırlığı ve Samsung UAT devam ediyor. Etkinleştirme otomatik değildir.",
+      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
       consentNote: "Sistem belgeleri, sürücü iş akışlarını, şirket verilerini ve izinleri yönetir; her erişim ayrı ayrı incelenir.",
       contactLink: "Bize ulaşın →",
     },

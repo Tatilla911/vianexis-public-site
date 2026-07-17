@@ -127,7 +127,7 @@ export const legalSv: LegalContent = {
       },
       {
         title: "Intern teststatus",
-        body: "Förberedelser för interna tester på Google Play pågår. Samsung UAT och släppberedskap pågår. Vi hävdar inte att appen är allmänt tillgänglig i Play Butik.",
+        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
       },
       {
         title: "Ansvarsbegränsning",

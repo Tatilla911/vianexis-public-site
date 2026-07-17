@@ -1,4 +1,4 @@
-import { GlobeNetwork } from "@/components/site/visuals/GlobeNetwork";
+import { NetworkGlobe } from "@/components/site/visuals/NetworkGlobe";
 import { TruckIcon } from "@/components/site/visuals/TruckIcon";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ export function HeroVisual({
     <div className={cn("relative mx-auto w-full max-w-lg", className)}>
       <div className="pointer-events-none absolute -inset-6 rounded-full bg-cyan-glow/15 blur-3xl animate-pulse-glow" />
       <div className="relative">
-        <GlobeNetwork className="mx-auto" />
+        <NetworkGlobe className="mx-auto" />
 
         <div className="absolute bottom-4 left-0 right-0 mx-auto w-[min(100%,280px)] panel-glass rounded-lg border border-cyan-glow/30 p-3 shadow-[0_0_32px_rgb(0_191_255_/_0.2)] sm:left-auto sm:right-2 sm:mx-0">
           <div className="flex items-start justify-between gap-3">
