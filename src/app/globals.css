@@ -343,7 +343,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-globe-drift {
+  .animate-globe-drift,
+  .animate-orbit {
     animation: none;
   }
 }
