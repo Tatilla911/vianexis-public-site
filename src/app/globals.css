@@ -328,6 +328,25 @@ html {
   animation: route-dash 8s linear infinite;
 }
 
+@keyframes globe-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-440px);
+  }
+}
+
+.animate-globe-drift {
+  animation: globe-drift 56s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-globe-drift {
+    animation: none;
+  }
+}
+
 /* Typography roles — Figma Type System */
 .text-display-lg {
   font-size: clamp(2.25rem, 4vw, 3.75rem);
