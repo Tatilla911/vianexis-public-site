@@ -30,6 +30,11 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
           href: localePath(locale, "/security-audit"),
           label: content.nav.security,
         }}
+        brandVisual={{
+          routeLabel: visual.brandVisuals.routeLabel,
+          routeId: visual.brandVisuals.routeId,
+          statusLabel: visual.brandVisuals.statusLabel,
+        }}
       />
 
       <Section>

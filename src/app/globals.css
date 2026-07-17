@@ -2,34 +2,34 @@
 
 /*
   ViaNexis Design System Foundations
-  Source: Figma Design System (Color / Typography / Icons)
+  Source: Figma Brand System — Color / Typography / Icons / Landing
   Logo: existing VN mark (not Figma W mark)
 */
 
 :root {
-  /* Navy scale */
-  --navy-1000: #0b111a;
-  --navy-950: #040a1a;
-  --navy-900: #0e1521;
-  --navy-800: #121a26;
-  --navy-700: #212b3d;
-  --navy-600: #344a6d;
+  /* Navy scale — Figma Color Variables */
+  --navy-1000: #0a111a;
+  --navy-950: #070d14;
+  --navy-900: #0e1a29;
+  --navy-800: #142233;
+  --navy-700: #1c2e43;
+  --navy-600: #264263;
 
-  /* Gold scale */
-  --gold-dark: #644c20;
-  --gold-core: #d2aa53;
-  --gold-light: #e7c581;
-  --gold-pale: #f3d7a5;
-  --gold-ultra: #fff8e7;
+  /* Gold scale — Figma */
+  --gold-dark: #8c6f3d;
+  --gold-core: #d4af37;
+  --gold-light: #e9c97b;
+  --gold-pale: #f2e3a9;
+  --gold-ultra: #fffbf0;
 
-  /* Accents & status */
+  /* Accents & status — Figma */
   --cyan-glow: #00bfff;
-  --cyan-accent: #00a3ff;
-  --deep-blue: #1a52b7;
-  --light-blue: #4a90e2;
-  --neutral-grey: #b4c2d1;
+  --cyan-accent: #00bfff;
+  --deep-blue: #0047ab;
+  --light-blue: #add8e6;
+  --neutral-grey: #b0b0b0;
   --success: #00bf72;
-  --warning: #d2aa53;
+  --warning: #d4af37;
   --error: #d93939;
 
   /* Semantic aliases */
@@ -45,40 +45,42 @@
   --surface-muted: #e8eef5;
   --text: #102033;
   --text-muted: #4a5d73;
+  --text-primary: #ffffff;
+  --text-secondary: var(--neutral-grey);
   --border: #d5dee8;
-  --border-dark: var(--navy-700);
+  --border-dark: var(--navy-600);
   --danger: var(--error);
-  /* Site chrome is dark / futuristic by default (Figma landing) */
   --background: var(--navy-1000);
-  --foreground: #ffffff;
+  --foreground: var(--text-primary);
 
   /* Spacing scale (4px base) */
-  --space-1: 0.25rem; /* 4 */
-  --space-2: 0.5rem; /* 8 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
   --space-3: 0.75rem;
-  --space-4: 1rem; /* 16 */
+  --space-4: 1rem;
   --space-5: 1.25rem;
-  --space-6: 1.5rem; /* 24 */
-  --space-8: 2rem; /* 32 */
+  --space-6: 1.5rem;
+  --space-8: 2rem;
   --space-10: 2.5rem;
-  --space-12: 3rem; /* 48 */
-  --space-16: 4rem; /* 64 */
+  --space-12: 3rem;
+  --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
 
-  /* Radius */
-  --radius-sm: 0.25rem; /* 4 */
-  --radius-md: 0.5rem; /* 8 */
-  --radius-lg: 1rem; /* 16 */
+  /* Radius — Figma 4 / 8 / 16 / full */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
   --radius-full: 999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgb(11 17 26 / 0.2);
-  --shadow-md: 0 8px 24px rgb(11 17 26 / 0.28);
-  --shadow-lg: 0 16px 40px rgb(11 17 26 / 0.35);
-  --shadow-glow: 0 0 40px rgb(0 163 255 / 0.18);
+  --shadow-sm: 0 1px 2px rgb(10 17 26 / 0.35);
+  --shadow-md: 0 8px 24px rgb(10 17 26 / 0.4);
+  --shadow-lg: 0 16px 40px rgb(10 17 26 / 0.45);
+  --shadow-glow: 0 0 48px rgb(0 191 255 / 0.22);
+  --shadow-gold: 0 0 36px rgb(212 175 55 / 0.2);
 
   --container: 72rem;
   --header-h: 4.25rem;
@@ -198,21 +200,22 @@ html {
 
 .hero-grid-bg {
   background-image:
-    radial-gradient(ellipse at 72% 18%, rgb(0 163 255 / 0.18), transparent 42%),
-    radial-gradient(ellipse at 18% 78%, rgb(210 170 83 / 0.12), transparent 40%),
+    radial-gradient(ellipse at 72% 18%, rgb(0 191 255 / 0.2), transparent 42%),
+    radial-gradient(ellipse at 18% 78%, rgb(212 175 55 / 0.14), transparent 40%),
     linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
   background-size: auto, auto, 48px 48px, 48px 48px;
 }
 
 .panel-glass {
-  border: 1px solid rgb(33 43 61 / 0.95);
+  border: 1px solid var(--navy-600);
   background: linear-gradient(
     165deg,
-    rgb(14 21 33 / 0.92),
-    rgb(18 26 38 / 0.78)
+    rgb(14 26 41 / 0.94),
+    rgb(20 34 51 / 0.8)
   );
   box-shadow: var(--shadow-sm), inset 0 1px 0 rgb(255 255 255 / 0.04);
+  border-radius: var(--radius-lg);
 }
 
 .panel-glass-hover {
@@ -223,7 +226,7 @@ html {
 }
 
 .panel-glass-hover:hover {
-  border-color: rgb(0 163 255 / 0.45);
+  border-color: rgb(0 191 255 / 0.5);
   box-shadow: var(--shadow-glow), inset 0 1px 0 rgb(255 255 255 / 0.06);
   transform: translateY(-2px);
 }
@@ -251,8 +254,32 @@ html {
   }
 }
 
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
 .animate-pulse-glow {
   animation: pulse-glow 4.5s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbit-spin 48s linear infinite;
+  transform-origin: center;
+}
+
+.animate-route-dash {
+  animation: route-dash 8s linear infinite;
 }
 
 /* Typography roles — Figma Type System */

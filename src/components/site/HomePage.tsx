@@ -4,11 +4,15 @@ import { DisclaimerBox } from "@/components/site/DisclaimerBox";
 import { FeatureCard } from "@/components/site/FeatureCard";
 import { Hero } from "@/components/site/Hero";
 import { ModuleCard } from "@/components/site/ModuleCard";
+import { MotifStrip } from "@/components/site/MotifStrip";
 import { ContactLeadForm } from "@/components/site/ContactLeadForm";
 import { PlatformStatusBanner } from "@/components/site/PlatformStatusBanner";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { Section } from "@/components/site/Section";
 import { StatusBadge } from "@/components/site/StatusBadge";
+import { GlobeNetwork } from "@/components/site/visuals/GlobeNetwork";
+import { NetworkMap } from "@/components/site/visuals/NetworkMap";
+import { TruckIcon } from "@/components/site/visuals/TruckIcon";
 import { getContent } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
@@ -44,11 +48,46 @@ export function HomePage({ locale }: HomePageProps) {
           label: content.hero.secondaryCta,
         }}
         stats={content.hero.stats}
-        preview={visual.preview}
+        brandVisual={{
+          routeLabel: visual.brandVisuals.routeLabel,
+          routeId: visual.brandVisuals.routeId,
+          statusLabel: visual.brandVisuals.statusLabel,
+        }}
       />
 
       <Section variant="muted">
         <PlatformStatusBanner content={content.platformStatus} />
+      </Section>
+
+      <Section id="brand-system" className="!pt-8">
+        <MotifStrip
+          title={visual.brandVisuals.motifTitle}
+          subtitle={visual.brandVisuals.motifSubtitle}
+          items={visual.brandVisuals.motifSizes}
+        />
+      </Section>
+
+      <Section
+        variant="dark"
+        id="network"
+        eyebrow="Network"
+        title={visual.brandVisuals.networkTitle}
+        subtitle={visual.brandVisuals.networkSubtitle}
+      >
+        <div className="grid items-center gap-8 lg:grid-cols-2">
+          <div className="relative overflow-hidden rounded-lg border border-navy-600">
+            <NetworkMap variant="panel" />
+            <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-md border border-gold-core/30 bg-navy-1000/80 px-3 py-1.5 backdrop-blur">
+              <TruckIcon size={16} tone="gold" />
+              <span className="font-mono text-[10px] uppercase tracking-wider text-gold-core">
+                {visual.brandVisuals.routeId}
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <GlobeNetwork compact className="mx-auto" />
+          </div>
+        </div>
       </Section>
 
       <Section
@@ -109,7 +148,10 @@ export function HomePage({ locale }: HomePageProps) {
               href={localePath(locale, item.href)}
               className="focus-ring panel-glass panel-glass-hover group block rounded-md p-6 motion-reduce:transform-none"
             >
-              <h3 className="text-lg font-semibold text-white group-hover:text-cyan-accent">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-md bg-cyan-glow/10">
+                <TruckIcon size={20} tone="cyan" />
+              </div>
+              <h3 className="text-lg font-semibold text-white group-hover:text-cyan-glow">
                 {item.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
@@ -138,7 +180,7 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="mt-6">
           <Link
             href={localePath(locale, "/documents-signatures")}
-            className="text-sm font-semibold text-cyan-accent hover:underline"
+            className="text-sm font-semibold text-cyan-glow hover:underline"
           >
             {content.nav.documents} →
           </Link>
@@ -292,7 +334,7 @@ export function HomePage({ locale }: HomePageProps) {
             <p className="mt-6">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="text-lg font-semibold text-cyan-accent hover:underline"
+                className="text-lg font-semibold text-cyan-glow hover:underline"
               >
                 {siteConfig.contactEmail}
               </a>

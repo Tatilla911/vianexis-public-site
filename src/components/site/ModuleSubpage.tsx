@@ -57,6 +57,22 @@ export function ModuleSubpage({
           href: localePath(locale, "/features"),
           label: content.hero.secondaryCta,
         }}
+        brandVisual={
+          moduleId === "driver-app"
+            ? {
+                routeLabel: visual.brandVisuals.routeLabel,
+                routeId: visual.brandVisuals.routeId,
+                statusLabel: visual.brandVisuals.statusLabel,
+              }
+            : undefined
+        }
+        preview={
+          moduleId === "driver-app"
+            ? undefined
+            : moduleId === "company-admin" || moduleId === "audit-support"
+              ? visual.preview
+              : undefined
+        }
       />
 
       <Section

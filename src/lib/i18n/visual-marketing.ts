@@ -1,5 +1,15 @@
 export type VisualMarketingContent = {
   skipToContent: string;
+  brandVisuals: {
+    routeLabel: string;
+    routeId: string;
+    statusLabel: string;
+    motifTitle: string;
+    motifSubtitle: string;
+    motifSizes: { label: string; size: 16 | 20 | 24 | 32 | 48 }[];
+    networkTitle: string;
+    networkSubtitle: string;
+  };
   pillars: {
     title: string;
     subtitle: string;
@@ -67,6 +77,24 @@ export type VisualMarketingContent = {
 
 export const visualMarketingHu: VisualMarketingContent = {
   skipToContent: "Ugrás a tartalomra",
+  brandVisuals: {
+    routeLabel: "Aktív útvonal",
+    routeId: "Route VN-697",
+    statusLabel: "LIVE",
+    motifTitle: "Rácsrendszer és méretek",
+    motifSubtitle:
+      "A ViaNexis lineáris teherautó-szimbóluma 16–48 px skálán — egységes, azonnal dekódolható ikonnyelv.",
+    motifSizes: [
+      { label: "16 · Micro", size: 16 },
+      { label: "20 · Compact", size: 20 },
+      { label: "24 · Standard", size: 24 },
+      { label: "32 · Large", size: 32 },
+      { label: "48 · Hero", size: 48 },
+    ],
+    networkTitle: "Összekapcsolt útvonalak",
+    networkSubtitle:
+      "Digitális térképhálózat: fuvarok, csomópontok és auditálható események egy navy–arany operatív felületen.",
+  },
   pillars: {
     title: "Három pillér — egy kontrollált rendszer",
     subtitle:
@@ -357,6 +385,24 @@ export const visualMarketingHu: VisualMarketingContent = {
 
 export const visualMarketingEn: VisualMarketingContent = {
   skipToContent: "Skip to content",
+  brandVisuals: {
+    routeLabel: "Active route",
+    routeId: "Route VN-697",
+    statusLabel: "LIVE",
+    motifTitle: "Grid system & sizing",
+    motifSubtitle:
+      "The ViaNexis linear truck symbol across a 16–48 px scale — consistent, instantly readable icon language.",
+    motifSizes: [
+      { label: "16 · Micro", size: 16 },
+      { label: "20 · Compact", size: 20 },
+      { label: "24 · Standard", size: 24 },
+      { label: "32 · Large", size: 32 },
+      { label: "48 · Hero", size: 48 },
+    ],
+    networkTitle: "Connected routes",
+    networkSubtitle:
+      "A digital map network: trips, hubs, and auditable events on a navy–gold operational surface.",
+  },
   pillars: {
     title: "Three pillars — one controlled system",
     subtitle:

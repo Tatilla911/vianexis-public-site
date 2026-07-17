@@ -1,4 +1,5 @@
 import { Button } from "@/components/site/Button";
+import { HeroVisual } from "@/components/site/HeroVisual";
 import { ProductPreview } from "@/components/site/ProductPreview";
 import { cn } from "@/lib/utils";
 
@@ -9,6 +10,11 @@ type HeroProps = {
   secondaryCta?: { href: string; label: string };
   stats?: { label: string; value: string }[];
   highlightWord?: string;
+  brandVisual?: {
+    routeLabel: string;
+    routeId: string;
+    statusLabel: string;
+  };
   preview?: {
     phoneTitle: string;
     phoneSubtitle: string;
@@ -44,18 +50,21 @@ export function Hero({
   secondaryCta,
   stats,
   highlightWord,
+  brandVisual,
   preview,
   className,
 }: HeroProps) {
+  const showAside = Boolean(brandVisual || preview);
+
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-navy-950 text-white hero-grid-bg",
+        "relative overflow-hidden bg-navy-1000 text-white hero-grid-bg",
         className,
       )}
     >
       <div
-        className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-cyan-glow/20 blur-3xl animate-pulse-glow"
+        className="pointer-events-none absolute -right-24 top-10 h-80 w-80 rounded-full bg-cyan-glow/20 blur-3xl animate-pulse-glow"
         aria-hidden="true"
       />
       <div
@@ -67,12 +76,12 @@ export function Hero({
         <div
           className={cn(
             "grid gap-12",
-            preview &&
+            showAside &&
               "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center",
           )}
         >
           <div className="max-w-2xl">
-            <p className="text-overline mb-3 text-cyan-accent">ViaNexis</p>
+            <p className="text-overline mb-3 text-cyan-glow">ViaNexis</p>
             <div className="accent-beam mb-5" aria-hidden="true" />
             <h1 className="text-display-lg text-balance text-white">
               {renderTitle(title, highlightWord)}
@@ -92,7 +101,9 @@ export function Hero({
             </div>
           </div>
 
-          {preview ? (
+          {brandVisual ? (
+            <HeroVisual {...brandVisual} className="min-w-0" />
+          ) : preview ? (
             <ProductPreview {...preview} className="min-w-0" />
           ) : null}
         </div>
@@ -100,10 +111,7 @@ export function Hero({
         {(stats?.length ?? 0) > 0 ? (
           <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
             {stats!.map((item) => (
-              <div
-                key={item.label}
-                className="panel-glass rounded-md p-4"
-              >
+              <div key={item.label} className="panel-glass rounded-md p-4">
                 <p className="text-overline text-navy-600">{item.label}</p>
                 <p className="mt-1 text-sm font-semibold text-gold-core">
                   {item.value}

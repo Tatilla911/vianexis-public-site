@@ -6,6 +6,7 @@ import { Section } from "@/components/site/Section";
 import { getContent, resolveLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
+import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -14,6 +15,7 @@ type PageProps = {
 export default async function FeaturesPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale) as Locale;
   const content = getContent(locale);
+  const visual = resolveVisualMarketing(locale);
 
   return (
     <>
@@ -29,6 +31,11 @@ export default async function FeaturesPage({ params }: PageProps) {
           label: content.hero.secondaryCta,
         }}
         stats={content.hero.stats}
+        brandVisual={{
+          routeLabel: visual.brandVisuals.routeLabel,
+          routeId: visual.brandVisuals.routeId,
+          statusLabel: visual.brandVisuals.statusLabel,
+        }}
       />
       <Section variant="muted">
         <PlatformStatusBanner content={content.platformStatus} />
