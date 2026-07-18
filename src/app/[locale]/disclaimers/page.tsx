@@ -13,7 +13,11 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const locale = resolveLocale((await params).locale) as Locale;
   const { legal } = getContent(locale);
-  return buildLegalPageMetadata(locale, "/disclaimers", legal.disclaimersPage.title);
+  return buildLegalPageMetadata(
+    locale,
+    "/disclaimers",
+    legal.disclaimersPage.title,
+  );
 }
 
 export default async function DisclaimersPage({ params }: PageProps) {
@@ -22,15 +26,15 @@ export default async function DisclaimersPage({ params }: PageProps) {
 
   return (
     <Section className="pt-12">
-      <div className="mx-auto max-w-3xl">
+      <div className="prose-legal mx-auto w-full">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-white">
+        <h1 className="text-page-title text-white">
           {legal.disclaimersPage.title}
         </h1>
-        <p className="mt-4 leading-relaxed text-neutral-grey">
+        <p className="text-lead mt-5 text-neutral-grey">
           {legal.disclaimersPage.intro}
         </p>
-        <div className="mt-8 grid gap-4">
+        <div className="mt-10 grid gap-4">
           {legal.disclaimersPage.items.map((item) => (
             <DisclaimerBox key={item.id} title={item.title}>
               <p>{item.body}</p>

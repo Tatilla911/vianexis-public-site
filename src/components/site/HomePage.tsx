@@ -61,7 +61,7 @@ export function HomePage({ locale }: HomePageProps) {
             <NetworkMap variant="panel" />
             <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-md border border-gold-core/30 bg-navy-1000/80 px-3 py-1.5 backdrop-blur">
               <TruckIcon size={16} tone="gold" />
-              <span className="font-mono text-[10px] uppercase tracking-wider text-gold-core">
+              <span className="text-overline text-gold-core">
                 {visual.brandVisuals.routeId}
               </span>
             </div>
@@ -161,7 +161,7 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="mt-6">
           <Link
             href={localePath(locale, "/documents-signatures")}
-            className="text-sm font-semibold text-cyan-glow hover:underline"
+            className="text-nav text-cyan-glow hover:underline"
           >
             {visual.documentsFlow.detailsLink} →
           </Link>
@@ -188,7 +188,7 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="mt-6">
           <Link
             href={localePath(locale, "/driver-app")}
-            className="text-sm font-semibold text-gold-core hover:underline"
+            className="text-nav text-gold-core hover:underline"
           >
             {visual.offline.detailsLink} →
           </Link>
@@ -204,8 +204,8 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="grid gap-4 sm:grid-cols-2">
           {content.home.security.cards.map((card) => (
             <article key={card.title} className="panel-glass rounded-md p-6">
-              <h3 className="text-lg font-semibold text-white">{card.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
+              <h3 className="text-card-title text-white">{card.title}</h3>
+              <p className="text-body mt-2 text-neutral-grey">
                 {card.description}
               </p>
             </article>
@@ -214,7 +214,7 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="mt-6">
           <Link
             href={localePath(locale, "/security-audit")}
-            className="text-sm font-semibold text-cyan-glow hover:underline"
+            className="text-nav text-cyan-glow hover:underline"
           >
             {content.nav.security} →
           </Link>
@@ -259,14 +259,14 @@ export function HomePage({ locale }: HomePageProps) {
             <p className="mt-6">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="text-lg font-semibold text-cyan-glow hover:underline"
+                className="text-body-lg font-semibold text-cyan-glow hover:underline"
               >
                 {siteConfig.contactEmail}
               </a>
             </p>
             <Link
               href={localePath(locale, "/contact")}
-              className="mt-4 inline-flex text-sm font-semibold text-gold-core hover:underline"
+              className="text-nav mt-4 inline-flex text-gold-core hover:underline"
             >
               {content.home.contact.contactLink}
             </Link>

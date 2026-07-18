@@ -95,11 +95,11 @@ export function PublicApplicationForm({
   if (submitted) {
     return (
       <div className={cn("rounded-md border border-success/30 bg-success/10 p-6", className)}>
-        <h3 className="text-lg font-semibold text-white">{copy.common.successTitle}</h3>
+        <h3 className="text-card-title text-white">{copy.common.successTitle}</h3>
         <p className="mt-2 text-neutral-grey">{copy.common.successBody}</p>
         <button
           type="button"
-          className="mt-4 text-sm font-medium text-cyan-accent underline"
+          className="text-nav mt-4 text-cyan-glow underline"
           onClick={() => setSubmitted(false)}
         >
           {copy.common.newSubmission}
@@ -111,10 +111,10 @@ export function PublicApplicationForm({
   return (
     <form className={cn("panel-glass space-y-4 rounded-md p-6", className)} onSubmit={handleSubmit} noValidate>
       {enabled === false ? (
-        <p className="rounded-md border border-gold-core/30 bg-gold-core/10 p-3 text-sm text-gold-pale">{copy.common.intakeDisabled}</p>
+        <p className="rounded-md border border-gold-core/30 bg-gold-core/10 p-3 text-body text-gold-pale">{copy.common.intakeDisabled}</p>
       ) : null}
       {children({ values, setValue, errors })}
-      <label className="flex items-start gap-2 text-sm">
+      <label className="text-body flex items-start gap-2">
         <input
           type="checkbox"
           checked={Boolean(values.privacyAccepted)}
@@ -122,7 +122,7 @@ export function PublicApplicationForm({
         />
         <span>{copy.common.privacy}</span>
       </label>
-      {errors.privacy ? <p className="text-sm text-red-600">{errors.privacy}</p> : null}
+      {errors.privacy ? <p className="form-error">{errors.privacy}</p> : null}
       <input
         type="text"
         name="website"
@@ -133,11 +133,11 @@ export function PublicApplicationForm({
         onChange={(e) => setValue("website", e.target.value)}
         aria-hidden
       />
-      {errors.submit ? <p className="text-sm text-red-600">{errors.submit}</p> : null}
+      {errors.submit ? <p className="form-error">{errors.submit}</p> : null}
       <button
         type="submit"
         disabled={!enabled || submitting}
-        className="rounded-md bg-gold-core px-4 py-2 text-sm font-medium text-navy-1000 hover:bg-gold-light disabled:opacity-50"
+        className="rounded-md bg-gold-core px-4 py-2 text-button text-navy-1000 hover:bg-gold-light disabled:opacity-50"
       >
         {copy.common.submit}
       </button>

@@ -83,11 +83,11 @@ export function DriverAppMockup({
         <div className="absolute left-1/2 top-2 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-black/50" />
 
         {/* Status bar */}
-        <div className="relative flex items-center justify-between px-5 pb-1 pt-3 text-[10px] font-medium text-neutral-grey">
+        <div className="relative flex items-center justify-between px-5 pb-1 pt-3 text-[11px] font-medium text-neutral-grey">
           <span>9:41</span>
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            <span className="text-[9px] uppercase tracking-wide text-success">
+            <span className="text-[11px] uppercase tracking-wide text-success">
               {driver.tripStatus}
             </span>
           </span>
@@ -100,10 +100,10 @@ export function DriverAppMockup({
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-white">{title}</p>
               {subtitle ? (
-                <p className="mt-0.5 truncate text-xs text-neutral-grey">{subtitle}</p>
+                <p className="mt-0.5 truncate text-caption text-neutral-grey">{subtitle}</p>
               ) : null}
             </div>
-            <span className="shrink-0 rounded-full border border-cyan-glow/40 bg-cyan-glow/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-cyan-glow">
+            <span className="shrink-0 rounded-full border border-cyan-glow/40 bg-cyan-glow/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-cyan-glow">
               {tripId}
             </span>
           </div>
@@ -115,10 +115,10 @@ export function DriverAppMockup({
           <div className="rounded-lg border border-navy-600 bg-navy-900/80 p-3">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-wide text-neutral-grey">
+                <p className="text-[11px] uppercase tracking-wide text-neutral-grey">
                   {driver.nextStopLabel}
                 </p>
-                <p className="mt-1 text-xs font-medium text-white">
+                <p className="mt-1 text-[11px] font-medium text-white">
                   {driver.nextStopValue}
                 </p>
               </div>
@@ -130,14 +130,14 @@ export function DriverAppMockup({
           <div className="rounded-lg border border-gold-core/40 bg-gold-core/[0.07] p-3">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-wide text-gold-core">
+                <p className="text-[11px] uppercase tracking-wide text-gold-core">
                   {driver.documentLabel}
                 </p>
-                <p className="mt-1 text-xs font-medium text-white">
+                <p className="mt-1 text-[11px] font-medium text-white">
                   {driver.documentValue}
                 </p>
               </div>
-              <span className="shrink-0 rounded-full bg-gold-core px-2 py-1 text-[9px] font-bold uppercase tracking-wide text-navy-1000">
+              <span className="shrink-0 rounded-full bg-gold-core px-2 py-1 text-[11px] font-bold uppercase tracking-wide text-navy-1000">
                 {driver.documentAction}
               </span>
             </div>
@@ -145,10 +145,10 @@ export function DriverAppMockup({
 
           {/* Sync / offline */}
           <div className="flex items-center justify-between rounded-lg border border-navy-600 bg-navy-900/60 px-3 py-2.5">
-            <span className="text-[10px] uppercase tracking-wide text-neutral-grey">
+            <span className="text-[11px] uppercase tracking-wide text-neutral-grey">
               {driver.syncLabel}
             </span>
-            <span className="rounded-full bg-warning/15 px-2 py-0.5 text-[10px] font-semibold text-gold-light">
+            <span className="rounded-full bg-warning/15 px-2 py-0.5 text-[11px] font-semibold text-gold-light">
               {driver.syncValue}
             </span>
           </div>
@@ -173,7 +173,7 @@ export function DriverAppMockup({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-center text-xs text-neutral-grey">
+        <figcaption className="mt-3 text-center text-caption text-neutral-grey">
           {caption}
         </figcaption>
       ) : null}

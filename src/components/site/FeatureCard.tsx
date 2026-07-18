@@ -24,7 +24,7 @@ export function FeatureCard({
       )}
     >
       {typeof index === "number" ? (
-        <span className="mb-3 inline-flex h-9 min-w-9 items-center justify-center rounded-md bg-gold-core/15 px-2 font-mono text-sm font-bold text-gold-core">
+        <span className="mb-3 inline-flex h-9 min-w-9 items-center justify-center rounded-md bg-gold-core/15 px-2 text-code font-bold text-gold-core">
           {String(index + 1).padStart(2, "0")}
         </span>
       ) : icon ? (
@@ -34,7 +34,7 @@ export function FeatureCard({
       ) : (
         <div className="accent-beam mb-4" aria-hidden="true" />
       )}
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <h3 className="text-card-title text-white">{title}</h3>
       <p className="text-body mt-2 text-neutral-grey">{description}</p>
     </article>
   );

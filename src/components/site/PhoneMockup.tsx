@@ -28,7 +28,7 @@ export function PhoneMockup({
           </p>
           <p className="mt-1 text-sm font-semibold text-white">{title}</p>
           {subtitle ? (
-            <p className="mt-0.5 text-xs text-neutral-grey">{subtitle}</p>
+            <p className="mt-0.5 text-caption text-neutral-grey">{subtitle}</p>
           ) : null}
         </div>
         <div className="space-y-2 bg-light-bg p-3">
@@ -39,15 +39,15 @@ export function PhoneMockup({
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <p className="text-[10px] uppercase tracking-wide text-text-muted">
+                  <p className="text-[11px] uppercase tracking-wide text-text-muted">
                     {row.label}
                   </p>
-                  <p className="mt-0.5 text-xs font-medium text-navy">
+                  <p className="mt-0.5 text-[11px] font-medium text-navy">
                     {row.value}
                   </p>
                 </div>
                 {row.status ? (
-                  <span className="rounded-full bg-cyan-accent/10 px-2 py-0.5 text-[10px] font-semibold text-cyan-accent">
+                  <span className="rounded-full bg-cyan-accent/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-accent">
                     {row.status}
                   </span>
                 ) : null}
@@ -57,7 +57,7 @@ export function PhoneMockup({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-center text-xs text-neutral-grey">
+        <figcaption className="mt-3 text-center text-caption text-neutral-grey">
           {caption}
         </figcaption>
       ) : null}

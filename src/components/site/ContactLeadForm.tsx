@@ -145,14 +145,14 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
           className,
         )}
       >
-        <h3 className="text-lg font-semibold text-white">{copy.successTitle}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
+        <h3 className="text-card-title text-white">{copy.successTitle}</h3>
+        <p className="text-body mt-2 text-neutral-grey">
           {copy.successBody}
         </p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-6 text-sm font-medium text-cyan-accent hover:underline"
+          className="text-nav mt-6 text-cyan-glow hover:underline"
         >
           {copy.newSubmission}
         </button>
@@ -161,7 +161,7 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
   }
 
   const inputClass =
-    "w-full rounded-md border border-navy-700 bg-navy-800 px-4 py-2.5 text-sm text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25";
+    "form-control w-full rounded-md border border-navy-700 bg-navy-800 px-4 py-2.5 text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25";
 
   const intakeReady = intakeEnabled === true;
 
@@ -172,11 +172,11 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
       className={cn("panel-glass rounded-md p-6 sm:p-8", className)}
       noValidate
     >
-      <h3 className="text-xl font-semibold text-white">{copy.title}</h3>
-      <p className="mt-2 text-sm text-neutral-grey">{copy.subtitle}</p>
+      <h3 className="text-subsection-title text-white">{copy.title}</h3>
+      <p className="text-body mt-2 text-neutral-grey">{copy.subtitle}</p>
 
       {intakeEnabled === false && (
-        <p className="mt-4 rounded-md border border-gold-core/30 bg-gold-core/10 p-3 text-sm text-neutral-grey">
+        <p className="mt-4 rounded-md border border-gold-core/30 bg-gold-core/10 p-3 text-body text-neutral-grey">
           {copy.intakeDisabled}
         </p>
       )}
@@ -255,28 +255,28 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
             onChange={(e) => handleChange("consent", e.target.checked)}
             className="mt-1 h-4 w-4 rounded border-navy-600 bg-navy-800 text-gold-core focus:ring-gold-core/30"
           />
-          <span className="text-sm text-neutral-grey">{copy.consent}</span>
+          <span className="text-body text-neutral-grey">{copy.consent}</span>
         </label>
         {errors.consent && (
-          <p className="mt-1 text-xs text-error">{errors.consent}</p>
+          <p className="form-error mt-1">{errors.consent}</p>
         )}
       </div>
 
       {errors.submit && (
-        <p className="mt-4 text-sm text-error">{errors.submit}</p>
+        <p className="form-error mt-4">{errors.submit}</p>
       )}
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="submit"
           disabled={!intakeReady || submitting}
-          className="rounded-md bg-gold-core px-6 py-3 text-sm font-semibold text-navy-1000 transition-colors hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-md bg-gold-core px-6 py-3 text-button text-navy-1000 transition-colors hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-50"
         >
           {copy.submit}
         </button>
         <a
           href={buildMailtoHref()}
-          className="inline-flex items-center justify-center rounded-md border border-navy-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-800"
+          className="inline-flex items-center justify-center rounded-md border border-navy-600 px-6 py-3 text-button text-white transition-colors hover:bg-navy-800"
         >
           {copy.submitMailto}
         </a>
@@ -296,11 +296,11 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium text-white">
+      <label className="form-label mb-1.5">
         {label}
       </label>
       {children}
-      {error && <p className="mt-1 text-xs text-error">{error}</p>}
+      {error && <p className="form-error mt-1">{error}</p>}
     </div>
   );
 }

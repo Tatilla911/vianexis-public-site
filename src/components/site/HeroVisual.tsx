@@ -30,12 +30,12 @@ export function HeroVisual({
               </span>
               <div>
                 <p className="text-overline text-cyan-glow">{routeLabel}</p>
-                <p className="mt-0.5 font-mono text-sm font-semibold text-gold-core">
+                <p className="text-code mt-0.5 font-semibold text-gold-core">
                   {routeId}
                 </p>
               </div>
             </div>
-            <span className="rounded-full border border-success/40 bg-success/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-success">
+            <span className="text-overline rounded-full border border-success/40 bg-success/15 px-2 py-0.5 text-success">
               {statusLabel}
             </span>
           </div>

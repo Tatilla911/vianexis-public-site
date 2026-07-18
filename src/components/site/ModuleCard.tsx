@@ -23,10 +23,8 @@ export function ModuleCard({ module, labels, className }: ModuleCardProps) {
       className={cn("panel-glass rounded-md p-6", className)}
     >
       <div className="accent-beam mb-4" aria-hidden="true" />
-      <h3 className="text-lg font-semibold text-white">{module.title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-neutral-grey">
-        {module.goal}
-      </p>
+      <h3 className="text-card-title text-white">{module.title}</h3>
+      <p className="text-body mt-3 text-neutral-grey">{module.goal}</p>
       {module.disclaimer ? (
         <DisclaimerBox className="mt-4" title={labels.important}>
           <p>{module.disclaimer}</p>

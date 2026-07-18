@@ -46,10 +46,10 @@ export function Footer({ locale }: FooterProps) {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <BrandLogo href={localePath(locale)} tone="dark" />
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-neutral-grey">
+            <p className="text-body mt-4 max-w-md text-neutral-grey">
               {content.footer.tagline}
             </p>
-            <p className="mt-4 text-sm text-navy-600">
+            <p className="text-meta mt-4 text-text-tertiary">
               {siteConfig.domain.replace("https://", "")}
             </p>
           </div>
@@ -58,12 +58,12 @@ export function Footer({ locale }: FooterProps) {
             <h3 className="text-overline text-gold-core">
               {content.footer.product}
             </h3>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-2.5">
               {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-neutral-grey transition-colors hover:text-cyan-glow"
+                    className="text-nav text-neutral-grey transition-colors hover:text-cyan-glow"
                   >
                     {link.label}
                   </Link>
@@ -76,12 +76,12 @@ export function Footer({ locale }: FooterProps) {
             <h3 className="text-overline text-gold-core">
               {content.footer.legal}
             </h3>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-2.5">
               {legalLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-neutral-grey transition-colors hover:text-cyan-glow"
+                    className="text-nav text-neutral-grey transition-colors hover:text-cyan-glow"
                   >
                     {link.label}
                   </Link>
@@ -92,7 +92,7 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         <div className="mt-10 border-t border-navy-700 pt-6">
-          <p className="text-xs leading-relaxed text-navy-600">
+          <p className="text-meta leading-relaxed text-text-tertiary">
             © {new Date().getFullYear()} ViaNexis. {content.footer.copyright}
           </p>
         </div>

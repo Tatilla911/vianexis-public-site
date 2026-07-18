@@ -80,13 +80,13 @@ export function Hero({
               "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center",
           )}
         >
-          <div className="max-w-2xl">
+          <div className="measure-hero max-w-full">
             <p className="text-overline mb-3 text-cyan-glow">ViaNexis</p>
             <div className="accent-beam mb-5" aria-hidden="true" />
             <h1 className="text-display-lg text-balance text-white">
               {renderTitle(title, highlightWord)}
             </h1>
-            <p className="text-subtitle mt-6 max-w-xl text-pretty text-neutral-grey">
+            <p className="text-lead mt-6 max-w-2xl text-pretty text-neutral-grey">
               {subtitle}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -113,7 +113,7 @@ export function Hero({
             {stats!.map((item) => (
               <div key={item.label} className="panel-glass rounded-md p-4">
                 <p className="text-overline text-navy-600">{item.label}</p>
-                <p className="mt-1 text-sm font-semibold text-gold-core">
+                <p className="text-meta mt-1 font-semibold text-gold-core">
                   {item.value}
                 </p>
               </div>

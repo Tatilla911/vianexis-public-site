@@ -178,7 +178,7 @@ export function Header({ locale }: HeaderProps) {
               <div className="overflow-hidden rounded-lg border border-navy-600 bg-navy-900/95 shadow-[0_20px_50px_rgb(0_0_0_/_0.55),0_0_40px_rgb(0_191_255_/_0.08)] backdrop-blur-xl">
                 <div className="border-b border-navy-700 bg-gradient-to-r from-navy-800 via-navy-900 to-navy-800 px-4 py-3">
                   <p className="text-overline text-gold-core">ViaNexis</p>
-                  <p className="mt-0.5 line-clamp-2 text-xs text-neutral-grey">
+                  <p className="text-body-sm mt-0.5 line-clamp-2 text-neutral-grey">
                     {content.footer.tagline}
                   </p>
                 </div>
@@ -190,7 +190,7 @@ export function Header({ locale }: HeaderProps) {
                       href={link.href}
                       role="menuitem"
                       className={cn(
-                        "focus-ring group/item relative flex items-center justify-between gap-3 overflow-hidden rounded-md border px-3.5 py-2.5 text-sm font-semibold transition-all",
+                        "focus-ring group/item relative flex items-center justify-between gap-3 overflow-hidden rounded-md border px-3.5 py-3 text-nav transition-all sm:py-2.5",
                         isActive(link.href)
                           ? "border-gold-core/45 bg-gold-core/10 text-gold-pale shadow-[inset_0_0_0_1px_rgb(212_175_55_/_0.15)]"
                           : "border-navy-700 bg-navy-1000/60 text-neutral-grey hover:border-cyan-glow/40 hover:bg-navy-800 hover:text-white hover:shadow-[0_0_20px_rgb(0_191_255_/_0.12)]",

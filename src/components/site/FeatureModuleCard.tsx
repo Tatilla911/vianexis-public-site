@@ -87,12 +87,12 @@ export function FeatureModuleCard({
       >
         {icon === "truck" ? <TruckIcon size={24} tone="cyan" /> : <ModuleGlyph icon={icon} />}
       </div>
-      <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-cyan-glow">
+      <h3 className="text-card-title text-white transition-colors group-hover:text-cyan-glow">
         {title}
       </h3>
       <p className="text-body mt-2 text-neutral-grey">{description}</p>
       {detailsLabel ? (
-        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-core">
+        <span className="text-nav mt-4 inline-flex items-center gap-1.5 text-gold-core">
           {detailsLabel}
           <span aria-hidden="true">→</span>
         </span>

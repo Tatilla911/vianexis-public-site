@@ -31,9 +31,11 @@ export function CTASection({
             <TruckIcon size={24} tone="gold" />
             <p className="text-overline text-gold-core">ViaNexis Network</p>
           </div>
-          <h2 className="text-h1 text-gradient-gold text-balance">{title}</h2>
+          <h2 className="text-section-title text-gradient-gold text-balance">
+            {title}
+          </h2>
           {subtitle ? (
-            <p className="text-subtitle mt-3 max-w-2xl text-pretty text-neutral-grey">
+            <p className="text-lead mt-4 max-w-2xl text-pretty text-neutral-grey">
               {subtitle}
             </p>
           ) : null}

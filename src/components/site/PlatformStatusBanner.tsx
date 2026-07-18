@@ -23,12 +23,12 @@ export function PlatformStatusBanner({
       )}
     >
       <p className="text-overline text-cyan-accent">{content.title}</p>
-      <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed text-neutral-grey">
+      <ul className="mt-3 list-inside list-disc space-y-2 text-body text-neutral-grey">
         {content.items.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <p className="mt-4 text-sm text-neutral-grey/80">{content.disclaimer}</p>
+      <p className="mt-4 text-body-sm text-neutral-grey">{content.disclaimer}</p>
     </div>
   );
 }

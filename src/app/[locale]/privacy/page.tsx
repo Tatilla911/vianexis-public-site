@@ -26,15 +26,15 @@ export default async function PrivacyPage({ params }: PageProps) {
 
   return (
     <Section className="pt-12">
-      <div className="mx-auto max-w-3xl">
+      <div className="prose-legal mx-auto w-full">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-3xl font-bold text-white">{privacy.title}</h1>
-        <p className="mt-4 text-sm text-neutral-grey/70">
+        <h1 className="text-page-title text-white">{privacy.title}</h1>
+        <p className="text-meta mt-4 text-text-tertiary">
           {lastUpdatedLabel} {privacy.lastUpdated}
         </p>
-        <p className="mt-4 leading-relaxed text-neutral-grey">{privacy.intro}</p>
+        <p className="text-lead mt-5 text-neutral-grey">{privacy.intro}</p>
 
-        <div className="mt-8 space-y-6 text-sm">
+        <div className="mt-10 space-y-8">
           <LegalDocumentSection section={privacy.controller} />
           <LegalDocumentSection section={privacy.scope} />
           <LegalDocumentSection section={privacy.dataCategories} />
@@ -46,21 +46,21 @@ export default async function PrivacyPage({ params }: PageProps) {
           <LegalDocumentSection section={privacy.importantNotices} />
           <LegalDocumentSection section={privacy.dataContact} />
           <section>
-            <h2 className="text-lg font-semibold text-white">Play Console</h2>
-            <p className="mt-2 leading-relaxed text-neutral-grey">{privacy.playUrl}</p>
+            <h2 className="text-card-title text-white">Play Console</h2>
+            <p className="text-body mt-3 text-neutral-grey">{privacy.playUrl}</p>
           </section>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-4 text-sm">
+        <div className="mt-10 flex flex-wrap gap-4">
           <Link
             href={localePath(locale, "/legal")}
-            className="text-cyan-accent hover:underline"
+            className="text-nav text-cyan-glow hover:underline"
           >
             {legal.legalNotice.title}
           </Link>
           <Link
             href={localePath(locale, "/disclaimers")}
-            className="text-cyan-accent hover:underline"
+            className="text-nav text-cyan-glow hover:underline"
           >
             {legal.disclaimersPage.title}
           </Link>

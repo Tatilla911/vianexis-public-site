@@ -63,7 +63,7 @@ export function ConnectedWorkflowVisual({
                   />
                   <span
                     className={cn(
-                      "relative flex h-9 w-9 items-center justify-center rounded-full border bg-navy-900 font-mono text-xs font-semibold",
+                      "relative flex h-9 w-9 items-center justify-center rounded-full border bg-navy-900 text-code font-semibold",
                       isGold
                         ? "border-gold-core/50 text-gold-core"
                         : "border-cyan-glow/50 text-cyan-glow",
@@ -72,7 +72,7 @@ export function ConnectedWorkflowVisual({
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </span>
-                <span className="text-xs font-medium leading-snug text-neutral-grey sm:text-[13px]">
+                <span className="text-body-sm font-medium text-neutral-grey">
                   {event}
                 </span>
               </li>

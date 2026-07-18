@@ -28,13 +28,13 @@ export function ResponsibleUseSummary({
     >
       <p className="text-overline text-gold-core">{title}</p>
       {subtitle ? (
-        <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
+        <p className="text-body mt-2 text-neutral-grey">
           {subtitle}
         </p>
       ) : null}
       <ul className="mt-4 space-y-2.5">
         {items.map((item) => (
-          <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-neutral-grey">
+          <li key={item} className="text-body flex gap-2.5 text-neutral-grey">
             <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-core/70" />
             <span>{item}</span>
           </li>
@@ -43,7 +43,7 @@ export function ResponsibleUseSummary({
       {detailsHref && detailsLabel ? (
         <Link
           href={detailsHref}
-          className="focus-ring mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-core hover:underline"
+          className="focus-ring text-nav mt-4 inline-flex items-center gap-1.5 text-gold-core hover:underline"
         >
           {detailsLabel}
           <span aria-hidden="true">→</span>

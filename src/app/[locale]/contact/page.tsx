@@ -29,12 +29,12 @@ export default async function ContactPage({ params }: PageProps) {
       <Section variant="muted">
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="space-y-4 lg:col-span-2">
-            <p className="leading-relaxed text-neutral-grey">
+            <p className="text-body text-neutral-grey">
               {content.home.contact.body}
             </p>
             <a
               href={`mailto:${siteConfig.contactEmail}`}
-              className="text-lg font-semibold text-cyan-accent hover:underline"
+              className="text-body-lg font-semibold text-cyan-glow hover:underline"
             >
               {siteConfig.contactEmail}
             </a>
@@ -43,7 +43,7 @@ export default async function ContactPage({ params }: PageProps) {
             </DisclaimerBox>
             <Link
               href={localePath(locale, "/privacy")}
-              className="text-sm font-semibold text-gold-core hover:underline"
+              className="text-nav text-gold-core hover:underline"
             >
               {content.footer.privacy}
             </Link>

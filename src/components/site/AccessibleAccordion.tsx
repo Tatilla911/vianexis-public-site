@@ -35,7 +35,7 @@ export function AccessibleAccordion({
               <button
                 id={buttonId}
                 type="button"
-                className="focus-ring flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold text-white"
+                className="focus-ring flex w-full items-center justify-between px-4 py-3 text-left text-card-title text-white"
                 aria-expanded={open}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(open ? null : index)}
@@ -51,7 +51,7 @@ export function AccessibleAccordion({
               role="region"
               aria-labelledby={buttonId}
               hidden={!open}
-              className="border-t border-navy-700 px-4 py-3 text-sm leading-relaxed text-neutral-grey"
+              className="border-t border-navy-700 px-4 py-3 text-body text-neutral-grey"
             >
               {item.body}
             </div>

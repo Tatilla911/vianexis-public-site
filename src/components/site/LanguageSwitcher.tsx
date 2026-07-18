@@ -31,7 +31,7 @@ export function LanguageSwitcher({
           const next = event.target.value as Locale;
           router.push(switchLocalePath(pathname, next));
         }}
-        className="rounded-md border border-navy-600 bg-navy-800 px-2 py-1.5 text-xs font-semibold text-white"
+        className="form-control rounded-md border border-navy-600 bg-navy-800 px-2.5 py-2 font-semibold text-white"
         aria-label="Language"
       >
         {locales.map((locale) => {

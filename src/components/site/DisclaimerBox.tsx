@@ -19,7 +19,7 @@ export function DisclaimerBox({
       )}
     >
       <p className="text-overline mb-2 text-gold-core">{title}</p>
-      <div className="text-sm leading-relaxed text-neutral-grey">{children}</div>
+      <div className="text-body text-neutral-grey">{children}</div>
     </div>
   );
 }

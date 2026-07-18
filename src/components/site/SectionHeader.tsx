@@ -29,7 +29,7 @@ export function SectionHeader({
         <p
           className={cn(
             "text-overline mb-3",
-            dark ? "text-cyan-accent" : "text-deep-blue",
+            dark ? "text-cyan-glow" : "text-deep-blue",
           )}
         >
           {eyebrow}
@@ -38,7 +38,7 @@ export function SectionHeader({
       {dark ? <div className="accent-beam mb-4" aria-hidden="true" /> : null}
       <h2
         className={cn(
-          "text-h1 tracking-tight",
+          "text-section-title text-balance",
           dark ? "text-white" : "text-navy",
         )}
       >
@@ -47,7 +47,7 @@ export function SectionHeader({
       {subtitle ? (
         <p
           className={cn(
-            "text-subtitle mt-3",
+            "text-lead mt-4 text-pretty",
             dark ? "text-neutral-grey" : "text-text-muted",
           )}
         >

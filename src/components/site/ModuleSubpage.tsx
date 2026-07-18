@@ -90,8 +90,8 @@ export function ModuleSubpage({
                   tone={item.status as StatusTone}
                 />
               </div>
-              <h3 className="text-base font-semibold text-white">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-grey">
+              <h3 className="text-card-title text-white">{item.title}</h3>
+              <p className="text-body mt-2 text-neutral-grey">
                 {item.description}
               </p>
             </article>
@@ -129,7 +129,7 @@ export function ModuleSubpage({
               />
               <Link
                 href={localePath(locale, "/security-audit")}
-                className="inline-flex text-sm font-semibold text-cyan-accent hover:underline"
+                className="text-nav inline-flex text-cyan-glow hover:underline"
               >
                 {content.nav.security} →
               </Link>

@@ -27,7 +27,7 @@ export function BrowserMockup({
           <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-          <div className="ml-2 flex-1 truncate rounded-md bg-navy-1000 px-3 py-1 text-[10px] text-neutral-grey">
+          <div className="ml-2 flex-1 truncate rounded-md bg-navy-1000 px-3 py-1 text-[11px] text-neutral-grey">
             portal.vianexis.eu
           </div>
         </div>
@@ -36,12 +36,12 @@ export function BrowserMockup({
             <p className="text-overline text-cyan-accent">Company Portal</p>
             <p className="text-sm font-semibold text-white">{title}</p>
             {subtitle ? (
-              <p className="text-xs text-neutral-grey">{subtitle}</p>
+              <p className="text-caption text-neutral-grey">{subtitle}</p>
             ) : null}
           </div>
           <div className="overflow-hidden rounded-md border border-navy-700 bg-navy-900">
             {columns.length > 0 ? (
-              <div className="hidden grid-cols-4 gap-2 border-b border-navy-700 bg-navy-800 px-3 py-2 text-[10px] font-semibold uppercase tracking-wide text-navy-600 sm:grid">
+              <div className="hidden grid-cols-4 gap-2 border-b border-navy-700 bg-navy-800 px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-navy-600 sm:grid">
                 {columns.map((col) => (
                   <span key={col}>{col}</span>
                 ))}
@@ -51,7 +51,7 @@ export function BrowserMockup({
               {rows.map((row, idx) => (
                 <div
                   key={`${row[0]}-${idx}`}
-                  className="grid gap-1 px-3 py-2.5 text-xs text-white sm:grid-cols-4 sm:gap-2"
+                  className="grid gap-1 px-3 py-2.5 text-[11px] text-white sm:grid-cols-4 sm:gap-2"
                 >
                   {row.map((cell, cellIdx) => (
                     <span
@@ -71,7 +71,7 @@ export function BrowserMockup({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-xs text-neutral-grey">
+        <figcaption className="mt-3 text-caption text-neutral-grey">
           {caption}
         </figcaption>
       ) : null}
