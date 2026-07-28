@@ -1,6 +1,7 @@
 import { Button } from "@/components/site/Button";
 import { HeroVisual } from "@/components/site/HeroVisual";
 import { ProductPreview } from "@/components/site/ProductPreview";
+import { isHeroTitleLong } from "@/lib/hero-title";
 import { cn } from "@/lib/utils";
 
 type HeroProps = {
@@ -55,11 +56,12 @@ export function Hero({
   className,
 }: HeroProps) {
   const showAside = Boolean(brandVisual || preview);
+  const titleLong = isHeroTitleLong(title);
 
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-navy-1000 text-white hero-grid-bg",
+        "relative overflow-x-clip overflow-y-hidden bg-navy-1000 text-white hero-grid-bg",
         className,
       )}
     >
@@ -75,21 +77,26 @@ export function Hero({
       <div className="container-site relative py-20 sm:py-24 lg:py-28">
         <div
           className={cn(
-            "grid gap-12",
-            showAside &&
-              "lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center",
+            "hero-split",
+            showAside ? "hero-split--with-aside" : "hero-split--solo",
           )}
         >
-          <div className="measure-hero max-w-full">
+          <div className="hero-copy">
             <p className="text-overline mb-3 text-cyan-glow">ViaNexis</p>
             <div className="accent-beam mb-5" aria-hidden="true" />
-            <h1 className="text-display-lg text-balance text-white">
+            <h1
+              className={cn(
+                "hero-title text-white",
+                titleLong ? "hero-title--long" : "hero-title--default",
+              )}
+              data-hero-title-long={titleLong ? "true" : "false"}
+            >
               {renderTitle(title, highlightWord)}
             </h1>
             <p className="text-lead mt-6 max-w-2xl text-pretty text-neutral-grey">
               {subtitle}
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="hero-cta mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button href={primaryCta.href} size="lg">
                 {primaryCta.label}
               </Button>
@@ -102,9 +109,13 @@ export function Hero({
           </div>
 
           {brandVisual ? (
-            <HeroVisual {...brandVisual} className="min-w-0" />
+            <div className="hero-visual" data-hero-visual="brand">
+              <HeroVisual {...brandVisual} />
+            </div>
           ) : preview ? (
-            <ProductPreview {...preview} className="min-w-0" />
+            <div className="hero-visual" data-hero-visual="preview">
+              <ProductPreview {...preview} className="min-w-0 w-full" />
+            </div>
           ) : null}
         </div>
 

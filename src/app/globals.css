@@ -582,3 +582,118 @@ html {
 .measure-hero {
   max-width: var(--measure-hero);
 }
+
+/*
+  Hero split layout — copy and visual are geometrically separate columns.
+  Do not rely on z-index stacking to hide overlap; contain overflow instead.
+*/
+.hero-split {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.hero-split--solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.hero-copy {
+  min-width: 0;
+  max-width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-split--solo .hero-copy {
+  max-width: var(--measure-hero);
+}
+
+.hero-title {
+  max-width: 100%;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: manual;
+  text-wrap: balance;
+}
+
+.hero-title--default {
+  font-size: var(--font-display);
+  line-height: var(--leading-display);
+}
+
+.hero-title--long {
+  /* Condensed scale for long / compound translations (DE, FI, LV, …) */
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.hero-cta {
+  max-width: 100%;
+}
+
+.hero-visual {
+  min-width: 0;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+  justify-self: stretch;
+  /* Keep globe glow / orbits from bleeding into the copy column */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+@media (min-width: 900px) {
+  .hero-split--with-aside {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+  }
+
+  .hero-title--default {
+    font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+  }
+
+  .hero-title--long {
+    font-size: clamp(1.875rem, 3.4vw, 2.85rem);
+  }
+
+  .hero-visual {
+    max-width: min(100%, 28rem);
+    justify-self: end;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-split--with-aside {
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  .hero-title--default {
+    font-size: var(--font-display);
+  }
+
+  .hero-title--long {
+    font-size: clamp(2.125rem, 3.2vw, 3.35rem);
+  }
+
+  .hero-visual {
+    max-width: min(100%, 36rem);
+  }
+}
+
+@media (max-width: 899px) {
+  .hero-split--with-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-visual {
+    justify-self: center;
+    max-width: min(100%, 26rem);
+    overflow-x: visible;
+  }
+}
