@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * Regression checks for hero title / split layout (P1 company-portal overlap).
- * No browser driver required — source + content invariants.
+ * Regression checks for hero title / split layout (globe preserved, no overlap).
  *
  * Usage: node scripts/check-hero-layout.mjs
  */
@@ -10,6 +9,7 @@ import { join } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const CONTENT = join(ROOT, "src/lib/i18n/content");
+const ZWSP = "\u200B";
 
 const HERO_TITLE_LONG_CHAR_THRESHOLD = 28;
 const HERO_TITLE_LONG_TOKEN_THRESHOLD = 18;
@@ -33,6 +33,10 @@ function isHeroTitleLong(title) {
   return tokens.some((token) => token.length > HERO_TITLE_LONG_TOKEN_THRESHOLD);
 }
 
+function formatHeroTitleForWrap(title) {
+  return title.replace(/([-/])(?!\u200B)/g, `$1${ZWSP}`);
+}
+
 function read(path) {
   return readFileSync(path, "utf8");
 }
@@ -41,6 +45,11 @@ function extractCompanyAdminTitle(source) {
   const match = source.match(
     /id:\s*"company-admin",\s*title:\s*"([^"]+)"/,
   );
+  return match?.[1] ?? null;
+}
+
+function extractHomeHeroTitle(source) {
+  const match = source.match(/hero:\s*\{[\s\S]*?title:\s*"([^"]+)"/);
   return match?.[1] ?? null;
 }
 
@@ -62,8 +71,34 @@ for (const { title, expectLong } of helperCases) {
   }
 }
 
-// --- Hero.tsx structure ---
+const wrapCases = [
+  {
+    title: "Unternehmens-/Administratorkontrolle",
+    expectIncludes: [`-${ZWSP}`, `/${ZWSP}`],
+  },
+  {
+    title: "Yrityksen/järjestelmänvalvojan hallinta",
+    expectIncludes: [`/${ZWSP}`],
+  },
+  {
+    title: "Company / Admin control",
+    expectIncludes: [`/${ZWSP}`],
+  },
+];
+
+for (const { title, expectIncludes } of wrapCases) {
+  const out = formatHeroTitleForWrap(title);
+  const ok = expectIncludes.every((s) => out.includes(s));
+  if (!ok) fail(`formatHeroTitleForWrap(${JSON.stringify(title)}) missing ZWSP breaks`);
+  else pass(`formatHeroTitleForWrap ok for ${JSON.stringify(title)}`);
+  if (out.includes("\n") || /[^\S\u200B]{2,}/.test(out.replace(/\s/g, " "))) {
+    // no-op; keep simple
+  }
+}
+
+// --- Hero.tsx / HeroVisual structure ---
 const heroSrc = read(join(ROOT, "src/components/site/Hero.tsx"));
+const visualSrc = read(join(ROOT, "src/components/site/HeroVisual.tsx"));
 const requiredSnippets = [
   ["hero-split", "hero-split class"],
   ["hero-split--with-aside", "aside variant"],
@@ -71,7 +106,8 @@ const requiredSnippets = [
   ["hero-visual", "visual column"],
   ["hero-title", "title class"],
   ["hero-title--long", "long title class"],
-  ["isHeroTitleLong", "long-title helper import"],
+  ["isHeroTitleLong", "long-title helper"],
+  ["formatHeroTitleForWrap", "orthographic wrap helper"],
   ['data-hero-title-long', "long title data attribute"],
   ['data-hero-visual', "visual data attribute"],
 ];
@@ -79,6 +115,18 @@ const requiredSnippets = [
 for (const [needle, label] of requiredSnippets) {
   if (!heroSrc.includes(needle)) fail(`Hero.tsx missing ${label} (${needle})`);
   else pass(`Hero.tsx has ${label}`);
+}
+
+if (!visualSrc.includes("NetworkGlobe") || !visualSrc.includes("max-w-xl")) {
+  fail("HeroVisual must restore NetworkGlobe with max-w-xl");
+} else {
+  pass("HeroVisual restores full globe composition (max-w-xl)");
+}
+
+if (!visualSrc.includes("-inset-6")) {
+  fail("HeroVisual must restore original -inset-6 glow");
+} else {
+  pass("HeroVisual restores original glow inset");
 }
 
 if (/whitespace-nowrap|white-space:\s*nowrap/.test(heroSrc)) {
@@ -95,11 +143,10 @@ const cssNeedles = [
   ["minmax(0, 0.95fr)", "visual fr track"],
   [".hero-copy", "hero-copy rule"],
   ["min-width: 0", "min-width 0"],
-  ["overflow-wrap: anywhere", "overflow-wrap anywhere"],
+  ["hyphens: auto", "hyphens auto"],
+  ["overflow-wrap: normal", "no anywhere wrap"],
   [".hero-title--long", "long title scale"],
-  ["overflow-x: clip", "visual overflow clip"],
-  ["@media (min-width: 900px)", "900px breakpoint"],
-  ["@media (max-width: 899px)", "single-column mobile/tablet rule"],
+  ["@media (min-width: 1024px)", "desktop two-column breakpoint"],
 ];
 
 for (const [needle, label] of cssNeedles) {
@@ -107,8 +154,20 @@ for (const [needle, label] of cssNeedles) {
   else pass(`globals.css has ${label}`);
 }
 
-// --- locale company-admin titles renderable + long class expectation ---
-const focusLocales = ["de", "fi", "lv", "en", "hu", "ar", "fr", "pl"];
+if (css.includes("overflow-wrap: anywhere")) {
+  fail("globals.css must not use overflow-wrap: anywhere (breaks orthography)");
+} else {
+  pass("globals.css avoids overflow-wrap: anywhere");
+}
+
+if (/hero-visual[\s\S]{0,200}overflow-x:\s*clip/.test(css)) {
+  fail("hero-visual must not clip the globe with overflow-x: clip");
+} else {
+  pass("hero-visual does not clip globe");
+}
+
+// --- locale titles ---
+const focusLocales = ["de", "fi", "lv", "en", "hu", "ar", "fr", "pl", "nl", "cs", "sk", "ro", "bg", "el"];
 for (const locale of focusLocales) {
   const file = join(CONTENT, `${locale}.ts`);
   let source;
@@ -119,20 +178,25 @@ for (const locale of focusLocales) {
     continue;
   }
   const title = extractCompanyAdminTitle(source);
+  const home = extractHomeHeroTitle(source);
   if (!title) {
     fail(`${locale}: company-admin title not found`);
     continue;
   }
   pass(`${locale}: company-admin title present (${title.length} chars)`);
+  if (home) pass(`${locale}: home hero title present (${home.length} chars)`);
   if (["de", "fi", "lv"].includes(locale) && !isHeroTitleLong(title)) {
     fail(`${locale}: expected long-title classification for "${title}"`);
   }
   if (["en", "hu"].includes(locale) && isHeroTitleLong(title)) {
     fail(`${locale}: unexpected long-title for short title "${title}"`);
   }
+  const wrapped = formatHeroTitleForWrap(title);
+  if (/[/-]/.test(title) && !wrapped.includes(ZWSP)) {
+    fail(`${locale}: expected ZWSP wrap opportunity in "${title}"`);
+  }
 }
 
-// Scan locale content modules only (skip helpers under content/)
 for (const entry of readdirSync(CONTENT)) {
   if (!/^[a-z]{2}\.ts$/.test(entry)) continue;
   const title = extractCompanyAdminTitle(read(join(CONTENT, entry)));

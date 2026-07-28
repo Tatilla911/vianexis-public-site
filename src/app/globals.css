@@ -584,12 +584,12 @@ html {
 }
 
 /*
-  Hero split layout — copy and visual are geometrically separate columns.
-  Do not rely on z-index stacking to hide overlap; contain overflow instead.
+  Hero split — copy and globe stay in separate grid tracks (no overlap).
+  Globe visual keeps its original max-w-xl composition; do not clip it.
 */
 .hero-split {
   display: grid;
-  gap: clamp(2rem, 4vw, 3rem);
+  gap: 3rem;
   align-items: start;
 }
 
@@ -613,9 +613,11 @@ html {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: var(--tracking-display);
-  overflow-wrap: anywhere;
+  /* Orthography-friendly: dictionary hyphens via document lang; no mid-word "anywhere" */
+  overflow-wrap: normal;
   word-break: normal;
-  hyphens: manual;
+  hyphens: auto;
+  -webkit-hyphens: auto;
   text-wrap: balance;
 }
 
@@ -625,9 +627,8 @@ html {
 }
 
 .hero-title--long {
-  /* Condensed scale for long / compound translations (DE, FI, LV, …) */
-  font-size: clamp(2rem, 4vw, 3.35rem);
-  line-height: 1.02;
+  font-size: clamp(2rem, 3.8vw, 3.5rem);
+  line-height: 1.05;
   letter-spacing: -0.02em;
 }
 
@@ -640,60 +641,27 @@ html {
   max-width: 100%;
   position: relative;
   z-index: 1;
-  justify-self: stretch;
-  /* Keep globe glow / orbits from bleeding into the copy column */
-  overflow-x: clip;
-  overflow-y: visible;
+  justify-self: center;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .hero-split--with-aside {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     align-items: center;
-    gap: clamp(1.5rem, 3.5vw, 3rem);
+    gap: clamp(2rem, 4vw, 3rem);
   }
 
-  .hero-title--default {
-    font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+  .hero-visual {
+    justify-self: stretch;
   }
 
   .hero-title--long {
-    font-size: clamp(1.875rem, 3.4vw, 2.85rem);
-  }
-
-  .hero-visual {
-    max-width: min(100%, 28rem);
-    justify-self: end;
+    font-size: clamp(2.125rem, 3.2vw, 3.5rem);
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   .hero-split--with-aside {
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-    gap: clamp(2rem, 5vw, 5rem);
-  }
-
-  .hero-title--default {
-    font-size: var(--font-display);
-  }
-
-  .hero-title--long {
-    font-size: clamp(2.125rem, 3.2vw, 3.35rem);
-  }
-
-  .hero-visual {
-    max-width: min(100%, 36rem);
-  }
-}
-
-@media (max-width: 899px) {
-  .hero-split--with-aside {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-visual {
-    justify-self: center;
-    max-width: min(100%, 26rem);
-    overflow-x: visible;
+    gap: clamp(2.5rem, 5vw, 5rem);
   }
 }

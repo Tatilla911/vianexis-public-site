@@ -1,7 +1,7 @@
 import { Button } from "@/components/site/Button";
 import { HeroVisual } from "@/components/site/HeroVisual";
 import { ProductPreview } from "@/components/site/ProductPreview";
-import { isHeroTitleLong } from "@/lib/hero-title";
+import { formatHeroTitleForWrap, isHeroTitleLong } from "@/lib/hero-title";
 import { cn } from "@/lib/utils";
 
 type HeroProps = {
@@ -31,10 +31,11 @@ type HeroProps = {
 };
 
 function renderTitle(title: string, highlightWord?: string) {
-  if (!highlightWord || !title.includes(highlightWord)) {
-    return title;
+  const wrapped = formatHeroTitleForWrap(title);
+  if (!highlightWord || !wrapped.includes(highlightWord)) {
+    return wrapped;
   }
-  const parts = title.split(highlightWord);
+  const parts = wrapped.split(highlightWord);
   return (
     <>
       {parts[0]}
@@ -61,7 +62,7 @@ export function Hero({
   return (
     <section
       className={cn(
-        "relative overflow-x-clip overflow-y-hidden bg-navy-1000 text-white hero-grid-bg",
+        "relative overflow-hidden bg-navy-1000 text-white hero-grid-bg",
         className,
       )}
     >
@@ -110,11 +111,11 @@ export function Hero({
 
           {brandVisual ? (
             <div className="hero-visual" data-hero-visual="brand">
-              <HeroVisual {...brandVisual} />
+              <HeroVisual {...brandVisual} className="min-w-0" />
             </div>
           ) : preview ? (
             <div className="hero-visual" data-hero-visual="preview">
-              <ProductPreview {...preview} className="min-w-0 w-full" />
+              <ProductPreview {...preview} className="min-w-0" />
             </div>
           ) : null}
         </div>
