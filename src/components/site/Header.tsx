@@ -10,6 +10,7 @@ import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import { getContent } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
+import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
 import { cn } from "@/lib/utils";
 
 type HeaderProps = {
@@ -21,6 +22,7 @@ export function Header({ locale }: HeaderProps) {
   const [menuPath, setMenuPath] = useState("");
   const [compact, setCompact] = useState(false);
   const content = getContent(locale);
+  const primaryNavLabel = resolveVisualMarketing(locale).ui.primaryNav;
   const pathname = usePathname();
   const menuId = useId();
   const menuRef = useRef<HTMLDivElement>(null);
@@ -166,7 +168,7 @@ export function Header({ locale }: HeaderProps) {
             <div
               id={menuId}
               role="menu"
-              aria-label="Primary"
+              aria-label={primaryNavLabel}
               className={cn(
                 "absolute right-0 top-[calc(100%+0.65rem)] z-50 w-[min(20rem,calc(100vw-1.5rem))] origin-top-right",
                 "transition-[opacity,transform,visibility] duration-200 ease-out",
@@ -183,7 +185,7 @@ export function Header({ locale }: HeaderProps) {
                   </p>
                 </div>
 
-                <nav className="flex flex-col gap-1.5 p-2.5" aria-label="Primary">
+                <nav className="flex flex-col gap-1.5 p-2.5" aria-label={primaryNavLabel}>
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}

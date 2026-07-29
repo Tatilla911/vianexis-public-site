@@ -127,7 +127,7 @@ export const legalCs: LegalContent = {
       },
       {
         title: "Stav interního testování",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Přístup je v současné době dostupný prostřednictvím řízeného pilotního programu. Žádné veřejné stahování z Obchodu Play.",
       },
       {
         title: "Omezení odpovědnosti",

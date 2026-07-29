@@ -31,7 +31,7 @@ export function HomePage({ locale }: HomePageProps) {
       <Hero
         title={content.hero.title}
         subtitle={content.hero.subtitle}
-        highlightWord={locale === "hu" ? "Auditálható" : "Auditable"}
+        highlightWord={content.hero.highlightWord}
         primaryCta={{
           href: localePath(locale, "/pilot"),
           label: content.hero.primaryCta,

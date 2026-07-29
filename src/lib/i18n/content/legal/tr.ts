@@ -127,7 +127,7 @@ export const legalTr: LegalContent = {
       },
       {
         title: "Dahili test durumu",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Erişim şu anda kontrollü bir pilot program aracılığıyla sağlanmaktadır. Herkese açık Play Store indirmesi yok.",
       },
       {
         title: "Sorumluluğun Sınırlandırılması",

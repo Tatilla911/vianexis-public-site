@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type LegalStatusBadgeProps = {
-  label?: string;
+  label: string;
   className?: string;
 };
 
@@ -13,7 +13,7 @@ export function LegalStatusBadge({ label, className }: LegalStatusBadgeProps) {
         className,
       )}
     >
-      {label ?? "DRAFT — jogi/adatvédelmi szakértői felülvizsgálat szükséges."}
+      {label}
     </div>
   );
 }

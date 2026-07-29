@@ -127,7 +127,7 @@ export const legalUk: LegalContent = {
       },
       {
         title: "Статус внутрішнього тестування",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Наразі доступ доступний через контрольовану пілотну програму. Немає загальнодоступного завантаження Play Store.",
       },
       {
         title: "Обмеження відповідальності",

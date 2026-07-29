@@ -22,7 +22,7 @@ export default async function ApplyPartnerPage({ params }: PageProps) {
         }}
       />
       <Section>
-        <DisclaimerBox>
+        <DisclaimerBox title={content.moduleLabels.important}>
           <p>{content.home.contact.consentNote}</p>
         </DisclaimerBox>
         <div className="mt-6">

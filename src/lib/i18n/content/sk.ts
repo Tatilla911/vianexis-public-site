@@ -56,14 +56,14 @@ export const contentSk: SiteContent = {
     ],
   },
     platformStatus: {
-    title: "Controlled pilot access",
+    title: "Riadený pilotný prístup",
     items: [
-      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
-      "Access is activated after individual discussion and approval.",
-      "No public app-store download.",
+      "ViaNexis je momentálne dostupný prostredníctvom pilotného programu s vybranými dopravcami a vodičmi.",
+      "Prístup sa aktivuje po individuálnej diskusii a schválení.",
+      "Žiadne sťahovanie z verejného obchodu s aplikáciami.",
     ],
     disclaimer:
-      "ViaNexis does not claim the system is officially accepted or certified in every country.",
+      "ViaNexis netvrdí, že systém je oficiálne akceptovaný alebo certifikovaný v každej krajine.",
   },
 
   moduleLabels: {
@@ -108,7 +108,7 @@ export const contentSk: SiteContent = {
       title: "Správy a upozornenia",
       goal: "Komunikácia a upozornenia na dôležité udalosti vodiča.",
       appFoundation: "Zoznam správ, vlákna prepojené s tripom, základ upozornení na strane aplikácie. Použiteľné pre: novú správu, zmenu cesty, úlohu dokumentu, problém so synchronizáciou.",
-      backendDependency: "Notification features can be activated as part of the pilot program.",
+      backendDependency: "Funkcie upozornení je možné aktivovať v rámci pilotného programu.",
       disclaimer: "Cieľová obrazovka sa otvorí po PIN. Produkčný tlak netvrdí, že každá udalosť príde okamžite.",
     },
     {
@@ -237,7 +237,7 @@ export const contentSk: SiteContent = {
           description: "Papiere a udalosti spojené s výletmi v jednom systéme.",
         },
         {
-          title: "Auditable events",
+          title: "Auditovateľné udalosti",
           description: "Kto čo kedy urobil – prihlásené a vyhľadávateľné.",
         }
       ],
@@ -247,7 +247,7 @@ export const contentSk: SiteContent = {
     contact: {
       title: "Kontaktné a interné testovanie",
       subtitle: "Riadený prístup – nie automatická registrácia, žiadne verejné sťahovanie Play.",
-      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
+      body: "Prístup je v súčasnosti dostupný prostredníctvom kontrolovaného pilotného programu. Aktivácia nasleduje po individuálnej kontrole.",
       consentNote: "Systém spracováva dokumenty, pracovné postupy ovládačov, firemné údaje a povolenia – každý prístup je individuálne posúdený.",
       contactLink: "Kontaktujte nás →",
     },
@@ -308,17 +308,38 @@ export const contentSk: SiteContent = {
   },
   applicationForms: {
     common: {
-      privacy: "I accept the privacy policy and consent to data processing. *",
-      submit: "Submit application",
-      intakeDisabled: "Online applications are being prepared. Contact support@vianexis.eu or try again later.",
-      successTitle: "Application received",
-      successBody: "Thank you. Your application is in review. Access is not automatic until approved.",
-      newSubmission: "New application",
-      errors: { required: "This field is required.", email: "Email is required.", emailInvalid: "Enter a valid email address.", password: "Password must be at least 8 characters.", privacy: "Privacy acceptance is required.", submitFailed: "Application could not be sent. Try again later." },
+      privacy: "Prijímam zásady ochrany osobných údajov a súhlasím so spracovaním údajov. *",
+      submit: "Odoslať žiadosť",
+      submitting: "Submitting…",
+      intakeDisabled: "Online prihlášky sa pripravujú. Kontaktujte support@vianexis.eu alebo to skúste znova neskôr.",
+      successTitle: "Prihláška bola prijatá",
+      successBody: "dakujem. Vaša žiadosť sa posudzuje. Prístup nie je udelený, kým ho neschváli správca ViaNexis.",
+      newSubmission: "Nová aplikácia",
+      referenceLabel: "Odkaz na aplikáciu",
+      submittedAtLabel: "Submitted at",
+      statusLabel: "Status",
+      statusUnderReview: "Under review",
+      nextStep: "Po kontrole vás budeme kontaktovať. Uchovajte si referenciu aplikácie pre podporu.",
+      captchaHint: "Pred odoslaním vykonajte bezpečnostnú kontrolu.",
+      supportContact: "Potrebujete pomoc? Kontaktujte {email}.",
+      errors: {
+        required: "Toto pole je povinné.",
+        email: "Vyžaduje sa e-mail.",
+        emailInvalid: "Zadajte platnú e-mailovú adresu.",
+        password: "Heslo musí mať aspoň 8 znakov.",
+        privacy: "Vyžaduje sa súhlas s ochranou súkromia.",
+        submitFailed: "Prihlášku nebolo možné odoslať. Skúste to znova neskôr.",
+        duplicate: "Žiadosť pre túto spoločnosť alebo e-mail už prebieha.",
+        duplicateWithRef: "Žiadosť pre túto spoločnosť alebo e-mail už prebieha (odkaz: {reference}).",
+        captchaRequired: "Ak chcete pokračovať, dokončite kontrolu zabezpečenia.",
+        captchaInvalid: "Platnosť bezpečnostnej kontroly vypršala alebo zlyhala. Skúste to znova.",
+        spam: "Odoslanie je zablokované.",
+        network: "Chyba siete. Skontrolujte pripojenie a skúste to znova.",
+      },
     },
-    company: { title: "Company application", subtitle: "Apply for ViaNexis company platform access.", companyName: "Company name *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Contact name *", contactEmail: "Contact email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Modules of interest", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Dispatch portal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Fleet / workshop" },{ value: "pallet_packaging", label: "Pallet / packaging" },{ value: "external_shipper_receiver", label: "External shipper / receiver" }], notes: "Notes" },
-    driver: { title: "Driver application", subtitle: "Self-registration — pending approval before login.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Company name (optional)", companyCode: "Invite / company code (optional)", licenseNotes: "License / ADR / GKI notes (optional)" },
-    partner: { title: "Partner interest", subtitle: "Shipper, receiver, warehouse or customs partner inquiry.", companyName: "Company name *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Customs broker" },{ value: "other_partner", label: "Other partner" }], contactName: "Contact name *", email: "Email *", phone: "Phone", notes: "Notes" },
+    company: { title: "Aplikácia spoločnosti", subtitle: "Požiadajte o prístup k platforme spoločnosti ViaNexis.", companyName: "Názov spoločnosti *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktné meno *", contactEmail: "Kontaktný email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduly záujmu", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Expedičný portál" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotila / dielňa" },{ value: "pallet_packaging", label: "Paleta / balenie" },{ value: "external_shipper_receiver", label: "Externý odosielateľ/príjemca" }], notes: "Notes" },
+    driver: { title: "Aplikácia ovládača", subtitle: "Samoregistrácia — čaká sa na schválenie pred prihlásením.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Názov spoločnosti (voliteľné)", companyCode: "Pozvánka / kód spoločnosti (voliteľné)", licenseNotes: "Poznámky k licencii / ADR / GKI (voliteľné)" },
+    partner: { title: "Partnerský záujem", subtitle: "Dopyt odosielateľa, príjemcu, skladu alebo colného partnera.", companyName: "Názov spoločnosti *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Colný maklér" },{ value: "other_partner", label: "Iný partner" }], contactName: "Kontaktné meno *", email: "Email *", phone: "Phone", notes: "Notes" },
   },
   authorityEfti: {
     cards: [

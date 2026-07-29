@@ -38,7 +38,7 @@ export default async function ContactPage({ params }: PageProps) {
             >
               {siteConfig.contactEmail}
             </a>
-            <DisclaimerBox>
+            <DisclaimerBox title={content.moduleLabels.important}>
               <p>{content.home.contact.consentNote}</p>
             </DisclaimerBox>
             <Link

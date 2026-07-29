@@ -127,7 +127,7 @@ export const legalFi: LegalContent = {
       },
       {
         title: "Sisäisen testauksen tila",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Pääsy on tällä hetkellä saatavilla kontrolloidun pilottiohjelman kautta. Ei julkista Play Kaupan latausta.",
       },
       {
         title: "Vastuun rajoitus",

@@ -127,7 +127,7 @@ export const legalIs: LegalContent = {
       },
       {
         title: "Staða innri prófunar",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Aðgangur er nú í boði í gegnum stýrt tilraunaverkefni. Ekkert opinbert Play Store niðurhal.",
       },
       {
         title: "Takmörkun ábyrgðar",

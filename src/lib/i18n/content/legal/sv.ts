@@ -127,7 +127,7 @@ export const legalSv: LegalContent = {
       },
       {
         title: "Intern teststatus",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Tillgång är för närvarande tillgänglig genom ett kontrollerat pilotprogram. Ingen offentlig nedladdning av Play Butik.",
       },
       {
         title: "Ansvarsbegränsning",

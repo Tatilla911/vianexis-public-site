@@ -127,7 +127,7 @@ export const legalMk: LegalContent = {
       },
       {
         title: "Статус на внатрешно тестирање",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Пристапот во моментов е достапен преку контролирана пилот програма. Нема јавно преземање на Play Store.",
       },
       {
         title: "Ограничување на одговорноста",

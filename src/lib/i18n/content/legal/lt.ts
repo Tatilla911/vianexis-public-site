@@ -127,7 +127,7 @@ export const legalLt: LegalContent = {
       },
       {
         title: "Vidinio testavimo būsena",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Šiuo metu prieiga pasiekiama naudojant kontroliuojamą bandomąją programą. Nėra viešos „Play“ parduotuvės atsisiuntimo.",
       },
       {
         title: "Atsakomybės apribojimas",

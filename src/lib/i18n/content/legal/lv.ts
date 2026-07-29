@@ -127,7 +127,7 @@ export const legalLv: LegalContent = {
       },
       {
         title: "Iekšējās pārbaudes statuss",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Piekļuve pašlaik ir pieejama, izmantojot kontrolētu izmēģinājuma programmu. Nav publiskas Play veikala lejupielādes.",
       },
       {
         title: "Atbildības ierobežojums",

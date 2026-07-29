@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 
 type DisclaimerBoxProps = {
-  title?: string;
+  title: string;
   children: React.ReactNode;
   className?: string;
 };
 
 export function DisclaimerBox({
-  title = "Fontos tudnivaló",
+  title,
   children,
   className,
 }: DisclaimerBoxProps) {

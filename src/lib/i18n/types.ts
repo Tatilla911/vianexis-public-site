@@ -45,6 +45,8 @@ export type SiteContent = {
   hero: {
     title: string;
     subtitle: string;
+    /** Optional word inside title rendered with gold highlight. */
+    highlightWord?: string;
     primaryCta: string;
     secondaryCta: string;
     stats: { label: string; value: string }[];
@@ -130,10 +132,18 @@ export type SiteContent = {
     common: {
       privacy: string;
       submit: string;
+      submitting: string;
       intakeDisabled: string;
       successTitle: string;
       successBody: string;
       newSubmission: string;
+      referenceLabel: string;
+      submittedAtLabel: string;
+      statusLabel: string;
+      statusUnderReview: string;
+      nextStep: string;
+      captchaHint: string;
+      supportContact: string;
       errors: {
         required: string;
         email: string;
@@ -141,6 +151,12 @@ export type SiteContent = {
         password: string;
         privacy: string;
         submitFailed: string;
+        duplicate: string;
+        duplicateWithRef: string;
+        captchaRequired: string;
+        captchaInvalid: string;
+        spam: string;
+        network: string;
       };
     };
     company: {

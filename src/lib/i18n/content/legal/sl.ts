@@ -39,7 +39,7 @@ export const legalSl: LegalContent = {
         "Varnost, revizija in sledljivost.",
         "Nadzorovan dostop do podpore na revizijski način.",
         "Preprečevanje in dokumentiranje pravnih in poslovnih sporov.",
-        "Improving app operation and troubleshooting.",
+        "Izboljšanje delovanja aplikacije in odpravljanje težav.",
         "Interno testiranje, pilot in evalvacija dostopa."
       ],
     },
@@ -127,7 +127,7 @@ export const legalSl: LegalContent = {
       },
       {
         title: "Stanje internega testiranja",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Dostop je trenutno na voljo prek nadzorovanega pilotnega programa. Ni javnega prenosa v Trgovini Play.",
       },
       {
         title: "Omejitev odgovornosti",

@@ -127,7 +127,7 @@ export const legalMt: LegalContent = {
       },
       {
         title: "Stat tal-ittestjar intern",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "L-aċċess bħalissa huwa disponibbli permezz ta' programm pilota kkontrollat. L-ebda download pubbliku tal-Play Store.",
       },
       {
         title: "Limitazzjoni ta' responsabbiltà",

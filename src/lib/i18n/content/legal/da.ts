@@ -86,7 +86,7 @@ export const legalDa: LegalContent = {
       ],
     },
     dataContact: {
-      title: "Privacy contact",
+      title: "Privatlivskontakt",
       body: "Spørgsmål om beskyttelse af personlige oplysninger: info@vianexis.eu. Den endelige controllerkontakt vil fremgå af den offentliggjorte meddelelse.",
     },
     playUrl: "Stable Play Console privatlivs-URL: https://vianexis.eu/en/privacy",
@@ -127,7 +127,7 @@ export const legalDa: LegalContent = {
       },
       {
         title: "Intern teststatus",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Adgang er i øjeblikket tilgængelig gennem et kontrolleret pilotprogram. Ingen offentlig download af Play Butik.",
       },
       {
         title: "Ansvarsbegrænsning",

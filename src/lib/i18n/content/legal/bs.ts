@@ -127,7 +127,7 @@ export const legalBs: LegalContent = {
       },
       {
         title: "Status internog testiranja",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Pristup je trenutno dostupan putem kontroliranog pilot programa. Nema javnog preuzimanja iz Play prodavnice.",
       },
       {
         title: "Ograničenje odgovornosti",

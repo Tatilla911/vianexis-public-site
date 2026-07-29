@@ -56,14 +56,14 @@ export const contentNl: SiteContent = {
     ],
   },
     platformStatus: {
-    title: "Controlled pilot access",
+    title: "Gecontroleerde toegang voor piloten",
     items: [
-      "ViaNexis is currently available through a pilot program with selected carriers and drivers.",
-      "Access is activated after individual discussion and approval.",
-      "No public app-store download.",
+      "ViaNexis is momenteel beschikbaar via een pilotprogramma met geselecteerde vervoerders en chauffeurs.",
+      "Toegang wordt geactiveerd na individuele bespreking en goedkeuring.",
+      "Geen openbare app-store-download.",
     ],
     disclaimer:
-      "ViaNexis does not claim the system is officially accepted or certified in every country.",
+      "ViaNexis beweert niet dat het systeem in elk land officieel geaccepteerd of gecertificeerd is.",
   },
 
   moduleLabels: {
@@ -147,7 +147,7 @@ export const contentNl: SiteContent = {
       id: "audit-support",
       title: "Toegang tot audits en ondersteuning",
       goal: "Traceerbaar logboek; gecontroleerde ondersteuningstoegang voor het oplossen van problemen.",
-      appFoundation: "Event logging for trip and document actions; auditable support sessions.",
+      appFoundation: "Gebeurtenisregistratie voor reis- en documentacties; controleerbare ondersteuningssessies.",
       backendDependency: "Auditexport, ondersteuningsbeleid, toestemmingsmatrix voor ondernemingen.",
       disclaimer: "Het auditlogboek is geen automatisch juridisch bewijs.",
     }
@@ -247,7 +247,7 @@ export const contentNl: SiteContent = {
     contact: {
       title: "Contact- en interne testen",
       subtitle: "Gecontroleerde toegang – geen automatische registratie, geen openbare Play-download.",
-      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
+      body: "Toegang is momenteel beschikbaar via een gecontroleerd proefprogramma. Activering volgt op een individuele beoordeling.",
       consentNote: "Het systeem verwerkt documenten, chauffeursworkflows, bedrijfsgegevens en machtigingen; elke toegang wordt individueel beoordeeld.",
       contactLink: "Neem contact met ons op →",
     },
@@ -308,17 +308,38 @@ export const contentNl: SiteContent = {
   },
   applicationForms: {
     common: {
-      privacy: "I accept the privacy policy and consent to data processing. *",
-      submit: "Submit application",
-      intakeDisabled: "Online applications are being prepared. Contact support@vianexis.eu or try again later.",
-      successTitle: "Application received",
-      successBody: "Thank you. Your application is in review. Access is not automatic until approved.",
-      newSubmission: "New application",
-      errors: { required: "This field is required.", email: "Email is required.", emailInvalid: "Enter a valid email address.", password: "Password must be at least 8 characters.", privacy: "Privacy acceptance is required.", submitFailed: "Application could not be sent. Try again later." },
+      privacy: "Ik accepteer het privacybeleid en ga akkoord met de gegevensverwerking. *",
+      submit: "Aanvraag indienen",
+      submitting: "Submitting…",
+      intakeDisabled: "Online sollicitaties worden voorbereid. Neem contact op met support@vianexis.eu of probeer het later opnieuw.",
+      successTitle: "Aanvraag ontvangen",
+      successBody: "Bedankt. Uw aanvraag wordt beoordeeld. Toegang wordt pas verleend nadat een ViaNexis-beheerder deze heeft goedgekeurd.",
+      newSubmission: "Nieuwe applicatie",
+      referenceLabel: "Toepassingsreferentie",
+      submittedAtLabel: "Submitted at",
+      statusLabel: "Status",
+      statusUnderReview: "Under review",
+      nextStep: "Na beoordeling nemen wij contact met u op. Bewaar uw toepassingsreferentie voor ondersteuning.",
+      captchaHint: "Voltooi de veiligheidscontrole voordat u het verzendt.",
+      supportContact: "Hulp nodig? Neem contact op via {email}.",
+      errors: {
+        required: "Dit veld is verplicht.",
+        email: "E-mail is vereist.",
+        emailInvalid: "Voer een geldig e-mailadres in.",
+        password: "Wachtwoord moet minimaal 8 tekens lang zijn.",
+        privacy: "Acceptatie van privacy is vereist.",
+        submitFailed: "Aanvraag kon niet worden verzonden. Probeer het later opnieuw.",
+        duplicate: "Er is al een aanvraag voor dit bedrijf of e-mailadres in behandeling.",
+        duplicateWithRef: "Er loopt al een aanvraag voor dit bedrijf of e-mailadres (referentie: {reference}).",
+        captchaRequired: "Voltooi de veiligheidscontrole om door te gaan.",
+        captchaInvalid: "De beveiligingscontrole is verlopen of mislukt. Probeer het opnieuw.",
+        spam: "Inzending geblokkeerd.",
+        network: "Netwerkfout. Controleer uw verbinding en probeer het opnieuw.",
+      },
     },
-    company: { title: "Company application", subtitle: "Apply for ViaNexis company platform access.", companyName: "Company name *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Contact name *", contactEmail: "Contact email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Modules of interest", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Dispatch portal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Fleet / workshop" },{ value: "pallet_packaging", label: "Pallet / packaging" },{ value: "external_shipper_receiver", label: "External shipper / receiver" }], notes: "Notes" },
-    driver: { title: "Driver application", subtitle: "Self-registration — pending approval before login.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Company name (optional)", companyCode: "Invite / company code (optional)", licenseNotes: "License / ADR / GKI notes (optional)" },
-    partner: { title: "Partner interest", subtitle: "Shipper, receiver, warehouse or customs partner inquiry.", companyName: "Company name *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Customs broker" },{ value: "other_partner", label: "Other partner" }], contactName: "Contact name *", email: "Email *", phone: "Phone", notes: "Notes" },
+    company: { title: "Bedrijfsaanvraag", subtitle: "Vraag toegang tot het ViaNexis-bedrijfsplatform aan.", companyName: "Bedrijfsnaam *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Naam contactpersoon *", contactEmail: "E-mailadres voor contact *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interessante modules", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Verzendingsportaal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Vloot / werkplaats" },{ value: "pallet_packaging", label: "Pallet/verpakking" },{ value: "external_shipper_receiver", label: "Externe verzender/ontvanger" }], notes: "Notes" },
+    driver: { title: "Stuurprogramma-applicatie", subtitle: "Zelfregistratie — in afwachting van goedkeuring vóór inloggen.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Bedrijfsnaam (optioneel)", companyCode: "Uitnodiging / bedrijfscode (optioneel)", licenseNotes: "Licentie / ADR / GKI-opmerkingen (optioneel)" },
+    partner: { title: "Partnerbelang", subtitle: "Onderzoek naar verzender, ontvanger, magazijn of douanepartner.", companyName: "Bedrijfsnaam *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Douane-expediteur" },{ value: "other_partner", label: "Andere partner" }], contactName: "Naam contactpersoon *", email: "Email *", phone: "Phone", notes: "Notes" },
   },
   authorityEfti: {
     cards: [
@@ -335,7 +356,7 @@ export const contentNl: SiteContent = {
         description: "Gelogde toegang en het delen van evenementen.",
       },
       {
-        title: "eFTI-ready foundation",
+        title: "eFTI-ready stichting",
         description: "Technische basis voor toekomstige integratie – geen certificering.",
       }
     ],

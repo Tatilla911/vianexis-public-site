@@ -4,6 +4,16 @@ function isEnabled(): boolean {
   return Boolean(process.env.API_BASE_URL?.trim());
 }
 
+async function parseUpstreamBody(upstream: Response): Promise<unknown> {
+  const text = await upstream.text();
+  if (!text) return {};
+  try {
+    return JSON.parse(text) as unknown;
+  } catch {
+    return { error: "upstream_failed", detail: text.slice(0, 200) };
+  }
+}
+
 export async function GET() {
   return NextResponse.json({ enabled: isEnabled() });
 }
@@ -35,6 +45,7 @@ export async function POST(
     return NextResponse.json({ error: "privacy_required" }, { status: 400 });
   }
 
+  // Never log captcha tokens or raw body secrets.
   const apiBase = process.env.API_BASE_URL!.replace(/\/$/, "");
   try {
     const upstream = await fetch(`${apiBase}/public/applications/${type}`, {
@@ -42,14 +53,13 @@ export async function POST(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
+    const data = await parseUpstreamBody(upstream);
     if (!upstream.ok) {
-      const text = await upstream.text();
-      return NextResponse.json(
-        { error: "upstream_failed", detail: text.slice(0, 200) },
-        { status: upstream.status >= 500 ? 502 : upstream.status },
-      );
+      // Prefer structured upstream JSON (code, existingRequest) over opaque text.
+      return NextResponse.json(data, {
+        status: upstream.status >= 500 ? 502 : upstream.status,
+      });
     }
-    const data = await upstream.json();
     return NextResponse.json(data, { status: 201 });
   } catch {
     return NextResponse.json({ error: "upstream_unreachable" }, { status: 502 });

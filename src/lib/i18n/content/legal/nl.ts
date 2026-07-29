@@ -127,7 +127,7 @@ export const legalNl: LegalContent = {
       },
       {
         title: "Interne teststatus",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Toegang is momenteel beschikbaar via een gecontroleerd proefprogramma. Geen openbare Play Store-download.",
       },
       {
         title: "Beperking van aansprakelijkheid",

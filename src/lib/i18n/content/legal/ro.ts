@@ -127,7 +127,7 @@ export const legalRo: LegalContent = {
       },
       {
         title: "Starea testării interne",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Accesul este disponibil în prezent printr-un program pilot controlat. Nicio descărcare publică din Magazinul Play.",
       },
       {
         title: "Limitarea răspunderii",

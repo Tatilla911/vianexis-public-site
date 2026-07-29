@@ -127,7 +127,7 @@ export const legalAr: LegalContent = {
       },
       {
         title: "حالة الاختبار الداخلي",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "الوصول متاح حاليًا من خلال برنامج تجريبي يتم التحكم فيه. لا يوجد تنزيل لمتجر Play العام.",
       },
       {
         title: "حدود المسؤولية",

@@ -24,7 +24,7 @@ export default async function PilotPage({ params }: PageProps) {
         }}
       />
       <Section>
-        <DisclaimerBox>
+        <DisclaimerBox title={content.moduleLabels.important}>
           <p>{content.home.contact.consentNote}</p>
         </DisclaimerBox>
       </Section>

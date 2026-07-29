@@ -127,7 +127,7 @@ export const legalGa: LegalContent = {
       },
       {
         title: "Stádas tástála inmheánach",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Tá rochtain ar fáil faoi láthair trí chlár píolótach rialaithe. Níl aon íoslódáil sa store súgartha poiblí.",
       },
       {
         title: "Teorainn le dliteanas",

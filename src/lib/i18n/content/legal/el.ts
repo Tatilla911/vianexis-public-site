@@ -127,7 +127,7 @@ export const legalEl: LegalContent = {
       },
       {
         title: "Κατάσταση εσωτερικής δοκιμής",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Η πρόσβαση είναι προς το παρόν διαθέσιμη μέσω ενός ελεγχόμενου πιλοτικού προγράμματος. Δεν υπάρχει δημόσια λήψη του Play Store.",
       },
       {
         title: "Περιορισμός ευθύνης",

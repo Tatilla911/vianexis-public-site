@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
+import type { Locale } from "@/lib/i18n/types";
 import { cn } from "@/lib/utils";
 
 export type BreadcrumbItem = {
@@ -8,12 +10,15 @@ export type BreadcrumbItem = {
 
 type BreadcrumbProps = {
   items: BreadcrumbItem[];
+  locale: Locale;
   className?: string;
 };
 
-export function Breadcrumb({ items, className }: BreadcrumbProps) {
+export function Breadcrumb({ items, locale, className }: BreadcrumbProps) {
+  const label = resolveVisualMarketing(locale).ui.breadcrumb;
+
   return (
-    <nav aria-label="Breadcrumb" className={cn("text-meta", className)}>
+    <nav aria-label={label} className={cn("text-meta", className)}>
       <ol className="flex flex-wrap items-center gap-2 text-neutral-grey">
         {items.map((item, index) => {
           const last = index === items.length - 1;

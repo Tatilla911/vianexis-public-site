@@ -5,6 +5,7 @@ import { localeNames, locales } from "@/lib/i18n/locales";
 import { switchLocalePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
 import { toPublicTranslationStatus } from "@/lib/i18n/translation-status";
+import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
 import { cn } from "@/lib/utils";
 
 type LanguageSwitcherProps = {
@@ -18,11 +19,12 @@ export function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const ui = resolveVisualMarketing(currentLocale).ui;
 
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <label htmlFor="locale-select" className="sr-only">
-        Language
+        {ui.language}
       </label>
       <select
         id="locale-select"
@@ -32,11 +34,11 @@ export function LanguageSwitcher({
           router.push(switchLocalePath(pathname, next));
         }}
         className="form-control rounded-md border border-navy-600 bg-navy-800 px-2.5 py-2 font-semibold text-white"
-        aria-label="Language"
+        aria-label={ui.language}
       >
         {locales.map((locale) => {
           const status = toPublicTranslationStatus(locale);
-          const suffix = status === "reviewed" ? "" : " · draft";
+          const suffix = status === "reviewed" ? "" : ui.draftSuffix;
           return (
             <option key={locale} value={locale}>
               {localeNames[locale]} ({locale.toUpperCase()}){suffix}

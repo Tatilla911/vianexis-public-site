@@ -1,183 +1,183 @@
 import type { LegalContent } from "../legal-types";
 
 export const legalNb: LegalContent = {
-  versionBadge: "Internal testing version — legal expert review in progress",
+  versionBadge: "Intern testversjon — juridisk ekspertgjennomgang pågår",
   privacy: {
-    title: "Privacy notice — internal testing version",
-    intro: "This notice applies during the internal testing and preparation phase of the ViaNexis Driver app and related platform. The service is not a public Play Store download — Google Play internal testing preparation is in progress. The final comprehensive privacy policy will be published after legal review.",
+    title: "Personvernerklæring – intern testversjon",
+    intro: "Denne merknaden gjelder under den interne test- og forberedelsesfasen av ViaNexis Driver-appen og relatert plattform. Tjenesten er ikke en offentlig Play Store-nedlasting – forberedelse av intern testing i Google Play pågår. Den endelige omfattende personvernerklæringen vil bli publisert etter juridisk gjennomgang.",
     lastUpdated: "2026-07-05",
     controller: {
-      title: "Data controller",
-      body: "ViaNexis — vianexis.eu. Privacy contact: info@vianexis.eu",
+      title: "Behandlingsansvarlig",
+      body: "ViaNexis — vianexis.eu. Personvernkontakt: info@vianexis.eu",
     },
     scope: {
       title: "Scope",
-      body: "This notice covers the ViaNexis Driver mobile app, related driver and trip workflows, and the web contact form. The company admin and dispatcher portal are subject to separate contractual and privacy terms.",
+      body: "Denne merknaden dekker ViaNexis Driver-mobilappen, relaterte sjåfør- og turarbeidsflyter og nettkontaktskjemaet. Selskapets admin- og ekspeditørportal er underlagt separate kontrakts- og personvernvilkår.",
     },
     dataCategories: {
-      title: "Data we process",
+      title: "Data vi behandler",
       items: [
-        "Account and contact data: name, email, phone, company, role, country.",
-        "Driver profile data: identifiers, role, language settings, permissions.",
-        "Trip data: trip IDs, status, stops, timestamps, metadata.",
-        "Documents: CMR, delivery notes, invoices, photos, scans, digital signatures.",
-        "Messages and notifications: trip-linked communication and alert events.",
-        "Location: only with user permission and while in use (when-in-use), if the feature is active.",
-        "Device and session metadata: device type, OS version, app version, session identifiers.",
-        "Diagnostics and logs: technical logs and error reports — if enabled.",
-        "Pallet and packaging exchange data: type, quantity, shortage, damage, notes.",
-        "ADR / customs helper usage data: searches, views — not official decisions.",
-        "Notification permission and future push token: production push (FCM) is a separate backend dependency."
+        "Konto- og kontaktdata: navn, e-post, telefon, firma, rolle, land.",
+        "Førerprofildata: identifikatorer, rolle, språkinnstillinger, tillatelser.",
+        "Turdata: tur-IDer, status, stopp, tidsstempler, metadata.",
+        "Dokumenter: CMR, følgesedler, fakturaer, bilder, skanninger, digitale signaturer.",
+        "Meldinger og varsler: trip-linked kommunikasjon og varslingshendelser.",
+        "Plassering: kun med brukertillatelse og mens den er i bruk (når den er i bruk), hvis funksjonen er aktiv.",
+        "Enhets- og øktmetadata: enhetstype, OS-versjon, appversjon, øktidentifikatorer.",
+        "Diagnostikk og logger: tekniske logger og feilrapporter – hvis aktivert.",
+        "Pall og emballasje utveksler data: type, mengde, mangel, skader, merknader.",
+        "ADR / tollhjelpers bruksdata: søk, visninger — ikke offisielle avgjørelser.",
+        "Varslingstillatelse og fremtidig push-token: produksjons-push (FCM) er en separat backend-avhengighet."
       ],
     },
     purposes: {
-      title: "Purposes of processing",
+      title: "Formål med behandlingen",
       items: [
-        "Managing trip workflows and documenting performance.",
-        "Document management, signatures, and evidence package assembly.",
-        "Trip-linked communication and operational notifications.",
-        "Security, audit, and traceability.",
-        "Controlled support access in an auditable manner.",
-        "Preventing and documenting legal and business disputes.",
-        "Improving app operation and troubleshooting.",
-        "Internal testing, pilot, and access evaluation."
+        "Administrere turarbeidsflyter og dokumentere ytelse.",
+        "Dokumenthåndtering, signaturer og montering av bevispakke.",
+        "Trip-linked kommunikasjon og driftsvarsler.",
+        "Sikkerhet, revisjon og sporbarhet.",
+        "Kontrollert støttetilgang på en kontrollerbar måte.",
+        "Forebygging og dokumentering av juridiske og forretningsmessige tvister.",
+        "Forbedre appdrift og feilsøking.",
+        "Intern testing, pilot og tilgangsevaluering."
       ],
     },
     sharing: {
       title: "Data sharing",
       items: [
-        "Employer / transport company and authorised admin/dispatcher users — per tenant scope.",
+        "Arbeidsgiver/transportfirma og autoriserte admin/ekspeditørbrukere — per leietakeromfang.",
         "Driver's own trip and document data per company rules.",
-        "Authorised platform support only with audited, limited, justified access.",
-        "Authorities or partners only per legal basis, contract, or company decision.",
-        "AI/OCR/translation provider only via backend-controlled future integration, if applied — with human review.",
-        "We do not sell personal data. No marketing push."
+        "Autorisert plattformstøtte kun med revidert, begrenset, begrunnet tilgang.",
+        "Myndigheter eller partnere kun i henhold til juridisk grunnlag, kontrakt eller bedriftsbeslutning.",
+        "AI/OCR/oversettelsesleverandør kun via backend-kontrollert fremtidig integrasjon, hvis brukt - med menneskelig vurdering.",
+        "Vi selger ikke personopplysninger. Ingen markedsføringspress."
       ],
     },
     rights: {
       title: "Your rights",
       items: [
-        "Access to your data — via company admin or support channel.",
-        "Rectification of inaccurate data.",
-        "Erasure where legally possible and company processes allow.",
-        "Objection or restriction where legally justified.",
-        "Data portability where applicable law provides it.",
-        "Complaint to a supervisory authority.",
-        "Contact: info@vianexis.eu"
+        "Tilgang til dataene dine – via bedriftsadministrator eller støttekanal.",
+        "Retting av unøyaktige data.",
+        "Sletting der det er lovlig mulig og bedriftsprosesser tillater det.",
+        "Innsigelse eller begrensning der det er juridisk begrunnet.",
+        "Dataportabilitet der gjeldende lov gir det.",
+        "Klage til en tilsynsmyndighet.",
+        "Kontakt: info@vianexis.eu"
       ],
     },
     notifications: {
-      title: "Notifications",
-      body: "The app uses operational notifications — not marketing push. Lockscreen text is privacy-safe by default. Production push (FCM/APNs) and device token handling are backend dependencies — may be partial or not live during internal testing. Notification permission is the user's choice.",
+      title: "Varsler",
+      body: "Appen bruker operative varsler – ikke markedsførings-push. Tekst på låseskjerm er personvernsikker som standard. Produksjons-push (FCM/APN-er) og enhetstokenhåndtering er backend-avhengigheter – kan være delvis eller ikke aktiv under intern testing. Varslingstillatelse er brukerens valg.",
     },
     location: {
       title: "Location",
-      body: "Location is processed only with user permission and while in use (when-in-use), if the feature is active — for map, own position, and trip evidence purposes. No background tracking in the current state. Location does not guarantee route compliance or legal compliance.",
+      body: "Plassering behandles kun med brukertillatelse og mens den er i bruk (når den er i bruk), hvis funksjonen er aktiv - for kart, egen posisjon og reisebevisformål. Ingen bakgrunnssporing i gjeldende tilstand. Plassering garanterer ikke ruteoverholdelse eller lovoverholdelse.",
     },
     importantNotices: {
-      title: "Important notices",
+      title: "Viktige merknader",
       items: [
-        "AI, OCR, and automatic translation are assistive tools — human review required.",
-        "ADR information is a helper — does not replace official sources or legislation.",
-        "ViaNexis is not a certified eFTI platform.",
-        "Not an emergency or SOS service.",
-        "Digital documents do not automatically carry legal probative force.",
-        "Service is in internal testing / preparation — not a public live production system."
+        "AI, OCR og automatisk oversettelse er hjelpeverktøy – menneskelig vurdering kreves.",
+        "ADR-informasjon er en hjelper — erstatter ikke offisielle kilder eller lovgivning.",
+        "ViaNexis er ikke en sertifisert eFTI-plattform.",
+        "Ikke en nød- eller SOS-tjeneste.",
+        "Digitale dokumenter har ikke automatisk rettslig beviskraft.",
+        "Tjenesten er i intern testing / forberedelse - ikke et offentlig live produksjonssystem."
       ],
     },
     dataContact: {
-      title: "Privacy contact",
-      body: "Privacy questions: info@vianexis.eu. Final controller contact will appear in the published notice.",
+      title: "Personvernkontakt",
+      body: "Personvernspørsmål: info@vianexis.eu. Endelig kontrollkontakt vil fremgå av den publiserte kunngjøringen.",
     },
-    playUrl: "Stable Play Console privacy URL: https://vianexis.eu/en/privacy",
+    playUrl: "Stable Play Console personvern-URL: https://vianexis.eu/en/privacy",
   },
   terms: {
-    title: "Terms of use — internal testing version",
-    intro: "These terms apply during the ViaNexis platform internal testing and pilot phase. The service is not a public Play Store product — Google Play internal testing preparation is in progress. Final terms will be published after legal review.",
+    title: "Vilkår for bruk — intern testversjon",
+    intro: "Disse vilkårene gjelder under ViaNexis-plattformens interne testing og pilotfase. Tjenesten er ikke et offentlig Play Butikk-produkt – forberedelse av intern testing på Google Play pågår. Endelige vilkår vil bli publisert etter juridisk gjennomgang.",
     sections: [
       {
-        title: "Nature of the service",
-        body: "ViaNexis provides digital transport evidence and a driver operations platform for transport companies. eFTI-ready foundation — not a certified eFTI platform. Does not promise authority acceptance in every country.",
+        title: "Tjenestens art",
+        body: "ViaNexis leverer digital transportbevis og en sjåførdriftsplattform for transportselskaper. eFTI-klar fundament – ​​ikke en sertifisert eFTI-plattform. Lover ikke autoritetsgodkjenning i alle land.",
       },
       {
-        title: "Internal testing",
-        body: "Access is controlled — via pilot or internal testing invitation. Not automatic public registration. Backend, push notifications, and some integrations are connected gradually.",
+        title: "Intern testing",
+        body: "Tilgangen kontrolleres – via pilot- eller intern testinvitasjon. Ikke automatisk offentlig registrering. Backend, push-varslinger og noen integrasjoner kobles sammen gradvis.",
       },
       {
-        title: "User responsibility",
-        body: "Driver and company are responsible for trip, document, ADR, and customs compliance. The app supports documentation — does not replace legal advice, ADR experts, or authorities.",
+        title: "Brukeransvar",
+        body: "Sjåfør og firma er ansvarlige for reise, dokumenter, ADR og tolloverholdelse. Appen støtter dokumentasjon – erstatter ikke juridisk rådgivning, ADR-eksperter eller myndigheter.",
       },
       {
         title: "Availability",
-        body: "During internal testing, uptime and features may vary. Specific SLA applies only under contract.",
+        body: "Under intern testing kan oppetid og funksjoner variere. Spesifikk SLA gjelder kun under kontrakt.",
       },
       {
-        title: "Limitation of liability",
-        body: "ViaNexis does not promise automatic legal probative force, flawless OCR/AI/translation, emergency services, or production push readiness if still a backend dependency.",
+        title: "Ansvarsbegrensning",
+        body: "ViaNexis lover ikke automatisk juridisk beviskraft, feilfri OCR/AI/oversettelse, nødtjenester eller produksjons-push-beredskap hvis det fortsatt er en backend-avhengighet.",
       }
     ],
   },
   legalNotice: {
-    title: "Legal notice — internal testing version",
-    intro: "This page describes the ViaNexis platform internal testing and preparation status. It does not replace full legal documentation or contractual terms.",
+    title: "Juridisk merknad – intern testversjon",
+    intro: "Denne siden beskriver ViaNexis-plattformens interne testing og forberedelsesstatus. Den erstatter ikke fullstendig juridisk dokumentasjon eller kontraktsmessige vilkår.",
     sections: [
       {
-        title: "Nature of the platform",
-        body: "Digital transport evidence, document management, messaging, notifications, and company control in one system. eFTI-ready foundation — not a certified eFTI platform.",
+        title: "Plattformens art",
+        body: "Digital transportbevis, dokumenthåndtering, meldinger, varslinger og bedriftskontroll i ett system. eFTI-klar fundament – ​​ikke en sertifisert eFTI-plattform.",
       },
       {
-        title: "Internal testing status",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        title: "Intern teststatus",
+        body: "Tilgang er for tiden tilgjengelig gjennom et kontrollert pilotprogram. Ingen offentlig nedlasting av Play Store.",
       },
       {
-        title: "Limitation of liability",
-        body: "We do not promise authority acceptance, automatic legal probative force, flawless AI/OCR/translation, emergency services, or full production push readiness.",
+        title: "Ansvarsbegrensning",
+        body: "Vi lover ikke autoritetsgodkjenning, automatisk rettslig beviskraft, feilfri AI/OCR/oversettelse, nødtjenester eller full produksjonsberedskap.",
       },
       {
         title: "Contact",
-        body: "Legal and privacy questions: info@vianexis.eu",
+        body: "Juridiske spørsmål og personvernspørsmål: info@vianexis.eu",
       }
     ],
-    relatedDocs: "Related documents",
+    relatedDocs: "Relaterte dokumenter",
   },
   disclaimersPage: {
-    title: "Responsible use — disclaimers",
-    intro: "The texts below describe important limits of platform use. Internal testing version — does not replace legal advice.",
+    title: "Ansvarlig bruk — ansvarsfraskrivelser",
+    intro: "Tekstene nedenfor beskriver viktige grenser for plattformbruk. Intern testversjon — erstatter ikke juridisk rådgivning.",
     items: [
       {
         id: "adr",
-        title: "ADR — responsible use",
-        body: "ADR and tunnel data are helper information. Official sources, tables, and current local rules must always be verified. ViaNexis does not replace legislation, ADR training, the company's DG officer, or authority decisions.",
+        title: "ADR — ansvarlig bruk",
+        body: "ADR og tunneldata er hjelpeinformasjon. Offisielle kilder, tabeller og gjeldende lokale regler må alltid verifiseres. ViaNexis erstatter ikke lovgivning, ADR-opplæring, selskapets DG-ansvarlig eller myndighetsvedtak.",
       },
       {
         id: "ai-ocr",
-        title: "AI, OCR & translation",
-        body: "Assistive tools — human review required. Original document and message remain primary. Not legal advice and not certified translation.",
+        title: "AI, OCR og oversettelse",
+        body: "Hjelpeverktøy – menneskelig vurdering kreves. Originaldokument og melding forblir primære. Ikke juridisk rådgivning og ikke sertifisert oversettelse.",
       },
       {
         id: "notifications",
-        title: "Notifications & push",
-        body: "Operational notifications — not marketing push. Privacy-safe lockscreen by default. Production push (FCM/APNs) is a backend dependency — may not be live during internal testing.",
+        title: "Varsler og push",
+        body: "Driftsvarsler – ikke markedsførings-push. Personvernsikker låseskjerm som standard. Produksjons-push (FCM/APN-er) er en backend-avhengighet – er kanskje ikke aktiv under intern testing.",
       },
       {
         id: "truck-map",
-        title: "Truck map / community data",
-        body: "Map and route for operational orientation — does not guarantee legal restrictions, permits, or community data accuracy. Not a substitute for official navigation.",
+        title: "Lastebilkart / samfunnsdata",
+        body: "Kart og rute for operasjonell orientering – garanterer ikke juridiske restriksjoner, tillatelser eller fellesskapsdatanøyaktighet. Ikke en erstatning for offisiell navigasjon.",
       },
       {
         id: "pallet",
-        title: "Pallet / packaging exchange evidence",
-        body: "Recording supports dispute documentation. PDF evidence section in completed trip package is not fully ready in all cases. Does not decide disputes.",
+        title: "Pall / emballasje utveksle bevis",
+        body: "Opptak støtter tvistedokumentasjon. PDF-bevisdel i gjennomført turpakke er ikke helt klar i alle tilfeller. Avgjør ikke tvister.",
       },
       {
         id: "legal-validity",
-        title: "Legal validity / documents",
-        body: "Digital documents and signatures do not automatically carry legal probative force. Acceptance varies by country and customer.",
+        title: "Rettslig gyldighet / dokumenter",
+        body: "Digitale dokumenter og signaturer har ikke automatisk rettslig beviskraft. Aksept varierer etter land og kunde.",
       },
       {
         id: "efti",
-        title: "eFTI & authority sharing",
-        body: "ViaNexis is not a certified eFTI platform. Does not promise authority acceptance in every country. eFTI-ready foundation is technical preparedness — not a certificate.",
+        title: "eFTI og myndighetsdeling",
+        body: "ViaNexis er ikke en sertifisert eFTI-plattform. Lover ikke autoritetsgodkjenning i alle land. eFTI-klar fundament er teknisk beredskap — ikke et sertifikat.",
       }
     ],
   },

@@ -127,7 +127,7 @@ export const legalRu: LegalContent = {
       },
       {
         title: "Статус внутреннего тестирования",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Доступ в настоящее время доступен через контролируемую пилотную программу. Нет загрузки из общедоступного Play Store.",
       },
       {
         title: "Ограничение ответственности",

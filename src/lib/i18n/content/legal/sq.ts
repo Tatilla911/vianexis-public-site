@@ -127,7 +127,7 @@ export const legalSq: LegalContent = {
       },
       {
         title: "Statusi i testimit të brendshëm",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Aksesi është aktualisht i disponueshëm përmes një programi pilot të kontrolluar. Nuk ka shkarkim publik në Play Store.",
       },
       {
         title: "Kufizimi i përgjegjësisë",

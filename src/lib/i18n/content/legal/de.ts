@@ -127,7 +127,7 @@ export const legalDe: LegalContent = {
       },
       {
         title: "Interner Teststatus",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "Der Zugang ist derzeit über ein kontrolliertes Pilotprogramm möglich. Kein öffentlicher Play Store-Download.",
       },
       {
         title: "Haftungsbeschränkung",
