@@ -11,6 +11,9 @@ const publicPaths = [
   "/legal",
   "/disclaimers",
   "/pilot",
+  "/apply/company",
+  "/apply/driver",
+  "/apply/partner",
   "/driver-app",
 ];
 

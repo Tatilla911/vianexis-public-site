@@ -59,6 +59,7 @@ export function PublicApplicationForm({
   const copy = getContent(locale).applicationForms;
   const [values, setValues] = useState<Record<string, string | boolean | string[]>>({
     privacyAccepted: false,
+    termsAccepted: false,
     website: "",
     moduleInterests: [],
   });

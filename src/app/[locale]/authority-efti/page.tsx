@@ -23,7 +23,7 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
         title={content.nav.authorityEfti}
         subtitle={visual.authority.heroSubtitle}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.nav.requestAccess,
         }}
         secondaryCta={{
@@ -77,7 +77,7 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
         title={visual.pilotCta.title}
         subtitle={visual.pilotCta.subtitle}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.nav.requestAccess,
         }}
         secondaryCta={{

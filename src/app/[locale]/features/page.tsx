@@ -22,7 +22,7 @@ export default async function FeaturesPage({ params }: PageProps) {
         title={content.home.modules.title}
         subtitle={content.home.modules.subtitle}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.nav.requestAccess,
         }}
         secondaryCta={{

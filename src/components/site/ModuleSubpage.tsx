@@ -50,7 +50,7 @@ export function ModuleSubpage({
         title={platformModule.title}
         subtitle={platformModule.goal}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.nav.requestAccess,
         }}
         secondaryCta={{
@@ -201,7 +201,7 @@ export function ModuleSubpage({
         title={visual.pilotCta.title}
         subtitle={visual.pilotCta.subtitle}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.nav.requestAccess,
         }}
         secondaryCta={{

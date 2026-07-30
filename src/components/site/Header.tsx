@@ -132,7 +132,7 @@ export function Header({ locale }: HeaderProps) {
             <LanguageSwitcher currentLocale={locale} />
           </div>
           <Button
-            href={localePath(locale, "/pilot")}
+            href={localePath(locale, "/apply/company")}
             size="sm"
             className="hidden sm:inline-flex"
           >
@@ -229,7 +229,7 @@ export function Header({ locale }: HeaderProps) {
                     <LanguageSwitcher currentLocale={locale} />
                   </div>
                   <Button
-                    href={localePath(locale, "/pilot")}
+                    href={localePath(locale, "/apply/company")}
                     className="w-full"
                     onClick={closeMenu}
                   >
@@ -239,7 +239,7 @@ export function Header({ locale }: HeaderProps) {
 
                 <div className="hidden border-t border-navy-700 p-3 sm:block">
                   <Button
-                    href={localePath(locale, "/pilot")}
+                    href={localePath(locale, "/apply/company")}
                     className="w-full"
                     onClick={closeMenu}
                   >

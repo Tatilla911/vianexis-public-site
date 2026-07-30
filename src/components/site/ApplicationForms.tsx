@@ -26,9 +26,43 @@ function field(
   );
 }
 
+const companyExtraLabels: Record<
+  string,
+  { city: string; driverCount: string; terms: string; termsError: string }
+> = {
+  hu: {
+    city: "Székhely / város",
+    driverCount: "Sofőrök száma",
+    terms: "Elfogadom a felhasználási feltételeket. *",
+    termsError: "A felhasználási feltételek elfogadása kötelező.",
+  },
+  en: {
+    city: "Headquarters / city",
+    driverCount: "Number of drivers",
+    terms: "I accept the terms of use. *",
+    termsError: "Accepting the terms of use is required.",
+  },
+};
+
+function companyExtra(locale: Locale) {
+  return companyExtraLabels[locale] ?? companyExtraLabels.en;
+}
+
+function composeCompanyNotes(values: Record<string, string | boolean | string[]>): string | undefined {
+  const parts: string[] = [];
+  const city = String(values.city ?? "").trim();
+  const driverCount = String(values.driverCount ?? "").trim();
+  const notes = String(values.notes ?? "").trim();
+  if (city) parts.push(`City: ${city}`);
+  if (driverCount) parts.push(`Drivers: ${driverCount}`);
+  if (notes) parts.push(notes);
+  return parts.length ? parts.join("\n") : undefined;
+}
+
 export function CompanyApplicationForm({ locale }: { locale: Locale }) {
   const copy = getContent(locale).applicationForms.company;
   const common = getContent(locale).applicationForms.common;
+  const extra = companyExtra(locale);
 
   return (
     <PublicApplicationForm
@@ -42,6 +76,7 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
         if (!String(values.contactEmail ?? "").trim()) errors.contactEmail = common.errors.email;
         if (!String(values.contactPhone ?? "").trim()) errors.contactPhone = common.errors.required;
         if (!values.privacyAccepted) errors.privacy = common.errors.privacy;
+        if (!values.termsAccepted) errors.terms = extra.termsError;
         return errors;
       }}
       buildPayload={(values) => ({
@@ -53,7 +88,7 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
         contactPhone: String(values.contactPhone ?? "").trim(),
         fleetSize: String(values.fleetSize ?? "").trim() || undefined,
         moduleInterests: values.moduleInterests,
-        notes: String(values.notes ?? "").trim() || undefined,
+        notes: composeCompanyNotes(values),
       })}
     >
       {({ values, setValue, errors }) => (
@@ -64,11 +99,13 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
           </div>
           {field(copy.companyName, "companyName", values, setValue, errors)}
           {field(copy.country, "country", values, setValue, errors)}
+          {field(extra.city, "city", values, setValue, errors)}
           {field(copy.vatNumber, "vatNumber", values, setValue, errors)}
           {field(copy.contactName, "contactName", values, setValue, errors)}
           {field(copy.contactEmail, "contactEmail", values, setValue, errors, "email")}
           {field(copy.contactPhone, "contactPhone", values, setValue, errors)}
           {field(copy.fleetSize, "fleetSize", values, setValue, errors)}
+          {field(extra.driverCount, "driverCount", values, setValue, errors)}
           <label className="form-label md:col-span-2">
             <span className="mb-1 block font-medium text-white">{copy.moduleInterests}</span>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -100,6 +137,20 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
               value={String(values.notes ?? "")}
               onChange={(e) => setValue("notes", e.target.value)}
             />
+          </label>
+          <label className="form-label md:col-span-2 flex items-start gap-2">
+            <input
+              type="checkbox"
+              className="mt-1"
+              checked={Boolean(values.termsAccepted)}
+              onChange={(e) => setValue("termsAccepted", e.target.checked)}
+            />
+            <span>
+              {extra.terms}
+              {errors.terms ? (
+                <span className="form-error mt-1 block">{errors.terms}</span>
+              ) : null}
+            </span>
           </label>
         </div>
       )}

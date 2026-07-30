@@ -22,8 +22,8 @@ export default async function ContactPage({ params }: PageProps) {
         title={content.contactForm.title}
         subtitle={content.contactForm.subtitle}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
-          label: content.nav.pilot,
+          href: localePath(locale, "/apply/company"),
+          label: content.nav.requestAccess,
         }}
       />
       <Section variant="muted">

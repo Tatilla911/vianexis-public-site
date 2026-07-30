@@ -33,7 +33,7 @@ export function HomePage({ locale }: HomePageProps) {
         subtitle={content.hero.subtitle}
         highlightWord={content.hero.highlightWord}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.hero.primaryCta,
         }}
         secondaryCta={{
@@ -235,7 +235,7 @@ export function HomePage({ locale }: HomePageProps) {
         title={visual.pilotCta.title}
         subtitle={visual.pilotCta.subtitle}
         primaryCta={{
-          href: localePath(locale, "/pilot"),
+          href: localePath(locale, "/apply/company"),
           label: content.nav.requestAccess,
         }}
         secondaryCta={{
