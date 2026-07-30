@@ -13,8 +13,11 @@ const baseUrl = (
 const pages = [
   { path: "/hu", expectStatus: 200 },
   { path: "/en", expectStatus: 200 },
+  { path: "/de", expectStatus: 200 },
   { path: "/hu/privacy", expectStatus: 200 },
   { path: "/en/privacy", expectStatus: 200 },
+  { path: "/de/privacy", expectStatus: 200 },
+  { path: "/de/apply/company", expectStatus: 200 },
   { path: "/hu/contact", expectStatus: 200 },
   { path: "/en/contact", expectStatus: 200 },
   { path: "/hu/disclaimers", expectStatus: 200 },
@@ -24,12 +27,12 @@ const pages = [
 ];
 
 const redirects = [
-  { path: "/", expectedLocation: "/hu" },
-  { path: "/privacy", expectedLocation: "/hu/privacy" },
-  { path: "/terms", expectedLocation: "/hu/terms" },
-  { path: "/legal", expectedLocation: "/hu/legal" },
-  { path: "/disclaimers", expectedLocation: "/hu/disclaimers" },
-  { path: "/contact", expectedLocation: "/hu/contact" },
+  { path: "/", expectedLocation: "/en" },
+  { path: "/privacy", expectedLocation: "/en/privacy" },
+  { path: "/terms", expectedLocation: "/en/terms" },
+  { path: "/legal", expectedLocation: "/en/legal" },
+  { path: "/disclaimers", expectedLocation: "/en/disclaimers" },
+  { path: "/contact", expectedLocation: "/en/contact" },
 ];
 
 const results = [];

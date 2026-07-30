@@ -20,6 +20,7 @@ export const legalEn: LegalContent = {
       title: "Data we process",
       items: [
         "Account and contact data: name, email, phone, company, role, country.",
+        "Approximate country/region derived from network edge metadata solely to choose language and localised content (not nationality determination). You can override the language manually at any time.",
         "Driver profile data: identifiers, role, language settings, permissions.",
         "Trip data: trip IDs, status, stops, timestamps, metadata.",
         "Documents: CMR, delivery notes, invoices, photos, scans, digital signatures.",
@@ -35,6 +36,7 @@ export const legalEn: LegalContent = {
     purposes: {
       title: "Purposes of processing",
       items: [
+        "Selecting language and localised content based on approximate country/region (overridable by the user).",
         "Managing trip workflows and documenting performance.",
         "Document management, signatures, and evidence package assembly.",
         "Trip-linked communication and operational notifications.",

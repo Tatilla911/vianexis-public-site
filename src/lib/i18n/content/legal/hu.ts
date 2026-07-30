@@ -20,6 +20,7 @@ export const legalHu: LegalContent = {
       title: "Kezelt adatok",
       items: [
         "Fiók- és kapcsolattartási adatok: név, e-mail, telefon, cég, szerepkör, ország.",
+        "Hozzávetőleges ország/régió a hálózati edge metaadatból, kizárólag a nyelv és a helyi tartalom kiválasztásához (nem állampolgárság-meghatározás). A nyelvet bármikor kézzel felülírhatja.",
         "Sofőr profiladatok: azonosítók, munkakör, nyelvi beállítások, jogosultságok.",
         "Fuvaradatok: fuvar azonosítók, státusz, megállók, időpontok, metaadatok.",
         "Dokumentumok: CMR, szállítólevél, számla, fotók, szkennek, digitális aláírások.",
@@ -35,6 +36,7 @@ export const legalHu: LegalContent = {
     purposes: {
       title: "Adatkezelés céljai",
       items: [
+        "Nyelv és helyi tartalom kiválasztása hozzávetőleges ország/régió alapján (a felhasználó felülírhatja).",
         "Fuvarfolyamat kezelése és teljesítés dokumentálása.",
         "Dokumentumkezelés, aláírások és bizonyítékcsomag összeállítása.",
         "Fuvarhoz kötött kommunikáció és operatív értesítések.",

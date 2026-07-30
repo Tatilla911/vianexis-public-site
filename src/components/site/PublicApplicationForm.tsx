@@ -9,6 +9,54 @@ import {
   parseApplicationSuccess,
   type ApplicationSubmitSuccess,
 } from "@/lib/applications/application-error-map";
+import {
+  DETECTED_COUNTRY_COOKIE_NAME,
+  LOCALE_SOURCE_COOKIE_NAME,
+  normalizeAppLocale,
+  normalizeCountryCode,
+  type LocaleResolutionSource,
+} from "@/lib/i18n/country-locale-policy";
+
+function readCookie(name: string): string | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${name}=`));
+  if (!match) return null;
+  return decodeURIComponent(match.slice(name.length + 1));
+}
+
+function buildLocaleSubmissionMeta(locale: Locale): {
+  preferredLanguage: string;
+  sourceLocale: string;
+  detectedCountryCode?: string;
+  localeResolutionSource: LocaleResolutionSource;
+} {
+  const preferredLanguage = normalizeAppLocale(locale) ?? locale;
+  const detectedCountryCode =
+    normalizeCountryCode(readCookie(DETECTED_COUNTRY_COOKIE_NAME)) ?? undefined;
+  const rawSource = readCookie(LOCALE_SOURCE_COOKIE_NAME);
+  const localeResolutionSource: LocaleResolutionSource =
+    rawSource === "manual_cookie" ||
+    rawSource === "country" ||
+    rawSource === "accept_language" ||
+    rawSource === "default" ||
+    rawSource === "user_preference" ||
+    rawSource === "invite_token" ||
+    rawSource === "application"
+      ? rawSource
+      : detectedCountryCode
+        ? "country"
+        : "default";
+
+  return {
+    preferredLanguage,
+    sourceLocale: preferredLanguage,
+    detectedCountryCode,
+    localeResolutionSource,
+  };
+}
 
 type ApplicationType = "company" | "driver" | "partner";
 
@@ -188,7 +236,7 @@ export function PublicApplicationForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...buildPayload(values),
-          preferredLanguage: locale,
+          ...buildLocaleSubmissionMeta(locale),
           privacyAccepted: true,
           website: "",
           ...(captchaToken ? { captchaToken } : {}),

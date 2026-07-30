@@ -42,6 +42,12 @@ const companyExtraLabels: Record<
     terms: "I accept the terms of use. *",
     termsError: "Accepting the terms of use is required.",
   },
+  de: {
+    city: "Sitz / Stadt",
+    driverCount: "Anzahl der Fahrer",
+    terms: "Ich akzeptiere die Nutzungsbedingungen. *",
+    termsError: "Die Akzeptanz der Nutzungsbedingungen ist erforderlich.",
+  },
 };
 
 function companyExtra(locale: Locale) {

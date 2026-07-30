@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { defaultLocale, locales } from "@/lib/i18n/locales";
+import { locales } from "@/lib/i18n/locales";
+import {
+  applyLocaleMetaCookies,
+  pathLocale,
+  resolveRequestLocale,
+} from "@/lib/i18n/request-locale";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -13,18 +18,39 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const hasLocale = locales.some(
-    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
-  );
+  const existingLocale = pathLocale(pathname);
+  const resolved = resolveRequestLocale(request);
+  const secure = request.nextUrl.protocol === "https:";
 
-  if (!hasLocale) {
-    const target = pathname === "/" ? `/${defaultLocale}` : `/${defaultLocale}${pathname}`;
-    return NextResponse.redirect(new URL(target, request.url));
+  // Locale-prefixed routes: never auto-redirect to another locale.
+  if (existingLocale) {
+    const response = NextResponse.next();
+    applyLocaleMetaCookies(response, {
+      locale: resolved.locale,
+      source: resolved.source,
+      countryCode: resolved.countryCode,
+      secure,
+      persistManualPreference: false,
+    });
+    return response;
   }
 
-  return NextResponse.next();
+  const targetPath =
+    pathname === "/" ? `/${resolved.locale}` : `/${resolved.locale}${pathname}`;
+  const response = NextResponse.redirect(new URL(targetPath, request.url));
+  applyLocaleMetaCookies(response, {
+    locale: resolved.locale,
+    source: resolved.source,
+    countryCode: resolved.countryCode,
+    secure,
+    persistManualPreference: false,
+  });
+  return response;
 }
 
 export const config = {
   matcher: ["/((?!_next|api|favicon.ico|.*\\..*).*)"],
 };
+
+// Keep locales referenced so static analysis notices registry changes.
+void locales;

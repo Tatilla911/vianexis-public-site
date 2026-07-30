@@ -18,6 +18,7 @@ export const legalDe: LegalContent = {
       title: "Daten, die wir verarbeiten",
       items: [
         "Konto- und Kontaktdaten: Name, E-Mail, Telefon, Firma, Rolle, Land.",
+        "Ungefähres Land/Region aus Netzwerk-Edge-Metadaten ausschließlich zur Auswahl von Sprache und lokalisierten Inhalten (keine Feststellung der Staatsangehörigkeit). Die Sprache kann jederzeit manuell überschrieben werden.",
         "Fahrerprofildaten: Kennungen, Rolle, Spracheinstellungen, Berechtigungen.",
         "Reisedaten: Reise-IDs, Status, Stopps, Zeitstempel, Metadaten.",
         "Dokumente: CMR, Lieferscheine, Rechnungen, Fotos, Scans, digitale Signaturen.",
@@ -33,6 +34,7 @@ export const legalDe: LegalContent = {
     purposes: {
       title: "Zwecke der Verarbeitung",
       items: [
+        "Auswahl von Sprache und lokalisierten Inhalten anhand ungefähren Landes/Region (durch den Nutzer überschreibbar).",
         "Verwalten Sie Reiseabläufe und dokumentieren Sie die Leistung.",
         "Dokumentenverwaltung, Signaturen und Zusammenstellung von Beweispaketen.",
         "Fahrtbezogene Kommunikation und betriebliche Benachrichtigungen.",
