@@ -247,7 +247,7 @@ export const contentRu: SiteContent = {
     contact: {
       title: "Контактное и внутреннее тестирование",
       subtitle: "Контролируемый доступ — ни автоматическая регистрация, ни загрузка общедоступной Play.",
-      body: "Access is currently available through a controlled pilot program. Activation follows an individual review.",
+      body: "Доступ в настоящее время доступен через контролируемую пилотную программу. Активация проводится после индивидуальной проверки.",
       consentNote: "Система обрабатывает документы, рабочие процессы драйверов, данные компании и разрешения — каждый доступ рассматривается индивидуально.",
       contactLink: "Свяжитесь с нами →",
     },

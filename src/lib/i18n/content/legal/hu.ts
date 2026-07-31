@@ -133,7 +133,7 @@ export const legalHu: LegalContent = {
       },
       {
         title: "Belső tesztelési státusz",
-        body: "Access is currently available through a controlled pilot program. No public Play Store download.",
+        body: "A hozzáférés jelenleg ellenőrzött pilot program keretében érhető el. Nincs nyilvános Play Áruház letöltés.",
       },
       {
         title: "Felelősségkorlátozás",

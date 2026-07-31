@@ -218,7 +218,7 @@ export const contentNb: SiteContent = {
       backendDepBody: "Varslingsfunksjoner kan aktiveres som en del av pilotprogrammet.",
     },
     disclaimersSection: {
-      title: "Responsible use — important notices",
+      title: "Ansvarlig bruk — viktige merknader",
     },
     security: {
       title: "Beskyttelse og kontroll",

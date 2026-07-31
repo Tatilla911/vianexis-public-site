@@ -1,5 +1,11 @@
 import assert from 'node:assert/strict';
 
+const SUPPORTED = [
+  'hu', 'en', 'de', 'ro', 'sk', 'pl', 'cs', 'bg', 'hr', 'sr', 'sl', 'et', 'lv',
+  'lt', 'fi', 'sv', 'da', 'nb', 'nl', 'fr', 'es', 'pt', 'it', 'el', 'tr', 'uk',
+  'ru', 'sq', 'mk', 'bs', 'be', 'ga', 'mt', 'is', 'ar',
+];
+
 const COUNTRY_TO_LOCALE = {
   HU: 'hu',
   DE: 'de',
@@ -12,6 +18,19 @@ const COUNTRY_TO_LOCALE = {
   CA: 'en',
   AU: 'en',
   NZ: 'en',
+  RO: 'ro',
+  SK: 'sk',
+  PL: 'pl',
+  CZ: 'cs',
+  FR: 'fr',
+  ES: 'es',
+  IT: 'it',
+  NL: 'nl',
+  SE: 'sv',
+  PT: 'pt',
+  TR: 'tr',
+  UA: 'uk',
+  SA: 'ar',
 };
 
 function normalizeCountryCode(value) {
@@ -23,7 +42,7 @@ function normalizeCountryCode(value) {
 function normalizeAppLocale(value) {
   if (!value) return null;
   const code = String(value).trim().toLowerCase().split(/[-_]/)[0];
-  return ['hu', 'en', 'de'].includes(code) ? code : null;
+  return SUPPORTED.includes(code) ? code : null;
 }
 
 function localeFromCountryCode(countryCode) {
@@ -58,13 +77,22 @@ assert.equal(localeFromCountryCode('CH'), 'de');
 assert.equal(localeFromCountryCode('DE'), 'de');
 assert.equal(localeFromCountryCode('AT'), 'de');
 assert.equal(localeFromCountryCode('GB'), 'en');
+assert.equal(localeFromCountryCode('PL'), 'pl');
+assert.equal(localeFromCountryCode('RO'), 'ro');
+assert.equal(localeFromCountryCode('FR'), 'fr');
 assert.equal(localeFromCountryCode('ZZ'), 'en');
 assert.equal(resolveAnonymousLocale({ countryCode: 'CH' }).locale, 'de');
+assert.equal(resolveAnonymousLocale({ countryCode: 'PL' }).locale, 'pl');
 assert.equal(
-  resolveAnonymousLocale({ manualCookieLocale: 'en', countryCode: 'CH' })
+  resolveAnonymousLocale({ manualCookieLocale: 'fr', countryCode: 'CH' })
     .locale,
-  'en',
+  'fr',
+);
+assert.equal(
+  resolveAnonymousLocale({ acceptLanguage: 'pl-PL,pl;q=0.9' }).locale,
+  'pl',
 );
 assert.equal(resolveAnonymousLocale({}).locale, 'en');
+assert.equal(SUPPORTED.length, 35);
 
 console.log('country-locale-policy: ok');

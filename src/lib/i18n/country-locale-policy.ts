@@ -1,9 +1,47 @@
 /**
  * Central country → locale policy for ViaNexis public site, portal, and emails.
- * Keep in sync with backend `src/i18n/country-locale.policy.ts`.
+ * Keep in sync with backend `src/i18n/country-locale.policy.ts` and portal copy.
  */
 
-export type SupportedAppLocale = 'hu' | 'en' | 'de';
+export const SUPPORTED_APP_LOCALES = [
+  'hu',
+  'en',
+  'de',
+  'ro',
+  'sk',
+  'pl',
+  'cs',
+  'bg',
+  'hr',
+  'sr',
+  'sl',
+  'et',
+  'lv',
+  'lt',
+  'fi',
+  'sv',
+  'da',
+  'nb',
+  'nl',
+  'fr',
+  'es',
+  'pt',
+  'it',
+  'el',
+  'tr',
+  'uk',
+  'ru',
+  'sq',
+  'mk',
+  'bs',
+  'be',
+  'ga',
+  'mt',
+  'is',
+  'ar',
+] as const;
+
+export type SupportedAppLocale = (typeof SUPPORTED_APP_LOCALES)[number];
 
 export type LocaleResolutionSource =
   | 'user_preference'
@@ -14,7 +52,10 @@ export type LocaleResolutionSource =
   | 'accept_language'
   | 'default';
 
-/** ISO 3166-1 alpha-2 → UI/email locale. Unlisted countries resolve to `en`. */
+/**
+ * ISO 3166-1 alpha-2 → UI locale.
+ * Corridor + EU primary languages; unlisted countries resolve to `en`.
+ */
 export const COUNTRY_TO_LOCALE: Readonly<Record<string, SupportedAppLocale>> = {
   HU: 'hu',
   DE: 'de',
@@ -27,14 +68,52 @@ export const COUNTRY_TO_LOCALE: Readonly<Record<string, SupportedAppLocale>> = {
   CA: 'en',
   AU: 'en',
   NZ: 'en',
+  RO: 'ro',
+  SK: 'sk',
+  PL: 'pl',
+  CZ: 'cs',
+  BG: 'bg',
+  HR: 'hr',
+  RS: 'sr',
+  SI: 'sl',
+  EE: 'et',
+  LV: 'lv',
+  LT: 'lt',
+  FI: 'fi',
+  SE: 'sv',
+  DK: 'da',
+  NO: 'nb',
+  NL: 'nl',
+  BE: 'nl',
+  FR: 'fr',
+  LU: 'fr',
+  ES: 'es',
+  PT: 'pt',
+  IT: 'it',
+  GR: 'el',
+  CY: 'el',
+  TR: 'tr',
+  UA: 'uk',
+  RU: 'ru',
+  AL: 'sq',
+  XK: 'sq',
+  MK: 'mk',
+  BA: 'bs',
+  BY: 'be',
+  MT: 'mt',
+  IS: 'is',
+  SA: 'ar',
+  AE: 'ar',
+  EG: 'ar',
+  QA: 'ar',
+  KW: 'ar',
+  BH: 'ar',
+  OM: 'ar',
+  JO: 'ar',
+  MA: 'ar',
 };
 
 export const DEFAULT_LOCALE: SupportedAppLocale = 'en';
-export const SUPPORTED_APP_LOCALES: readonly SupportedAppLocale[] = [
-  'hu',
-  'en',
-  'de',
-];
 
 export const LOCALE_COOKIE_NAME = 'vianexis_locale';
 export const DETECTED_COUNTRY_COOKIE_NAME = 'vianexis_detected_country';
@@ -125,6 +204,9 @@ export function localeFromAcceptLanguage(
 /**
  * Approval / invite email locale chain:
  * application preferred → user preferred → company language → country fallback → en
+ *
+ * Note: email templates may only ship hu/en/de; callers should map unsupported
+ * locales to EN for email rendering.
  */
 export function resolveInviteEmailLocale(input: {
   applicationPreferredLanguage?: string | null;

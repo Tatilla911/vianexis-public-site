@@ -2,6 +2,7 @@
 
 import { PublicApplicationForm } from "@/components/site/PublicApplicationForm";
 import { getContent } from "@/lib/i18n";
+import { getCompanyExtraLabels } from "@/lib/i18n/company-extra-labels";
 import type { Locale } from "@/lib/i18n/types";
 
 function field(
@@ -26,41 +27,17 @@ function field(
   );
 }
 
-const companyExtraLabels: Record<
-  string,
-  { city: string; driverCount: string; terms: string; termsError: string }
-> = {
-  hu: {
-    city: "Székhely / város",
-    driverCount: "Sofőrök száma",
-    terms: "Elfogadom a felhasználási feltételeket. *",
-    termsError: "A felhasználási feltételek elfogadása kötelező.",
-  },
-  en: {
-    city: "Headquarters / city",
-    driverCount: "Number of drivers",
-    terms: "I accept the terms of use. *",
-    termsError: "Accepting the terms of use is required.",
-  },
-  de: {
-    city: "Sitz / Stadt",
-    driverCount: "Anzahl der Fahrer",
-    terms: "Ich akzeptiere die Nutzungsbedingungen. *",
-    termsError: "Die Akzeptanz der Nutzungsbedingungen ist erforderlich.",
-  },
-};
-
-function companyExtra(locale: Locale) {
-  return companyExtraLabels[locale] ?? companyExtraLabels.en;
-}
-
-function composeCompanyNotes(values: Record<string, string | boolean | string[]>): string | undefined {
+function composeCompanyNotes(
+  values: Record<string, string | boolean | string[]>,
+  locale: Locale,
+): string | undefined {
+  const extra = getCompanyExtraLabels(locale);
   const parts: string[] = [];
   const city = String(values.city ?? "").trim();
   const driverCount = String(values.driverCount ?? "").trim();
   const notes = String(values.notes ?? "").trim();
-  if (city) parts.push(`City: ${city}`);
-  if (driverCount) parts.push(`Drivers: ${driverCount}`);
+  if (city) parts.push(`${extra.cityPrefix}: ${city}`);
+  if (driverCount) parts.push(`${extra.driversPrefix}: ${driverCount}`);
   if (notes) parts.push(notes);
   return parts.length ? parts.join("\n") : undefined;
 }
@@ -68,7 +45,7 @@ function composeCompanyNotes(values: Record<string, string | boolean | string[]>
 export function CompanyApplicationForm({ locale }: { locale: Locale }) {
   const copy = getContent(locale).applicationForms.company;
   const common = getContent(locale).applicationForms.common;
-  const extra = companyExtra(locale);
+  const extra = getCompanyExtraLabels(locale);
 
   return (
     <PublicApplicationForm
@@ -94,7 +71,7 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
         contactPhone: String(values.contactPhone ?? "").trim(),
         fleetSize: String(values.fleetSize ?? "").trim() || undefined,
         moduleInterests: values.moduleInterests,
-        notes: composeCompanyNotes(values),
+        notes: composeCompanyNotes(values, locale),
       })}
     >
       {({ values, setValue, errors }) => (

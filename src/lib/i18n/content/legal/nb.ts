@@ -47,7 +47,7 @@ export const legalNb: LegalContent = {
       title: "Data sharing",
       items: [
         "Arbeidsgiver/transportfirma og autoriserte admin/ekspeditørbrukere — per leietakeromfang.",
-        "Driver's own trip and document data per company rules.",
+        "Førerens egne reise- og dokumentdata i henhold til selskapets regler.",
         "Autorisert plattformstøtte kun med revidert, begrenset, begrunnet tilgang.",
         "Myndigheter eller partnere kun i henhold til juridisk grunnlag, kontrakt eller bedriftsbeslutning.",
         "AI/OCR/oversettelsesleverandør kun via backend-kontrollert fremtidig integrasjon, hvis brukt - med menneskelig vurdering.",
