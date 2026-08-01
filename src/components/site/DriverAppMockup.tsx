@@ -1,3 +1,4 @@
+import { BrandWordmark } from "@/components/site/BrandLogo";
 import { cn } from "@/lib/utils";
 
 type DriverPreview = {
@@ -95,7 +96,7 @@ export function DriverAppMockup({
 
         {/* Header */}
         <div className="bg-gradient-to-b from-navy-800 to-navy-1000 px-4 pb-4 pt-1">
-          <p className="text-overline text-gold-core">ViaNexis Driver</p>
+          <BrandWordmark size="xs" suffix="Driver" />
           <div className="mt-1.5 flex items-center justify-between gap-2">
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-white">{title}</p>

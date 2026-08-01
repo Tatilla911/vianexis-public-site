@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandWordmark } from "@/components/site/BrandLogo";
 import { ConnectedWorkflowVisual } from "@/components/site/ConnectedWorkflowVisual";
 import { CTASection } from "@/components/site/CTASection";
 import { FeatureCard } from "@/components/site/FeatureCard";
@@ -79,7 +80,7 @@ export function HomePage({ locale }: HomePageProps) {
       <Section
         id="problem"
         className="section-reveal"
-        eyebrow="ViaNexis"
+        eyebrow={<BrandWordmark size="sm" />}
         title={content.home.problem.title}
         subtitle={content.home.problem.subtitle}
       >

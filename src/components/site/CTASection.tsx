@@ -1,3 +1,4 @@
+import { BrandWordmark } from "@/components/site/BrandLogo";
 import { Button } from "@/components/site/Button";
 import { Section } from "@/components/site/Section";
 import { TruckIcon } from "@/components/site/visuals/TruckIcon";
@@ -27,9 +28,9 @@ export function CTASection({
       <div className="relative min-h-[22rem] overflow-hidden border-y border-navy-600 sm:min-h-[26rem]">
         <WorldNetworkWatermark variant="background" />
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-16 text-center sm:px-10 md:py-20">
-          <div className="mb-4 flex items-center justify-center gap-2">
+          <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
             <TruckIcon size={24} tone="gold" />
-            <p className="text-overline text-gold-core">ViaNexis Network</p>
+            <BrandWordmark size="sm" suffix="Network" />
           </div>
           <h2 className="text-section-title text-gradient-gold text-balance">
             {title}

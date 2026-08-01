@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { BrandLogo } from "@/components/site/BrandLogo";
+import { BrandLogo, BrandWordmark } from "@/components/site/BrandLogo";
 import { Button } from "@/components/site/Button";
 import { Icon } from "@/components/site/Icon";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
@@ -179,7 +179,7 @@ export function Header({ locale }: HeaderProps) {
             >
               <div className="overflow-hidden rounded-lg border border-navy-600 bg-navy-900/95 shadow-[0_20px_50px_rgb(0_0_0_/_0.55),0_0_40px_rgb(0_191_255_/_0.08)] backdrop-blur-xl">
                 <div className="border-b border-navy-700 bg-gradient-to-r from-navy-800 via-navy-900 to-navy-800 px-4 py-3">
-                  <p className="text-overline text-gold-core">ViaNexis</p>
+                  <BrandWordmark size="sm" />
                   <p className="text-body-sm mt-0.5 line-clamp-2 text-neutral-grey">
                     {content.footer.tagline}
                   </p>

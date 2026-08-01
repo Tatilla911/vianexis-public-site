@@ -1,3 +1,4 @@
+import { BrandWordmark } from "@/components/site/BrandLogo";
 import { Button } from "@/components/site/Button";
 import { HeroVisual } from "@/components/site/HeroVisual";
 import { ProductPreview } from "@/components/site/ProductPreview";
@@ -83,7 +84,9 @@ export function Hero({
           )}
         >
           <div className="hero-copy">
-            <p className="text-overline mb-3 text-cyan-glow">ViaNexis</p>
+            <div className="mb-3">
+              <BrandWordmark size="lg" priority />
+            </div>
             <div className="accent-beam mb-5" aria-hidden="true" />
             <h1
               className={cn(

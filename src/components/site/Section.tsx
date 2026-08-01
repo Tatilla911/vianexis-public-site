@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { cn } from "@/lib/utils";
 
@@ -5,7 +6,7 @@ type SectionProps = {
   id?: string;
   title?: string;
   subtitle?: string;
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   children: React.ReactNode;
   className?: string;
   /** default/muted/dark = Figma dark system; light = rare light escape hatch */

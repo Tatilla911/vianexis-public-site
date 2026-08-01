@@ -1,7 +1,8 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type SectionHeaderProps = {
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
@@ -26,14 +27,18 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <p
-          className={cn(
-            "text-overline mb-3",
-            dark ? "text-cyan-glow" : "text-deep-blue",
-          )}
-        >
-          {eyebrow}
-        </p>
+        typeof eyebrow === "string" ? (
+          <p
+            className={cn(
+              "text-overline mb-3",
+              dark ? "text-cyan-glow" : "text-deep-blue",
+            )}
+          >
+            {eyebrow}
+          </p>
+        ) : (
+          <div className="mb-3">{eyebrow}</div>
+        )
       ) : null}
       {dark ? <div className="accent-beam mb-4" aria-hidden="true" /> : null}
       <h2
