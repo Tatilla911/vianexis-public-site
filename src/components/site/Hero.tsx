@@ -12,11 +12,8 @@ type HeroProps = {
   secondaryCta?: { href: string; label: string };
   stats?: { label: string; value: string }[];
   highlightWord?: string;
-  brandVisual?: {
-    routeLabel: string;
-    routeId: string;
-    statusLabel: string;
-  };
+  /** When true, show the network globe beside the hero copy. */
+  brandVisual?: boolean;
   preview?: {
     phoneTitle: string;
     phoneSubtitle: string;
@@ -118,7 +115,7 @@ export function Hero({
 
           {brandVisual ? (
             <div className="hero-visual" data-hero-visual="brand">
-              <HeroVisual {...brandVisual} className="min-w-0" />
+              <HeroVisual className="min-w-0" />
             </div>
           ) : preview ? (
             <div className="hero-visual" data-hero-visual="preview">

@@ -42,11 +42,7 @@ export function HomePage({ locale }: HomePageProps) {
           label: content.hero.secondaryCta,
         }}
         stats={content.hero.stats}
-        brandVisual={{
-          routeLabel: visual.brandVisuals.routeLabel,
-          routeId: visual.brandVisuals.routeId,
-          statusLabel: visual.brandVisuals.statusLabel,
-        }}
+        brandVisual
       />
 
       <Section

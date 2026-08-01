@@ -59,11 +59,7 @@ export function ModuleSubpage({
         }}
         brandVisual={
           moduleId === "driver-app" || moduleId === "company-admin"
-            ? {
-                routeLabel: visual.brandVisuals.routeLabel,
-                routeId: visual.brandVisuals.routeId,
-                statusLabel: visual.brandVisuals.statusLabel,
-              }
+            ? true
             : undefined
         }
       />
