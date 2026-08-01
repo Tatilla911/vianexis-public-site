@@ -84,7 +84,7 @@ export function PrivacyPolicyDocument({
           hint={legal.chrome.languageSwitchHint}
         />
 
-        <h1 className="text-page-title text-white">{title}</h1>
+        <h1 className="text-page-title">{title}</h1>
         <DriverAppLegalMeta
           versionLabel={doc.versionLabel}
           effectiveLabel={doc.effectiveLabel}

@@ -164,6 +164,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
+  --font-display-serif: var(--font-playfair);
   --shadow-card: var(--shadow-md);
   --radius-card: var(--radius-md);
 }
@@ -395,27 +396,27 @@ html {
 
 /* Typography roles — central scale */
 .text-display-lg {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-display-serif), "Times New Roman", serif;
   font-size: var(--font-display);
-  font-weight: 800;
+  font-weight: 700;
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
 }
 
 .text-display-md,
 .text-page-title {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-display-serif), "Times New Roman", serif;
   font-size: var(--font-page-title);
-  font-weight: 750;
+  font-weight: 600;
   line-height: var(--leading-title);
   letter-spacing: var(--tracking-title);
 }
 
 .text-h1,
 .text-section-title {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-display-serif), "Times New Roman", serif;
   font-size: var(--font-section-title);
-  font-weight: 700;
+  font-weight: 600;
   line-height: var(--leading-section);
   letter-spacing: var(--tracking-title);
 }
@@ -514,10 +515,95 @@ html {
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, var(--gold-core), var(--gold-ultra));
+  background: linear-gradient(
+    165deg,
+    #f7efd8 0%,
+    #e8d5a3 28%,
+    #d4af37 52%,
+    #b8924a 78%,
+    #f0e2b8 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/*
+  Main titles — lockup-matching champagne metallic serif.
+  Applied to hero / page / section titles on dark navy chrome.
+*/
+.text-brand-title,
+.hero-title,
+.text-page-title,
+.text-section-title,
+.text-display-lg,
+.text-display-md,
+.text-h1 {
+  font-family: var(--font-display-serif), "Times New Roman", serif;
+  font-style: normal;
+  text-rendering: geometricPrecision;
+  background-image: linear-gradient(
+    168deg,
+    #f8f1dc 0%,
+    #efe0b8 18%,
+    #dcc487 38%,
+    #c4a46a 55%,
+    #a8884e 72%,
+    #e6d4a4 88%,
+    #f3e9c8 100%
+  );
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Fallback when clip unsupported */
+  -webkit-text-fill-color: transparent;
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .text-brand-title,
+  .hero-title,
+  .text-page-title,
+  .text-section-title,
+  .text-display-lg,
+  .text-display-md,
+  .text-h1 {
+    color: var(--gold-pale);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+/* Slightly brighter accent word inside a metallic title */
+.text-brand-title-accent,
+.hero-title .text-gradient-gold {
+  background-image: linear-gradient(
+    165deg,
+    #fffdf6 0%,
+    #f5e9c4 35%,
+    #e8d08a 65%,
+    #f8efd4 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light surfaces — deeper bronze metallic for contrast */
+.text-brand-title--on-light {
+  background-image: linear-gradient(
+    168deg,
+    #6b5428 0%,
+    #8c6f3d 28%,
+    #b8924a 55%,
+    #7a5f30 82%,
+    #5c4a28 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Forms — 16px minimum to avoid iOS Safari input zoom */
@@ -664,9 +750,9 @@ html {
 
 .hero-title {
   max-width: 100%;
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-weight: 800;
-  letter-spacing: var(--tracking-display);
+  font-family: var(--font-display-serif), "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   /* Orthography-friendly: dictionary hyphens via document lang; no mid-word "anywhere" */
   overflow-wrap: normal;
   word-break: normal;

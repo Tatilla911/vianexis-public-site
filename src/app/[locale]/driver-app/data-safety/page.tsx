@@ -53,7 +53,7 @@ export default async function DriverAppDataSafetyPage({ params }: PageProps) {
           path={PATH}
           hint={legal.chrome.languageSwitchHint}
         />
-        <h1 className="text-page-title text-white">{doc.title}</h1>
+        <h1 className="text-page-title">{doc.title}</h1>
         <DriverAppLegalMeta
           versionLabel={doc.versionLabel}
           effectiveLabel={doc.effectiveLabel}

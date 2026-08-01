@@ -28,7 +28,7 @@ export default async function DisclaimersPage({ params }: PageProps) {
     <Section className="pt-12">
       <div className="prose-legal mx-auto w-full">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-page-title text-white">
+        <h1 className="text-page-title">
           {legal.disclaimersPage.title}
         </h1>
         <p className="text-lead mt-5 text-neutral-grey">

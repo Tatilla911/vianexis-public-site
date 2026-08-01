@@ -44,7 +44,7 @@ export function SectionHeader({
       <h2
         className={cn(
           "text-section-title text-balance",
-          dark ? "text-white" : "text-navy",
+          !dark && "text-brand-title--on-light",
         )}
       >
         {title}

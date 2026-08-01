@@ -43,7 +43,7 @@ export default async function DriverAppLegalHubPage({ params }: PageProps) {
           path={PATH}
           hint={legal.chrome.languageSwitchHint}
         />
-        <h1 className="text-page-title text-white">{legal.hub.title}</h1>
+        <h1 className="text-page-title">{legal.hub.title}</h1>
         <DriverAppLegalMeta
           versionLabel={legal.hub.versionLabel}
           effectiveLabel={legal.hub.effectiveLabel}

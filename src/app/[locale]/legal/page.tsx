@@ -27,7 +27,7 @@ export default async function LegalPage({ params }: PageProps) {
     <Section className="pt-12">
       <div className="prose-legal mx-auto w-full">
         <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-page-title text-white">{legal.legalNotice.title}</h1>
+        <h1 className="text-page-title">{legal.legalNotice.title}</h1>
         <p className="text-lead mt-5 text-neutral-grey">
           {legal.legalNotice.intro}
         </p>

@@ -88,9 +88,9 @@ export function Hero({
               <BrandWordmark size="lg" priority />
             </div>
             <div className="accent-beam mb-5" aria-hidden="true" />
-            <h1
+              <h1
               className={cn(
-                "hero-title text-white",
+                "hero-title",
                 titleLong ? "hero-title--long" : "hero-title--default",
               )}
               data-hero-title-long={titleLong ? "true" : "false"}

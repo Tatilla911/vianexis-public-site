@@ -68,7 +68,7 @@ export default async function PrivacyRequestPage({ params }: PageProps) {
           path={PATH}
           hint={legal.chrome.languageSwitchHint}
         />
-        <h1 className="text-page-title text-white">{copy.title}</h1>
+        <h1 className="text-page-title">{copy.title}</h1>
         <p className="text-lead mt-5 text-neutral-grey">{copy.intro}</p>
         <p className="text-body mt-4 text-neutral-grey">
           {copy.emailHint}{" "}

@@ -32,7 +32,7 @@ export function CTASection({
             <TruckIcon size={24} tone="gold" />
             <BrandWordmark size="sm" suffix="Network" />
           </div>
-          <h2 className="text-section-title text-gradient-gold text-balance">
+          <h2 className="text-section-title text-balance">
             {title}
           </h2>
           {subtitle ? (

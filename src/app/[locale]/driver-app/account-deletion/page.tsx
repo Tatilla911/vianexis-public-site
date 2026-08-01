@@ -59,7 +59,7 @@ export default async function DriverAppAccountDeletionPage({
           path={PATH}
           hint={legal.chrome.languageSwitchHint}
         />
-        <h1 className="text-page-title text-white">{doc.title}</h1>
+        <h1 className="text-page-title">{doc.title}</h1>
         <p className="text-lead mt-5 text-neutral-grey">{doc.intro}</p>
 
         <div className="mt-10 space-y-8">
