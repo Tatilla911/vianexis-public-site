@@ -197,8 +197,8 @@ export const legalControllerLabel = {
 } as const;
 
 export const legalTestingReleaseBanner = {
-  hu: "Tesztelési kiadás – a funkciók és adatkezelési folyamatok a kiadott alkalmazásverzió szerint változhatnak.",
-  en: "Testing release – features and data-processing activities may vary according to the distributed app version.",
+  hu: "Tesztelési kiadás. Ez a tájékoztató a jelenleg terjesztett ViaNexis Driver alkalmazásverzió tényleges adatkezelését ismerteti. A funkciók vagy adatkezelési folyamatok változása esetén a tájékoztatót a következő kiadás előtt frissítjük.",
+  en: "Testing release. This policy describes the actual data-processing activities of the currently distributed ViaNexis Driver app version. If features or data-processing activities change, this policy will be updated before the next release.",
 } as const;
 
 export const legalCounselReviewNotice = {

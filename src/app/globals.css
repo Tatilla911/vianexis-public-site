@@ -612,6 +612,25 @@ html {
     border-color: #ccc !important;
     background: transparent !important;
   }
+
+  .driver-app-legal-page a[href^="/"]::after {
+    content: " (https://vianexis.eu" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  .driver-app-legal-page a[href^="#"]::after,
+  .driver-app-legal-page a[href^="mailto:"]::after,
+  .driver-app-legal-page a[href^="https://"]::after {
+    content: none;
+  }
+
+  @page {
+    margin: 18mm 14mm;
+    @bottom-center {
+      content: counter(page);
+    }
+  }
 }
 
 .measure-hero {

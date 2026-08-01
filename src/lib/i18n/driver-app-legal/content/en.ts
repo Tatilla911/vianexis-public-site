@@ -16,7 +16,7 @@ const lastUpdatedLabel = `Last updated: ${DRIVER_APP_LEGAL_LAST_UPDATED}`;
 
 const standardContacts = [
   { label: "Privacy / GDPR", value: OPERATOR_EMAILS.privacy },
-  { label: "Data protection mailbox", value: OPERATOR_EMAILS.gdpr },
+  { label: "Privacy contact", value: OPERATOR_EMAILS.gdpr },
   { label: "Legal matters", value: OPERATOR_EMAILS.legal },
   { label: "Customer support", value: OPERATOR_EMAILS.support },
   { label: "Security reports", value: OPERATOR_EMAILS.security },
@@ -34,7 +34,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
     print: "Print / save as PDF",
     tableOfContents: "Table of contents",
     languageSwitchHint:
-      "This document is currently available as an official, hand-authored text in Hungarian and English only. Other languages may translate the app's user interface, but not this legal content.",
+      "This document is officially available in Hungarian and English. The application interface may be available in additional languages, but this legal document does not currently have official translations in those languages.",
     backToHub: "Back to legal center",
     currentVersionLabel: "Current version",
   },
@@ -101,7 +101,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "roles-vianexis-carrier",
         title: "3. The roles of ViaNexis and the carrier company",
-        body: "The role ViaNexis and the carrier company each play in a given processing activity is not fixed — it depends on the type of data and the specific feature involved. For processing connected with account creation, authentication, platform security, diagnostic data, and keeping the app running, ViaNexis acts as an independent controller, since ViaNexis determines the purposes and means of that processing.\n\nFor data tied to shipments, transport orders, customer information, and the carrier company's internal workflows — data that is typically entered by the carrier company's dispatcher or administrator, and whose purpose and means are determined by the carrier company — ViaNexis generally acts as a processor on the carrier company's behalf, with the carrier company acting as the independent controller. This dual role means that for some questions (for example, deleting a piece of customer data tied to a specific shipment) you may need to contact the carrier company directly, while for others (for example, your account login credentials) you can contact ViaNexis directly. If you're unsure which applies, reach out to either party and we'll help point you in the right direction.",
+        body: "The roles of ViaNexis and the carrier company are not uniform across every data flow. They depend on the purpose of the processing, the contractual model, and who determines the purposes and means. The separation below is informative and may vary by the specific relationship.\n\nViaNexis may act as an independent controller for, among other things, account authentication, platform security, access management, its own support and privacy-request handling, and system-operation logs — where ViaNexis determines the purposes and means.\n\nThe carrier company may act as an independent controller for, among other things, transport assignments, work organisation, customer and consignee data, company document requirements, and employment-related processing — where the company determines the purposes and means.\n\nViaNexis may act as a processor for shipment data handled on the carrier company's instructions, company documents, and dispatcher or administrative workflows. If you are unsure whom to contact, you may contact either party and we will help route the request.",
       },
       {
         id: "data-subjects",
@@ -119,16 +119,15 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
         title: "5. Categories of data we process",
         body: "The main data categories processed through the Driver App are listed below. The exact scope varies by feature, and some categories (such as location data) are only generated if the relevant permission has been granted.",
         items: [
-          "Account data: full name, email address, phone number, password (encrypted/hashed), company code or company identifier, language preference",
-          "Shipment-related data: shipment identifier, route, stops, status updates, timestamps",
-          "Location data: GPS coordinates, only where permission has been granted, as described in Section 8",
-          "Documents and media: photographs, videos, scanned or photographed transport documents (e.g. CMR, delivery notes), damage-assessment images",
-          "E-signature and evidence data: the signature capture itself, plus associated timestamp and device identifier",
+          "Account data: full name, email address, phone number; authentication data: passwords are stored using a one-way salted hash; the original password is not stored; company code or company identifier; language preference",
+          "Shipment-related data: shipment identifier, route/stop details, status updates, timestamps",
+          "Location data: GPS coordinates, if the user grants permission, and only while an opened location-dependent feature is in use (see Section 8)",
+          "Documents and media: photographs, videos, scanned or photographed transport documents, damage-assessment images — when the feature is used",
+          "E-signature and evidence data: the signature capture itself and associated timestamp; location data if the user records it during that feature",
           "Messages: the content of in-app messages exchanged between a driver and a dispatcher or company contact",
-          "Device and diagnostic data: device type, operating system version, app version, a unique installation identifier, crash/error reports",
-          "Push notification identifier (token)",
-          "Usage and log data: login events, feature-usage statistics, security-relevant events",
-          "The content of customer support communications",
+          "Push notification identifier (token) and the installation/device identifier used for push-device registration, platform label, locale and timezone settings",
+          "Security and operational log events: for example login and access events to the extent needed for service security",
+          "The content of customer-support and privacy-request communications",
         ],
       },
       {
@@ -139,19 +138,22 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "purposes-and-legal-bases",
         title: "7. Purposes and legal bases",
-        body: "We process data for the purposes and on the legal bases listed below. A given piece of data can serve more than one purpose at once, and the applicable legal basis may differ by purpose.",
+        body: "We process data for the purposes and on the legal bases listed below. A given piece of data can serve more than one purpose. A phone system permission (for example location access) may be a technical prerequisite; it does not by itself replace a GDPR legal basis.",
         items: [
-          "Providing the Driver App's features, operating your account, and running the shipment workflow — performance of a contract (GDPR Art. 6(1)(b))",
-          "Meeting accounting and other statutory obligations (e.g. retaining transport documents and records) — compliance with a legal obligation (GDPR Art. 6(1)(c))",
-          "Security, fraud and abuse prevention, and maintaining and improving service stability — legitimate interest (GDPR Art. 6(1)(f))",
-          "Location tracking, push notifications, and other features that require explicit permission — consent (GDPR Art. 6(1)(a)), which can be withdrawn at any time",
-          "Establishing, exercising, or defending legal claims (e.g. using a signature or photo as evidence in a disputed shipment) — legitimate interest or legal obligation, as applicable",
+          "ViaNexis account and authentication: account creation, sign-in, password/PIN handling, access provisioning — performance of a contract (GDPR Art. 6(1)(b)), and legitimate interest to the extent needed for platform security (GDPR Art. 6(1)(f))",
+          "Company shipment workflow: assignments, statuses, documents and company workflows — performance of the contract/relationship between the driver and the carrier company, or, where ViaNexis acts on the company's instructions, processing under the company's controller instructions",
+          "Platform security: abuse prevention, detection of unauthorized access, system-operation logs — legitimate interest (GDPR Art. 6(1)(f))",
+          "Legal and accounting obligations: retaining records required by law — compliance with a legal obligation (GDPR Art. 6(1)(c)), where applicable",
+          "Optional location-dependent feature: displaying own position or recording a trip-related location — alongside the contractual/legitimate-interest purpose of the feature, system permission is required; permission-based processing can be withdrawn in device settings (GDPR Art. 6(1)(a)/(f)/(b) depending on the feature)",
+          "Operational notifications: delivering shipment-related push notifications — performance of a contract / legitimate interest for operating the service, together with system notification permission",
+          "Support and privacy requests: handling customer-support and privacy requests — legitimate interest and/or compliance with a legal obligation",
+          "Legal claims: establishing, exercising or defending legal claims — legitimate interest and, where applicable, legal obligation",
         ],
       },
       {
         id: "location",
         title: "8. Location data",
-        body: "The Driver App processes location data only where the mobile operating system's explicit location permission has been granted. We do not claim, and do not perform, continuous background location tracking without the driver's knowledge, and the app is not used for covert monitoring of employees. Location data is collected solely to support shipment-related features, such as route planning, automatic arrival/departure detection, and showing the next stop.\n\nYou can revoke this permission at any time in your phone's system settings. Revoking it carries no penalty, but some location-dependent features (such as automatic status updates or navigation assistance) will then work in a limited way or not at all, because they technically require location data. The carrier company can access location data only to the extent its access permissions allow, and only as needed for shipment coordination.",
+        body: "The current app version does not request continuous background location access. Location data may be processed only while the user is actively using a location-dependent feature, for example to display their own position or record the location of a trip-related event.\n\nThe Driver App processes location data only with the mobile operating system's permission (Android: ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION; no ACCESS_BACKGROUND_LOCATION in the current manifest). The app is not used for covert employee monitoring, and the current release does not claim continuous route tracking or automatic background arrival/departure detection.\n\nYou can revoke this permission at any time in your phone's system settings. Revoking it carries no penalty, but location-dependent features may then work in a limited way or not at all. Where location is recorded during a feature, the carrier company may access it only to the extent its permissions allow and as needed for shipment coordination.",
       },
       {
         id: "camera-photos-videos-files",
@@ -161,12 +163,12 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "transport-and-personal-documents",
         title: "10. Transport documents and personal documents",
-        body: "The Driver App allows you to upload photographed or scanned copies of transport documents (e.g. CMR consignment notes, delivery notes, customs documents) and certain personal documents (e.g. driving licence, ADR certificate). These documents often contain the personal data of third parties (sender, consignee, recipient), which we process as an inherent part of the transport workflow.\n\nIt is your responsibility as a driver to upload only documents you are entitled to handle and that genuinely relate to the shipment in question. Access to uploaded documents is restricted by permission level: a carrier company can only see documents tied to its own shipments.",
+        body: "The Driver App allows you to upload photographed or scanned copies of transport documents (e.g. CMR consignment notes, delivery notes, customs documents) and certain personal documents (e.g. driving licence, ADR certificate). These documents often contain the personal data of third parties (sender, consignee, recipient), which we process as an inherent part of the transport workflow.\n\nIt is your responsibility as a driver to upload only documents you are entitled to handle and that genuinely relate to the shipment in question. This obligation does not affect the applicable data-protection responsibilities of ViaNexis or the transport company. Access to uploaded documents is restricted by permission level: a carrier company can only see documents tied to its own shipments.",
       },
       {
         id: "e-signatures-and-evidence",
         title: "11. E-signatures and evidence",
-        body: "The Driver App lets you capture an electronic signature (a touchscreen signature drawing) to confirm shipment events such as pickup or delivery. Alongside the signature, we also record supporting data such as the timestamp, device identifier, and — where permitted — location data, because together these can serve as evidence in the event of a dispute.\n\nImportantly, the legal effect of a signature captured this way can vary depending on the type of document and the applicable law; see Section 9 of the Terms of use for more detail. ViaNexis provides the technical means of capturing the signature but does not warrant its legal classification.",
+        body: "The Driver App lets you capture an electronic signature (a touchscreen signature drawing) to confirm shipment events such as pickup or delivery. Alongside the signature, we may also record supporting data such as the timestamp and — where permitted and recorded during that feature — location data, because together these can serve as evidence in the event of a dispute.\n\nThe evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture, and the applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence. See Section 9 of the Terms of use for more detail.",
       },
       {
         id: "messages-and-translation",
@@ -176,42 +178,56 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "device-security-diagnostics",
         title: "13. Device, security, and diagnostic data",
-        body: "The app automatically collects certain technical data, such as device type and manufacturer, operating system version, app version number, a unique installation identifier, network connection type, and crash/error logs. We process this data to keep the service stable, troubleshoot issues, optimize performance, and detect and prevent abuse (such as unauthorized access attempts).",
+        body: "In the current app version, push-device registration may process an app-generated installation/device identifier, a platform label, locale and timezone settings, and a push token. For service security we may log login and access-related events.\n\nBased on the current code audit, we do not claim that the distributed Driver App uses a separate analytics SDK, Crashlytics, or automatic crash-reporting service, and we do not claim routine standalone collection of device manufacturer, OS version, or network connection type. If a later release introduces such processing, this section will be updated before that release.",
       },
       {
         id: "push-notifications",
         title: "14. Push notifications",
-        body: "To deliver push notifications, the app stores a push identifier (token) tied to your device and installation. This identifier allows you to receive notifications about important shipment-related events, such as a new shipment being assigned, a document request, or an incoming message. Push notifications can be turned off at any time in your phone's system settings, without affecting other app functionality. See Section 16 for information about the third-party provider involved in delivering push notifications.",
+        body: "To deliver push notifications, the app may use Firebase Cloud Messaging (FCM) and store a push token tied to your device/installation. This allows notifications about important shipment-related events such as a new assignment, a document request, or an incoming message. Push notifications can be turned off in your phone's system settings. See Section 16 for information about providers involved in delivery.",
       },
       {
         id: "automated-checks-and-ai",
         title: "15. Automated checks and artificial intelligence",
-        body: "The Driver App may include automated or AI-based assistive features, such as document recognition (OCR), flagging missing or apparently incorrect fields, or the translation suggestions mentioned in Section 12. These features are advisory only: their purpose is to make your work easier, not to make decisions automatically without human involvement.\n\nImportantly, not all data is processed by AI — only the data actually needed for a feature you are actively using. Any suggestion or warning generated by these features never replaces a legal, customs, or ADR compliance decision: final responsibility for those decisions always rests with the driver and the carrier company, in accordance with applicable regulatory requirements.",
+        body: "The Driver App may include automated assistive features (for example on-device text recognition or translation preparation). These features are advisory only and do not make legal decisions without human involvement.\n\nNot every such feature is active in every environment in the current release. Where machine translation or document assistance is available, it does not replace certified translation or legal, customs, or ADR compliance decisions. Final responsibility rests with the driver and the carrier company.",
       },
       {
         id: "processors-and-recipients",
         title: "16. Processors and other recipients",
-        body: "Your data may be handled by processors engaged by ViaNexis, such as a cloud hosting provider, a push-notification provider, an email delivery provider, a possible AI/OCR subcontractor, and providers of customer-support tooling. We enter into a data processing agreement under GDPR Article 28 with each of these providers, restricting their use of the data to our instructions.\n\nWe do not automatically publish our current list of processors on this page, since it can change from time to time; the list is available on request at legal@vianexis.eu or privacy@vianexis.eu.",
+        body: "Recipients needed to operate the service may process data. Code-verified active categories may include in particular: the backend/hosting operator, database and file-storage services, push delivery (FCM and, where applicable, APNs), and the carrier company with which you have a driver relationship.\n\nEmail delivery, map-tile providers, cloud AI/OCR, or external monitoring are treated as active processors only where actually enabled in the relevant environment; planned or staging-only providers are not listed as active processors. Whether Article 28 GDPR contracts exist must be verified per provider and environment; this page does not claim a blanket Article 28 contract with every provider.\n\nThe current environment-specific list is available on request at privacy@vianexis.eu.",
       },
       {
         id: "international-transfers",
         title: "17. International transfers",
-        body: "Some of the processors mentioned in Section 16 may be established outside the European Economic Area (EEA), for example in the United States. In that case, any transfer of personal data outside the EEA is subject to the safeguards required under Chapter V of the GDPR — in particular, a European Commission adequacy decision, or the European Commission's Standard Contractual Clauses (SCCs). We can provide information about the specific safeguard used for a given processor on request.",
+        body: "Where push notifications are delivered via FCM, personal data (for example a push token and related device-registration data) may be transferred outside the EEA, including to the United States, through Google's push infrastructure. Hosting, storage, or email-delivery regions depend on the actual operational configuration.\n\nDetailed information about the specific safeguard used for a given provider (for example an adequacy decision or another mechanism under GDPR Chapter V) is available on request at privacy@vianexis.eu. This page does not state SCCs or an adequacy decision as a verified fact without supporting provider documentation.",
       },
       {
         id: "retention",
         title: "18. Retention",
-        body: "We retain data according to the contract, statutory obligation, evidentiary need, and the company's internal data-retention rule applicable to that data. In practice, this means retention periods vary by data category and purpose: some data is kept only for as long as your account and contractual relationship remain active, while other data (such as transport documents that qualify as accounting records) is kept for the period required under applicable law (e.g. accounting legislation) or for the limitation period applicable to legal claims.\n\nWe deliberately do not state a single, fixed retention period in days or years for every data category, since this varies by category, by the carrier company's own retention policy, and by the specifics of the relationship in question. You can ask about the retention period for a specific piece of data at privacy@vianexis.eu.",
+        body: "We retain data by category for as long as needed for the relevant purpose. We publish a concrete period in days or years only where an approved internal rule or legal obligation confirms it. Where no such decision exists yet, we apply event-based principles:",
+        items: [
+          "Account data: for the life of the account, then until deletion/anonymisation is completed",
+          "Session/token: until the token is revoked or becomes invalid",
+          "Push token: until the token is revoked, replaced, or the account/device registration ends",
+          "Shipment data: until the end of the legal and company retention period tied to the shipment",
+          "Documents: for as long as required for the shipment and the company's legal/accounting obligations",
+          "Signatures: for the retention period of the related shipment/record",
+          "Location data: for the limited time needed for the specific feature/event purpose",
+          "Messages: for as long as needed for the shipment and support/dispute handling",
+          "Technical/operational logs: for the limited time needed for security and operations",
+          "Security audit logs: for the limited time needed for accountability and security",
+          "Support logs: until the request/case is closed and for as long as needed for accountability",
+          "Privacy request / account deletion request: until the request is closed and for as long as needed for accountability",
+        ],
       },
       {
         id: "account-and-data-deletion",
         title: "19. Account and data deletion",
-        body: "Several distinct options exist for managing your account and its associated data: unlinking the account from a carrier company, temporarily suspending the account, requesting permanent deletion of the account and its data, and simply uninstalling the app from your phone. These are not equivalent, and not all of them result in immediate, complete data deletion — a detailed explanation and the request form are available on the Account & data deletion page.\n\nBefore a permanent deletion request is fulfilled, identity verification may be required, and certain data may still be retained afterward for legal, security, or accounting reasons, in line with Section 18.",
+        body: "Signing out, uninstalling the app, unlinking from a company, and suspending an account are not the same as permanent account deletion. Permanent account deletion is a separate process: a request submitted on the public page (https://vianexis.eu/en/driver-app/account-deletion).\n\nThe backend records the request as an operational case record; the request itself does not trigger immediate automatic full data deletion. After identification, deletable account data may be deleted or anonymised; data may remain where required by law, security, fraud prevention, audit, contract, or legal claims. Operative use of retained data is restricted. The requester receives further information at the contact address provided. The neutral acknowledgement does not disclose whether an account exists for the submitted details.",
       },
       {
         id: "data-subject-rights",
         title: "20. Your rights as a data subject",
-        body: "Under the GDPR, you have the following rights with respect to the processing of your personal data. You can exercise these rights by writing to privacy@vianexis.eu or gdpr@vianexis.eu; we will act on or respond to your request within the timeframe required by law, typically within one month.",
+        body: "Under the GDPR you have the rights listed below in connection with the processing of your personal data. You may send requests to privacy@vianexis.eu or gdpr@vianexis.eu. We will respond without undue delay and, as a rule, within one month of receipt. Taking into account the complexity and number of requests, that period may be extended by a further two months; we will inform you of any such extension and the reasons for the delay within the first month.",
         items: [
           "Right of access: you can ask whether we process data about you, and if so, what data",
           "Right to rectification: you can ask us to correct inaccurate or incomplete data",
@@ -236,12 +252,12 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "security",
         title: "22. Security",
-        body: "We apply appropriate technical and organizational measures to protect personal data. These include, among others, encrypted (TLS) transmission of data between the app and backend systems, non-reversible (hashed) storage of passwords, access restricted by permission level, and logging of security-relevant events.\n\nWhile we take reasonable steps to protect your data, no system can be considered completely secure. If you notice or suspect a data breach, please report it immediately to security@vianexis.eu.",
+        body: "We apply appropriate technical and organizational measures to protect personal data. These include, among others, encrypted (TLS) transmission of data between the app and backend systems, storage of passwords using a one-way salted hash (the original password is not stored), access restricted by permission level, and logging of security-relevant events.\n\nWhile we take reasonable steps to protect your data, no system can be considered completely secure. If you notice or suspect a data breach, please report it immediately to security@vianexis.eu.",
       },
       {
         id: "minors",
         title: "23. Minors",
-        body: "The Driver App and its features are designed exclusively for adult drivers holding a valid driving licence or relevant professional qualification, and for the company users who manage them. The app is not directed at minors, and we do not knowingly collect personal data from minors. If we become aware that we have collected data from a minor, we will delete it promptly.",
+        body: "The Driver App and its features are designed exclusively for adult drivers holding a valid driving licence or relevant professional qualification, and for the company users who manage them. The app is not directed at minors, and we do not knowingly collect personal data from minors. If we become aware that we have processed a minor's personal data through the service without a lawful basis, we will take the necessary steps to delete the data or restrict its processing, taking into account applicable legal retention obligations.",
       },
       {
         id: "changes",
@@ -306,12 +322,12 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "uploaded-content-responsibility",
         title: "8. Uploaded content and responsibility",
-        body: "The driver, or as applicable the carrier company, is responsible for the authenticity, lawfulness, and genuine relevance to the shipment of any document, photo, video, or other content uploaded to the Driver App. ViaNexis does not verify or guarantee the authenticity or legal adequacy of uploaded content and is not liable for consequences arising from false or inaccurate content being uploaded.",
+        body: "The driver, or as applicable the carrier company, is responsible for the authenticity, lawfulness, and genuine relevance to the shipment of any document, photo, video, or other content uploaded to the Driver App. This obligation does not affect the applicable data-protection responsibilities of ViaNexis or the transport company. ViaNexis does not verify or guarantee the authenticity or legal adequacy of uploaded content and is not liable for consequences arising from false or inaccurate content being uploaded.",
       },
       {
         id: "e-signature-legal-effect",
         title: "9. Legal effect of e-signatures",
-        body: "The electronic signature (touchscreen signature drawing) that can be captured in the Driver App provides a technical means of confirming shipment events, but the legal effect and evidentiary weight of that signature depend on the type of document, the agreement between the parties, and applicable law — which can differ from one jurisdiction to another. For certain document types, the law may require a qualified or advanced electronic signature (for example, under the eIDAS Regulation), which a simple signature drawing captured in the app may not, by itself, satisfy.\n\nViaNexis provides the technical means of capturing and storing the signature but does not warrant that a given signature will be legally binding or evidentially sufficient in every case, jurisdiction, or document type. Assessing legal effect is the responsibility of the user or the carrier company; where in doubt, legal advice is recommended.",
+        body: "The evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture, and the applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence. For some document types, the law may require a qualified or advanced electronic signature, which a simple signature drawing captured in the app may not by itself satisfy.",
       },
       {
         id: "offline-mode-and-sync",
@@ -409,7 +425,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
     rows: [
       {
         category: "Account data",
-        collected: "Name, email address, phone number, password (hashed), company code",
+        collected: "Name, email address, phone number; password stored as a one-way salted hash; company code",
         requirement: "Required to create an account",
         origin: "Provided by the user",
         purpose: "Registration, authentication, account management",
@@ -420,7 +436,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
         collected: "GPS coordinates, if location access is granted",
         requirement: "Optional, permission-based",
         origin: "Automatic, from device sensors",
-        purpose: "Route planning, automatic status updates",
+        purpose: "Showing own position or recording a trip-event location (no continuous background tracking)",
         sharing: "Shared with the carrier company as needed for shipment coordination",
       },
       {
@@ -457,11 +473,11 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       },
       {
         category: "Device and diagnostic data",
-        collected: "Device type, OS version, app version, crash reports",
-        requirement: "Required for stable operation",
-        origin: "Automatic",
-        purpose: "Troubleshooting, security, performance",
-        sharing: "Shared with hosting and diagnostics sub-processors",
+        collected: "Push-device registration identifier, platform, locale/timezone; security log events",
+        requirement: "As needed for service security and push delivery",
+        origin: "Automatic / feature-dependent",
+        purpose: "Push delivery, security",
+        sharing: "With the push provider (FCM); with the hosting environment",
       },
       {
         category: "Push token",
@@ -653,7 +669,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
     submittingLabel: "Submitting…",
     successTitle: "We have recorded your request",
     successMessage:
-      "If the submitted details correspond to a ViaNexis Driver account, the request has been recorded. We will provide further information after the appropriate verification.",
+      "If the submitted details correspond to a ViaNexis Driver account, the request has been recorded. We will provide further information after the required verification.",
     errorMessages: {
       required: "This field is required.",
       emailInvalid: "Please enter a valid email address.",

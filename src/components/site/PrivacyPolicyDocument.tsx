@@ -119,33 +119,58 @@ export function PrivacyPolicyDocument({
               </a>
             </dd>
           </div>
+          <div className="hidden print:block">
+            <dt className="inline text-text-tertiary">
+              {contentLocale === "hu"
+                ? "Adatvédelmi tájékoztató URL: "
+                : "Privacy policy URL: "}
+            </dt>
+            <dd className="inline break-all">
+              {contentLocale === "hu"
+                ? "https://vianexis.eu/hu/driver-app/privacy"
+                : "https://vianexis.eu/en/driver-app/privacy"}
+            </dd>
+          </div>
+          <div className="hidden print:block">
+            <dt className="inline text-text-tertiary">
+              {contentLocale === "hu"
+                ? "Fióktörlési URL: "
+                : "Account deletion URL: "}
+            </dt>
+            <dd className="inline break-all">{deletionUrl}</dd>
+          </div>
+          <div className="hidden print:block">
+            <dt className="inline text-text-tertiary">
+              {contentLocale === "hu" ? "Nyomtatás dátuma: " : "Print date: "}
+            </dt>
+            <dd className="inline">
+              {new Date().toISOString().slice(0, 10)}
+            </dd>
+          </div>
         </dl>
 
         <p className="text-lead mt-5 text-neutral-grey">{doc.intro}</p>
 
-        <p className="text-body mt-6 rounded-md border border-navy-700 bg-navy-900/50 p-4 text-neutral-grey">
-          {contentLocale === "hu" ? (
-            <>
-              Fiók és kapcsolódó adatok törlésének kérése:{" "}
-              <Link
-                href={localePath(contentLocale, "/driver-app/account-deletion")}
-                className="text-cyan-glow hover:underline"
-              >
-                {deletionUrl.replace("https://vianexis.eu", "")}
-              </Link>
-            </>
-          ) : (
-            <>
-              Request deletion of your account and associated data:{" "}
-              <Link
-                href={localePath(contentLocale, "/driver-app/account-deletion")}
-                className="text-cyan-glow hover:underline"
-              >
-                {deletionUrl.replace("https://vianexis.eu", "")}
-              </Link>
-            </>
-          )}
-        </p>
+        <aside className="mt-6 rounded-md border border-cyan-glow/40 bg-navy-900/50 p-4">
+          <p className="text-card-title text-white">
+            {contentLocale === "hu"
+              ? "Fiók és kapcsolódó adatok törlése"
+              : "Delete account and associated data"}
+          </p>
+          <p className="text-body mt-2 text-neutral-grey">
+            {contentLocale === "hu"
+              ? "A végleges fióktörlési kérelmet a következő, bejelentkezés nélkül elérhető oldalon nyújthatja be:"
+              : "Submit a permanent account-deletion request on the following page (no sign-in required):"}
+          </p>
+          <p className="text-body mt-3">
+            <a
+              className="text-cyan-glow break-all underline hover:no-underline"
+              href={deletionUrl}
+            >
+              {deletionUrl}
+            </a>
+          </p>
+        </aside>
 
         <div className="mt-8">
           <DriverAppLegalToc label={doc.tocLabel} sections={doc.sections} />

@@ -54,20 +54,42 @@ assert.match(huPrivacyPage, /Adatvédelmi tájékoztató – ViaNexis Driver/);
 assert.match(huPrivacyPage, /Privacy Policy – ViaNexis Driver/);
 assert.match(legalConfig, /Turul Atilla/);
 assert.match(legalConfig, /privacy@vianexis\.eu/);
-assert.match(privacyDoc, /driver-app\/account-deletion/);
+assert.match(privacyDoc, /accountDeletionUrlHu|deletionUrl/);
 assert.match(privacyDoc, /legalControllerLabel/);
+assert.match(privacyDoc, /https:\/\/vianexis\.eu\/hu\/driver-app\/privacy/);
+assert.match(privacyDoc, /href=\{deletionUrl\}/);
 assert.match(footer, /privacy-request/);
 assert.match(footer, /driver-app\/account-deletion/);
 assert.match(footer, /deleteAccount/);
 
 assert.match(
   huDriver,
-  /Ha a megadott adatokhoz ViaNexis Driver-fiók tartozik/,
+  /Ha a megadott adatokhoz ViaNexis Driver-fiók tartozik, a kérelmet rögzítettük\. A szükséges ellenőrzést követően/,
 );
 assert.match(
   enDriver,
-  /If the submitted details correspond to a ViaNexis Driver account/,
+  /If the submitted details correspond to a ViaNexis Driver account, the request has been recorded\. We will provide further information after the required verification\./,
 );
+
+assert.equal(huDriver.includes("kézzel írt"), false, "HU must not say kézzel írt");
+assert.equal(enDriver.includes("hand-authored"), false, "EN legal chrome must not say hand-authored");
+assert.equal(huDriver.includes("Adatvédelmi tisztviselői postafiók"), false);
+assert.equal(enDriver.includes("Data protection mailbox"), false);
+assert.match(huDriver, /Adatvédelmi kapcsolattartás/);
+assert.match(enDriver, /Privacy contact/);
+assert.equal(huDriver.includes("Szándékosan nem adunk meg konkrét"), false);
+assert.equal(enDriver.includes("deliberately do not state a single, fixed retention"), false);
+assert.equal(huDriver.includes("haladéktalanul töröljük"), false);
+assert.match(huDriver, /nem kér folyamatos háttér-helyhozzáférést/);
+assert.match(enDriver, /does not request continuous background location access/);
+assert.match(huDriver, /https:\/\/vianexis\.eu\/hu\/driver-app\/account-deletion/);
+assert.match(enDriver, /https:\/\/vianexis\.eu\/en\/driver-app\/account-deletion/);
+assert.match(privacyDoc, /https:\/\/vianexis\.eu\/(?:hu|en)\/driver-app\/account-deletion|deletionUrl/);
+assert.match(privacyDoc, /break-all/);
+assert.equal(huDriver.includes("GDPR 28. cikke szerinti adatfeldolgozói szerződést kötünk"), false);
+assert.equal(enDriver.includes("We enter into a data processing agreement under GDPR Article 28 with each"), false);
+assert.match(legalConfig, /Tesztelési kiadás\. Ez a tájékoztató a jelenleg terjesztett ViaNexis Driver/);
+assert.match(legalConfig, /Testing release\. This policy describes the actual data-processing/);
 
 assert.match(legalConfig, /privacyEmail/);
 assert.match(legalConfig, /Turul Atilla/);
@@ -77,6 +99,11 @@ assert.match(enDriver, /sole proprietor registered in Hungary|OPERATOR_STATEMENT
 assert.match(huDriver, /OPERATOR_STATEMENT_HU/);
 assert.match(huLegal, /Turul Atilla egyéni vállalkozó/);
 assert.match(enLegal, /sole proprietor and operator of the ViaNexis brand|Turul Atilla/);
+
+const processorsAudit = read("docs/legal-processors-audit.md");
+assert.match(processorsAudit, /active/);
+assert.match(processorsAudit, /requiresDecision/);
+assert.match(processorsAudit, /FCM/);
 
 // Section key parity HU/EN for privacy document only
 function privacyIds(source) {
