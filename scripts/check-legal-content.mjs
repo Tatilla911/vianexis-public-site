@@ -630,8 +630,93 @@ assert.match(footer, /\/legal/);
 assert.match(footer, /privacy-request/);
 assert.match(footer, /driver-app\/account-deletion/);
 
+// --- Data Safety (public summary) ---
+const dsHu = read(
+  "src/lib/i18n/driver-app-legal/content/data-safety-sections-hu.ts",
+);
+const dsEn = read(
+  "src/lib/i18n/driver-app-legal/content/data-safety-sections-en.ts",
+);
+const dsPage = read("src/app/[locale]/driver-app/data-safety/page.tsx");
+const dsAudit = read("docs/driver-data-safety-audit.md");
+const dsPlayDraft = read("docs/play-console-data-safety-draft.md");
+const dsFlow = read("docs/driver-data-flow-matrix.md");
+
+assert.match(dsPage, /DriverAppLegalToc/);
+assert.match(dsPage, /accountDeletionUrlHu|deletionUrl/);
+assert.match(dsPage, /disclaimersUrlHu|disclaimersUrl/);
+assert.match(dsPage, /printDate|Nyomtatás dátuma|Print date/);
+assert.match(dsHu, /https:\/\/vianexis\.eu\/hu\/driver-app\/account-deletion/);
+assert.match(dsEn, /https:\/\/vianexis\.eu\/en\/driver-app\/account-deletion/);
+assert.match(dsHu, /https:\/\/vianexis\.eu\/hu\/privacy/);
+assert.match(dsEn, /https:\/\/vianexis\.eu\/en\/privacy/);
+assert.match(dsHu, /https:\/\/vianexis\.eu\/hu\/terms/);
+assert.match(dsEn, /https:\/\/vianexis\.eu\/en\/terms/);
+assert.match(dsHu, /https:\/\/vianexis\.eu\/hu\/disclaimers/);
+assert.match(dsEn, /https:\/\/vianexis\.eu\/en\/disclaimers/);
+assert.match(dsHu, /Turul Atilla egyéni vállalkozó/);
+assert.match(dsEn, /sole proprietor/);
+assert.match(dsHu, /privacy@vianexis\.eu/);
+assert.match(dsEn, /privacy@vianexis\.eu/);
+
+assert.equal(/Google approved|Google jóváhagyta|Play jóváhagyta/i.test(dsHu + dsEn + dsPage), false);
+assert.equal(/minden adat titkosítva|all data (is )?encrypted\b/i.test(dsHu + dsEn), false);
+assert.equal(
+  /(?:all|minden).{0,40}encrypted at rest|at-rest titkosítással lenne védve/i.test(dsHu + dsEn) &&
+    !/Nem állítjuk, hogy minden|do not claim that every/i.test(dsHu + dsEn),
+  false,
+  "Must not claim blanket at-rest encryption",
+);
+assert.match(dsHu, /nem indít azonnali, automatikus teljes adattörlést/);
+assert.match(dsEn, /does not trigger immediate automatic full data deletion/);
+assert.match(dsHu, /Nem állítjuk, hogy „semmilyen adatot nem osztunk meg/);
+assert.match(dsEn, /do not claim that “no data is shared/);
+assert.match(dsHu, /Nem állítunk független biztonsági felülvizsgálatot/);
+assert.match(dsEn, /do not claim an independent security review/);
+assert.equal(/adatvédelmi tisztviselő|Data Protection Officer|\bDPO\b/i.test(dsHu + dsEn), false);
+assert.match(dsHu, /önálló jogi személyként nem szerepel/);
+assert.match(dsEn, /not presented as a separate legal entity/);
+assert.match(dsHu, /ACCESS_BACKGROUND_LOCATION nincs deklarálva/);
+assert.match(dsEn, /ACCESS_BACKGROUND_LOCATION is not declared/);
+
+function dsIds(source) {
+  return [...source.matchAll(/\n\s*id:\s*"([^"]+)"/g)].map((m) => m[1]);
+}
+const huDsIds = dsIds(dsHu);
+const enDsIds = dsIds(dsEn);
+assert.deepEqual(huDsIds, enDsIds, "HU/EN Data Safety section ids must match");
+assert.equal(huDsIds.length, 23, "Data Safety must have 23 chapters");
+assert.equal(new Set(huDsIds).size, huDsIds.length, "Data Safety anchors unique");
+
+for (const [label, src] of [
+  ["HU data-safety sections", dsHu],
+  ["EN data-safety sections", dsEn],
+]) {
+  const stripped = src
+    .replaceAll("https://vianexis.eu/hu/driver-app/account-deletion", "")
+    .replaceAll("https://vianexis.eu/en/driver-app/account-deletion", "");
+  assert.equal(
+    /(?:^|[^/\w])\/driver-app\/account-deletion\b/.test(stripped),
+    false,
+    `${label}: bare relative deletion URL not allowed`,
+  );
+}
+
+assertHashTargets(dsHu, "HU data-safety");
+assertHashTargets(dsEn, "EN data-safety");
+
+assert.match(dsAudit, /20c9050|feat\/map-foundation/);
+assert.match(dsAudit, /requiresOwnerDecision|productionBlocker|ACCESS_BACKGROUND/);
+assert.match(dsPlayDraft, /Independent security review/);
+assert.match(dsPlayDraft, /Do not answer “No data shared” yet|Do not answer .No data shared. yet|no data shared/i);
+assert.match(dsFlow, /MapLocationService|push token|OCR/);
+
+assert.match(huDriver, /sections: dataSafetySectionsHu|dataSafetySectionsHu/);
+assert.match(enDriver, /sections: dataSafetySectionsEn|dataSafetySectionsEn/);
+
 console.log("legal-content-checks: OK");
 console.log(`terms section parity: ${huTermsIds.length} ids matched`);
 console.log(`responsible-use section parity: ${huRuIds.length} ids matched`);
 console.log(`legal-center card parity: ${huCardIds.length} ids matched`);
+console.log(`data-safety section parity: ${huDsIds.length} ids matched`);
 console.log("cross-reference checks: OK");
