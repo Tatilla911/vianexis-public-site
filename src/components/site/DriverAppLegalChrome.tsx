@@ -60,15 +60,15 @@ export function DriverAppLegalToc({ label, sections }: TocProps) {
   return (
     <nav
       aria-label={label}
-      className="driver-app-legal-toc rounded-lg border border-navy-700 bg-navy-900/60 p-4"
+      className="driver-app-legal-toc max-w-full overflow-x-auto rounded-lg border border-navy-700 bg-navy-900/60 p-4"
     >
       <p className="text-overline text-gold-core">{label}</p>
       <ol className="mt-3 list-decimal space-y-1.5 pl-5">
         {sections.map((section) => (
-          <li key={section.id}>
+          <li key={section.id} className="min-w-0">
             <a
               href={`#${section.id}`}
-              className="text-nav text-cyan-glow hover:underline"
+              className="text-nav break-words text-cyan-glow hover:underline"
             >
               {section.title}
             </a>

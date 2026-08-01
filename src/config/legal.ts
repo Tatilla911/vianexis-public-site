@@ -207,6 +207,12 @@ export const legalTermsTestingReleaseBanner = {
   en: "Testing release. These terms apply to the currently distributed versions of the ViaNexis platform and the ViaNexis Driver application. If the service or these terms change materially, this document will be updated before the relevant new version or feature is released.",
 } as const;
 
+/** Testing banner for Responsible Use / Disclaimers pages. */
+export const legalResponsibleUseTestingReleaseBanner = {
+  hu: "Tesztelési kiadás. Ez a dokumentum a jelenleg terjesztett ViaNexis platform- és ViaNexis Driver alkalmazásverzió felelős használati korlátait ismerteti. Új vagy lényegesen megváltozott funkció kiadása előtt a dokumentumot frissítjük.",
+  en: "Testing release. This document describes the responsible-use limitations of the currently distributed versions of the ViaNexis platform and ViaNexis Driver application. It will be updated before any new or materially changed feature is released.",
+} as const;
+
 export const legalControllerLabelForTerms = {
   hu: {
     heading: "Szolgáltató",

@@ -345,6 +345,153 @@ for (const [label, src] of [
   );
 }
 
+// --- Responsible Use / Disclaimers ---
+const ruHu = read(
+  "src/lib/i18n/driver-app-legal/content/responsible-use-sections-hu.ts",
+);
+const ruEn = read(
+  "src/lib/i18n/driver-app-legal/content/responsible-use-sections-en.ts",
+);
+const ruDoc = read("src/components/site/ResponsibleUseDocument.tsx");
+const ruPage = read("src/app/[locale]/disclaimers/page.tsx");
+const ruDecisions = read("docs/responsible-use-legal-decisions.md");
+
+assert.match(ruPage, /Felelős használat és fontos korlátozások – ViaNexis/);
+assert.match(ruPage, /Responsible Use and Important Limitations – ViaNexis/);
+assert.match(ruPage, /ResponsibleUseDocument/);
+assert.match(ruHu, /Felelős használat és fontos korlátozások – ViaNexis/);
+assert.match(ruEn, /Responsible Use and Important Limitations – ViaNexis/);
+assert.match(ruDoc, /legalResponsibleUseTestingReleaseBanner/);
+assert.match(ruDoc, /legal@vianexis\.eu|legalEmail/);
+assert.match(ruDoc, /accountDeletionUrlHu|deletionUrl/);
+assert.match(ruDoc, /privacyUrlHu|privacyUrl/);
+assert.match(ruDoc, /termsUrlHu|termsUrl/);
+assert.match(ruDoc, /printDate|Nyomtatás dátuma|Print date/);
+assert.match(legalConfig, /legalResponsibleUseTestingReleaseBanner/);
+assert.match(
+  legalConfig,
+  /Tesztelési kiadás\. Ez a dokumentum a jelenleg terjesztett ViaNexis platform/,
+);
+assert.match(
+  legalConfig,
+  /Testing release\. This document describes the responsible-use limitations/,
+);
+
+assert.match(ruHu, /https:\/\/vianexis\.eu\/hu\/privacy/);
+assert.match(ruEn, /https:\/\/vianexis\.eu\/en\/privacy/);
+assert.match(ruHu, /https:\/\/vianexis\.eu\/hu\/terms/);
+assert.match(ruEn, /https:\/\/vianexis\.eu\/en\/terms/);
+assert.match(ruHu, /https:\/\/vianexis\.eu\/hu\/driver-app\/account-deletion/);
+assert.match(ruEn, /https:\/\/vianexis\.eu\/en\/driver-app\/account-deletion/);
+assert.match(ruHu, /Turul Atilla|ViaNexis/);
+assert.match(ruHu, /legal@vianexis\.eu/);
+assert.match(ruEn, /legal@vianexis\.eu/);
+
+assert.match(ruHu, /nem minősített eFTI platform/);
+assert.match(ruEn, /not a certified eFTI platform/);
+assert.equal(ruHu.includes("minősített eFTI platformként"), false);
+assert.equal(/is a certified eFTI/i.test(ruEn), false);
+assert.equal(ruHu.includes("hivatalos navigáció"), false);
+assert.match(ruHu, /Nem minősített tehergépkocsi-navigáció|nem minősített tehergépkocsi-navigáció/i);
+assert.match(ruEn, /not certified truck navigation/i);
+assert.equal(/is certified truck navigation|is official navigation/i.test(ruEn), false);
+assert.match(ruHu, /nem garantálja, hogy a rögzített aláírás/);
+assert.match(ruEn, /does not guarantee that a recorded signature qualifies as a qualified electronic signature/);
+assert.equal(/automatikus jogi bizonyító erőt garantál/i.test(ruHu), false);
+assert.equal(/guarantees? (?:automatic )?(?:legal )?evidential (?:force|value)/i.test(ruEn), false);
+assert.match(ruHu, /nem segélyhívó/);
+assert.match(ruEn, /not an emergency hotline/);
+assert.match(ruHu, /Teljes közösségi hálózatot vagy közösségi helymegosztó szolgáltatást ez a dokumentum nem állít aktívként/);
+assert.match(ruEn, /does not treat a full community network or community location-sharing service as active/);
+
+const mandatoryHu =
+  "A korlátozások az alkalmazandó kötelező jogszabályok keretei között érvényesek.";
+const mandatoryHuAlt =
+  "A korlátozások az alkalmazandó kötelező jogszabályok keretei között értendők.";
+const mandatoryCloseHu =
+  "A jelen korlátozások az alkalmazandó kötelező jogszabályok keretei között értendők.";
+assert.equal(
+  ruHu.split(mandatoryHu).length - 1,
+  0,
+  "Responsible Use HU must not repeat the old per-section mandatory closer",
+);
+assert.ok(
+  (ruHu.split(mandatoryHuAlt).length - 1) +
+    (ruHu.split(mandatoryCloseHu).length - 1) <=
+    3,
+  "Responsible Use HU mandatory-law phrase must appear sparingly (intro + final)",
+);
+
+function ruIds(source) {
+  return [...source.matchAll(/\n\s*id:\s*"([^"]+)"/g)].map((m) => m[1]);
+}
+const huRuIds = ruIds(ruHu);
+const enRuIds = ruIds(ruEn);
+assert.deepEqual(huRuIds, enRuIds, "HU/EN Responsible Use section ids must match");
+assert.equal(huRuIds.length, 27, "Responsible Use must have 27 chapters");
+assert.equal(new Set(huRuIds).size, huRuIds.length, "Responsible Use anchors must be unique");
+
+const expectedRuIds = [
+  "purpose-and-scope",
+  "general-principles",
+  "shipment-data-and-user-input",
+  "adr-and-dangerous-goods",
+  "tunnel-route-and-traffic-restrictions",
+  "customs-border-and-authority-info",
+  "map-location-and-navigation",
+  "ai-assistive-features",
+  "ocr-and-document-recognition",
+  "automatic-translation",
+  "electronic-signatures",
+  "digital-documents-and-evidence",
+  "pallet-and-packaging-exchange",
+  "photos-videos-and-incident-evidence",
+  "messages-and-operational-communication",
+  "push-and-other-notifications",
+  "offline-use-and-synchronisation",
+  "map-and-community-content",
+  "efti-and-authority-sharing",
+  "privacy-and-permissions",
+  "support-and-controlled-access",
+  "availability-and-external-providers",
+  "emergency-and-sos",
+  "human-review-and-final-decision",
+  "reporting-issues",
+  "contact",
+  "final-provisions",
+];
+assert.deepEqual(huRuIds, expectedRuIds, "Responsible Use chapter ids/order");
+
+assert.equal(ruHu.includes("privacy-safe"), false, "HU must not mix English privacy-safe");
+assert.equal(ruHu.includes("TODO"), false);
+assert.equal(ruEn.includes("TODO"), false);
+assert.equal(ruHu.includes("kézzel írt"), false);
+assert.equal(ruEn.includes("hand-authored"), false);
+
+for (const [label, src] of [
+  ["HU responsible-use", ruHu],
+  ["EN responsible-use", ruEn],
+]) {
+  const stripped = src
+    .replaceAll("https://vianexis.eu/hu/driver-app/account-deletion", "")
+    .replaceAll("https://vianexis.eu/en/driver-app/account-deletion", "");
+  assert.equal(
+    /(?:^|[^/\w])\/driver-app\/account-deletion\b/.test(stripped),
+    false,
+    `${label}: bare relative deletion URL not allowed`,
+  );
+}
+
+assertHashTargets(ruHu, "HU responsible-use");
+assertHashTargets(ruEn, "EN responsible-use");
+
+assert.match(ruDecisions, /requiresOwnerDecision/);
+assert.match(ruDecisions, /productionBlocker/);
+assert.match(ruDecisions, /community map|Community map/i);
+assert.match(ruDecisions, /eFTI/);
+assert.match(ruDecisions, /SOS/);
+
 console.log("legal-content-checks: OK");
 console.log(`terms section parity: ${huTermsIds.length} ids matched`);
+console.log(`responsible-use section parity: ${huRuIds.length} ids matched`);
 console.log("cross-reference checks: OK");

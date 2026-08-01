@@ -1,47 +1,63 @@
 import type { Metadata } from "next";
-import { DisclaimerBox } from "@/components/site/DisclaimerBox";
-import { LegalStatusBadge } from "@/components/site/LegalStatusBadge";
-import { Section } from "@/components/site/Section";
-import { getContent, resolveLocale } from "@/lib/i18n";
-import { buildLegalPageMetadata } from "@/lib/i18n/metadata";
+import { permanentRedirect } from "next/navigation";
+import { ResponsibleUseDocument } from "@/components/site/ResponsibleUseDocument";
+import { legalConfig } from "@/config/legal";
+import { resolveLocale } from "@/lib/i18n";
+import { buildDriverAppLegalMetadata } from "@/lib/i18n/driver-app-legal/metadata";
+import { responsibleUseDocEn } from "@/lib/i18n/driver-app-legal/content/responsible-use-sections-en";
+import { responsibleUseDocHu } from "@/lib/i18n/driver-app-legal/content/responsible-use-sections-hu";
 import type { Locale } from "@/lib/i18n/types";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
+const PATH = "/disclaimers";
+
+const PAGE_TITLE = {
+  hu: "Felelős használat és fontos korlátozások – ViaNexis",
+  en: "Responsible Use and Important Limitations – ViaNexis",
+} as const;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const locale = resolveLocale((await params).locale) as Locale;
-  const { legal } = getContent(locale);
-  return buildLegalPageMetadata(
-    locale,
-    "/disclaimers",
-    legal.disclaimersPage.title,
+  const contentLocale = locale === "hu" ? "hu" : "en";
+  const doc =
+    contentLocale === "hu" ? responsibleUseDocHu : responsibleUseDocEn;
+  const meta = buildDriverAppLegalMetadata(
+    contentLocale,
+    PATH,
+    PAGE_TITLE[contentLocale],
+    doc.metaDescription,
   );
+  const canonical =
+    contentLocale === "hu"
+      ? `${legalConfig.websiteUrl.value!}/hu/disclaimers`
+      : `${legalConfig.websiteUrl.value!}/en/disclaimers`;
+  return {
+    ...meta,
+    robots: { index: true, follow: true },
+    alternates: {
+      canonical,
+      languages: {
+        hu: `${legalConfig.websiteUrl.value!}/hu/disclaimers`,
+        en: `${legalConfig.websiteUrl.value!}/en/disclaimers`,
+      },
+    },
+  };
 }
 
 export default async function DisclaimersPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale) as Locale;
-  const { legal } = getContent(locale);
+  if (locale !== "hu" && locale !== "en") {
+    permanentRedirect("/en/disclaimers");
+  }
 
   return (
-    <Section className="pt-12">
-      <div className="prose-legal mx-auto w-full">
-        <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-page-title">
-          {legal.disclaimersPage.title}
-        </h1>
-        <p className="text-lead mt-5">
-          {legal.disclaimersPage.intro}
-        </p>
-        <div className="mt-10 grid gap-4">
-          {legal.disclaimersPage.items.map((item) => (
-            <DisclaimerBox key={item.id} title={item.title}>
-              <p>{item.body}</p>
-            </DisclaimerBox>
-          ))}
-        </div>
-      </div>
-    </Section>
+    <ResponsibleUseDocument
+      contentLocale={locale}
+      switchPath={PATH}
+      showBackToHub
+    />
   );
 }
