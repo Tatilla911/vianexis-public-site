@@ -86,8 +86,23 @@ export const legalConfig = {
   privacyRequestUrlEn: confirmed(`${DOMAIN}/en/privacy-request`),
   termsUrlHu: confirmed(`${DOMAIN}/hu/terms`),
   termsUrlEn: confirmed(`${DOMAIN}/en/terms`),
+  disclaimersUrlHu: confirmed(`${DOMAIN}/hu/disclaimers`),
+  disclaimersUrlEn: confirmed(`${DOMAIN}/en/disclaimers`),
+  legalCenterUrlHu: confirmed(`${DOMAIN}/hu/legal`),
+  legalCenterUrlEn: confirmed(`${DOMAIN}/en/legal`),
+  dataSafetyUrlHu: confirmed(`${DOMAIN}/hu/driver-app/data-safety`),
+  dataSafetyUrlEn: confirmed(`${DOMAIN}/en/driver-app/data-safety`),
+  driverAppLegalUrlHu: confirmed(`${DOMAIN}/hu/driver-app/legal`),
+  driverAppLegalUrlEn: confirmed(`${DOMAIN}/en/driver-app/legal`),
+  contactUrlHu: confirmed(`${DOMAIN}/hu/contact`),
+  contactUrlEn: confirmed(`${DOMAIN}/en/contact`),
   driverAppPrivacyUrlHu: confirmed(`${DOMAIN}/hu/driver-app/privacy`),
   driverAppPrivacyUrlEn: confirmed(`${DOMAIN}/en/driver-app/privacy`),
+  /**
+   * When true, Legal Center may show a user-facing “under legal review” status.
+   * Keep false until counsel explicitly authorises that public wording.
+   */
+  showPublicLegalReviewStatus: confirmed(false),
   retentionPolicy: auditPending(
     "No approved retention matrix with concrete periods in this repository.",
   ),
@@ -211,6 +226,12 @@ export const legalTermsTestingReleaseBanner = {
 export const legalResponsibleUseTestingReleaseBanner = {
   hu: "Tesztelési kiadás. Ez a dokumentum a jelenleg terjesztett ViaNexis platform- és ViaNexis Driver alkalmazásverzió felelős használati korlátait ismerteti. Új vagy lényegesen megváltozott funkció kiadása előtt a dokumentumot frissítjük.",
   en: "Testing release. This document describes the responsible-use limitations of the currently distributed versions of the ViaNexis platform and ViaNexis Driver application. It will be updated before any new or materially changed feature is released.",
+} as const;
+
+/** Testing banner for the Legal Center (/legal) hub. */
+export const legalCenterTestingReleaseBanner = {
+  hu: "Tesztelési kiadás. A dokumentumközpont a jelenleg terjesztett ViaNexis platform- és ViaNexis Driver verzióhoz tartozó jogi dokumentumokat tartalmazza. Új vagy lényegesen módosított funkció kiadása előtt a kapcsolódó dokumentumokat frissítjük.",
+  en: "Testing release. This document center contains the legal documents applicable to the currently distributed versions of the ViaNexis platform and ViaNexis Driver. The relevant documents will be updated before any new or materially changed feature is released.",
 } as const;
 
 export const legalControllerLabelForTerms = {

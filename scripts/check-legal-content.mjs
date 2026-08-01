@@ -491,7 +491,147 @@ assert.match(ruDecisions, /community map|Community map/i);
 assert.match(ruDecisions, /eFTI/);
 assert.match(ruDecisions, /SOS/);
 
+// --- Legal Center (/legal) ---
+const legalCenterPage = read("src/app/[locale]/legal/page.tsx");
+const legalCenterDoc = read("src/components/site/LegalCenterDocument.tsx");
+const legalCenterContent = read("src/lib/i18n/legal-center/content.ts");
+const legalCenterReadiness = read("docs/legal-center-readiness.md");
+
+assert.match(legalCenterPage, /LegalCenterDocument/);
+assert.match(legalCenterPage, /Jogi információk és dokumentumközpont \| ViaNexis/);
+assert.match(legalCenterPage, /Legal Information and Document Center \| ViaNexis/);
+assert.match(legalCenterPage, /legalCenterUrlHu|legalCenterUrl/);
+assert.match(legalCenterDoc, /legalCenterTestingReleaseBanner/);
+assert.match(legalCenterDoc, /Turul Atilla|provider\.line|legalControllerLabelForTerms/);
+assert.match(legalCenterDoc, /legal@vianexis\.eu|legalEmail/);
+assert.match(legalCenterDoc, /privacy@vianexis\.eu|privacyEmail/);
+assert.match(legalCenterDoc, /accountDeletionUrlHu|deletionUrl/);
+assert.match(legalCenterDoc, /disclaimersUrlHu|disclaimersUrl/);
+assert.match(legalCenterDoc, /privacyRequestUrlHu|privacyRequestUrl/);
+assert.match(legalCenterDoc, /printDateLabel|Nyomtatás dátuma|Print date/);
+assert.match(legalConfig, /legalCenterTestingReleaseBanner/);
+assert.match(
+  legalConfig,
+  /Tesztelési kiadás\. A dokumentumközpont a jelenleg terjesztett ViaNexis platform/,
+);
+assert.match(
+  legalConfig,
+  /Testing release\. This document center contains the legal documents/,
+);
+assert.match(legalConfig, /disclaimersUrlHu/);
+assert.match(legalConfig, /dataSafetyUrlHu/);
+assert.match(legalConfig, /driverAppLegalUrlHu/);
+assert.match(legalConfig, /showPublicLegalReviewStatus/);
+assert.match(legalConfig, /privacyUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/privacy`\)/);
+assert.match(legalConfig, /privacyUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/privacy`\)/);
+assert.match(legalConfig, /termsUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/terms`\)/);
+assert.match(legalConfig, /termsUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/terms`\)/);
+assert.match(legalConfig, /disclaimersUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/disclaimers`\)/);
+assert.match(legalConfig, /disclaimersUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/disclaimers`\)/);
+assert.match(
+  legalConfig,
+  /accountDeletionUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/driver-app\/account-deletion`\)/,
+);
+assert.match(
+  legalConfig,
+  /accountDeletionUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/driver-app\/account-deletion`\)/,
+);
+assert.match(
+  legalConfig,
+  /privacyRequestUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/privacy-request`\)/,
+);
+assert.match(
+  legalConfig,
+  /privacyRequestUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/privacy-request`\)/,
+);
+assert.match(
+  legalConfig,
+  /dataSafetyUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/driver-app\/data-safety`\)/,
+);
+assert.match(
+  legalConfig,
+  /dataSafetyUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/driver-app\/data-safety`\)/,
+);
+assert.match(legalConfig, /legalCenterUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/legal`\)/);
+assert.match(legalConfig, /legalCenterUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/legal`\)/);
+assert.match(legalConfig, /const DOMAIN = "https:\/\/vianexis\.eu"/);
+
+assert.match(legalCenterContent, /privacyUrlHu|privacyUrlEn/);
+assert.match(legalCenterContent, /termsUrlHu|termsUrlEn/);
+assert.match(legalCenterContent, /disclaimersUrlHu|disclaimersUrlEn/);
+assert.match(legalCenterContent, /accountDeletionUrlHu|accountDeletionUrlEn/);
+assert.match(legalCenterContent, /privacyRequestUrlHu|privacyRequestUrlEn/);
+assert.match(legalCenterContent, /dataSafetyUrlHu|dataSafetyUrlEn/);
+assert.match(legalCenterContent, /driverAppLegalUrlHu|driverAppLegalUrlEn/);
+assert.match(legalCenterContent, /legalCenterUrlHu|legalCenterUrlEn/);
+assert.match(legalCenterDoc, /absoluteUrl|deletionUrl|privacyRequestUrl/);
+
+assert.equal(legalCenterDoc.includes("READY FOR LEGAL REVIEW"), false);
+assert.equal(legalCenterDoc.includes("production blocker"), false);
+assert.equal(legalCenterDoc.includes("requiresOwnerDecision"), false);
+assert.equal(legalCenterDoc.includes("NOT READY"), false);
+assert.equal(legalCenterContent.includes("READY FOR LEGAL REVIEW"), false);
+assert.equal(legalCenterContent.includes("production blocker"), false);
+assert.equal(/Google approved|Google tanúsította|Play jóváhagyta/i.test(legalCenterDoc + legalCenterContent), false);
+assert.equal(
+  /ViaNexis (önálló )?jogi személy|ViaNexis is a (separate )?legal entity/i.test(
+    legalCenterContent,
+  ) && !/nem szerepel|not presented as a separate legal entity/i.test(legalCenterContent),
+  false,
+);
+assert.match(legalCenterContent, /Turul Atilla egyéni vállalkozó/);
+assert.match(legalCenterContent, /sole proprietor/);
+
+const huCardIds = [
+  ...legalCenterContent
+    .split("const copyHu")[1]
+    .split("const copyEn")[0]
+    .matchAll(/\n\s*id:\s*"([^"]+)"/g),
+].map((m) => m[1]);
+const enCardIds = [
+  ...legalCenterContent
+    .split("const copyEn")[1]
+    .split("function absoluteUrl")[0]
+    .matchAll(/\n\s*id:\s*"([^"]+)"/g),
+].map((m) => m[1]);
+assert.deepEqual(huCardIds, enCardIds, "HU/EN Legal Center card ids must match");
+assert.ok(huCardIds.includes("privacy"));
+assert.ok(huCardIds.includes("terms"));
+assert.ok(huCardIds.includes("disclaimers"));
+assert.ok(huCardIds.includes("account-deletion"));
+assert.ok(huCardIds.includes("privacy-request"));
+assert.ok(huCardIds.includes("data-safety"));
+assert.ok(huCardIds.includes("driver-legal"));
+assert.ok(huCardIds.includes("provider"));
+assert.equal(huCardIds.length, 8, "Legal Center must list 8 document cards");
+
+for (const [label, src] of [
+  ["Legal Center content", legalCenterContent],
+  ["Legal Center document", legalCenterDoc],
+]) {
+  const stripped = src
+    .replaceAll("https://vianexis.eu/hu/driver-app/account-deletion", "")
+    .replaceAll("https://vianexis.eu/en/driver-app/account-deletion", "")
+    .replaceAll('hrefPath: "/driver-app/account-deletion"', "")
+    .replaceAll('"/driver-app/account-deletion"', "");
+  assert.equal(
+    /(?:^|[^/\w])\/driver-app\/account-deletion\b/.test(stripped),
+    false,
+    `${label}: bare relative deletion URL not allowed in printable absolute context — absolute URLs must come from legalConfig`,
+  );
+}
+
+assert.match(legalCenterReadiness, /requiresOwnerDecision/);
+assert.match(legalCenterReadiness, /productionBlocker/);
+assert.match(legalCenterReadiness, /Data Safety/);
+assert.match(legalCenterReadiness, /Privacy contact/);
+
+assert.match(footer, /\/legal/);
+assert.match(footer, /privacy-request/);
+assert.match(footer, /driver-app\/account-deletion/);
+
 console.log("legal-content-checks: OK");
 console.log(`terms section parity: ${huTermsIds.length} ids matched`);
 console.log(`responsible-use section parity: ${huRuIds.length} ids matched`);
+console.log(`legal-center card parity: ${huCardIds.length} ids matched`);
 console.log("cross-reference checks: OK");
