@@ -374,7 +374,7 @@ export function PrivacyRequestForm({ locale, content }: Props) {
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex items-center justify-center rounded-md bg-cyan-accent px-5 py-2.5 text-nav font-semibold text-navy-1000 transition hover:brightness-110 disabled:opacity-60"
+        className="inline-flex items-center justify-center rounded-md bg-cyan-accent px-5 py-2.5 text-button text-brand-ink-on-gold transition hover:brightness-110 disabled:opacity-60"
       >
         {submitting ? content.submittingLabel : content.submitLabel}
       </button>

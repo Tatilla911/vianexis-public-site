@@ -48,7 +48,7 @@ export function ProcessTimeline({
           <h3
             className={cn(
               "text-h3 text-base",
-              dark ? "text-white" : "text-navy",
+              !dark && "text-brand-title--on-light",
             )}
           >
             {step.title}

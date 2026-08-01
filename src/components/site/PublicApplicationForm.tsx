@@ -290,17 +290,17 @@ export function PublicApplicationForm({
         <p className="mt-2 text-neutral-grey">{copy.common.successBody}</p>
         <dl className="mt-4 space-y-2 text-body text-neutral-grey">
           <div className="flex flex-wrap gap-2">
-            <dt className="font-semibold text-white">{copy.common.referenceLabel}</dt>
+            <dt className="font-semibold text-brand-ink">{copy.common.referenceLabel}</dt>
             <dd>
               <code className="text-cyan-glow">{success.reference}</code>
             </dd>
           </div>
           <div className="flex flex-wrap gap-2">
-            <dt className="font-semibold text-white">{copy.common.submittedAtLabel}</dt>
+            <dt className="font-semibold text-brand-ink">{copy.common.submittedAtLabel}</dt>
             <dd>{submittedLabel}</dd>
           </div>
           <div className="flex flex-wrap gap-2">
-            <dt className="font-semibold text-white">{copy.common.statusLabel}</dt>
+            <dt className="font-semibold text-brand-ink">{copy.common.statusLabel}</dt>
             <dd>{copy.common.statusUnderReview}</dd>
           </div>
         </dl>
@@ -370,7 +370,7 @@ export function PublicApplicationForm({
       <button
         type="submit"
         disabled={!enabled || submitting}
-        className="rounded-md bg-gold-core px-4 py-2 text-button text-navy-1000 hover:bg-gold-light disabled:opacity-50"
+        className="rounded-md bg-gold-core px-4 py-2 text-button text-brand-ink-on-gold hover:bg-gold-light disabled:opacity-50"
       >
         {submitting ? copy.common.submitting : copy.common.submit}
       </button>

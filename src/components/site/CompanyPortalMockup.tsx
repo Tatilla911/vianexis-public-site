@@ -50,7 +50,7 @@ export function CompanyPortalMockup({
           <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
             <div>
               <p className="text-overline text-cyan-accent">Company Portal</p>
-              <p className="text-sm font-semibold text-white">{title}</p>
+              <p className="text-sm font-semibold text-brand-ink">{title}</p>
               {subtitle ? (
                 <p className="text-caption text-neutral-grey">{subtitle}</p>
               ) : null}
@@ -76,7 +76,7 @@ export function CompanyPortalMockup({
                   <div
                     key={`${row[0]}-${idx}`}
                     className={cn(
-                      "grid gap-1 border-l-2 px-3 py-2.5 text-[11px] text-white sm:grid-cols-4 sm:gap-2",
+                      "grid gap-1 border-l-2 px-3 py-2.5 text-[11px] text-brand-ink sm:grid-cols-4 sm:gap-2",
                       isActiveTrip
                         ? "border-l-gold-core bg-gold-core/[0.05]"
                         : "border-l-transparent",
@@ -105,7 +105,7 @@ export function CompanyPortalMockup({
               <p className="text-[11px] uppercase tracking-wide text-gold-light">
                 {portal.alertLabel}
               </p>
-              <p className="mt-1 text-[11px] font-medium text-white">
+              <p className="mt-1 text-[11px] font-medium text-brand-ink">
                 {portal.alertValue}
               </p>
             </div>
@@ -113,7 +113,7 @@ export function CompanyPortalMockup({
               <p className="text-[11px] uppercase tracking-wide text-cyan-glow">
                 {portal.auditLabel}
               </p>
-              <p className="mt-1 text-[11px] font-medium text-white">
+              <p className="mt-1 text-[11px] font-medium text-brand-ink">
                 {portal.auditValue}
               </p>
             </div>

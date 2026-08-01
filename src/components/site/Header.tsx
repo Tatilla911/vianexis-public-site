@@ -128,7 +128,7 @@ export function Header({ locale }: HeaderProps) {
         <BrandLogo href={localePath(locale)} tone="dark" />
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden sm:block [&_select]:border-navy-700 [&_select]:bg-navy-900 [&_select]:text-white">
+          <div className="hidden sm:block [&_select]:border-navy-700 [&_select]:bg-navy-900 [&_select]:text-brand-ink">
             <LanguageSwitcher currentLocale={locale} />
           </div>
           <Button
@@ -151,7 +151,7 @@ export function Header({ locale }: HeaderProps) {
                 "focus-ring group inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border transition-all",
                 isMenuVisible
                   ? "border-cyan-glow/50 bg-navy-800 text-cyan-glow shadow-[0_0_24px_rgb(0_191_255_/_0.2)]"
-                  : "border-navy-600 bg-navy-900/80 text-white hover:border-gold-core/50 hover:text-gold-core",
+                  : "border-navy-600 bg-navy-900/80 text-gold-core hover:border-gold-core/50",
               )}
               aria-label={content.nav.menuOpen}
               aria-expanded={isMenuVisible}
@@ -194,8 +194,8 @@ export function Header({ locale }: HeaderProps) {
                       className={cn(
                         "focus-ring group/item relative flex items-center justify-between gap-3 overflow-hidden rounded-md border px-3.5 py-3 text-nav transition-all sm:py-2.5",
                         isActive(link.href)
-                          ? "border-gold-core/45 bg-gold-core/10 text-gold-pale shadow-[inset_0_0_0_1px_rgb(212_175_55_/_0.15)]"
-                          : "border-navy-700 bg-navy-1000/60 text-neutral-grey hover:border-cyan-glow/40 hover:bg-navy-800 hover:text-white hover:shadow-[0_0_20px_rgb(0_191_255_/_0.12)]",
+                          ? "border-gold-core/45 bg-gold-core/10 text-brand-ink shadow-[inset_0_0_0_1px_rgb(212_175_55_/_0.15)]"
+                          : "border-navy-700 bg-navy-1000/60 text-brand-ink hover:border-cyan-glow/40 hover:bg-navy-800 hover:shadow-[0_0_20px_rgb(0_191_255_/_0.12)]",
                       )}
                       aria-current={isActive(link.href) ? "page" : undefined}
                       onClick={closeMenu}
@@ -225,7 +225,7 @@ export function Header({ locale }: HeaderProps) {
                 </nav>
 
                 <div className="space-y-2 border-t border-navy-700 bg-navy-1000/70 p-3 sm:hidden">
-                  <div className="[&_select]:w-full [&_select]:border-navy-700 [&_select]:bg-navy-900 [&_select]:text-white">
+                  <div className="[&_select]:w-full [&_select]:border-navy-700 [&_select]:bg-navy-900 [&_select]:text-brand-ink">
                     <LanguageSwitcher currentLocale={locale} />
                   </div>
                   <Button

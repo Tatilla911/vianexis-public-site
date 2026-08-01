@@ -34,7 +34,7 @@ export function BrowserMockup({
         <div className="bg-navy-1000 p-4">
           <div className="mb-3">
             <p className="text-overline text-cyan-accent">Company Portal</p>
-            <p className="text-sm font-semibold text-white">{title}</p>
+            <p className="text-sm font-semibold text-brand-ink">{title}</p>
             {subtitle ? (
               <p className="text-caption text-neutral-grey">{subtitle}</p>
             ) : null}
@@ -51,7 +51,7 @@ export function BrowserMockup({
               {rows.map((row, idx) => (
                 <div
                   key={`${row[0]}-${idx}`}
-                  className="grid gap-1 px-3 py-2.5 text-[11px] text-white sm:grid-cols-4 sm:gap-2"
+                  className="grid gap-1 px-3 py-2.5 text-[11px] text-brand-ink sm:grid-cols-4 sm:gap-2"
                 >
                   {row.map((cell, cellIdx) => (
                     <span

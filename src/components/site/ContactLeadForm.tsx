@@ -270,13 +270,13 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
         <button
           type="submit"
           disabled={!intakeReady || submitting}
-          className="rounded-md bg-gold-core px-6 py-3 text-button text-navy-1000 transition-colors hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-md bg-gold-core px-6 py-3 text-button text-brand-ink-on-gold transition-colors hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-50"
         >
           {copy.submit}
         </button>
         <a
           href={buildMailtoHref()}
-          className="inline-flex items-center justify-center rounded-md border border-navy-600 px-6 py-3 text-button text-white transition-colors hover:bg-navy-800"
+          className="inline-flex items-center justify-center rounded-md border border-navy-600 px-6 py-3 text-button text-brand-ink transition-colors hover:bg-navy-800"
         >
           {copy.submitMailto}
         </a>

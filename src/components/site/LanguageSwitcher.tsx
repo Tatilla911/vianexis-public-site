@@ -48,7 +48,7 @@ export function LanguageSwitcher({
           persistManualLocale(next);
           router.push(switchLocalePath(pathname, next));
         }}
-        className="form-control rounded-md border border-navy-600 bg-navy-800 px-2.5 py-2 font-semibold text-white"
+        className="form-control rounded-md border border-navy-600 bg-navy-800 px-2.5 py-2 font-semibold text-brand-ink"
         aria-label={ui.language}
       >
         {locales.map((locale) => {

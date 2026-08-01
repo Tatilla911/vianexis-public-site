@@ -34,7 +34,7 @@ export function Breadcrumb({ items, locale, className }: BreadcrumbProps) {
                 </Link>
               ) : (
                 <span
-                  className={cn(last && "font-medium text-white")}
+                  className={cn(last && "font-medium text-brand-ink")}
                   aria-current={last ? "page" : undefined}
                 >
                   {item.label}

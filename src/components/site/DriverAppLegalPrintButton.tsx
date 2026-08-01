@@ -7,7 +7,7 @@ export function DriverAppLegalPrintButton({ label }: Props) {
     <button
       type="button"
       onClick={() => window.print()}
-      className="text-nav text-neutral-grey hover:text-white print:hidden"
+      className="text-nav text-neutral-grey hover:text-brand-ink print:hidden"
     >
       {label}
     </button>

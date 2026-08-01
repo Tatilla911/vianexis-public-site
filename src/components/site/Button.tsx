@@ -11,15 +11,17 @@ type ButtonVariant =
 type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
-  /* Figma primary: gold core + navy text */
-  primary: "bg-gold-core text-navy-1000 hover:bg-gold-light shadow-sm",
-  gold: "bg-gold-core text-navy-1000 hover:bg-gold-light shadow-sm",
-  secondary: "bg-navy-800 text-white hover:bg-navy-700 shadow-sm",
-  ghost: "bg-transparent text-navy hover:bg-surface-muted",
+  /* Gold fill + dark bronze metallic label for contrast */
+  primary:
+    "bg-gold-core text-brand-ink-on-gold hover:bg-gold-light shadow-sm",
+  gold: "bg-gold-core text-brand-ink-on-gold hover:bg-gold-light shadow-sm",
+  /* Dark chrome + champagne metallic label */
+  secondary: "bg-navy-800 text-brand-ink hover:bg-navy-700 shadow-sm",
+  ghost: "bg-transparent text-brand-title--on-light hover:bg-surface-muted",
   outline:
-    "border border-border bg-white text-navy hover:border-cyan-accent/40 hover:bg-light-bg",
+    "border border-border bg-white text-brand-title--on-light hover:border-cyan-accent/40 hover:bg-light-bg",
   onDark:
-    "border border-navy-600 bg-transparent text-white hover:bg-navy-800",
+    "border border-navy-600 bg-transparent text-brand-ink hover:bg-navy-800",
 };
 
 const sizes: Record<ButtonSize, string> = {

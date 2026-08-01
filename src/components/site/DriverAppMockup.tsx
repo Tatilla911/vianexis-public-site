@@ -99,7 +99,7 @@ export function DriverAppMockup({
           <BrandWordmark size="xs" suffix="Driver" />
           <div className="mt-1.5 flex items-center justify-between gap-2">
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-white">{title}</p>
+              <p className="truncate text-sm font-semibold text-brand-ink">{title}</p>
               {subtitle ? (
                 <p className="mt-0.5 truncate text-caption text-neutral-grey">{subtitle}</p>
               ) : null}
@@ -119,7 +119,7 @@ export function DriverAppMockup({
                 <p className="text-[11px] uppercase tracking-wide text-neutral-grey">
                   {driver.nextStopLabel}
                 </p>
-                <p className="mt-1 text-[11px] font-medium text-white">
+                <p className="mt-1 text-[11px] font-medium text-brand-ink">
                   {driver.nextStopValue}
                 </p>
               </div>
@@ -134,7 +134,7 @@ export function DriverAppMockup({
                 <p className="text-[11px] uppercase tracking-wide text-gold-core">
                   {driver.documentLabel}
                 </p>
-                <p className="mt-1 text-[11px] font-medium text-white">
+                <p className="mt-1 text-[11px] font-medium text-brand-ink">
                   {driver.documentValue}
                 </p>
               </div>

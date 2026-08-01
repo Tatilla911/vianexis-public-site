@@ -25,7 +25,7 @@ export function PhoneMockup({
         <div className="absolute left-1/2 top-2 z-10 h-5 w-20 -translate-x-1/2 rounded-full bg-black/40" />
         <div className="bg-gradient-to-b from-navy-800 to-navy-1000 px-4 pb-4 pt-10">
           <BrandWordmark size="xs" suffix="Driver" />
-          <p className="mt-1 text-sm font-semibold text-white">{title}</p>
+          <p className="mt-1 text-sm font-semibold text-brand-ink">{title}</p>
           {subtitle ? (
             <p className="mt-0.5 text-caption text-neutral-grey">{subtitle}</p>
           ) : null}

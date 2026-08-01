@@ -15,7 +15,7 @@ function field(
 ) {
   return (
     <label className="form-label">
-      <span className="mb-1 block font-medium text-white">{label}</span>
+      <span className="mb-1 block font-medium text-brand-ink">{label}</span>
       <input
         className="form-control w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
         type={type}
@@ -90,7 +90,7 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
           {field(copy.fleetSize, "fleetSize", values, setValue, errors)}
           {field(extra.driverCount, "driverCount", values, setValue, errors)}
           <label className="form-label md:col-span-2">
-            <span className="mb-1 block font-medium text-white">{copy.moduleInterests}</span>
+            <span className="mb-1 block font-medium text-brand-ink">{copy.moduleInterests}</span>
             <div className="grid gap-2 sm:grid-cols-2">
               {copy.moduleOptions.map((opt) => {
                 const selected = (values.moduleInterests as string[] | undefined) ?? [];
@@ -114,7 +114,7 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
             </div>
           </label>
           <label className="form-label md:col-span-2">
-            <span className="mb-1 block font-medium text-white">{copy.notes}</span>
+            <span className="mb-1 block font-medium text-brand-ink">{copy.notes}</span>
             <textarea
               className="form-control min-h-24 w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
               value={String(values.notes ?? "")}
@@ -222,7 +222,7 @@ export function PartnerApplicationForm({ locale }: { locale: Locale }) {
           </div>
           {field(copy.companyName, "companyName", values, setValue, errors)}
           <label className="form-label">
-            <span className="mb-1 block font-medium text-white">{copy.role}</span>
+            <span className="mb-1 block font-medium text-brand-ink">{copy.role}</span>
             <select
               className="form-control w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
               value={String(values.role ?? "")}
@@ -241,7 +241,7 @@ export function PartnerApplicationForm({ locale }: { locale: Locale }) {
           {field(copy.email, "email", values, setValue, errors, "email")}
           {field(copy.phone, "phone", values, setValue, errors)}
           <label className="form-label md:col-span-2">
-            <span className="mb-1 block font-medium text-white">{copy.notes}</span>
+            <span className="mb-1 block font-medium text-brand-ink">{copy.notes}</span>
             <textarea
               className="form-control min-h-24 w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
               value={String(values.notes ?? "")}

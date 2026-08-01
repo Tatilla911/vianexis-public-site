@@ -77,7 +77,7 @@ export default async function DriverAppDataSafetyPage({ params }: PageProps) {
             <tbody>
               {doc.rows.map((row) => (
                 <tr key={row.category} className="border-b border-navy-800 align-top">
-                  <td className="px-2 py-3 text-white">{row.category}</td>
+                  <td className="px-2 py-3 text-brand-ink">{row.category}</td>
                   <td className="px-2 py-3 text-neutral-grey">{row.collected}</td>
                   <td className="px-2 py-3 text-neutral-grey">{row.requirement}</td>
                   <td className="px-2 py-3 text-neutral-grey">{row.origin}</td>

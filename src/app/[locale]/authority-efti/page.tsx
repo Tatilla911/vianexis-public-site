@@ -49,7 +49,7 @@ export default async function AuthorityEftiPage({ params }: PageProps) {
           />
         </div>
         <DisclaimerBox title={efti.title}>
-          <p className="font-medium text-white">{efti.body}</p>
+          <p className="font-medium text-brand-ink">{efti.body}</p>
           <p className="text-body mt-3 text-neutral-grey">
             {visual.authority.extraDisclaimer}
           </p>
