@@ -134,6 +134,7 @@ export function Header({ locale }: HeaderProps) {
           <Button
             href={localePath(locale, "/apply/company")}
             size="sm"
+            variant="requestAccess"
             className="hidden sm:inline-flex"
           >
             {content.nav.requestAccess}
@@ -230,6 +231,7 @@ export function Header({ locale }: HeaderProps) {
                   </div>
                   <Button
                     href={localePath(locale, "/apply/company")}
+                    variant="requestAccess"
                     className="w-full"
                     onClick={closeMenu}
                   >
@@ -240,6 +242,7 @@ export function Header({ locale }: HeaderProps) {
                 <div className="hidden border-t border-navy-700 p-3 sm:block">
                   <Button
                     href={localePath(locale, "/apply/company")}
+                    variant="requestAccess"
                     className="w-full"
                     onClick={closeMenu}
                   >

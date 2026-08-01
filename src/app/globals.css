@@ -289,6 +289,22 @@ html {
   background: linear-gradient(90deg, var(--cyan-glow), var(--gold-core));
 }
 
+/* Request-access CTA — gold frame emphasis */
+.btn-request-access {
+  position: relative;
+  isolation: isolate;
+}
+
+.btn-request-access::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  border-radius: calc(var(--radius-md) + 3px);
+  border: 1px solid color-mix(in srgb, var(--gold-pale) 55%, transparent);
+  pointer-events: none;
+}
+
 /* Subtle section entrance when `.is-visible` is toggled by an observer.
    Default stays fully visible so content never disappears without JS. */
 .section-reveal.is-visible {

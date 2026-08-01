@@ -1,5 +1,5 @@
 import { BrandWordmark } from "@/components/site/BrandLogo";
-import { Button } from "@/components/site/Button";
+import { Button, type ButtonVariant } from "@/components/site/Button";
 import { Section } from "@/components/site/Section";
 import { TruckIcon } from "@/components/site/visuals/TruckIcon";
 import { WorldNetworkWatermark } from "@/components/site/visuals/WorldNetworkWatermark";
@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type CTASectionProps = {
   title: string;
   subtitle?: string;
-  primaryCta: { href: string; label: string };
+  primaryCta: { href: string; label: string; variant?: ButtonVariant };
   secondaryCta?: { href: string; label: string };
   className?: string;
 };
@@ -41,7 +41,11 @@ export function CTASection({
             </p>
           ) : null}
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:justify-center">
-            <Button href={primaryCta.href} size="lg">
+            <Button
+              href={primaryCta.href}
+              size="lg"
+              variant={primaryCta.variant ?? "requestAccess"}
+            >
               {primaryCta.label}
             </Button>
             {secondaryCta ? (

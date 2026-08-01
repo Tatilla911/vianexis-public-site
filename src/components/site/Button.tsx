@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant =
+export type ButtonVariant =
   | "primary"
   | "secondary"
   | "ghost"
   | "outline"
   | "onDark"
-  | "gold";
+  | "gold"
+  | "requestAccess";
 type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
@@ -15,6 +16,9 @@ const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-gold-core text-brand-ink-on-gold hover:bg-gold-light shadow-sm",
   gold: "bg-gold-core text-brand-ink-on-gold hover:bg-gold-light shadow-sm",
+  /* Highlighted access CTA — gold frame + soft glow */
+  requestAccess:
+    "btn-request-access border-2 border-gold-core bg-gold-core/15 text-brand-ink shadow-[0_0_0_1px_rgb(242_227_169_/_0.35),0_0_28px_rgb(212_175_55_/_0.35)] hover:border-gold-light hover:bg-gold-core/25 hover:shadow-[0_0_0_1px_rgb(242_227_169_/_0.55),0_0_40px_rgb(212_175_55_/_0.45)]",
   /* Dark chrome + champagne metallic label */
   secondary: "bg-navy-800 text-brand-ink hover:bg-navy-700 shadow-sm",
   ghost: "bg-transparent text-brand-title--on-light hover:bg-surface-muted",

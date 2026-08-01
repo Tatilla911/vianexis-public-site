@@ -1,5 +1,5 @@
 import { BrandWordmark } from "@/components/site/BrandLogo";
-import { Button } from "@/components/site/Button";
+import { Button, type ButtonVariant } from "@/components/site/Button";
 import { HeroVisual } from "@/components/site/HeroVisual";
 import { ProductPreview } from "@/components/site/ProductPreview";
 import { formatHeroTitleForWrap, isHeroTitleLong } from "@/lib/hero-title";
@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type HeroProps = {
   title: string;
   subtitle: string;
-  primaryCta: { href: string; label: string };
+  primaryCta: { href: string; label: string; variant?: ButtonVariant };
   secondaryCta?: { href: string; label: string };
   stats?: { label: string; value: string }[];
   highlightWord?: string;
@@ -101,7 +101,11 @@ export function Hero({
               {subtitle}
             </p>
             <div className="hero-cta mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href={primaryCta.href} size="lg">
+              <Button
+                href={primaryCta.href}
+                size="lg"
+                variant={primaryCta.variant ?? "requestAccess"}
+              >
                 {primaryCta.label}
               </Button>
               {secondaryCta ? (
