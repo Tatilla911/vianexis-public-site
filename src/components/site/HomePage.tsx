@@ -205,7 +205,7 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="grid gap-4 sm:grid-cols-2">
           {content.home.security.cards.map((card) => (
             <article key={card.title} className="panel-glass rounded-md p-6">
-              <h3 className="text-card-title text-white">{card.title}</h3>
+              <h3 className="text-card-title">{card.title}</h3>
               <p className="text-body mt-2 text-neutral-grey">
                 {card.description}
               </p>

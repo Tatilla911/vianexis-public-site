@@ -59,7 +59,7 @@ export default async function DriverAppDataSafetyPage({ params }: PageProps) {
           effectiveLabel={doc.effectiveLabel}
           lastUpdatedLabel={doc.lastUpdatedLabel}
         />
-        <p className="text-lead mt-5 text-neutral-grey">{doc.intro}</p>
+        <p className="text-lead mt-5">{doc.intro}</p>
         <p className="text-body mt-4 text-text-tertiary">{doc.disclaimer}</p>
 
         <div className="mt-8 overflow-x-auto">

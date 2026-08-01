@@ -18,7 +18,7 @@ export function ProcessCard({
       <span className="text-overline mb-3 inline-block rounded-md bg-gold-core/15 px-3 py-1 text-gold-core">
         {step}
       </span>
-      <h3 className="text-card-title text-white">{title}</h3>
+      <h3 className="text-card-title">{title}</h3>
       <p className="text-body mt-2 text-neutral-grey">{description}</p>
     </div>
   );

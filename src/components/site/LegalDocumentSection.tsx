@@ -7,7 +7,7 @@ type LegalDocumentSectionProps = {
 export function LegalDocumentSection({ section }: LegalDocumentSectionProps) {
   return (
     <section>
-      <h2 className="text-card-title text-white">{section.title}</h2>
+      <h2 className="text-card-title">{section.title}</h2>
       {section.body && (
         <p className="text-body mt-3 text-neutral-grey">{section.body}</p>
       )}

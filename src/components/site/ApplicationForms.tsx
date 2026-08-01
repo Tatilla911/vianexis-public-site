@@ -77,7 +77,7 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
       {({ values, setValue, errors }) => (
         <div className="grid gap-4 md:grid-cols-2">
           <div className="md:col-span-2">
-            <h2 className="text-subsection-title text-white">{copy.title}</h2>
+            <h2 className="text-subsection-title">{copy.title}</h2>
             <p className="text-body text-neutral-grey">{copy.subtitle}</p>
           </div>
           {field(copy.companyName, "companyName", values, setValue, errors)}
@@ -171,7 +171,7 @@ export function DriverApplicationForm({ locale }: { locale: Locale }) {
       {({ values, setValue, errors }) => (
         <div className="grid gap-4 md:grid-cols-2">
           <div className="md:col-span-2">
-            <h2 className="text-subsection-title text-white">{copy.title}</h2>
+            <h2 className="text-subsection-title">{copy.title}</h2>
             <p className="text-body text-neutral-grey">{copy.subtitle}</p>
           </div>
           {field(copy.fullName, "fullName", values, setValue, errors)}
@@ -217,7 +217,7 @@ export function PartnerApplicationForm({ locale }: { locale: Locale }) {
       {({ values, setValue, errors }) => (
         <div className="grid gap-4 md:grid-cols-2">
           <div className="md:col-span-2">
-            <h2 className="text-subsection-title text-white">{copy.title}</h2>
+            <h2 className="text-subsection-title">{copy.title}</h2>
             <p className="text-body text-neutral-grey">{copy.subtitle}</p>
           </div>
           {field(copy.companyName, "companyName", values, setValue, errors)}

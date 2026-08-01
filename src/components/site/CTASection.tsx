@@ -36,7 +36,7 @@ export function CTASection({
             {title}
           </h2>
           {subtitle ? (
-            <p className="text-lead mt-4 max-w-2xl text-pretty text-neutral-grey">
+            <p className="text-lead mt-4 max-w-2xl text-pretty">
               {subtitle}
             </p>
           ) : null}

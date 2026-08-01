@@ -87,7 +87,7 @@ export function FeatureModuleCard({
       >
         {icon === "truck" ? <TruckIcon size={24} tone="cyan" /> : <ModuleGlyph icon={icon} />}
       </div>
-      <h3 className="text-card-title text-white transition-colors group-hover:text-cyan-glow">
+      <h3 className="text-card-title transition-[filter] duration-200 group-hover:brightness-125">
         {title}
       </h3>
       <p className="text-body mt-2 text-neutral-grey">{description}</p>

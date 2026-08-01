@@ -286,7 +286,7 @@ export function PublicApplicationForm({
         role="status"
         aria-live="polite"
       >
-        <h3 className="text-card-title text-white">{copy.common.successTitle}</h3>
+        <h3 className="text-card-title">{copy.common.successTitle}</h3>
         <p className="mt-2 text-neutral-grey">{copy.common.successBody}</p>
         <dl className="mt-4 space-y-2 text-body text-neutral-grey">
           <div className="flex flex-wrap gap-2">

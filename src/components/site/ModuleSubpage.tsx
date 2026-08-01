@@ -90,7 +90,7 @@ export function ModuleSubpage({
                   tone={item.status as StatusTone}
                 />
               </div>
-              <h3 className="text-card-title text-white">{item.title}</h3>
+              <h3 className="text-card-title">{item.title}</h3>
               <p className="text-body mt-2 text-neutral-grey">
                 {item.description}
               </p>

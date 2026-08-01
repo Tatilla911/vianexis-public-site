@@ -145,7 +145,7 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
           className,
         )}
       >
-        <h3 className="text-card-title text-white">{copy.successTitle}</h3>
+        <h3 className="text-card-title">{copy.successTitle}</h3>
         <p className="text-body mt-2 text-neutral-grey">
           {copy.successBody}
         </p>
@@ -172,7 +172,7 @@ export function ContactLeadForm({ locale, className, id }: ContactLeadFormProps)
       className={cn("panel-glass rounded-md p-6 sm:p-8", className)}
       noValidate
     >
-      <h3 className="text-subsection-title text-white">{copy.title}</h3>
+      <h3 className="text-subsection-title">{copy.title}</h3>
       <p className="text-body mt-2 text-neutral-grey">{copy.subtitle}</p>
 
       {intakeEnabled === false && (

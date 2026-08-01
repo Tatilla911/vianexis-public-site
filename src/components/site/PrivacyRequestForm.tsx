@@ -205,7 +205,7 @@ export function PrivacyRequestForm({ locale, content }: Props) {
         className="rounded-lg border border-navy-700 bg-navy-900/70 p-6"
         role="status"
       >
-        <h3 className="text-card-title text-white">{content.successTitle}</h3>
+        <h3 className="text-card-title">{content.successTitle}</h3>
         <p className="text-body mt-3 text-neutral-grey">{content.successMessage}</p>
         {done.publicReference ? (
           <p className="text-meta mt-4 text-text-tertiary">
@@ -235,7 +235,7 @@ export function PrivacyRequestForm({ locale, content }: Props) {
       noValidate
     >
       <div>
-        <h3 className="text-card-title text-white">{content.formTitle}</h3>
+        <h3 className="text-card-title">{content.formTitle}</h3>
         <p className="text-body mt-2 text-neutral-grey">{content.formIntro}</p>
       </div>
 

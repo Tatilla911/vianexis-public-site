@@ -97,7 +97,7 @@ export function Hero({
             >
               {renderTitle(title, highlightWord)}
             </h1>
-            <p className="text-lead mt-6 max-w-2xl text-pretty text-neutral-grey">
+            <p className="text-lead mt-6 max-w-2xl text-pretty">
               {subtitle}
             </p>
             <div className="hero-cta mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

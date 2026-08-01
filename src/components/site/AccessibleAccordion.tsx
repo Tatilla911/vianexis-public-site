@@ -35,7 +35,7 @@ export function AccessibleAccordion({
               <button
                 id={buttonId}
                 type="button"
-                className="focus-ring flex w-full items-center justify-between px-4 py-3 text-left text-card-title text-white"
+                className="focus-ring flex w-full items-center justify-between px-4 py-3 text-left text-card-title"
                 aria-expanded={open}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(open ? null : index)}

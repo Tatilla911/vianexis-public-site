@@ -31,7 +31,7 @@ export default async function DisclaimersPage({ params }: PageProps) {
         <h1 className="text-page-title">
           {legal.disclaimersPage.title}
         </h1>
-        <p className="text-lead mt-5 text-neutral-grey">
+        <p className="text-lead mt-5">
           {legal.disclaimersPage.intro}
         </p>
         <div className="mt-10 grid gap-4">

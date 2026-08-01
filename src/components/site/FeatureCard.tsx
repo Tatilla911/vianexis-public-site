@@ -34,7 +34,7 @@ export function FeatureCard({
       ) : (
         <div className="accent-beam mb-4" aria-hidden="true" />
       )}
-      <h3 className="text-card-title text-white">{title}</h3>
+      <h3 className="text-card-title">{title}</h3>
       <p className="text-body mt-2 text-neutral-grey">{description}</p>
     </article>
   );

@@ -423,27 +423,27 @@ html {
 
 .text-h2,
 .text-subsection-title {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-display-serif), "Times New Roman", serif;
   font-size: var(--font-subsection-title);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.015em;
 }
 
 .text-h3,
 .text-card-title {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-display-serif), "Times New Roman", serif;
   font-size: var(--font-card-title);
-  font-weight: 650;
+  font-weight: 600;
   line-height: var(--leading-card);
   letter-spacing: -0.01em;
 }
 
 .text-subtitle,
 .text-lead {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-display-serif), "Times New Roman", serif;
   font-size: var(--font-lead);
-  font-weight: 400;
+  font-weight: 500;
   line-height: var(--leading-lead);
 }
 
@@ -538,7 +538,11 @@ html {
 .text-section-title,
 .text-display-lg,
 .text-display-md,
-.text-h1 {
+.text-h1,
+.text-h2,
+.text-subsection-title,
+.text-h3,
+.text-card-title {
   font-family: var(--font-display-serif), "Times New Roman", serif;
   font-style: normal;
   text-rendering: geometricPrecision;
@@ -560,6 +564,30 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
+/*
+  Subtitles / lead lines — softer champagne metallic serif under main titles.
+*/
+.text-brand-subtitle,
+.text-subtitle,
+.text-lead {
+  font-family: var(--font-display-serif), "Times New Roman", serif;
+  font-style: normal;
+  text-rendering: geometricPrecision;
+  background-image: linear-gradient(
+    170deg,
+    #e8dcc0 0%,
+    #d4c49a 32%,
+    #c4a46a 58%,
+    #b08f58 82%,
+    #d8c8a0 100%
+  );
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
   .text-brand-title,
   .hero-title,
@@ -567,8 +595,20 @@ html {
   .text-section-title,
   .text-display-lg,
   .text-display-md,
-  .text-h1 {
+  .text-h1,
+  .text-h2,
+  .text-subsection-title,
+  .text-h3,
+  .text-card-title {
     color: var(--gold-pale);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .text-brand-subtitle,
+  .text-subtitle,
+  .text-lead {
+    color: var(--gold-light);
     background: none;
     -webkit-text-fill-color: currentColor;
   }
@@ -599,6 +639,20 @@ html {
     #b8924a 55%,
     #7a5f30 82%,
     #5c4a28 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-brand-subtitle--on-light {
+  background-image: linear-gradient(
+    170deg,
+    #5c4a28 0%,
+    #7a5f30 40%,
+    #8c6f3d 70%,
+    #6b5428 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

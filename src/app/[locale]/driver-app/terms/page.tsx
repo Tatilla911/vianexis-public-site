@@ -60,7 +60,7 @@ export default async function DriverAppTermsPage({ params }: PageProps) {
           effectiveLabel={doc.effectiveLabel}
           lastUpdatedLabel={doc.lastUpdatedLabel}
         />
-        <p className="text-lead mt-5 text-neutral-grey">{doc.intro}</p>
+        <p className="text-lead mt-5">{doc.intro}</p>
         <div className="mt-8">
           <DriverAppLegalToc label={doc.tocLabel} sections={doc.sections} />
         </div>

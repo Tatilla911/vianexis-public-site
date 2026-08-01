@@ -49,7 +49,7 @@ export default async function DriverAppLegalHubPage({ params }: PageProps) {
           effectiveLabel={legal.hub.effectiveLabel}
           lastUpdatedLabel={legal.hub.lastUpdatedLabel}
         />
-        <p className="text-lead mt-5 text-neutral-grey">{legal.hub.intro}</p>
+        <p className="text-lead mt-5">{legal.hub.intro}</p>
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">
           {legal.hub.cards.map((card) => (
@@ -58,7 +58,7 @@ export default async function DriverAppLegalHubPage({ params }: PageProps) {
                 href={localePath(contentLocale, `/driver-app${card.hrefSuffix}`)}
                 className="block rounded-lg border border-navy-700 bg-navy-900/50 p-5 transition-colors hover:border-cyan-glow"
               >
-                <h2 className="text-card-title text-white">{card.title}</h2>
+                <h2 className="text-card-title">{card.title}</h2>
                 <p className="text-body mt-2 text-neutral-grey">{card.description}</p>
               </Link>
             </li>
