@@ -9,6 +9,7 @@ import {
   DRIVER_APP_LEGAL_LAST_UPDATED,
   DRIVER_APP_LEGAL_VERSION,
 } from "../version";
+import { termsSectionsEn } from "./terms-sections-en";
 
 const versionLabel = `Version: ${DRIVER_APP_LEGAL_VERSION}`;
 const effectiveLabel = `Effective date: ${DRIVER_APP_LEGAL_EFFECTIVE_DATE}`;
@@ -140,14 +141,16 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
         title: "7. Purposes and legal bases",
         body: "We process data for the purposes and on the legal bases listed below. A given piece of data can serve more than one purpose. A phone system permission (for example location access) may be a technical prerequisite; it does not by itself replace a GDPR legal basis.",
         items: [
-          "ViaNexis account and authentication: account creation, sign-in, password/PIN handling, access provisioning — performance of a contract (GDPR Art. 6(1)(b)), and legitimate interest to the extent needed for platform security (GDPR Art. 6(1)(f))",
-          "Company shipment workflow: assignments, statuses, documents and company workflows — performance of the contract/relationship between the driver and the carrier company, or, where ViaNexis acts on the company's instructions, processing under the company's controller instructions",
-          "Platform security: abuse prevention, detection of unauthorized access, system-operation logs — legitimate interest (GDPR Art. 6(1)(f))",
-          "Legal and accounting obligations: retaining records required by law — compliance with a legal obligation (GDPR Art. 6(1)(c)), where applicable",
-          "Optional location-dependent feature: displaying own position or recording a trip-related location — alongside the contractual/legitimate-interest purpose of the feature, system permission is required; permission-based processing can be withdrawn in device settings (GDPR Art. 6(1)(a)/(f)/(b) depending on the feature)",
-          "Operational notifications: delivering shipment-related push notifications — performance of a contract / legitimate interest for operating the service, together with system notification permission",
-          "Support and privacy requests: handling customer-support and privacy requests — legitimate interest and/or compliance with a legal obligation",
+          "Account and authentication: account creation, sign-in, password/PIN handling, access provisioning — performance of a contract (GDPR Art. 6(1)(b)), and legitimate interest to the extent needed for platform security (GDPR Art. 6(1)(f))",
+          "Platform security: abuse prevention, detection of unauthorized access, session/token handling, system-operation logs — legitimate interest (GDPR Art. 6(1)(f))",
+          "Carrier-company shipment workflow: assignments, statuses and company workflows — typically performance of the contract/relationship between the driver and the carrier company; where ViaNexis acts on the company's instructions, processing under the company's controller instructions. The concrete legal basis may depend on the company contract and roles",
+          "Operational document handling: transport documents, uploaded photos/videos and related records as part of the shipment workflow — under the company/contractual model; whether ViaNexis or the carrier company is the controller depends on the specific data flow",
+          "Optional location-dependent feature: displaying own position or recording a trip-related location — processing for the feature's contractual or legitimate-interest purpose; mobile OS permission is a technical prerequisite and is not by itself GDPR consent, and can be withdrawn in device settings",
+          "Operational push notifications: delivering shipment-related push notifications — performance of a contract / legitimate interest for operating the service, together with system notification permission (OS permission does not replace the GDPR legal basis)",
+          "Support: handling customer-support requests — legitimate interest (GDPR Art. 6(1)(f))",
+          "Privacy requests: receiving and handling privacy and account-deletion requests — compliance with a legal obligation and/or legitimate interest (GDPR Art. 6(1)(c)/(f))",
           "Legal claims: establishing, exercising or defending legal claims — legitimate interest and, where applicable, legal obligation",
+          "Legal obligations: retaining records required by law — compliance with a legal obligation (GDPR Art. 6(1)(c)), where applicable",
         ],
       },
       {
@@ -168,12 +171,12 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "e-signatures-and-evidence",
         title: "11. E-signatures and evidence",
-        body: "The Driver App lets you capture an electronic signature (a touchscreen signature drawing) to confirm shipment events such as pickup or delivery. Alongside the signature, we may also record supporting data such as the timestamp and — where permitted and recorded during that feature — location data, because together these can serve as evidence in the event of a dispute.\n\nThe evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture, and the applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence. See Section 9 of the Terms of use for more detail.",
+        body: "The Driver App lets you capture an electronic signature (a touchscreen signature drawing) to confirm shipment events such as pickup or delivery. Alongside the signature, we may also record supporting data such as the timestamp and — where permitted and recorded during that feature — location data, because together these can serve as evidence in the event of a dispute.\n\nThe evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture, and the applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence. See Section 16 of the Terms of Use for more detail: https://vianexis.eu/en/terms#electronic-signatures-and-evidence",
       },
       {
         id: "messages-and-translation",
         title: "12. Messages and translation",
-        body: "The Driver App includes a built-in messaging feature between a driver and a dispatcher or company contact. To make communication easier, the system may offer machine (automatic) translation when the parties use different languages. Machine translation is a convenience feature — it does not replace a certified or official translation, and it can occasionally be inaccurate. For critical content (for example, instructions concerning dangerous goods), we recommend seeking human confirmation.\n\nMessage content may be logged and retained in connection with the relevant shipment, in accordance with the principles in Section 18, including for the purpose of clarifying disputes.",
+        body: "The Driver App includes a built-in messaging feature between a driver and a dispatcher or company contact. Machine translation is treated as active processing only where it is actually enabled in the relevant environment; this distributed release does not claim an active external translation vendor. Where available, it is a convenience feature — it does not replace certified translation and can be inaccurate. For critical content, human confirmation is recommended.\n\nMessage content may be logged and retained in connection with the relevant shipment, in accordance with the principles in Section 18, including for the purpose of clarifying disputes.",
       },
       {
         id: "device-security-diagnostics",
@@ -222,7 +225,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "account-and-data-deletion",
         title: "19. Account and data deletion",
-        body: "Signing out, uninstalling the app, unlinking from a company, and suspending an account are not the same as permanent account deletion. Permanent account deletion is a separate process: a request submitted on the public page (https://vianexis.eu/en/driver-app/account-deletion).\n\nThe backend records the request as an operational case record; the request itself does not trigger immediate automatic full data deletion. After identification, deletable account data may be deleted or anonymised; data may remain where required by law, security, fraud prevention, audit, contract, or legal claims. Operative use of retained data is restricted. The requester receives further information at the contact address provided. The neutral acknowledgement does not disclose whether an account exists for the submitted details.",
+        body: "Signing out, uninstalling the app, unlinking from a company, and suspending an account are not the same as permanent account and data deletion. Permanent deletion is a separate request.\n\nRequest deletion of your account and associated data:\nhttps://vianexis.eu/en/driver-app/account-deletion\n\nThe system records the request as an operational case record; the request itself does not trigger immediate automatic full data deletion. After identification, deletable account data may be deleted or anonymised; data may remain where required by law, security, fraud prevention, audit, contract, or legal claims. Operative use of retained data is restricted. The requester receives further information at the contact address provided. The neutral acknowledgement does not disclose whether an account exists for the submitted details.",
       },
       {
         id: "data-subject-rights",
@@ -252,7 +255,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "security",
         title: "22. Security",
-        body: "We apply appropriate technical and organizational measures to protect personal data. These include, among others, encrypted (TLS) transmission of data between the app and backend systems, storage of passwords using a one-way salted hash (the original password is not stored), access restricted by permission level, and logging of security-relevant events.\n\nWhile we take reasonable steps to protect your data, no system can be considered completely secure. If you notice or suspect a data breach, please report it immediately to security@vianexis.eu.",
+        body: "Based on the code audit, we apply verified technical and organizational measures to protect personal data. These include, among others: TLS-encrypted transmission between the app and backend systems; storage of passwords as bcrypt salted hashes (the original password is not stored); role- and tenant-based access control; security and accountability audit logging; session/token revocation; and limited support access on a need-to-know basis.\n\nWe do not claim end-to-end encryption, nor that all data is protected by at-rest encryption, and no system can be considered unbreachable. If you suspect a data breach, report it to security@vianexis.eu.",
       },
       {
         id: "minors",
@@ -274,134 +277,24 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
     contacts: standardContacts,
   },
   terms: {
-    title: "ViaNexis Driver App Terms of Use",
+    title: "Terms of Use – ViaNexis",
     metaDescription:
-      "Terms of use for the ViaNexis Driver App: account rules, acceptable use, the limits of the service, and your obligations as a driver or carrier company.",
+      "Terms of Use for the ViaNexis platform and ViaNexis Driver application: roles, account use, documents, liability and B2B contractual framework.",
     intro:
-      "These Terms of Use (the \"Terms\") govern your use of the ViaNexis Driver App mobile application (the \"Driver App\" or the \"app\"). By installing the app, registering an account, or using any feature of the service, you accept these Terms. If you do not agree with them, please do not use the app, and let your carrier company know.",
+      "These Terms apply to use of the ViaNexis platform, the ViaNexis Driver application, the related company portal and backend services. Access may be controlled, pilot or invitation-based. Processing of personal data is described in the Privacy notice; permanent account deletion is a separate request.",
     versionLabel,
     effectiveLabel,
     lastUpdatedLabel,
     tocLabel: "Table of contents",
-    sections: [
-      {
-        id: "intro-and-acceptance",
-        title: "1. Introduction and acceptance",
-        body: `${OPERATOR_STATEMENT_EN} These Terms govern the use of the Driver App and the backend services connected to it. Accepting these Terms is a condition of registering an account or accepting an invitation from a carrier company.`,
-      },
-      {
-        id: "service-description",
-        title: "2. Description of the service",
-        body: "The Driver App is a mobile application for drivers that supports managing shipment-related tasks, documents, and events: viewing your shipment list and stops, uploading documents, capturing electronic signatures, completing checklists, recording incidents, messaging with dispatch, and — to a limited extent — offline use. The Driver App connects to the carrier company's own administrative/company-facing surface (the portal), through which the company assigns shipments and manages permissions.\n\nThe service is currently available in a controlled, invitation-based (pilot) form, so some features may still be under development or may be available to a different extent depending on the carrier company.",
-      },
-      {
-        id: "eligibility-and-registration",
-        title: "3. Eligibility and account registration",
-        body: "To use the Driver App, you must be an adult and, depending on the nature of the transport work, hold a valid driving licence and any other qualification required for the shipment in question (e.g. an ADR certificate). Accounts are typically created based on an invitation from a carrier company and/or a company identifier (company code). Information provided during registration must be accurate and kept up to date.",
-      },
-      {
-        id: "personal-account-security",
-        title: "4. Account security: a personal, non-shareable account",
-        body: "Your Driver App account is personal and intended solely for your own individual use. Sharing your login credentials (password, PIN) with any other person — including other drivers, dispatchers, or company administrators — is prohibited. The account must not be created or used as a shared \"company driver account\" used jointly by multiple drivers: every driver must have their own individual account.\n\nYou are responsible for activity on your account, including activity resulting from credentials you shared with someone else. If you suspect unauthorized access to your account, report it immediately to security@vianexis.eu.",
-      },
-      {
-        id: "company-managed-driver-profiles",
-        title: "5. Company-managed driver profiles",
-        body: "A carrier company's administrator or dispatcher can manage certain aspects of a driver's profile through the company portal — for example, assigning shipments, granting or revoking access, or deactivating the profile when the working relationship ends. This kind of company-level management does not, and cannot, extend to the driver's personal login credentials.\n\nUnder no circumstances may a carrier company ask a driver for their password or PIN, and a carrier company is not entitled to log into a driver's account using the driver's own credentials. If a carrier company asks you to do this, please decline, and report it to security@vianexis.eu or support@vianexis.eu.",
-      },
-      {
-        id: "permissions-and-device-access",
-        title: "6. Permissions and device access",
-        body: "Certain app features (such as location, camera, and push notifications) require separate permissions granted at the operating-system level. Except for the basic data needed for the account functionality described in Section 3, granting these permissions is voluntary and can be revoked at any time in your phone's system settings. Some features will work in a limited way, or not at all, without the corresponding permission; this is not considered a defect of the app.",
-      },
-      {
-        id: "acceptable-use",
-        title: "7. Acceptable use",
-        body: "The following conduct is prohibited when using the Driver App: uploading a false, misleading, or manipulated document, photo, or signature; recording data or a signature on behalf of another person without their consent; attempting unauthorized access to another account or to any other part of the system; using the app in an abusive way or in a way that adversely affects the system's operation (e.g. automated queries, attempts to bypass security mechanisms); and uploading unlawful content or engaging in unlawful activity through the app.",
-      },
-      {
-        id: "uploaded-content-responsibility",
-        title: "8. Uploaded content and responsibility",
-        body: "The driver, or as applicable the carrier company, is responsible for the authenticity, lawfulness, and genuine relevance to the shipment of any document, photo, video, or other content uploaded to the Driver App. This obligation does not affect the applicable data-protection responsibilities of ViaNexis or the transport company. ViaNexis does not verify or guarantee the authenticity or legal adequacy of uploaded content and is not liable for consequences arising from false or inaccurate content being uploaded.",
-      },
-      {
-        id: "e-signature-legal-effect",
-        title: "9. Legal effect of e-signatures",
-        body: "The evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture, and the applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence. For some document types, the law may require a qualified or advanced electronic signature, which a simple signature drawing captured in the app may not by itself satisfy.",
-      },
-      {
-        id: "offline-mode-and-sync",
-        title: "10. Offline mode and synchronization",
-        body: "Certain Driver App features (such as data entry and document upload) may be available offline, with data synchronizing to the backend once connectivity is restored. Offline synchronization is under continuous development, so full, guaranteed offline functionality covering every scenario is not currently provided. Until synchronization has occurred, offline-captured data exists only on your device and can be lost if the device is damaged, lost, or has its app data cleared. For critical data, we recommend confirming that synchronization has completed as soon as connectivity is restored.",
-      },
-      {
-        id: "automated-checks-and-ai-assistance",
-        title: "11. Automated checks and AI assistance",
-        body: "Automated and AI-based assistive features available in the app (such as document recognition, flagging missing data, or translation suggestions) are advisory only and do not replace the user's or the carrier company's own review and decision-making. These features do not replace a legal, customs, or ADR compliance decision, and are not to be treated as an official or professional opinion.",
-      },
-      {
-        id: "not-an-authority-or-emergency-service",
-        title: "12. Not an authority, legal advisor, or emergency service",
-        body: "ViaNexis and the Driver App are not a government authority, do not provide legal advice, and are not an emergency service. Any warning, suggestion, or automated check result shown in the app is informational only and never replaces official proceedings, legal advice, or contacting emergency services (e.g. police, ambulance, disaster management) in an emergency. In an emergency, always call the local emergency number (112 within the European Union).",
-      },
-      {
-        id: "adr-customs-traffic-compliance",
-        title: "13. ADR, customs, and traffic compliance",
-        body: "ViaNexis does not guarantee that using the Driver App, by itself, ensures compliance with dangerous-goods transport (ADR), customs, or traffic regulations. Certain app features (such as checklists and document reminders) may help you keep track of compliance, but using them does not relieve the driver or the carrier company of the obligation to know and follow the official rules that apply to them.",
-      },
-      {
-        id: "driver-and-company-obligations",
-        title: "14. Obligations of the driver and the carrier company",
-        body: "It is the sole responsibility of the driver and the carrier company to comply with applicable laws, regulatory requirements, and obligations arising from the transport contract, including maintaining the validity of a driving licence, ADR certificate, and any other required documents, and ensuring the accuracy and timeliness of data recorded in the app.",
-      },
-      {
-        id: "availability-and-maintenance",
-        title: "15. Availability and maintenance",
-        body: "ViaNexis works to keep the Driver App running continuously and reliably, but — particularly given the service's current controlled pilot status — does not guarantee uninterrupted availability. The service may be temporarily limited or unavailable due to planned maintenance, updates, or unforeseen technical issues. Where possible, we will provide advance notice of planned maintenance.",
-      },
-      {
-        id: "intellectual-property",
-        title: "16. Intellectual property",
-        body: "The Driver App, its name, branding, source code, and related documentation are the intellectual property of ViaNexis and/or the operator. Under these Terms, you are granted only the right to use the app as intended, and no other right (e.g. copying, reverse engineering, distribution) is granted. As for documents and photos you upload, you or the carrier company retain your rights to that content, while granting ViaNexis the license needed to provide the service (e.g. storing, displaying, and processing it as part of the shipment workflow).",
-      },
-      {
-        id: "third-party-services",
-        title: "17. Third-party services",
-        body: "The Driver App relies on third-party providers for certain features (e.g. push notifications, mapping, cloud storage). ViaNexis is not liable for damages arising from an outage, unavailability, or malfunction of such third-party providers, although we take care to select reliable partners.",
-      },
-      {
-        id: "limitation-of-liability",
-        title: "18. Limitation of liability",
-        body: "To the fullest extent permitted by applicable law, ViaNexis is not liable for indirect, incidental, or consequential damages, lost profits, data loss, or fines or sanctions arising from a failure to comply with regulatory requirements (e.g. ADR, customs, or traffic rules), whether such failure results from use of the Driver App or the inability to use it. This limitation does not affect any liability that cannot be limited or excluded under applicable law.",
-      },
-      {
-        id: "disclaimer-of-warranties",
-        title: "19. Disclaimer of warranties",
-        body: "The Driver App is provided on an \"as is\" and \"as available\" basis, reflecting the service's current controlled pilot status. To the extent permitted by law, ViaNexis disclaims all express or implied warranties, including, without limitation, any warranty of error-free operation, continuous availability, or fitness for a particular purpose (such as regulatory compliance).",
-      },
-      {
-        id: "suspension-and-termination",
-        title: "20. Suspension and termination",
-        body: "ViaNexis reserves the right to suspend or terminate an account in the event of a breach of these Terms, a security risk, or suspected abuse. You may stop using your account at any time; the detailed options for managing your account and data (unlinking, suspension, deletion, uninstalling) are described on the Account & data deletion page.",
-      },
-      {
-        id: "changes-to-terms",
-        title: "21. Changes to these Terms",
-        body: "We may update these Terms from time to time — for example, due to changes in law, the introduction of a new feature, or business reasons. Updated Terms take effect from the effective date shown at the top of this document. We will provide notice of material changes through an in-app notification or by email. Continued use of the app after a change takes effect constitutes acceptance of the updated Terms.",
-      },
-      {
-        id: "governing-law-and-disputes",
-        title: "22. Governing law and dispute resolution",
-        body: "These Terms and any dispute arising from them are governed by the laws of Hungary. The parties will endeavor to resolve any dispute primarily through discussion, via legal@vianexis.eu. Failing that, and absent a mandatory rule to the contrary, the Hungarian courts have jurisdiction over the dispute.",
-      },
-      {
-        id: "contact",
-        title: "23. Contact",
-        body: "If you have questions about these Terms, you can reach us using the contact details below.",
-      },
+    sections: termsSectionsEn,
+    contactsTitle: "Contact",
+    contacts: [
+      { label: "General contact", value: "info@vianexis.eu" },
+      { label: "Legal", value: OPERATOR_EMAILS.legal },
+      { label: "Privacy", value: OPERATOR_EMAILS.privacy },
+      { label: "Support", value: OPERATOR_EMAILS.support },
+      { label: "Security reports", value: OPERATOR_EMAILS.security },
     ],
-    contactsTitle: "Contact us about these Terms",
-    contacts: standardContacts,
   },
   dataSafety: {
     title: "ViaNexis Driver – Data Safety Summary",
@@ -520,7 +413,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
       {
         id: "no-sale-no-ad-profiling",
         title: "No data sale, no ad profiling",
-        body: "As of the publication of this document, ViaNexis does not sell user data to third parties and does not use it for advertising-based profiling. This statement reflects our current product intent; a full audit of the data practices of embedded software development kits (SDKs) and subcontractors is in progress, and this section will be refined if that audit identifies any need to do so.",
+        body: "As of the publication of this document, ViaNexis does not sell user data to third parties and does not use it for advertising-based profiling. Based on the current code audit, the distributed Driver App does not include a separate analytics or Crashlytics package. If dependencies or practices change, this section will be updated before the next release.",
       },
     ],
     contactsTitle: "Questions about how we handle data?",
@@ -531,27 +424,32 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
     metaDescription:
       "Request deletion, rectification, restriction, or a copy of your ViaNexis Driver account and personal data. Public privacy request form.",
     intro:
-      "This page explains what account deletion means, how it differs from ending a company link, suspension, and uninstalling the app, and lets you submit a privacy request. Submitting a request does not delete the account immediately: identity verification may be required, and some data may remain for legal, security, audit, or contractual reasons.",
+      "This page explains what permanent ViaNexis Driver account deletion means, and how it differs from uninstalling the app, signing out, unlinking from a company, and account suspension. You can then submit a privacy request. Recording a request does not mean immediate or automatic deletion: identity verification may be required, and some data may remain for legal, security, audit, or contractual reasons.",
     explanationSections: [
       {
         id: "what-deletion-means",
         title: "What does account deletion mean?",
-        body: "A ViaNexis Driver account deletion request means that, after review, access linked to the driver account and deletable personal data will be removed or anonymized by the service operator. Recording a request does not automatically confirm whether an account exists for the details you submitted.",
+        body: "A permanent ViaNexis Driver account and data deletion request means that, after review and identification, access linked to the driver account and deletable personal data may be removed or anonymized by the service operator. Recording a request does not by itself confirm whether an account exists for the details you submitted, and it does not trigger immediate automatic deletion.",
       },
       {
         id: "unlink-vs-suspend-vs-delete-vs-uninstall",
-        title: "Company link, suspension, deletion, and uninstalling the app",
-        body: "Ending a company link: the driver profile and company assignment may be separated without immediately deleting all personal data.\n\nSuspension: sign-in and app access may be temporarily restricted; data usually remains.\n\nAccount deletion: a request to discontinue the ViaNexis Driver account and deletable personal data.\n\nUninstalling the app from your phone does not delete the account or data stored on our servers.",
+        title: "What is not account deletion?",
+        body: "1. Uninstalling the app: removing it from your phone does not delete the account or data stored on the server.\n\n2. Signing out: the session ends; the account and data remain.\n\n3. Unlinking from a company: the driver profile and company assignment may be separated without immediately deleting all personal data.\n\n4. Account suspension: sign-in and app access may be temporarily restricted; data usually remains.\n\n5. Permanent account and data deletion request: this is the only account-deletion process. Submit a request on this page without signing in:\nhttps://vianexis.eu/en/driver-app/account-deletion",
       },
       {
         id: "what-may-remain",
         title: "What can be deleted, and what may remain?",
-        body: "Account credentials and profile data may be deleted or anonymized where no other legal basis requires retention. Data may remain where required by law, security, fraud prevention, audit, contract, or legal claims. Access to retained data is restricted. Documents retained by a company under its own legal obligations may follow separate rules.",
+        body: "Deletable or anonymizable data may include account credentials and profile data, push tokens, and other personal data where no other legal basis requires retention. Data may remain where required by law, security, fraud prevention, audit, contract, accountability, or legal claims (for example certain transport documents, signature evidence, security audit logs, or the privacy-request record). Operative use of retained data is restricted. Data retained by a carrier company under its own legal obligations may follow separate rules.",
+      },
+      {
+        id: "process-steps",
+        title: "Steps in processing the request",
+        body: "1. The request is recorded as an operational case.\n2. Proportionate identity verification where needed.\n3. Determination of ViaNexis and — if relevant — carrier-company controller roles.\n4. Identification of deletable, anonymizable, and retained data categories.\n5. Manual execution (deletion/anonymisation, token revocation, access termination).\n6. Closing notice to the contact address provided.\n\nDo not submit a password, PIN, or full identity document on this first form. The request may require full name, account email or phone number, and a contact email.",
       },
       {
         id: "identity-verification",
-        title: "Identity verification",
-        body: "Identity verification may follow the request. Do not submit a password, PIN, or full identity document on this first form. You will be informed when the request is closed, using the contact address you provide.",
+        title: "Identity verification and remedies",
+        body: "Proportionate identity verification may be requested. For questions or complaints, write to privacy@vianexis.eu; you may also lodge a complaint with the NAIH. Controller: Turul Atilla, sole proprietor and operator of the ViaNexis brand. Application: ViaNexis Driver.",
       },
     ],
     formTitle: "Submit a privacy request",

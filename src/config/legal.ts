@@ -201,6 +201,23 @@ export const legalTestingReleaseBanner = {
   en: "Testing release. This policy describes the actual data-processing activities of the currently distributed ViaNexis Driver app version. If features or data-processing activities change, this policy will be updated before the next release.",
 } as const;
 
+/** Testing banner for Terms of Use pages (same kill-switch as privacy). */
+export const legalTermsTestingReleaseBanner = {
+  hu: "Tesztelési kiadás. Ezek a feltételek a jelenleg terjesztett ViaNexis platform- és ViaNexis Driver alkalmazásverzió használatára vonatkoznak. A szolgáltatás vagy a feltételek lényeges változása esetén a dokumentumot az új verzió vagy funkció kiadása előtt frissítjük.",
+  en: "Testing release. These terms apply to the currently distributed versions of the ViaNexis platform and the ViaNexis Driver application. If the service or these terms change materially, this document will be updated before the relevant new version or feature is released.",
+} as const;
+
+export const legalControllerLabelForTerms = {
+  hu: {
+    heading: "Szolgáltató",
+    line: "Turul Atilla egyéni vállalkozó, a ViaNexis márkanév üzemeltetője",
+  },
+  en: {
+    heading: "Provider",
+    line: "Turul Atilla, sole proprietor and operator of the ViaNexis brand",
+  },
+} as const;
+
 export const legalCounselReviewNotice = {
   hu: "Fejlesztési megjegyzés: jogi szakértői felülvizsgálat ajánlott a végleges publikálás előtt. Ez a figyelmeztetés nem teszi érvénytelenné a tájékoztatót.",
   en: "Development note: legal counsel review is recommended before final publication. This notice does not invalidate the policy.",

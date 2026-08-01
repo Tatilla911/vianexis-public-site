@@ -1,37 +1,62 @@
 import type { Metadata } from "next";
-import { LegalDocumentSection } from "@/components/site/LegalDocumentSection";
-import { LegalStatusBadge } from "@/components/site/LegalStatusBadge";
-import { Section } from "@/components/site/Section";
-import { getContent, resolveLocale } from "@/lib/i18n";
-import { buildLegalPageMetadata } from "@/lib/i18n/metadata";
+import { permanentRedirect } from "next/navigation";
+import { TermsOfUseDocument } from "@/components/site/TermsOfUseDocument";
+import { legalConfig } from "@/config/legal";
+import { resolveLocale } from "@/lib/i18n";
+import { getDriverAppLegal } from "@/lib/i18n/driver-app-legal";
+import { buildDriverAppLegalMetadata } from "@/lib/i18n/driver-app-legal/metadata";
 import type { Locale } from "@/lib/i18n/types";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
+const PATH = "/terms";
+
+const PAGE_TITLE = {
+  hu: "Felhasználási feltételek – ViaNexis",
+  en: "Terms of Use – ViaNexis",
+} as const;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const locale = resolveLocale((await params).locale) as Locale;
-  const { legal } = getContent(locale);
-  return buildLegalPageMetadata(locale, "/terms", legal.terms.title);
+  const contentLocale = locale === "hu" ? "hu" : "en";
+  const { legal } = getDriverAppLegal(contentLocale);
+  const title = PAGE_TITLE[contentLocale];
+  const meta = buildDriverAppLegalMetadata(
+    contentLocale,
+    PATH,
+    title,
+    legal.terms.metaDescription,
+  );
+  return {
+    ...meta,
+    robots: { index: true, follow: true },
+    alternates: {
+      canonical:
+        contentLocale === "hu"
+          ? legalConfig.termsUrlHu.value!
+          : legalConfig.termsUrlEn.value!,
+      languages: {
+        hu: legalConfig.termsUrlHu.value!,
+        en: legalConfig.termsUrlEn.value!,
+      },
+    },
+  };
 }
 
 export default async function TermsPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale) as Locale;
-  const { legal } = getContent(locale);
+  if (locale !== "hu" && locale !== "en") {
+    permanentRedirect("/en/terms");
+  }
 
   return (
-    <Section className="pt-12">
-      <div className="prose-legal mx-auto w-full">
-        <LegalStatusBadge label={legal.versionBadge} className="mb-6" />
-        <h1 className="text-page-title">{legal.terms.title}</h1>
-        <p className="text-lead mt-5">{legal.terms.intro}</p>
-        <div className="mt-10 space-y-8">
-          {legal.terms.sections.map((section) => (
-            <LegalDocumentSection key={section.title} section={section} />
-          ))}
-        </div>
-      </div>
-    </Section>
+    <TermsOfUseDocument
+      contentLocale={locale}
+      switchPath={PATH}
+      titleOverride={PAGE_TITLE[locale]}
+      showBackToHub
+    />
   );
 }

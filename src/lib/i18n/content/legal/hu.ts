@@ -106,7 +106,7 @@ export const legalHu: LegalContent = {
       },
       {
         title: "Hozzáférés és fiók",
-        body: "A hozzáférés kontrollált lehet — pilot, meghívó vagy céges szerződés alapján. A fiók a munkáltató / fuvarozó cég jogosultságai szerint működik. Fióktörlési tájékoztató és kérelem: /driver-app/account-deletion.",
+        body: "A hozzáférés kontrollált lehet — pilot, meghívó vagy céges szerződés alapján. A fiók a munkáltató / fuvarozó cég jogosultságai szerint működik. Fióktörlési tájékoztató és kérelem: https://vianexis.eu/hu/driver-app/account-deletion.",
       },
       {
         title: "Felhasználói felelősség",

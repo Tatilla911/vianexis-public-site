@@ -9,6 +9,7 @@ import {
   DRIVER_APP_LEGAL_LAST_UPDATED,
   DRIVER_APP_LEGAL_VERSION,
 } from "../version";
+import { termsSectionsHu } from "./terms-sections-hu";
 
 const versionLabel = `Verzió: ${DRIVER_APP_LEGAL_VERSION}`;
 const effectiveLabel = `Hatálybalépés: ${DRIVER_APP_LEGAL_EFFECTIVE_DATE}`;
@@ -140,14 +141,16 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
         title: "7. Adatkezelési célok és jogalapok",
         body: "Az adatokat az alábbi célokból és jogalapokon kezeljük. Egy adott adat egyszerre több célt is szolgálhat. A telefon rendszerengedélye (pl. helyhozzáférés) technikai előfeltétel lehet; önmagában nem helyettesíti a GDPR szerinti jogalapot.",
         items: [
-          "ViaNexis-fiók és hitelesítés: fiók létrehozása, bejelentkezés, jelszó/PIN kezelés, hozzáférés biztosítása — szerződés teljesítése (GDPR 6. cikk (1) b) pont), illetve a platform biztonságához szükséges mértékben jogos érdek (GDPR 6. cikk (1) f) pont)",
-          "Céges fuvarfolyamat: fuvarfeladatok, státuszok, dokumentumok és céges munkafolyamatok — a sofőr és a fuvarozó cég közötti szerződés/jogviszony teljesítése, illetve ahol a ViaNexis a cég utasítására jár el, a cég adatkezelői utasítása szerinti feldolgozás",
-          "Platformbiztonság: visszaélés-megelőzés, jogosulatlan hozzáférés észlelése, rendszerüzemeltetési naplók — jogos érdek (GDPR 6. cikk (1) f) pont)",
-          "Jogi és számviteli kötelezettség: jogszabály által előírt bizonylatok és nyilvántartások megőrzése — jogi kötelezettség teljesítése (GDPR 6. cikk (1) c) pont), ahol alkalmazandó",
-          "Opcionális helyfüggő funkció: saját pozíció megjelenítése vagy fuvaresethez kapcsolódó hely rögzítése — a funkció használatához szükséges szerződéses/jogos érdekű cél mellett a rendszerengedély megadása; a hozzájárulás jellegű kezelés visszavonható a rendszerbeállításokban (GDPR 6. cikk (1) a) / f) / b) pont — a konkrét funkciótól függően)",
-          "Operatív értesítés: fuvarral kapcsolatos push értesítések kézbesítése — szerződés teljesítése / jogos érdek a szolgáltatás működtetéséhez, a rendszerértesítési engedély mellett",
-          "Support és privacy request: ügyfélszolgálati és adatvédelmi kérelmek ügyintézése — jogos érdek, illetve jogi kötelezettség teljesítése",
-          "Jogi igények kezelése: igények előterjesztése, érvényesítése vagy védelme — jogos érdek, illetve ahol alkalmazandó, jogi kötelezettség",
+          "Fiók és hitelesítés: fiók létrehozása, bejelentkezés, jelszó/PIN kezelés, hozzáférés biztosítása — szerződés teljesítése (GDPR 6. cikk (1) b) pont), illetve a platform biztonságához szükséges mértékben jogos érdek (GDPR 6. cikk (1) f) pont)",
+          "Platformbiztonság: visszaélés-megelőzés, jogosulatlan hozzáférés észlelése, session-/tokenkezelés, rendszerüzemeltetési naplók — jogos érdek (GDPR 6. cikk (1) f) pont)",
+          "Fuvarozó cég által kezelt fuvarfolyamat: fuvarfeladatok, státuszok és céges munkafolyamatok — tipikusan a sofőr és a fuvarozó cég közötti szerződés/jogviszony teljesítése; ahol a ViaNexis a cég utasítására jár el, a cég adatkezelői utasítása szerinti feldolgozás. A konkrét jogalap a céges szerződéstől és szereptől függhet",
+          "Operatív dokumentumkezelés: fuvarokmányok, feltöltött fényképek/videók és kapcsolódó bizonylatok kezelése a fuvarfolyamat részeként — a céges/szerződéses modell szerint; a ViaNexis vagy a fuvarozó cég szerepe az adott adatfolyamtól függ",
+          "Opcionális helyfüggő funkció: saját pozíció megjelenítése vagy fuvaresethez kapcsolódó hely rögzítése — a funkció céljához kapcsolódó szerződéses vagy jogos érdeken alapuló kezelés mellett a mobil operációs rendszer engedélye technikai előfeltétel; az OS-engedély önmagában nem azonos a GDPR-hozzájárulással, és a rendszerbeállításokban visszavonható",
+          "Operatív push értesítés: fuvarral kapcsolatos push értesítések kézbesítése — szerződés teljesítése / jogos érdek a szolgáltatás működtetéséhez, a rendszerértesítési engedély mellett (az OS-engedély nem helyettesíti a GDPR-jogalapot)",
+          "Support: ügyfélszolgálati megkeresések ügyintézése — jogos érdek (GDPR 6. cikk (1) f) pont)",
+          "Privacy request: adatvédelmi és fióktörlési kérelmek fogadása és ügyintézése — jogi kötelezettség teljesítése és/vagy jogos érdek (GDPR 6. cikk (1) c) / f) pont)",
+          "Jogi igények: igények előterjesztése, érvényesítése vagy védelme — jogos érdek, illetve ahol alkalmazandó, jogi kötelezettség",
+          "Jogi kötelezettségek: jogszabály által előírt bizonylatok és nyilvántartások megőrzése — jogi kötelezettség teljesítése (GDPR 6. cikk (1) c) pont), ahol alkalmazandó",
         ],
       },
       {
@@ -168,12 +171,12 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
       {
         id: "e-signatures-and-evidence",
         title: "11. E-aláírások és bizonyítékok",
-        body: "A Driver App lehetőséget biztosít elektronikus aláírás rögzítésére (érintőképernyős aláírás-rajzolat formájában) a fuvarozási események (pl. átvétel, kiszállítás) igazolásához. Az aláírással együtt olyan kiegészítő adatokat is rögzíthetünk, mint az időbélyeg és — ha a funkció során engedélyezve van és rögzítésre kerül — a helyadat, mert ezek együttesen szolgálhatnak bizonyítékként egy esetleges vitás helyzetben.\n\nA rögzített aláírás bizonyító ereje és joghatása a dokumentum típusától, a rögzítés körülményeitől és az alkalmazandó jogtól függ. A ViaNexis nem garantálja, hogy a rögzített aláírás minden országban vagy minden eljárásban minősített elektronikus aláírásnak vagy önmagában teljes bizonyító erejű bizonyítéknak minősül. Részletesebb tájékoztatást a Felhasználási feltételek 9. szakasza tartalmaz.",
+        body: "A Driver App lehetőséget biztosít elektronikus aláírás rögzítésére (érintőképernyős aláírás-rajzolat formájában) a fuvarozási események (pl. átvétel, kiszállítás) igazolásához. Az aláírással együtt olyan kiegészítő adatokat is rögzíthetünk, mint az időbélyeg és — ha a funkció során engedélyezve van és rögzítésre kerül — a helyadat, mert ezek együttesen szolgálhatnak bizonyítékként egy esetleges vitás helyzetben.\n\nA rögzített aláírás bizonyító ereje és joghatása a dokumentum típusától, a rögzítés körülményeitől és az alkalmazandó jogtól függ. A ViaNexis nem garantálja, hogy a rögzített aláírás minden országban vagy minden eljárásban minősített elektronikus aláírásnak vagy önmagában teljes bizonyító erejű bizonyítéknak minősül. Részletesebb tájékoztatást a Felhasználási feltételek 16. szakasza tartalmaz: https://vianexis.eu/hu/terms#electronic-signatures-and-evidence",
       },
       {
         id: "messages-and-translation",
         title: "12. Üzenetek és fordítás",
-        body: "A Driver App beépített üzenetküldési funkciót biztosít a sofőr és a diszpécser/céges kapcsolattartó között. Az üzenetváltás megkönnyítése érdekében a rendszer gépi (automatikus) fordítást kínálhat fel, ha a felek eltérő nyelvet használnak. A gépi fordítás kényelmi funkció, amely nem helyettesíti a hiteles vagy hivatalos fordítást, és időnként pontatlan lehet — kritikus tartalom (pl. veszélyes áru kezelésére vonatkozó utasítás) esetén javasolt az emberi megerősítés kérése.\n\nAz üzenetek tartalma a fuvarhoz kapcsolódóan naplózásra és a 18. szakasz szerinti elvek alapján megőrzésre kerülhet, egyebek mellett esetleges vitás helyzetek tisztázása céljából.",
+        body: "A Driver App beépített üzenetküldési funkciót biztosít a sofőr és a diszpécser/céges kapcsolattartó között. Gépi fordítás csak akkor tekinthető aktív adatkezelésnek, ha az adott környezetben ténylegesen engedélyezve van; a jelenlegi terjesztett kiadásban nem állítunk aktív, külső fordítási szolgáltatót. Ha a funkció elérhető, kényelmi jellegű, nem helyettesíti a hiteles fordítást, és pontatlan lehet — kritikus tartalom esetén emberi megerősítés javasolt.\n\nAz üzenetek tartalma a fuvarhoz kapcsolódóan naplózásra és a 18. szakasz szerinti elvek alapján megőrzésre kerülhet, egyebek mellett esetleges vitás helyzetek tisztázása céljából.",
       },
       {
         id: "device-security-diagnostics",
@@ -222,7 +225,7 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
       {
         id: "account-and-data-deletion",
         title: "19. Fiók és adatok törlése",
-        body: "A kijelentkezés, az alkalmazás eltávolítása, a cégtől való leválasztás és a fiók felfüggesztése nem azonos a végleges fióktörléssel. A végleges account deletion külön folyamat: a nyilvános oldalon (https://vianexis.eu/hu/driver-app/account-deletion) beadott kérelem.\n\nA backend a kérelmet ügyintézési rekordként rögzíti; a kérelem önmagában nem indít azonnali, automatikus teljes adattörlést. Azonosítás után a törölhető fiókadatok törölhetők vagy anonimizálhatók; megmaradhatnak jogszabály, biztonság, csalásmegelőzés, audit, szerződés vagy jogi igény miatt szükséges adatok. A megmaradó adatok operatív használata korlátozott. A kérelmező a megadott kapcsolattartási címen kap tájékoztatást a további lépésekről. A semleges visszaigazolás nem árulja el, hogy a megadott adatokhoz tartozik-e fiók.",
+        body: "A kijelentkezés, az alkalmazás eltávolítása, a cégtől való leválasztás és a fiók felfüggesztése nem azonos a végleges fiók- és adattörléssel. A végleges törlés külön kérelem.\n\nFiók és kapcsolódó adatok törlésének kérése:\nhttps://vianexis.eu/hu/driver-app/account-deletion\n\nA rendszer a kérelmet ügyintézési rekordként rögzíti; a kérelem önmagában nem indít azonnali, automatikus teljes adattörlést. Azonosítás után a törölhető fiókadatok törölhetők vagy anonimizálhatók; megmaradhatnak jogszabály, biztonság, csalásmegelőzés, audit, szerződés vagy jogi igény miatt szükséges adatok. A megmaradó adatok operatív használata korlátozott. A kérelmező a megadott kapcsolattartási címen kap tájékoztatást a további lépésekről. A semleges visszaigazolás nem árulja el, hogy a megadott adatokhoz tartozik-e fiók.",
       },
       {
         id: "data-subject-rights",
@@ -252,7 +255,7 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
       {
         id: "security",
         title: "22. Adatbiztonság",
-        body: "A személyes adatok védelme érdekében megfelelő technikai és szervezési intézkedéseket alkalmazunk. Ilyen intézkedés többek között az adatok titkosított (TLS) továbbítása az alkalmazás és a háttérrendszerek között, a jelszavak egyirányú, sózott hash formájában történő tárolása (az eredeti jelszót nem tároljuk), a hozzáférések jogosultsági szintekhez kötése, valamint a biztonsági szempontból releváns események naplózása.\n\nBár mindent megteszünk az adatok védelme érdekében, egyetlen rendszer sem tekinthető abszolút mértékben biztonságosnak. Amennyiben adatvédelmi incidenst észlelsz vagy gyanítasz, kérjük, haladéktalanul jelezd a security@vianexis.eu címen.",
+        body: "A személyes adatok védelme érdekében a kódaudit alapján igazolt technikai és szervezési intézkedéseket alkalmazzuk. Ilyen intézkedés többek között: TLS-titkosított adatátvitel az alkalmazás és a háttérrendszerek között; a jelszavak bcrypt alapú, sózott hash formájában történő tárolása (az eredeti jelszót nem tároljuk); szerepkör- és tenant-alapú hozzáféréskorlátozás; biztonsági és elszámoltathatósági szempontból releváns auditnaplózás; session/token visszavonás; valamint a support hozzáférés korlátozása a szükséges mértékre.\n\nNem állítunk end-to-end titkosítást, sem azt, hogy minden adat at-rest titkosítással lenne védve, és egyetlen rendszer sem tekinthető feltörhetetlennek. Adatvédelmi incidens gyanúja esetén jelezd a security@vianexis.eu címen.",
       },
       {
         id: "minors",
@@ -274,134 +277,24 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
     contacts: standardContacts,
   },
   terms: {
-    title: "ViaNexis Driver alkalmazás felhasználási feltételek",
+    title: "Felhasználási feltételek – ViaNexis",
     metaDescription:
-      "A ViaNexis Driver App használatára vonatkozó felhasználási feltételek: fiókhasználat, elfogadható magatartás, felelősségi korlátok és a szolgáltatás jellege.",
+      "A ViaNexis platform és a ViaNexis Driver alkalmazás felhasználási feltételei: szerepkörök, fiókhasználat, dokumentumok, felelősség és B2B szerződéses keretek.",
     intro:
-      "Jelen Felhasználási feltételek (a továbbiakban: „Feltételek”) szabályozzák a ViaNexis Driver App mobilalkalmazás (a továbbiakban: „Driver App” vagy „alkalmazás”) használatát. Az alkalmazás telepítésével, a fiók regisztrálásával vagy a szolgáltatás bármely funkciójának használatával elfogadod a jelen Feltételeket. Ha a Feltételekkel nem értesz egyet, kérjük, ne használd az alkalmazást, és jelezd ezt a fuvarozó céged felé.",
+      "Ezek a Feltételek a ViaNexis platform, a ViaNexis Driver alkalmazás, a kapcsolódó céges portál és háttérszolgáltatások használatára vonatkoznak. A szolgáltatás kontrollált, pilot vagy meghívásos formában is elérhető lehet. A személyes adatok kezelését az Adatvédelmi tájékoztató ismerteti; a végleges fióktörlés külön kérelem.",
     versionLabel,
     effectiveLabel,
     lastUpdatedLabel,
     tocLabel: "Tartalomjegyzék",
-    sections: [
-      {
-        id: "intro-and-acceptance",
-        title: "1. Bevezetés és elfogadás",
-        body: `${OPERATOR_STATEMENT_HU} A jelen Feltételek a Driver App és az ahhoz kapcsolódó háttérszolgáltatások használatára vonatkoznak. A Feltételek elfogadása a regisztráció, illetve a fuvarozó cég általi meghívás elfogadásának feltétele.`,
-      },
-      {
-        id: "service-description",
-        title: "2. A szolgáltatás leírása",
-        body: "A Driver App egy sofőröknek szánt mobilalkalmazás, amely a fuvarhoz kapcsolódó feladatok, dokumentumok és események kezelését támogatja: fuvarlista és megállók megtekintése, dokumentumfeltöltés, elektronikus aláírás rögzítése, ellenőrzőlisták kitöltése, incidensek rögzítése, üzenetváltás a diszpécserrel, valamint — korlátozott mértékben — offline használat. A Driver App a fuvarozó cég saját adminisztrációs/céges felületéhez (portál) kapcsolódik, amelyen keresztül a cég fuvarokat oszt ki és jogosultságokat kezel.\n\nA szolgáltatás jelenleg kontrollált, egyeztetett hozzáférésű (pilot) formában érhető el, ezért egyes funkciók fejlesztés alatt állhatnak, vagy fuvarozó cégenként eltérő mértékben lehetnek elérhetők.",
-      },
-      {
-        id: "eligibility-and-registration",
-        title: "3. Jogosultság és fiókregisztráció",
-        body: "A Driver App használatához nagykorúnak kell lenned, és a fuvarozás jellegétől függően érvényes vezetői engedéllyel, illetve az adott fuvarhoz szükséges egyéb jogosultsággal (pl. ADR-igazolvány) kell rendelkezned. A fiók létrehozása jellemzően a fuvarozó cég meghívása, illetve céges azonosító (cégkód) megadása alapján történik. A regisztráció során megadott adatoknak valósnak és naprakésznek kell lenniük.",
-      },
-      {
-        id: "personal-account-security",
-        title: "4. Fiókbiztonság: személyes, nem megosztható fiók",
-        body: "A Driver App-hoz tartozó fiók személyes és kizárólag a saját, egyéni használatodra szolgál. A bejelentkezési adatok (jelszó, PIN) megosztása bármely más személlyel — beleértve más sofőröket, diszpécsereket vagy céges adminisztrátorokat is — tilos. Nem hozható létre és nem használható úgy sem a fiók, hogy azt több sofőr közösen, „céges sofőr-fiókként” használja: minden sofőrnek saját, egyéni fiókkal kell rendelkeznie.\n\nA fiókodhoz kapcsolódó tevékenységekért — az általad megosztott bejelentkezési adatokból eredő tevékenységeket is beleértve — te vagy felelős. Ha azt gyanítod, hogy fiókodhoz jogosulatlanul fértek hozzá, haladéktalanul jelezd a security@vianexis.eu címen.",
-      },
-      {
-        id: "company-managed-driver-profiles",
-        title: "5. A fuvarozó cég által kezelt sofőrprofilok",
-        body: "A fuvarozó cég adminisztrátora vagy diszpécsere a céges portálon keresztül kezelheti a sofőr profiljának egyes elemeit — például fuvart oszthat ki, hozzáférést adhat vagy vonhat vissza, illetve inaktiválhatja a profilt a jogviszony megszűnésekor. Ez a fajta céges kezelés azonban nem terjed ki és nem is terjedhet ki a sofőr személyes bejelentkezési adataira.\n\nA fuvarozó cég semmilyen körülmények között nem kérheti el a sofőr jelszavát vagy PIN-kódját, és nem jogosult a sofőr fiókjába annak bejelentkezési adataival belépni. Ha egy fuvarozó cég ilyet kér tőled, kérjük, utasítsd vissza, és jelezd ezt a security@vianexis.eu vagy a support@vianexis.eu címen.",
-      },
-      {
-        id: "permissions-and-device-access",
-        title: "6. Engedélyek és eszközhozzáférések",
-        body: "Az alkalmazás egyes funkciói (pl. helymeghatározás, kamera, push értesítés) az operációs rendszer szintjén megadott, külön engedélyt igényelnek. Ezen engedélyek megadása — a Feltételek 3. szakaszában leírt alapvető, fiókhasználathoz szükséges adatok kivételével — önkéntes, és a telefon rendszerbeállításaiban bármikor visszavonható. Egyes funkciók a hozzá tartozó engedély hiányában korlátozottan vagy egyáltalán nem működnek; ez nem tekinthető az alkalmazás hibájának.",
-      },
-      {
-        id: "acceptable-use",
-        title: "7. Elfogadható használat",
-        body: "A Driver App használata során az alábbi magatartások tilosak: hamis, megtévesztő vagy manipulált dokumentum, fénykép vagy aláírás feltöltése; más személy nevében, annak hozzájárulása nélkül történő adatrögzítés vagy aláírás; jogosulatlan hozzáférés kísérlete más fiókjához vagy a rendszer más részéhez; az alkalmazás rendeltetésétől eltérő, visszaélésszerű vagy a rendszer működését hátrányosan befolyásoló használat (pl. automatizált lekérdezések, biztonsági mechanizmusok megkerülésének kísérlete); valamint jogszabályba ütköző tartalom feltöltése vagy tevékenység végzése az alkalmazáson keresztül.",
-      },
-      {
-        id: "uploaded-content-responsibility",
-        title: "8. Feltöltött tartalom és felelősség",
-        body: "A Driver App-ba feltöltött dokumentumok, fényképek, videók és egyéb tartalmak valódiságáért, jogszerűségéért és a fuvarhoz való tényleges kapcsolódásáért a feltöltő sofőr, illetve a fuvarozó cég felel. Ez a kötelezettség nem érinti a ViaNexis vagy a fuvarozó cég alkalmazandó adatvédelmi felelősségét. A ViaNexis nem ellenőrzi és nem garantálja a feltöltött tartalom hitelességét vagy jogi megfelelőségét, és nem vállal felelősséget a hamis vagy pontatlan tartalom feltöltéséből eredő következményekért.",
-      },
-      {
-        id: "e-signature-legal-effect",
-        title: "9. Az e-aláírás jogi hatálya",
-        body: "A rögzített aláírás bizonyító ereje és joghatása a dokumentum típusától, a rögzítés körülményeitől és az alkalmazandó jogtól függ. A ViaNexis nem garantálja, hogy a rögzített aláírás minden országban vagy minden eljárásban minősített elektronikus aláírásnak vagy önmagában teljes bizonyító erejű bizonyítéknak minősül. Egyes dokumentumtípusok esetén jogszabály minősített vagy fokozott biztonságú elektronikus aláírást írhat elő, amelyet az alkalmazásban rögzíthető egyszerű aláírás-rajzolat önmagában nem feltétlenül elégít ki.",
-      },
-      {
-        id: "offline-mode-and-sync",
-        title: "10. Offline működés és szinkronizáció",
-        body: "A Driver App bizonyos funkciói (pl. adatrögzítés, dokumentumfeltöltés) internetkapcsolat hiányában, offline módban is elérhetők lehetnek, és a rögzített adatok a kapcsolat helyreállásakor szinkronizálódnak a háttérrendszerrel. Az offline szinkronizáció funkciója folyamatos fejlesztés alatt áll, ezért teljes körű, minden helyzetre kiterjedő, garantált offline működés jelenleg nem biztosított. Amíg a szinkronizáció nem történt meg, az offline rögzített adat kizárólag az eszközön érhető el, és elveszhet, ha az eszköz meghibásodik, elveszik, vagy az alkalmazás adatai törlődnek. Kritikus adat esetén javasolt a kapcsolat helyreállása utáni mielőbbi szinkronizáció ellenőrzése.",
-      },
-      {
-        id: "automated-checks-and-ai-assistance",
-        title: "11. Automatizált ellenőrzések és AI-asszisztencia",
-        body: "Az alkalmazásban elérhető automatizált és mesterséges intelligencia alapú segédfunkciók (pl. dokumentum-felismerés, hiányzó adat jelzése, fordítási javaslat) kizárólag tájékoztató, támogató jellegűek, és nem helyettesítik a felhasználó vagy a fuvarozó cég saját ellenőrzését és döntését. Ezek a funkciók nem helyettesítik a jogi, vámügyi vagy ADR-megfelelőségi döntést, és nem tekinthetők hatósági vagy szakmai állásfoglalásnak.",
-      },
-      {
-        id: "not-an-authority-or-emergency-service",
-        title: "12. Nem hatóság, nem jogi tanácsadó és nem segélyhívó szolgáltatás",
-        body: "A ViaNexis és a Driver App nem minősül hatóságnak, nem nyújt jogi tanácsadást, és nem minősül segélyhívó vagy vészhelyzeti szolgáltatásnak. Az alkalmazásban megjelenő figyelmeztetés, javaslat vagy automatizált ellenőrzés eredménye tájékoztató jellegű, és semmilyen körülmények között nem helyettesíti a hatósági eljárást, a jogi tanácsadást vagy a segélyhívó szolgálatok (pl. rendőrség, mentők, katasztrófavédelem) elérését vészhelyzet esetén. Vészhelyzetben mindig a helyi segélyhívó számot (az Európai Unióban: 112) kell hívni.",
-      },
-      {
-        id: "adr-customs-traffic-compliance",
-        title: "13. ADR, vámügyi és közlekedési megfelelőség",
-        body: "A ViaNexis nem garantálja, hogy a Driver App használata önmagában biztosítja a veszélyes áruk szállítására vonatkozó (ADR), vámügyi vagy közlekedési jogszabályoknak való megfelelést. Az alkalmazás egyes funkciói (pl. ellenőrzőlisták, dokumentum-emlékeztetők) segíthetik a megfelelés nyomon követését, de ezek használata nem mentesíti a sofőrt és a fuvarozó céget azon kötelezettség alól, hogy megismerjék és betartsák a rájuk vonatkozó hatósági előírásokat.",
-      },
-      {
-        id: "driver-and-company-obligations",
-        title: "14. A sofőr és a fuvarozó cég kötelezettségei",
-        body: "A sofőr és a fuvarozó cég kizárólagos felelőssége, hogy betartsa a rá vonatkozó jogszabályokat, hatósági előírásokat és a fuvarozási szerződésből eredő kötelezettségeket, ideértve a vezetői engedély, az ADR-igazolvány és egyéb szükséges okmányok érvényességének fenntartását, valamint az alkalmazásban rögzített adatok pontosságát és időszerűségét.",
-      },
-      {
-        id: "availability-and-maintenance",
-        title: "15. Rendelkezésre állás és karbantartás",
-        body: "A ViaNexis törekszik a Driver App folyamatos és megbízható működésének biztosítására, azonban — különös tekintettel a szolgáltatás jelenlegi, kontrollált pilot jellegére — nem garantál megszakítás nélküli rendelkezésre állást. Tervezett karbantartás, frissítés vagy előre nem látható technikai probléma miatt a szolgáltatás időszakosan korlátozottan érhető el vagy szünetelhet. Amennyiben lehetséges, a tervezett karbantartásról előzetesen tájékoztatást adunk.",
-      },
-      {
-        id: "intellectual-property",
-        title: "16. Szellemi tulajdon",
-        body: "A Driver App, annak elnevezése, arculata, forráskódja és a hozzá kapcsolódó dokumentáció a ViaNexis, illetve az üzemeltető szellemi tulajdonát képezi. A felhasználó a Feltételek szerint kizárólag a rendeltetésszerű használatra jogosult, egyéb jogot (pl. másolás, visszafejtés, terjesztés) nem szerez. A felhasználó által feltöltött dokumentumok és fényképek tekintetében a felhasználó, illetve a fuvarozó cég megőrzi a jogosultságait, ugyanakkor a szolgáltatás nyújtásához szükséges mértékben felhasználási jogot biztosít a ViaNexis részére (pl. tárolás, megjelenítés, feldolgozás a fuvarfolyamat keretében).",
-      },
-      {
-        id: "third-party-services",
-        title: "17. Harmadik féltől származó szolgáltatások",
-        body: "A Driver App működése egyes funkciók (pl. push értesítés, térképszolgáltatás, felhő-tárhely) tekintetében harmadik fél szolgáltatóira támaszkodik. A ViaNexis nem vállal felelősséget az ilyen harmadik fél szolgáltatók üzemzavarából, elérhetetlenségéből vagy hibás működéséből eredő károkért, ugyanakkor törekszik megbízható partnerek kiválasztására.",
-      },
-      {
-        id: "limitation-of-liability",
-        title: "18. A felelősség korlátozása",
-        body: "A vonatkozó jogszabályok által megengedett legteljesebb mértékben a ViaNexis nem vállal felelősséget a Driver App használatából vagy használatának ellehetetlenüléséből eredő közvetett, járulékos vagy következményi károkért, elmaradt haszonért, adatvesztésért, illetve a jogszabályi (pl. ADR, vámügyi, közlekedési) megfelelés elmulasztásából eredő bírságért vagy szankcióért. Ez a korlátozás nem érinti azokat a felelősségi eseteket, amelyek jogszabály alapján nem korlátozhatók vagy zárhatók ki.",
-      },
-      {
-        id: "disclaimer-of-warranties",
-        title: "19. Szavatosság kizárása",
-        body: "A Driver App-ot „ahogy van” (as is) és „ahogy elérhető” (as available) alapon biztosítjuk, tekintettel a szolgáltatás jelenlegi, kontrollált pilot jellegére. A ViaNexis a jogszabályok által megengedett mértékben kizár minden kifejezett vagy hallgatólagos szavatosságot, ideértve különösen, de nem kizárólagosan a hibátlan működésre, a folyamatos rendelkezésre állásra, vagy egy adott (pl. hatósági megfelelési) célra való alkalmasságra vonatkozó szavatosságot.",
-      },
-      {
-        id: "suspension-and-termination",
-        title: "20. Felfüggesztés és megszűnés",
-        body: "A ViaNexis fenntartja a jogot, hogy a jelen Feltételek megsértése, biztonsági kockázat vagy visszaélésgyanú esetén a fiókot felfüggessze vagy megszüntesse. A felhasználó bármikor kezdeményezheti a fiók használatának megszüntetését; a fiók és az adatok kezelésének részletes lehetőségeit (leválasztás, felfüggesztés, törlés, eltávolítás) a Fiók és adattörlés oldal ismerteti.",
-      },
-      {
-        id: "changes-to-terms",
-        title: "21. A Feltételek módosítása",
-        body: "A jelen Feltételeket időről időre módosíthatjuk, például jogszabályváltozás, új funkció bevezetése vagy üzleti okok miatt. A módosított Feltételek a dokumentum tetején feltüntetett hatálybalépési dátumtól alkalmazandók. Lényeges módosításról az alkalmazáson belüli értesítés vagy e-mail útján tájékoztatást adunk. A módosítás hatálybalépését követő további használat a módosított Feltételek elfogadását jelenti.",
-      },
-      {
-        id: "governing-law-and-disputes",
-        title: "22. Irányadó jog és vitarendezés",
-        body: "A jelen Feltételekre és az azokból eredő jogvitákra Magyarország joga irányadó. A felek törekednek arra, hogy esetleges vitás kérdéseiket elsősorban egyeztetés útján, a legal@vianexis.eu címen keresztül rendezzék. Ennek eredménytelensége esetén a jogvita elbírálására — jogszabály eltérő rendelkezése hiányában — a magyar bíróságok rendelkeznek joghatósággal.",
-      },
-      {
-        id: "contact",
-        title: "23. Kapcsolat",
-        body: "A Feltételekkel kapcsolatos kérdéseiddel az alábbi elérhetőségeken kereshetsz meg minket.",
-      },
+    sections: termsSectionsHu,
+    contactsTitle: "Kapcsolat",
+    contacts: [
+      { label: "Általános kapcsolat", value: "info@vianexis.eu" },
+      { label: "Jogi ügyek", value: OPERATOR_EMAILS.legal },
+      { label: "Adatvédelem", value: OPERATOR_EMAILS.privacy },
+      { label: "Ügyfélszolgálat", value: OPERATOR_EMAILS.support },
+      { label: "Biztonsági bejelentés", value: OPERATOR_EMAILS.security },
     ],
-    contactsTitle: "Kapcsolat a Feltételekkel kapcsolatban",
-    contacts: standardContacts,
   },
   dataSafety: {
     title: "ViaNexis Driver – adatbiztonsági és adatkezelési összefoglaló",
@@ -520,7 +413,7 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
       {
         id: "no-sale-no-ad-profiling",
         title: "Nincs adateladás, nincs hirdetési profilalkotás",
-        body: "A jelen dokumentum elfogadásának időpontjában a ViaNexis nem értékesíti a felhasználói adatokat harmadik félnek, és nem használja azokat hirdetési célú profilalkotásra. Ez a nyilatkozat a jelenlegi termékszándékot tükrözi; a beépített szoftverfejlesztői készletek (SDK-k) és alvállalkozók tényleges adatkezelési gyakorlatának teljes körű auditja folyamatban van, ennek lezárultával ezt a szakaszt szükség esetén pontosítjuk.",
+        body: "A jelen dokumentum elfogadásának időpontjában a ViaNexis nem értékesíti a felhasználói adatokat harmadik félnek, és nem használja azokat hirdetési célú profilalkotásra. A jelenlegi kódaudit alapján a terjesztett Driver App nem tartalmaz külön analytics vagy Crashlytics csomagot. Ha a függőségek vagy a gyakorlat változik, ezt a szakaszt a következő kiadás előtt frissítjük.",
       },
     ],
     contactsTitle: "Kérdésed van az adatkezeléssel kapcsolatban?",
@@ -531,27 +424,32 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
     metaDescription:
       "Kérje ViaNexis Driver fiókja és adatainak törlését, helyesbítését, korlátozását vagy másolatát. Publikus adatvédelmi kérelem űrlap.",
     intro:
-      "Ezen az oldalon áttekintheti, mit jelent a fióktörlés, miben különbözik a céges kapcsolat megszüntetésétől, a felfüggesztéstől és az alkalmazás eltávolításától, majd adatvédelmi kérelmet nyújthat be. A kérelem nem jelenti a fiók azonnali törlését: személyazonosság-ellenőrzés történhet, és bizonyos adatok jogszabály, biztonság, audit vagy szerződés miatt megmaradhatnak.",
+      "Ezen az oldalon áttekintheti, mit jelent a ViaNexis Driver fiók végleges törlése, és miben különbözik az alkalmazás eltávolításától, a kijelentkezéstől, a cégtől való leválasztástól és a fiókfelfüggesztéstől. Ezután adatvédelmi kérelmet nyújthat be. A kérelem rögzítése nem jelent azonnali vagy automatikus törlést: személyazonosság-ellenőrzés történhet, és bizonyos adatok jogszabály, biztonság, audit vagy szerződés miatt megmaradhatnak.",
     explanationSections: [
       {
         id: "what-deletion-means",
         title: "Mit jelent a fióktörlés?",
-        body: "A ViaNexis Driver fiók törlésének kérése azt jelenti, hogy a sofőrfiókhoz kapcsolódó hozzáférést és a törölhető személyes adatokat a szolgáltató a kérelem vizsgálata után megszünteti vagy anonimizálja. A kérelem rögzítése után nem erősítjük meg automatikusan, hogy a megadott adatokhoz tartozik-e fiók.",
+        body: "A ViaNexis Driver alkalmazásra vonatkozó végleges fiók- és adattörlési kérelem azt jelenti, hogy a sofőrfiókhoz kapcsolódó hozzáférést és a törölhető személyes adatokat a szolgáltató a kérelem vizsgálata és azonosítás után megszüntetheti vagy anonimizálhatja. A kérelem rögzítése önmagában nem erősíti meg, hogy a megadott adatokhoz tartozik-e fiók, és nem indít azonnali, automatikus törlést.",
       },
       {
         id: "unlink-vs-suspend-vs-delete-vs-uninstall",
-        title: "Céges kapcsolat, felfüggesztés, törlés és az app eltávolítása",
-        body: "Céges kapcsolat megszüntetése: a sofőrprofil és a vállalati hozzárendelés szétválasztható, anélkül hogy minden személyes adat azonnal törlődne.\n\nFelfüggesztés: a bejelentkezés és az app-hozzáférés ideiglenesen korlátozható; az adatok általában megmaradnak.\n\nFióktörlés: a ViaNexis Driver fiók és a törölhető személyes adatok megszüntetésére irányuló kérelem.\n\nAz alkalmazás eltávolítása a telefonról nem törli a szerveren tárolt fiókot és adatokat.",
+        title: "Mi nem számít fióktörlésnek?",
+        body: "1. Alkalmazás eltávolítása: a telefonról való törlés nem törli a szerveren tárolt fiókot és adatokat.\n\n2. Kijelentkezés: a munkamenet véget ér; a fiók és az adatok megmaradnak.\n\n3. Cégtől leválasztás: a sofőrprofil és a vállalati hozzárendelés szétválasztható anélkül, hogy minden személyes adat azonnal törlődne.\n\n4. Fiókfelfüggesztés: a bejelentkezés és az app-hozzáférés ideiglenesen korlátozható; az adatok általában megmaradnak.\n\n5. Végleges fiók- és adattörlési kérelem: ez az egyetlen account deletion folyamat. A kérelmet ezen az oldalon, bejelentkezés nélkül lehet benyújtani:\nhttps://vianexis.eu/hu/driver-app/account-deletion",
       },
       {
         id: "what-may-remain",
         title: "Mi törölhető, és mi maradhat meg?",
-        body: "Törölhető vagy anonimizálható lehet a fiókhoz tartozó belépési és profiladat, ha nincs más jogalap a megőrzésre. Megmaradhatnak jogszabály, biztonság, csalásmegelőzés, audit, szerződés vagy jogi igény miatt szükséges adatok. A megőrzött adatokhoz való hozzáférés korlátozott. A cég saját jogi kötelezettsége miatt tárolt fuvarokmányokra külön szabály vonatkozhat.",
+        body: "Törölhető vagy anonimizálható lehet többek között a fiókhoz tartozó belépési és profiladat, a push token, valamint azok a személyes adatok, amelyekre nincs más jogalap a megőrzésre. Megmaradhatnak jogszabály, biztonság, csalásmegelőzés, audit, szerződés, elszámoltathatóság vagy jogi igény miatt szükséges adatok (például egyes fuvarokmányok, aláírásbizonyítékok, biztonsági auditnaplók vagy a privacy request rekord). A megőrzött adatok operatív használata korlátozott. A fuvarozó cég saját jogi kötelezettsége miatt tárolt adatokra külön szabály vonatkozhat.",
+      },
+      {
+        id: "process-steps",
+        title: "A kérelem feldolgozásának lépései",
+        body: "1. A kérelem rögzítése ügyintézési rekordként.\n2. Szükség esetén arányos személyazonosság-ellenőrzés.\n3. A ViaNexis és — ha érintett — a fuvarozó cég adatkezelői szerepének meghatározása.\n4. Törölhető, anonimizálható és megőrzendő adatkategóriák azonosítása.\n5. Manuális végrehajtás (törlés/anonimizálás, tokenek visszavonása, hozzáférés megszüntetése).\n6. Lezáró tájékoztatás a megadott kapcsolattartási címen.\n\nAz első űrlapon ne adjon meg jelszót, PIN-kódot vagy teljes személyi okmányt. A kérelemhez szükséges lehet a teljes név, a fiókhoz tartozó e-mail vagy telefonszám, valamint kapcsolattartási e-mail.",
       },
       {
         id: "identity-verification",
-        title: "Személyazonosság-ellenőrzés",
-        body: "A kérelem után személyazonosság-ellenőrzés történhet. Az első űrlapon ne adjon meg jelszót, PIN-kódot vagy teljes személyi okmányt. A lezárásról a kérelmező tájékoztatást kap a megadott kapcsolattartási címen.",
+        title: "Személyazonosság-ellenőrzés és jogorvoslat",
+        body: "Arányos személyazonosság-ellenőrzés kérhető. További kérdés vagy panasz esetén írjon a privacy@vianexis.eu címre; panasszal a NAIH-hoz is fordulhat. Adatkezelő: Turul Atilla egyéni vállalkozó, a ViaNexis márkanév üzemeltetője. Alkalmazás: ViaNexis Driver.",
       },
     ],
     formTitle: "Adatvédelmi kérelem beküldése",

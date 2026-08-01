@@ -13,9 +13,9 @@ import {
   LEGAL_SHOW_COUNSEL_REVIEW_NOTICE_IN_DEV,
   LEGAL_SHOW_TESTING_RELEASE_BANNER,
   legalConfig,
-  legalControllerLabel,
+  legalControllerLabelForTerms,
   legalCounselReviewNotice,
-  legalTestingReleaseBanner,
+  legalTermsTestingReleaseBanner,
 } from "@/config/legal";
 import {
   getDriverAppLegal,
@@ -25,24 +25,32 @@ import { localePath } from "@/lib/i18n/paths";
 
 type Props = {
   contentLocale: DriverAppLegalOfficialLocale;
-  /** Path used for HU/EN language switch (e.g. "/privacy" or "/driver-app/privacy"). */
+  /** Path used for HU/EN language switch (e.g. "/terms" or "/driver-app/terms"). */
   switchPath: string;
-  /** Canonical Play-facing title override. */
   titleOverride?: string;
   showBackToHub?: boolean;
 };
 
-export function PrivacyPolicyDocument({
+export function TermsOfUseDocument({
   contentLocale,
   switchPath,
   titleOverride,
   showBackToHub = true,
 }: Props) {
   const { legal } = getDriverAppLegal(contentLocale);
-  const doc = legal.privacy;
+  const doc = legal.terms;
   const title = titleOverride ?? doc.title;
-  const controller = legalControllerLabel[contentLocale];
+  const provider = legalControllerLabelForTerms[contentLocale];
+  const legalEmail = legalConfig.legalEmail.value!;
   const privacyEmail = legalConfig.privacyEmail.value!;
+  const seat =
+    contentLocale === "hu"
+      ? legalConfig.registeredAddress.value!.hu
+      : legalConfig.registeredAddress.value!.en;
+  const termsUrl =
+    contentLocale === "hu"
+      ? legalConfig.termsUrlHu.value!
+      : legalConfig.termsUrlEn.value!;
   const deletionUrl =
     contentLocale === "hu"
       ? legalConfig.accountDeletionUrlHu.value!
@@ -68,12 +76,12 @@ export function PrivacyPolicyDocument({
 
         {LEGAL_SHOW_TESTING_RELEASE_BANNER ? (
           <LegalStatusBadge
-            label={legalTestingReleaseBanner[contentLocale]}
+            label={legalTermsTestingReleaseBanner[contentLocale]}
             className="mb-4 mt-4"
           />
         ) : null}
         {showCounsel ? (
-          <p className="text-meta mb-4 text-text-tertiary">
+          <p className="text-meta mb-4 text-text-tertiary print:hidden">
             {legalCounselReviewNotice[contentLocale]}
           </p>
         ) : null}
@@ -94,21 +102,42 @@ export function PrivacyPolicyDocument({
         <dl className="mt-6 space-y-2 text-body text-neutral-grey">
           <div>
             <dt className="inline text-text-tertiary">
-              {contentLocale === "hu" ? "Érintett alkalmazás: " : "Application: "}
+              {contentLocale === "hu"
+                ? "Érintett szolgáltatások: "
+                : "Covered services: "}
             </dt>
             <dd className="inline text-brand-ink">
-              {legalConfig.driverAppName.value}
+              {contentLocale === "hu"
+                ? "ViaNexis platform, ViaNexis Driver, kapcsolódó céges portál és háttérszolgáltatások"
+                : "ViaNexis platform, ViaNexis Driver, related company portal and backend services"}
             </dd>
           </div>
           <div>
-            <dt className="inline text-text-tertiary">{controller.heading}: </dt>
-            <dd className="inline text-brand-ink">{controller.line}</dd>
+            <dt className="inline text-text-tertiary">{provider.heading}: </dt>
+            <dd className="inline text-brand-ink">{provider.line}</dd>
           </div>
           <div>
             <dt className="inline text-text-tertiary">
-              {contentLocale === "hu"
-                ? "Adatvédelmi kapcsolat: "
-                : "Privacy contact: "}
+              {contentLocale === "hu" ? "Székhely: " : "Registered seat: "}
+            </dt>
+            <dd className="inline text-brand-ink">{seat}</dd>
+          </div>
+          <div>
+            <dt className="inline text-text-tertiary">
+              {contentLocale === "hu" ? "Jogi kapcsolat: " : "Legal contact: "}
+            </dt>
+            <dd className="inline">
+              <a
+                className="text-cyan-glow hover:underline"
+                href={`mailto:${legalEmail}`}
+              >
+                {legalEmail}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="inline text-text-tertiary">
+              {contentLocale === "hu" ? "Adatvédelem: " : "Privacy: "}
             </dt>
             <dd className="inline">
               <a
@@ -121,15 +150,9 @@ export function PrivacyPolicyDocument({
           </div>
           <div className="hidden print:block">
             <dt className="inline text-text-tertiary">
-              {contentLocale === "hu"
-                ? "Adatvédelmi tájékoztató URL: "
-                : "Privacy policy URL: "}
+              {contentLocale === "hu" ? "Feltételek URL: " : "Terms URL: "}
             </dt>
-            <dd className="inline break-all">
-              {contentLocale === "hu"
-                ? "https://vianexis.eu/hu/driver-app/privacy"
-                : "https://vianexis.eu/en/driver-app/privacy"}
-            </dd>
+            <dd className="inline break-all">{termsUrl}</dd>
           </div>
           <div className="hidden print:block">
             <dt className="inline text-text-tertiary">
@@ -143,34 +166,32 @@ export function PrivacyPolicyDocument({
             <dt className="inline text-text-tertiary">
               {contentLocale === "hu" ? "Nyomtatás dátuma: " : "Print date: "}
             </dt>
-            <dd className="inline">
-              {new Date().toISOString().slice(0, 10)}
-            </dd>
+            <dd className="inline">{new Date().toISOString().slice(0, 10)}</dd>
           </div>
         </dl>
 
-        <p className="text-lead mt-5">{doc.intro}</p>
-
         <aside className="mt-6 rounded-md border border-cyan-glow/40 bg-navy-900/50 p-4">
-          <p className="text-card-title">
+          <p className="text-card-title text-brand-ink">
             {contentLocale === "hu"
               ? "Fiók és kapcsolódó adatok törlésének kérése"
               : "Request deletion of your account and associated data"}
           </p>
           <p className="text-body mt-2 text-neutral-grey">
             {contentLocale === "hu"
-              ? "A végleges fióktörlési kérelmet a következő, bejelentkezés nélkül elérhető oldalon nyújthatja be. A kijelentkezés nem törli a fiókot."
-              : "Submit a permanent account-deletion request on the following page (no sign-in required). Signing out does not delete your account."}
+              ? "A végleges fióktörlési kérelem külön folyamat. A kijelentkezés, az alkalmazás eltávolítása, a cégtől való leválasztás és a felfüggesztés nem törli automatikusan a fiókot."
+              : "Permanent account deletion is a separate request process. Signing out, uninstalling the app, unlinking from a company, and suspension do not automatically delete the account."}
           </p>
           <p className="text-body mt-3">
             <a
-              className="text-cyan-glow break-all underline hover:no-underline"
+              className="break-all text-cyan-glow underline hover:no-underline"
               href={deletionUrl}
             >
               {deletionUrl}
             </a>
           </p>
         </aside>
+
+        <p className="text-lead mt-5 text-neutral-grey">{doc.intro}</p>
 
         <div className="mt-8">
           <DriverAppLegalToc label={doc.tocLabel} sections={doc.sections} />

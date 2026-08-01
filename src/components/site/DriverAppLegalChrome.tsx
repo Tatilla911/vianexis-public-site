@@ -1,9 +1,30 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { LegalSection } from "@/lib/i18n/driver-app-legal";
 
 type Props = {
   section: LegalSection;
 };
+
+const ABSOLUTE_URL = /(https:\/\/[^\s]+)/g;
+
+function renderTextWithLinks(text: string): ReactNode[] {
+  const parts = text.split(ABSOLUTE_URL);
+  return parts.map((part, index) => {
+    if (part.startsWith("https://")) {
+      return (
+        <a
+          key={`url-${index}`}
+          href={part}
+          className="break-all text-cyan-glow underline hover:no-underline"
+        >
+          {part}
+        </a>
+      );
+    }
+    return <span key={`text-${index}`}>{part}</span>;
+  });
+}
 
 export function DriverAppLegalSection({ section }: Props) {
   const paragraphs = (section.body ?? "")
@@ -13,16 +34,16 @@ export function DriverAppLegalSection({ section }: Props) {
 
   return (
     <section id={section.id} className="scroll-mt-28">
-      <h2 className="text-card-title text-white">{section.title}</h2>
+      <h2 className="text-card-title">{section.title}</h2>
       {paragraphs.map((paragraph) => (
         <p key={paragraph.slice(0, 48)} className="text-body mt-3 text-neutral-grey">
-          {paragraph}
+          {renderTextWithLinks(paragraph)}
         </p>
       ))}
       {section.items && section.items.length > 0 && (
         <ul className="text-body mt-3 list-inside list-disc space-y-2 text-neutral-grey">
           {section.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>{renderTextWithLinks(item)}</li>
           ))}
         </ul>
       )}
@@ -111,7 +132,7 @@ type ContactsProps = {
 export function DriverAppLegalContacts({ title, contacts }: ContactsProps) {
   return (
     <section className="mt-10">
-      <h2 className="text-card-title text-white">{title}</h2>
+      <h2 className="text-card-title">{title}</h2>
       <ul className="mt-4 space-y-2 text-body text-neutral-grey">
         {contacts.map((c) => (
           <li key={`${c.label}-${c.value}`}>

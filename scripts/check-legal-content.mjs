@@ -101,9 +101,40 @@ assert.match(huLegal, /Turul Atilla egyéni vállalkozó/);
 assert.match(enLegal, /sole proprietor and operator of the ViaNexis brand|Turul Atilla/);
 
 const processorsAudit = read("docs/legal-processors-audit.md");
-assert.match(processorsAudit, /active/);
+assert.match(processorsAudit, /active_production/);
 assert.match(processorsAudit, /requiresDecision/);
 assert.match(processorsAudit, /FCM/);
+assert.match(processorsAudit, /not_used/);
+assert.match(processorsAudit, /planned/);
+
+const deletionOps = read("docs/account-deletion-operations.md");
+assert.match(deletionOps, /identity_verification_required/);
+assert.match(deletionOps, /no automatic wipe/i);
+
+const retentionMatrix = read("docs/data-retention-matrix.md");
+assert.match(retentionMatrix, /requiresOwnerDecision/);
+assert.match(retentionMatrix, /currentValue: null|currentValue \|/);
+assert.match(retentionMatrix, /account_deletion_request/);
+
+const deletionPage = read(
+  "src/app/[locale]/driver-app/account-deletion/page.tsx",
+);
+assert.match(deletionPage, /DriverAppLegalPrintButton/);
+assert.match(deletionPage, /accountDeletionUrlHu|deletionUrl/);
+assert.match(deletionPage, /privacy@vianexis\.eu|privacyEmail/);
+assert.match(deletionPage, /printDate|Nyomtatás dátuma|Print date/);
+
+assert.match(privacyDoc, /Fiók és kapcsolódó adatok törlésének kérése/);
+assert.match(privacyDoc, /Request deletion of your account and associated data/);
+assert.match(huDriver, /Fiók és kapcsolódó adatok törlésének kérése/);
+assert.match(enDriver, /Request deletion of your account and associated data/);
+assert.equal(huDriver.includes("account deletion külön"), false);
+assert.equal(huDriver.includes("Play Console"), false);
+assert.equal(enDriver.includes("Play Console"), false);
+assert.match(huDriver, /bcrypt/);
+assert.match(enDriver, /bcrypt/);
+assert.match(huDriver, /OS-engedély önmagában nem azonos a GDPR-hozzájárulással/);
+assert.match(enDriver, /not by itself GDPR consent/);
 
 // Section key parity HU/EN for privacy document only
 function privacyIds(source) {
@@ -116,4 +147,204 @@ assert.deepEqual(
   "HU/EN driver-app privacy section ids must match",
 );
 
+function deletionExplIds(source) {
+  const block = source
+    .split("accountDeletion: {")[1]
+    ?.split("formTitle:")[0] ?? "";
+  return [...block.matchAll(/\nid:\s*"([^"]+)"/g)].map((m) => m[1]);
+}
+assert.deepEqual(
+  deletionExplIds(huDriver),
+  deletionExplIds(enDriver),
+  "HU/EN account-deletion explanation section ids must match",
+);
+
+// --- Terms of Use ---
+const termsHu = read("src/lib/i18n/driver-app-legal/content/terms-sections-hu.ts");
+const termsEn = read("src/lib/i18n/driver-app-legal/content/terms-sections-en.ts");
+const termsDoc = read("src/components/site/TermsOfUseDocument.tsx");
+const termsPage = read("src/app/[locale]/terms/page.tsx");
+const driverTermsPage = read("src/app/[locale]/driver-app/terms/page.tsx");
+const termsDecisions = read("docs/terms-legal-decisions.md");
+
+assert.match(termsPage, /Felhasználási feltételek – ViaNexis/);
+assert.match(termsPage, /Terms of Use – ViaNexis/);
+assert.match(termsPage, /TermsOfUseDocument/);
+assert.match(driverTermsPage, /TermsOfUseDocument/);
+assert.match(huDriver, /Felhasználási feltételek – ViaNexis/);
+assert.match(enDriver, /Terms of Use – ViaNexis/);
+assert.match(termsDoc, /legal@vianexis\.eu|legalEmail/);
+assert.match(termsDoc, /legalTermsTestingReleaseBanner/);
+assert.match(termsDoc, /accountDeletionUrlHu|deletionUrl/);
+assert.match(termsDoc, /termsUrlHu|termsUrl/);
+assert.match(termsDoc, /printDate|Nyomtatás dátuma|Print date/);
+assert.match(legalConfig, /legalTermsTestingReleaseBanner/);
+assert.match(
+  legalConfig,
+  /Tesztelési kiadás\. Ezek a feltételek a jelenleg terjesztett ViaNexis platform/,
+);
+assert.match(
+  legalConfig,
+  /Testing release\. These terms apply to the currently distributed versions of the ViaNexis platform/,
+);
+
+assert.match(termsHu, /https:\/\/vianexis\.eu\/hu\/driver-app\/account-deletion/);
+assert.match(termsEn, /https:\/\/vianexis\.eu\/en\/driver-app\/account-deletion/);
+assert.match(termsHu, /Fiók és kapcsolódó adatok törlésének kérése/);
+assert.match(termsEn, /Request deletion of your account and associated data/);
+assert.equal(termsHu.includes("/driver-app/account-deletion"), true);
+assert.equal(
+  /[^/]\/driver-app\/account-deletion/.test(
+    termsHu.replaceAll("https://vianexis.eu/hu/driver-app/account-deletion", ""),
+  ),
+  false,
+  "HU Terms must not use relative deletion paths",
+);
+assert.equal(
+  /[^/]\/driver-app\/account-deletion/.test(
+    termsEn.replaceAll("https://vianexis.eu/en/driver-app/account-deletion", ""),
+  ),
+  false,
+  "EN Terms must not use relative deletion paths",
+);
+assert.equal(termsHu.includes("kézzel írt"), false);
+assert.equal(termsEn.includes("hand-authored"), false);
+assert.equal(termsHu.includes("machine translated"), false);
+assert.equal(termsEn.includes("machine translated"), false);
+assert.equal(termsHu.includes("minősített eFTI platform"), true);
+assert.match(termsHu, /nem minősített eFTI platform/);
+assert.match(termsEn, /certified eFTI platform/);
+assert.match(termsEn, /not a carrier/);
+assert.match(termsHu, /nem garantálja, hogy a rögzített aláírás minden országban/);
+assert.match(termsEn, /does not guarantee that a recorded signature qualifies as a qualified electronic signature/);
+assert.equal(termsHu.includes("azonnali, automatikus teljes adattörlést"), true);
+assert.match(termsHu, /nem indít azonnali, automatikus teljes adattörlést/);
+assert.match(termsEn, /does not trigger immediate automatic full data deletion/);
+assert.equal(/SLA\s*[:=]\s*\d|99\.9%|uptime\s*[:=]?\s*\d/i.test(termsHu + termsEn), false);
+assert.equal(
+  /EUR\s*\d{2,}|Ft\s*\d{3,}|\$\s*\d{2,}|felelősségi plafon\s*[:=]?\s*\d/i.test(
+    termsHu + termsEn,
+  ),
+  false,
+);
+assert.match(termsHu, /Teljes közösségi hálózatot vagy közösségi helymegosztó szolgáltatást a jelen Feltételek nem állítanak aktívként/);
+assert.match(termsEn, /do not treat a full community network or community location-sharing service as active/);
+
+function termsIds(source) {
+  return [...source.matchAll(/\n\s*id:\s*"([^"]+)"/g)].map((m) => m[1]);
+}
+const huTermsIds = termsIds(termsHu);
+const enTermsIds = termsIds(termsEn);
+assert.deepEqual(huTermsIds, enTermsIds, "HU/EN Terms section ids must match");
+assert.equal(huTermsIds.length, 35, "Terms must have 35 chapters");
+assert.equal(new Set(huTermsIds).size, huTermsIds.length, "Terms anchors must be unique");
+
+assert.match(termsDecisions, /requiresOwnerDecision/);
+assert.match(termsDecisions, /Terms acceptance/);
+assert.match(termsDecisions, /productionBlocker/);
+
+assert.match(termsDecisions, /Public Terms version/);
+assert.match(termsDecisions, /`1\.0`/);
+assert.match(termsDecisions, /hu-0\.1/);
+assert.match(termsDecisions, /mismatch/i);
+assert.match(termsDecisions, /must not[\s\S]*be treated as proven acceptance/i);
+
+assert.equal(huLegal.includes("/driver-app/account-deletion") && !huLegal.includes("https://vianexis.eu/hu/driver-app/account-deletion"), false);
+assert.equal(enLegal.includes("https://vianexis.eu/en/driver-app/account-deletion"), true);
+
+// --- Cross-reference consistency (privacy ↔ terms) ---
+const staleTermsNine = [
+  "Felhasználási feltételek 9. szakasza",
+  "Terms §9",
+  "Terms section 9",
+  "Section 9 of the Terms",
+  "See Section 9 of the Terms",
+];
+for (const phrase of staleTermsNine) {
+  assert.equal(
+    huDriver.includes(phrase),
+    false,
+    `Stale Terms §9 reference must not remain: ${phrase}`,
+  );
+  assert.equal(
+    enDriver.includes(phrase),
+    false,
+    `Stale Terms §9 reference must not remain: ${phrase}`,
+  );
+  assert.equal(termsHu.includes(phrase), false, `Terms HU stale: ${phrase}`);
+  assert.equal(termsEn.includes(phrase), false, `Terms EN stale: ${phrase}`);
+}
+
+assert.match(
+  huDriver,
+  /Felhasználási feltételek 16\. szakasza[\s\S]*https:\/\/vianexis\.eu\/hu\/terms#electronic-signatures-and-evidence/,
+);
+assert.match(
+  enDriver,
+  /Section 16 of the Terms of Use[\s\S]*https:\/\/vianexis\.eu\/en\/terms#electronic-signatures-and-evidence/,
+);
+assert.ok(
+  huTermsIds.includes("electronic-signatures-and-evidence"),
+  "Terms must expose electronic-signatures-and-evidence anchor",
+);
+
+const privacyIdsHu = privacyIds(huDriver);
+const privacyIdsEn = privacyIds(enDriver);
+assert.deepEqual(privacyIdsHu, privacyIdsEn);
+
+/** Absolute legal URLs with hash → target id must exist in the destination doc. */
+function assertHashTargets(source, label) {
+  const re =
+    /https:\/\/vianexis\.eu\/(hu|en)\/(terms|privacy|driver-app\/privacy|driver-app\/account-deletion|driver-app\/terms)#([a-z0-9-]+)/g;
+  let match;
+  while ((match = re.exec(source)) !== null) {
+    const [, locale, pathKind, hash] = match;
+    let ids;
+    if (pathKind === "terms" || pathKind === "driver-app/terms") {
+      ids = locale === "hu" ? huTermsIds : enTermsIds;
+    } else if (pathKind === "privacy" || pathKind === "driver-app/privacy") {
+      ids = locale === "hu" ? privacyIdsHu : privacyIdsEn;
+    } else if (pathKind === "driver-app/account-deletion") {
+      ids = deletionExplIds(locale === "hu" ? huDriver : enDriver);
+    } else {
+      throw new Error(`Unhandled pathKind ${pathKind}`);
+    }
+    assert.ok(
+      ids.includes(hash),
+      `${label}: missing anchor #${hash} for /${locale}/${pathKind} (from ${match[0]})`,
+    );
+    if (label.startsWith("HU")) {
+      assert.equal(locale, "hu", `${label}: locale must be hu for HU content URL`);
+    }
+    if (label.startsWith("EN")) {
+      assert.equal(locale, "en", `${label}: locale must be en for EN content URL`);
+    }
+  }
+}
+
+assertHashTargets(huDriver, "HU driver-legal");
+assertHashTargets(enDriver, "EN driver-legal");
+assertHashTargets(termsHu, "HU terms");
+assertHashTargets(termsEn, "EN terms");
+
+// Printable long-form legal bodies must not leave bare relative deletion paths.
+for (const [label, src] of [
+  ["HU privacy+deletion content", huDriver],
+  ["EN privacy+deletion content", enDriver],
+  ["HU terms sections", termsHu],
+  ["EN terms sections", termsEn],
+]) {
+  const stripped = src
+    .replaceAll("https://vianexis.eu/hu/driver-app/account-deletion", "")
+    .replaceAll("https://vianexis.eu/en/driver-app/account-deletion", "")
+    .replaceAll('hrefSuffix: "/account-deletion"', "");
+  assert.equal(
+    /(?:^|[^/\w])\/driver-app\/account-deletion\b/.test(stripped),
+    false,
+    `${label}: bare relative /driver-app/account-deletion not allowed in printable legal text`,
+  );
+}
+
 console.log("legal-content-checks: OK");
+console.log(`terms section parity: ${huTermsIds.length} ids matched`);
+console.log("cross-reference checks: OK");

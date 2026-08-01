@@ -106,7 +106,7 @@ export const legalEn: LegalContent = {
       },
       {
         title: "Access and account",
-        body: "Access may be controlled — via pilot, invitation, or company contract. The account operates under the employer / transport company's permissions. Account deletion information and request: /driver-app/account-deletion.",
+        body: "Access may be controlled — via pilot, invitation, or company contract. The account operates under the employer / transport company's permissions. Account deletion information and request: https://vianexis.eu/en/driver-app/account-deletion.",
       },
       {
         title: "User responsibility",
