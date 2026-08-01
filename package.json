@@ -9,7 +9,9 @@
     "lint": "eslint",
     "test:hero": "node scripts/check-hero-layout.mjs",
     "test:locale": "node scripts/test-country-locale-policy.mjs",
-    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run lint && npm run build",
+    "test:legal": "node scripts/check-legal-content.mjs && node scripts/validate-legal-config.mjs",
+    "typecheck": "tsc --noEmit",
+    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:legal && npm run lint && npm run typecheck && npm run build",
     "smoke:public": "node scripts/smoke-public-site.mjs"
   },
   "dependencies": {

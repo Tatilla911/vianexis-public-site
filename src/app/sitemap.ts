@@ -10,11 +10,17 @@ const publicPaths = [
   "/terms",
   "/legal",
   "/disclaimers",
+  "/privacy-request",
   "/pilot",
   "/apply/company",
   "/apply/driver",
   "/apply/partner",
   "/driver-app",
+  "/driver-app/legal",
+  "/driver-app/privacy",
+  "/driver-app/terms",
+  "/driver-app/data-safety",
+  "/driver-app/account-deletion",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,9 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((locale) =>
     publicPaths.map((path) => ({
       url: `${base}/${locale}${path}`,
-      lastModified: new Date("2026-07-05"),
+      lastModified: new Date("2026-07-31"),
       changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : path === "/privacy" ? 0.9 : 0.7,
+      priority:
+        path === ""
+          ? 1
+          : path === "/privacy" || path === "/driver-app/account-deletion"
+            ? 0.9
+            : 0.7,
     })),
   );
 }

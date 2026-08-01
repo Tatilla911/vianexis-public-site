@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { permanentRedirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { PrivacyPolicyDocument } from "@/components/site/PrivacyPolicyDocument";
 import { legalConfig } from "@/config/legal";
 import { resolveLocale } from "@/lib/i18n";
@@ -7,11 +7,9 @@ import { getDriverAppLegal } from "@/lib/i18n/driver-app-legal";
 import { buildDriverAppLegalMetadata } from "@/lib/i18n/driver-app-legal/metadata";
 import type { Locale } from "@/lib/i18n/types";
 
-type PageProps = {
-  params: Promise<{ locale: string }>;
-};
+type PageProps = { params: Promise<{ locale: string }> };
 
-const PATH = "/privacy";
+const PATH = "/driver-app/privacy";
 
 const PLAY_TITLE = {
   hu: "Adatvédelmi tájékoztató – ViaNexis Driver",
@@ -19,21 +17,22 @@ const PLAY_TITLE = {
 } as const;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const locale = resolveLocale((await params).locale) as Locale;
-  const contentLocale = locale === "hu" ? "hu" : "en";
-  const { legal } = getDriverAppLegal(contentLocale);
-  const title = PLAY_TITLE[contentLocale];
+  const locale = resolveLocale((await params).locale);
+  const { legal, contentLocale, isOfficialLocale } = getDriverAppLegal(locale);
+  const title = isOfficialLocale
+    ? PLAY_TITLE[contentLocale]
+    : legal.privacy.title;
+  // Canonical for driver-app path points to Play-stable /privacy URL.
   const meta = buildDriverAppLegalMetadata(
-    contentLocale,
+    locale,
     PATH,
     title,
     legal.privacy.metaDescription,
   );
-  // Play Console stable URLs must remain indexable for HU/EN.
   return {
     ...meta,
-    robots: { index: true, follow: true },
     alternates: {
+      ...meta.alternates,
       canonical:
         contentLocale === "hu"
           ? legalConfig.privacyUrlHu.value!
@@ -43,15 +42,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         en: legalConfig.privacyUrlEn.value!,
       },
     },
+    robots: isOfficialLocale
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
   };
 }
 
-export default async function PrivacyPage({ params }: PageProps) {
+export default async function DriverAppPrivacyPage({ params }: PageProps) {
   const locale = resolveLocale((await params).locale) as Locale;
-  if (locale !== "hu" && locale !== "en") {
-    permanentRedirect("/en/privacy");
-  }
-  const contentLocale = locale;
+  const { contentLocale, isOfficialLocale } = getDriverAppLegal(locale);
+  if (!isOfficialLocale) redirect(`/en${PATH}`);
 
   return (
     <PrivacyPolicyDocument

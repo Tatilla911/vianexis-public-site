@@ -579,6 +579,41 @@ html {
   color: var(--cyan-glow);
 }
 
+@media print {
+  header,
+  footer,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  .driver-app-legal-page,
+  .prose-legal,
+  .prose-legal h1,
+  .prose-legal h2,
+  .prose-legal p,
+  .prose-legal li,
+  .driver-app-data-safety-table td,
+  .driver-app-data-safety-table th {
+    color: #111 !important;
+  }
+
+  .driver-app-legal-page a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  .driver-app-legal-toc {
+    border-color: #ccc !important;
+    background: transparent !important;
+  }
+}
+
 .measure-hero {
   max-width: var(--measure-hero);
 }

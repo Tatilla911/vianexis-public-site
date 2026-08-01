@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/site/BrandLogo";
 import { WorldNetworkWatermark } from "@/components/site/visuals/WorldNetworkWatermark";
 import { getContent } from "@/lib/i18n";
+import { getFooterDriverAppLegalLabels } from "@/lib/i18n/driver-app-legal";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
 import { siteConfig } from "@/lib/site-config";
@@ -12,6 +13,8 @@ type FooterProps = {
 
 export function Footer({ locale }: FooterProps) {
   const content = getContent(locale);
+  const labels = getFooterDriverAppLegalLabels(locale);
+  const legalLocale = locale === "hu" ? "hu" : "en";
 
   const productLinks = [
     { href: localePath(locale, "/features"), label: content.nav.features },
@@ -24,16 +27,29 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   const legalLinks = [
-    { href: localePath(locale, "/legal"), label: content.footer.legalNotice },
-    { href: localePath(locale, "/privacy"), label: content.footer.privacy },
-    { href: localePath(locale, "/terms"), label: content.footer.terms },
     {
-      href: localePath(locale, "/disclaimers"),
-      label: content.footer.disclaimers,
+      href: localePath(legalLocale, "/legal"),
+      label: labels.legalNotice,
     },
     {
-      href: `mailto:${siteConfig.contactEmail}`,
-      label: content.footer.dataContact,
+      href: localePath(legalLocale, "/privacy"),
+      label: labels.privacy,
+    },
+    {
+      href: localePath(legalLocale, "/terms"),
+      label: labels.terms,
+    },
+    {
+      href: localePath(legalLocale, "/disclaimers"),
+      label: labels.disclaimers,
+    },
+    {
+      href: localePath(legalLocale, "/driver-app/account-deletion"),
+      label: labels.deleteAccount,
+    },
+    {
+      href: localePath(legalLocale, "/privacy-request"),
+      label: labels.privacyContact,
     },
   ];
 
@@ -78,7 +94,7 @@ export function Footer({ locale }: FooterProps) {
             </h3>
             <ul className="mt-4 space-y-2.5">
               {legalLinks.map((link) => (
-                <li key={link.label}>
+                <li key={`${link.href}-${link.label}`}>
                   <Link
                     href={link.href}
                     className="text-nav text-neutral-grey transition-colors hover:text-cyan-glow"
