@@ -305,6 +305,70 @@ html {
   pointer-events: none;
 }
 
+/* Application submit — dim until required fields are complete */
+.btn-application-submit--idle {
+  border: 1px solid color-mix(in srgb, var(--gold-core) 35%, transparent);
+  background: color-mix(in srgb, var(--gold-core) 22%, transparent);
+  color: color-mix(in srgb, var(--gold-pale) 55%, var(--navy-600));
+  box-shadow: none;
+  opacity: 0.72;
+}
+
+.btn-application-submit--idle:hover:not(:disabled) {
+  opacity: 0.88;
+  border-color: color-mix(in srgb, var(--gold-core) 50%, transparent);
+}
+
+.btn-application-submit--ready {
+  position: relative;
+  isolation: isolate;
+  border: 2px solid var(--gold-pale);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--gold-pale) 35%, var(--gold-core)),
+    var(--gold-core)
+  );
+  color: var(--brand-ink-on-gold, #1a1208);
+  font-weight: 600;
+  opacity: 1;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold-pale) 45%, transparent),
+    0 0 22px color-mix(in srgb, var(--gold-core) 55%, transparent),
+    0 0 40px color-mix(in srgb, var(--gold-core) 30%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 35%, transparent);
+}
+
+.btn-application-submit--ready::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: calc(var(--radius-md) + 4px);
+  border: 1px solid color-mix(in srgb, var(--gold-pale) 70%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--gold-pale) 40%, transparent);
+  pointer-events: none;
+}
+
+.btn-application-submit--ready:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    var(--gold-pale),
+    color-mix(in srgb, var(--gold-pale) 20%, var(--gold-core))
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold-pale) 65%, transparent),
+    0 0 28px color-mix(in srgb, var(--gold-core) 65%, transparent),
+    0 0 48px color-mix(in srgb, var(--gold-core) 40%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-application-submit--ready,
+  .btn-application-submit--idle {
+    transition: none;
+  }
+}
+
 /* Subtle section entrance when `.is-visible` is toggled by an observer.
    Default stays fully visible so content never disappears without JS. */
 .section-reveal.is-visible {

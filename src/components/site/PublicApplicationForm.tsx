@@ -317,6 +317,11 @@ export function PublicApplicationForm({
   }
 
   const enabled = intake?.enabled ?? null;
+  const fieldErrors = validate(values);
+  const isFormReady =
+    enabled === true &&
+    Object.keys(fieldErrors).length === 0 &&
+    (!intake?.captchaRequired || Boolean(captchaToken));
 
   return (
     <form
@@ -370,7 +375,13 @@ export function PublicApplicationForm({
       <button
         type="submit"
         disabled={!enabled || submitting}
-        className="rounded-md bg-gold-core px-4 py-2 text-button text-brand-ink-on-gold hover:bg-gold-light disabled:opacity-50"
+        className={cn(
+          "btn-application-submit rounded-md px-5 py-2.5 text-button transition-[opacity,box-shadow,background-color,border-color,color] duration-200",
+          isFormReady
+            ? "btn-application-submit--ready"
+            : "btn-application-submit--idle",
+          submitting && "opacity-70",
+        )}
       >
         {submitting ? copy.common.submitting : copy.common.submit}
       </button>
