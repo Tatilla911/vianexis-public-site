@@ -3,16 +3,23 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-const LOCKUP_SRC = "/brand/vianexis-lockup.png";
-const LOCKUP_NATURAL = { w: 577, h: 109 } as const;
+/** Transparent VX monogram (no cream plate). */
+const MARK_SRC = "/brand/vianexis-mark.png";
 
 type BrandSize = "xs" | "sm" | "md" | "lg";
 
-const LOCKUP_HEIGHT: Record<BrandSize, number> = {
-  xs: 18,
-  sm: 24,
-  md: 28,
-  lg: 36,
+const MARK_HEIGHT: Record<BrandSize, number> = {
+  xs: 22,
+  sm: 28,
+  md: 34,
+  lg: 44,
+};
+
+const WORD_CLASS: Record<BrandSize, string> = {
+  xs: "text-[0.95rem] tracking-tight",
+  sm: "text-[1.1rem] tracking-tight",
+  md: "text-[1.25rem] tracking-tight",
+  lg: "text-[1.55rem] tracking-tight",
 };
 
 type BrandWordmarkProps = {
@@ -23,13 +30,8 @@ type BrandWordmarkProps = {
   priority?: boolean;
 };
 
-function lockupWidth(height: number): number {
-  return Math.round((LOCKUP_NATURAL.w / LOCKUP_NATURAL.h) * height);
-}
-
 /**
- * Official ViaNexis lockup image (emblem + metallic wordmark).
- * Transparent plate — blends on navy / black marketing chrome.
+ * ViaNexis mark (transparent VX) + wordmark for marketing chrome.
  */
 export function BrandWordmark({
   size = "md",
@@ -37,28 +39,36 @@ export function BrandWordmark({
   suffix,
   priority = false,
 }: BrandWordmarkProps) {
-  const height = LOCKUP_HEIGHT[size];
-  const width = lockupWidth(height);
+  const height = MARK_HEIGHT[size];
 
   return (
     <span
       className={cn(
-        "inline-flex max-w-full items-center gap-2",
+        "inline-flex max-w-full items-center gap-2.5",
         className,
       )}
     >
       <Image
-        src={LOCKUP_SRC}
+        src={MARK_SRC}
         alt=""
-        width={width}
+        width={height}
         height={height}
         className="h-auto w-auto max-w-full shrink-0 object-contain object-left"
         style={{ height, width: "auto" }}
         priority={priority}
         aria-hidden="true"
       />
+      <span
+        className={cn(
+          "font-semibold text-gold-core whitespace-nowrap",
+          WORD_CLASS[size],
+        )}
+        style={{ fontFamily: "var(--font-display-serif), Georgia, serif" }}
+      >
+        ViaNexis
+      </span>
       {suffix ? (
-        <span className="text-overline text-gold-core whitespace-nowrap">
+        <span className="text-overline text-gold-core/80 whitespace-nowrap">
           {suffix}
         </span>
       ) : null}
@@ -75,7 +85,7 @@ type BrandLogoProps = {
 };
 
 /**
- * Linked official ViaNexis lockup for header / footer chrome.
+ * Linked ViaNexis mark + wordmark for header / footer chrome.
  */
 export function BrandLogo({
   href,

@@ -6,7 +6,7 @@ export const applicationFormsEn = {
       "Online applications are being prepared. Contact support@vianexis.eu or try again later.",
     successTitle: "Application received",
     successBody:
-      "Thank you. Your application is in review. Access is not automatic until approved.",
+      "Thank you. Your application is in review. Submitting an application does not grant active access. After approval you will receive an email invitation to set your password.",
     newSubmission: "New application",
     errors: {
       required: "This field is required.",
@@ -78,7 +78,7 @@ export const applicationFormsHu = {
       "Az online jelentkezés előkészítés alatt áll. Írj a support@vianexis.eu címre, vagy próbáld később.",
     successTitle: "Jelentkezés fogadva",
     successBody:
-      "Köszönjük. Jelentkezésed felülvizsgálat alatt van. A hozzáférés jóváhagyásig nem automatikus.",
+      "Köszönjük. Jelentkezésed felülvizsgálat alatt van. A jelentkezés beküldése még nem jelent aktív hozzáférést. A jóváhagyás után e-mailben kap meghívót a jelszó beállításához.",
     newSubmission: "Új jelentkezés",
     errors: {
       required: "A mező kitöltése kötelező.",
