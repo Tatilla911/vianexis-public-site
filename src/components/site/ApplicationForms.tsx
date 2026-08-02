@@ -57,11 +57,13 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
         contactPhone: String(values.contactPhone ?? "").trim(),
         preferredLanguage: String(values.contactLanguage ?? locale).trim(),
         notes: String(values.notes ?? "").trim() || undefined,
+        driverAccessIntent: String(values.driverAccessIntent ?? "none").trim(),
       })}
       initialValues={{
         privacyAccepted: false,
         website: "",
         contactLanguage: locale,
+        driverAccessIntent: "none",
       }}
     >
       {({ values, setValue, errors }) => (
@@ -91,6 +93,21 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
             {errors.contactLanguage ? (
               <span className="form-error mt-1 block">{errors.contactLanguage}</span>
             ) : null}
+          </label>
+          <label className="form-label md:col-span-2">
+            <span className="mb-1 block font-medium text-brand-ink">
+              {access.driverAccessIntentLabel}
+            </span>
+            <select
+              className="form-control w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
+              value={String(values.driverAccessIntent ?? "none")}
+              onChange={(e) => setValue("driverAccessIntent", e.target.value)}
+            >
+              <option value="none">{access.driverAccessNone}</option>
+              <option value="self">{access.driverAccessSelf}</option>
+              <option value="invite_others">{access.driverAccessInviteOthers}</option>
+              <option value="self_and_invite">{access.driverAccessSelfAndInvite}</option>
+            </select>
           </label>
           <label className="form-label md:col-span-2">
             <span className="mb-1 block font-medium text-brand-ink">{access.notesOptional}</span>

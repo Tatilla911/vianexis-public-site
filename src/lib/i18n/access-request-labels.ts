@@ -4,6 +4,11 @@ import type { Locale } from './types';
 export type AccessRequestUiLabels = {
   contactLanguage: string;
   notesOptional: string;
+  driverAccessIntentLabel: string;
+  driverAccessNone: string;
+  driverAccessSelf: string;
+  driverAccessInviteOthers: string;
+  driverAccessSelfAndInvite: string;
   shortSubtitle: string;
   leadSaved: string;
   emailSent: string;
@@ -18,6 +23,11 @@ export type AccessRequestUiLabels = {
 const en: AccessRequestUiLabels = {
   contactLanguage: 'Preferred contact language *',
   notesOptional: 'Short note (optional)',
+  driverAccessIntentLabel: 'Do you also want to use the ViaNexis Driver app?',
+  driverAccessNone: 'No',
+  driverAccessSelf: 'Yes, I will use it as a driver',
+  driverAccessInviteOthers: 'Yes, I want to invite drivers later',
+  driverAccessSelfAndInvite: 'Yes, I will use it and invite other drivers',
   shortSubtitle:
     'Short access request. Detailed company needs assessment follows by secure email link.',
   leadSaved: 'Your request was saved.',
@@ -33,6 +43,12 @@ const en: AccessRequestUiLabels = {
 const hu: AccessRequestUiLabels = {
   contactLanguage: 'Kívánt kapcsolattartási nyelv *',
   notesOptional: 'Rövid megjegyzés (opcionális)',
+  driverAccessIntentLabel: 'Szeretnéd használni a ViaNexis Sofőr alkalmazást is?',
+  driverAccessNone: 'Nem',
+  driverAccessSelf: 'Igen, én is sofőrként használom',
+  driverAccessInviteOthers: 'Igen, később sofőröket szeretnék meghívni',
+  driverAccessSelfAndInvite:
+      'Igen, én is használom, és további sofőröket is meghívok',
   shortSubtitle:
     'Rövid hozzáférésigénylés. A részletes céges igényfelmérés biztonságos e-mail linken folytatható.',
   leadSaved: 'Az igény mentve lett.',
