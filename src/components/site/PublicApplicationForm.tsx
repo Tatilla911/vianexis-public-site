@@ -10,6 +10,10 @@ import {
   type ApplicationSubmitSuccess,
 } from "@/lib/applications/application-error-map";
 import {
+  describeEmailDeliveryStatus,
+  getAccessRequestUiLabels,
+} from "@/lib/i18n/access-request-labels";
+import {
   DETECTED_COUNTRY_COOKIE_NAME,
   LOCALE_SOURCE_COOKIE_NAME,
   normalizeAppLocale,
@@ -70,6 +74,7 @@ type PublicApplicationFormProps = {
   locale: Locale;
   type: ApplicationType;
   className?: string;
+  initialValues?: Record<string, string | boolean | string[]>;
   children: (ctx: {
     values: Record<string, string | boolean | string[]>;
     setValue: (key: string, value: string | boolean | string[]) => void;
@@ -100,16 +105,19 @@ export function PublicApplicationForm({
   locale,
   type,
   className,
+  initialValues,
   children,
   validate,
   buildPayload,
 }: PublicApplicationFormProps) {
   const copy = getContent(locale).applicationForms;
+  const accessLabels = getAccessRequestUiLabels(locale);
   const [values, setValues] = useState<Record<string, string | boolean | string[]>>({
     privacyAccepted: false,
     termsAccepted: false,
     website: "",
     moduleInterests: [],
+    ...(initialValues ?? {}),
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [success, setSuccess] = useState<ApplicationSubmitSuccess | null>(null);
@@ -280,6 +288,11 @@ export function PublicApplicationForm({
     const submittedLabel = success.submittedAt
       ? new Date(success.submittedAt).toLocaleString(locale === "hu" ? "hu-HU" : "en-GB")
       : "—";
+    const emailMessage = describeEmailDeliveryStatus(
+      locale,
+      success.emailDeliveryStatus,
+      success.emailSent,
+    );
     return (
       <div
         className={cn("rounded-md border border-success/30 bg-success/10 p-6", className)}
@@ -287,6 +300,7 @@ export function PublicApplicationForm({
         aria-live="polite"
       >
         <h3 className="text-card-title">{copy.common.successTitle}</h3>
+        <p className="mt-2 text-neutral-grey">{accessLabels.leadSaved}</p>
         <p className="mt-2 text-neutral-grey">{copy.common.successBody}</p>
         <dl className="mt-4 space-y-2 text-body text-neutral-grey">
           <div className="flex flex-wrap gap-2">
@@ -302,6 +316,10 @@ export function PublicApplicationForm({
           <div className="flex flex-wrap gap-2">
             <dt className="font-semibold text-brand-ink">{copy.common.statusLabel}</dt>
             <dd>{copy.common.statusUnderReview}</dd>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <dt className="font-semibold text-brand-ink">{accessLabels.emailStatusLabel}</dt>
+            <dd>{emailMessage}</dd>
           </div>
         </dl>
         <p className="mt-3 text-body text-neutral-grey">{copy.common.nextStep}</p>

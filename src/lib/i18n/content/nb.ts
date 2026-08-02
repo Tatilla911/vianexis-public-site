@@ -276,10 +276,6 @@ export const contentNb: SiteContent = {
         label: "Dokumenthåndtering",
       },
       {
-        value: "pallet-packaging",
-        label: "Pall / emballasje",
-      },
-      {
         value: "adr-customs",
         label: "ADR / tollstøtte",
       },
@@ -337,7 +333,7 @@ export const contentNb: SiteContent = {
         network: "Nettverksfeil. Sjekk tilkoblingen og prøv igjen.",
       },
     },
-    company: { title: "Bedriftssøknad", subtitle: "Søk om tilgang til ViaNexis bedriftsplattform.", companyName: "Firmanavn *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktnavn *", contactEmail: "Kontakt e-post *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduler av interesse", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Utsendelsesportal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flåte / verksted" },{ value: "pallet_packaging", label: "Pall / emballasje" },{ value: "external_shipper_receiver", label: "Ekstern avsender/mottaker" }], notes: "Notes" },
+    company: { title: "Bedriftssøknad", subtitle: "Søk om tilgang til ViaNexis bedriftsplattform.", companyName: "Firmanavn *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktnavn *", contactEmail: "Kontakt e-post *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduler av interesse", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Utsendelsesportal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flåte / verksted" },{ value: "external_shipper_receiver", label: "Ekstern avsender/mottaker" }], notes: "Notes" },
     driver: { title: "Driverapplikasjon", subtitle: "Selvregistrering – venter på godkjenning før pålogging.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Firmanavn (valgfritt)", companyCode: "Invitasjons-/bedriftskode (valgfritt)", licenseNotes: "Lisens / ADR / GKI notater (valgfritt)" },
     partner: { title: "Partnerinteresse", subtitle: "Avsender, mottaker, lager eller tollpartnerforespørsel.", companyName: "Firmanavn *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Tollmegler" },{ value: "other_partner", label: "Annen partner" }], contactName: "Kontaktnavn *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

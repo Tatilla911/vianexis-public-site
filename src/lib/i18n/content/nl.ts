@@ -276,10 +276,6 @@ export const contentNl: SiteContent = {
         label: "Documentbeheer",
       },
       {
-        value: "pallet-packaging",
-        label: "Pallet/verpakking",
-      },
-      {
         value: "adr-customs",
         label: "ADR / douaneondersteuning",
       },
@@ -337,7 +333,7 @@ export const contentNl: SiteContent = {
         network: "Netwerkfout. Controleer uw verbinding en probeer het opnieuw.",
       },
     },
-    company: { title: "Bedrijfsaanvraag", subtitle: "Vraag toegang tot het ViaNexis-bedrijfsplatform aan.", companyName: "Bedrijfsnaam *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Naam contactpersoon *", contactEmail: "E-mailadres voor contact *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interessante modules", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Verzendingsportaal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Vloot / werkplaats" },{ value: "pallet_packaging", label: "Pallet/verpakking" },{ value: "external_shipper_receiver", label: "Externe verzender/ontvanger" }], notes: "Notes" },
+    company: { title: "Bedrijfsaanvraag", subtitle: "Vraag toegang tot het ViaNexis-bedrijfsplatform aan.", companyName: "Bedrijfsnaam *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Naam contactpersoon *", contactEmail: "E-mailadres voor contact *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interessante modules", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Verzendingsportaal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Vloot / werkplaats" },{ value: "external_shipper_receiver", label: "Externe verzender/ontvanger" }], notes: "Notes" },
     driver: { title: "Stuurprogramma-applicatie", subtitle: "Zelfregistratie — in afwachting van goedkeuring vóór inloggen.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Bedrijfsnaam (optioneel)", companyCode: "Uitnodiging / bedrijfscode (optioneel)", licenseNotes: "Licentie / ADR / GKI-opmerkingen (optioneel)" },
     partner: { title: "Partnerbelang", subtitle: "Onderzoek naar verzender, ontvanger, magazijn of douanepartner.", companyName: "Bedrijfsnaam *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Douane-expediteur" },{ value: "other_partner", label: "Andere partner" }], contactName: "Naam contactpersoon *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

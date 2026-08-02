@@ -276,10 +276,6 @@ export const contentGa: SiteContent = {
         label: "Bainistíocht doiciméad",
       },
       {
-        value: "pallet-packaging",
-        label: "Pailéad / pacáistiú",
-      },
-      {
         value: "adr-customs",
         label: "ADR / tacaíocht chustaim",
       },
@@ -337,7 +333,7 @@ export const contentGa: SiteContent = {
         network: "Earráid líonra. Seiceáil do cheangal agus bain triail eile as.",
       },
     },
-    company: { title: "Iarratas cuideachta", subtitle: "Déan iarratas ar rochtain ardán cuideachta ViaNexis.", companyName: "Ainm cuideachta *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Ainm teagmhála *", contactEmail: "Ríomhphost teagmhála *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Modúil spéise", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Tairseach seolta" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Cabhlach / ceardlann" },{ value: "pallet_packaging", label: "Pailéad / pacáistiú" },{ value: "external_shipper_receiver", label: "Seoltóir / glacadóir seachtrach" }], notes: "Notes" },
+    company: { title: "Iarratas cuideachta", subtitle: "Déan iarratas ar rochtain ardán cuideachta ViaNexis.", companyName: "Ainm cuideachta *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Ainm teagmhála *", contactEmail: "Ríomhphost teagmhála *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Modúil spéise", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Tairseach seolta" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Cabhlach / ceardlann" },{ value: "external_shipper_receiver", label: "Seoltóir / glacadóir seachtrach" }], notes: "Notes" },
     driver: { title: "Iarratas tiománaí", subtitle: "Féinchlárú — ar feitheamh ceadú roimh logáil isteach.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Ainm cuideachta (roghnach)", companyCode: "Cód cuireadh / cuideachta (roghnach)", licenseNotes: "Nótaí ceadúnais / ADR / GKI (roghnach)" },
     partner: { title: "Leas comhpháirtíochta", subtitle: "Seoladóir, glacadóir, stóras nó fiosrúchán comhpháirtíochta custaim.", companyName: "Ainm cuideachta *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Bróicéir custaim" },{ value: "other_partner", label: "Comhpháirtí eile" }], contactName: "Ainm teagmhála *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

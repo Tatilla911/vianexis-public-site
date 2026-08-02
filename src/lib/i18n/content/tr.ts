@@ -276,10 +276,6 @@ export const contentTr: SiteContent = {
         label: "Doküman yönetimi",
       },
       {
-        value: "pallet-packaging",
-        label: "Palet / paketleme",
-      },
-      {
         value: "adr-customs",
         label: "ADR / gümrük desteği",
       },
@@ -337,7 +333,7 @@ export const contentTr: SiteContent = {
         network: "Ağ hatası. Bağlantınızı kontrol edip tekrar deneyin.",
       },
     },
-    company: { title: "Şirket başvurusu", subtitle: "ViaNexis şirket platformu erişimine başvurun.", companyName: "Firma Adı *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kişi adı *", contactEmail: "İletişim e-postası *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "İlgilenilen modüller", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Gönderim portalı" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Filo / atölye" },{ value: "pallet_packaging", label: "Palet / paketleme" },{ value: "external_shipper_receiver", label: "Harici gönderici / alıcı" }], notes: "Notes" },
+    company: { title: "Şirket başvurusu", subtitle: "ViaNexis şirket platformu erişimine başvurun.", companyName: "Firma Adı *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kişi adı *", contactEmail: "İletişim e-postası *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "İlgilenilen modüller", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Gönderim portalı" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Filo / atölye" },{ value: "external_shipper_receiver", label: "Harici gönderici / alıcı" }], notes: "Notes" },
     driver: { title: "Sürücü uygulaması", subtitle: "Kendi kendine kayıt — oturum açmadan önce onay bekleniyor.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Şirket adı (isteğe bağlı)", companyCode: "Davet / şirket kodu (isteğe bağlı)", licenseNotes: "Lisans / ADR / GKI notları (isteğe bağlı)" },
     partner: { title: "İş ortağı ilgisi", subtitle: "Gönderici, alıcı, depo veya gümrük ortağı sorgulaması.", companyName: "Firma Adı *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Gümrük komisyoncusu" },{ value: "other_partner", label: "Diğer ortak" }], contactName: "Kişi adı *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

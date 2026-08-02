@@ -276,10 +276,6 @@ export const contentIt: SiteContent = {
         label: "Gestione dei documenti",
       },
       {
-        value: "pallet-packaging",
-        label: "Pallet/imballaggio",
-      },
-      {
         value: "adr-customs",
         label: "ADR / supporto doganale",
       },
@@ -337,7 +333,7 @@ export const contentIt: SiteContent = {
         network: "Errore di rete. Controlla la connessione e riprova.",
       },
     },
-    company: { title: "Applicazione aziendale", subtitle: "Richiedi l'accesso alla piattaforma aziendale ViaNexis.", companyName: "Nome dell'azienda *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nome del contatto *", contactEmail: "E-mail di contatto *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduli di interesse", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portale di spedizione" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotta/officina" },{ value: "pallet_packaging", label: "Pallet/imballaggio" },{ value: "external_shipper_receiver", label: "Spedizioniere/destinatario esterno" }], notes: "Notes" },
+    company: { title: "Applicazione aziendale", subtitle: "Richiedi l'accesso alla piattaforma aziendale ViaNexis.", companyName: "Nome dell'azienda *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nome del contatto *", contactEmail: "E-mail di contatto *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduli di interesse", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portale di spedizione" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotta/officina" },{ value: "external_shipper_receiver", label: "Spedizioniere/destinatario esterno" }], notes: "Notes" },
     driver: { title: "Applicazione del conducente", subtitle: "Autoregistrazione: in attesa di approvazione prima dell'accesso.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Nome dell'azienda (facoltativo)", companyCode: "Codice invito/azienda (facoltativo)", licenseNotes: "Note licenza / ADR / GKI (opzionale)" },
     partner: { title: "Interesse del partner", subtitle: "Richiesta di spedizionieri, destinatari, magazzini o partner doganali.", companyName: "Nome dell'azienda *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Spedizioniere doganale" },{ value: "other_partner", label: "Altro socio" }], contactName: "Nome del contatto *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

@@ -276,10 +276,6 @@ export const contentUk: SiteContent = {
         label: "Управління документами",
       },
       {
-        value: "pallet-packaging",
-        label: "Піддон / упаковка",
-      },
-      {
         value: "adr-customs",
         label: "ADR / митний супровід",
       },
@@ -337,7 +333,7 @@ export const contentUk: SiteContent = {
         network: "Помилка мережі. Перевірте підключення та повторіть спробу.",
       },
     },
-    company: { title: "Заява компанії", subtitle: "Подати заявку на доступ до платформи компанії ViaNexis.", companyName: "Назва компанії *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Контактне ім'я *", contactEmail: "Контактна адреса електронної пошти *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Модулі інтересів", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Портал розсилки" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Автопарк / майстерня" },{ value: "pallet_packaging", label: "Піддон / упаковка" },{ value: "external_shipper_receiver", label: "Зовнішній відправник/одержувач" }], notes: "Notes" },
+    company: { title: "Заява компанії", subtitle: "Подати заявку на доступ до платформи компанії ViaNexis.", companyName: "Назва компанії *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Контактне ім'я *", contactEmail: "Контактна адреса електронної пошти *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Модулі інтересів", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Портал розсилки" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Автопарк / майстерня" },{ value: "external_shipper_receiver", label: "Зовнішній відправник/одержувач" }], notes: "Notes" },
     driver: { title: "Додаток драйвера", subtitle: "Самостійна реєстрація — очікує схвалення перед входом.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Назва компанії (необов'язково)", companyCode: "Запрошення / код компанії (необов'язково)", licenseNotes: "Примітки щодо ліцензії/ADR/GKI (необов’язково)" },
     partner: { title: "Інтерес партнера", subtitle: "Запит вантажовідправника, одержувача, складу або митного партнера.", companyName: "Назва компанії *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Митний брокер" },{ value: "other_partner", label: "Інший партнер" }], contactName: "Контактне ім'я *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

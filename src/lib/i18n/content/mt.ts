@@ -276,10 +276,6 @@ export const contentMt: SiteContent = {
         label: "Ġestjoni tad-dokumenti",
       },
       {
-        value: "pallet-packaging",
-        label: "Pallet / ippakkjar",
-      },
-      {
         value: "adr-customs",
         label: "ADR / appoġġ doganali",
       },
@@ -337,7 +333,7 @@ export const contentMt: SiteContent = {
         network: "Żball tan-netwerk. Iċċekkja l-konnessjoni tiegħek u erġa' pprova.",
       },
     },
-    company: { title: "Applikazzjoni tal-kumpanija", subtitle: "Applika għal aċċess għall-pjattaforma tal-kumpanija ViaNexis.", companyName: "Isem tal-kumpanija *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Isem tal-kuntatt *", contactEmail: "Imejl ta' kuntatt *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduli ta' interess", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portal tad-dispaċċ" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotta / workshop" },{ value: "pallet_packaging", label: "Pallet / ippakkjar" },{ value: "external_shipper_receiver", label: "Speditur / riċevitur estern" }], notes: "Notes" },
+    company: { title: "Applikazzjoni tal-kumpanija", subtitle: "Applika għal aċċess għall-pjattaforma tal-kumpanija ViaNexis.", companyName: "Isem tal-kumpanija *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Isem tal-kuntatt *", contactEmail: "Imejl ta' kuntatt *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduli ta' interess", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portal tad-dispaċċ" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotta / workshop" },{ value: "external_shipper_receiver", label: "Speditur / riċevitur estern" }], notes: "Notes" },
     driver: { title: "Applikazzjoni tas-sewwieq", subtitle: "Awtoreġistrazzjoni — sakemm issir l-approvazzjoni qabel il-login.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Isem tal-kumpanija (mhux obbligatorju)", companyCode: "Stieden/kodiċi tal-kumpanija (mhux obbligatorju)", licenseNotes: "Liċenzja / ADR / noti GKI (mhux obbligatorju)" },
     partner: { title: "Interess tas-sieħeb", subtitle: "Speditur, riċevitur, maħżen jew inkjesta msieħba doganali.", companyName: "Isem tal-kumpanija *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Sensar tad-dwana" },{ value: "other_partner", label: "Imsieħeb ieħor" }], contactName: "Isem tal-kuntatt *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

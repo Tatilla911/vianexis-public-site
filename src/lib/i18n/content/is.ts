@@ -276,10 +276,6 @@ export const contentIs: SiteContent = {
         label: "Skjalastjórnun",
       },
       {
-        value: "pallet-packaging",
-        label: "Bretti / umbúðir",
-      },
-      {
         value: "adr-customs",
         label: "ADR / tollstuðningur",
       },
@@ -337,7 +333,7 @@ export const contentIs: SiteContent = {
         network: "Netvilla. Athugaðu tenginguna þína og reyndu aftur.",
       },
     },
-    company: { title: "Fyrirtækjaumsókn", subtitle: "Sæktu um aðgang að ViaNexis fyrirtækisvettvangi.", companyName: "Nafn fyrirtækis *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nafn tengiliðar *", contactEmail: "Tengiliður netfang *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Áhugaverðar einingar", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Sendingargátt" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Floti / verkstæði" },{ value: "pallet_packaging", label: "Bretti / umbúðir" },{ value: "external_shipper_receiver", label: "Ytri sendandi / móttakandi" }], notes: "Notes" },
+    company: { title: "Fyrirtækjaumsókn", subtitle: "Sæktu um aðgang að ViaNexis fyrirtækisvettvangi.", companyName: "Nafn fyrirtækis *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nafn tengiliðar *", contactEmail: "Tengiliður netfang *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Áhugaverðar einingar", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Sendingargátt" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Floti / verkstæði" },{ value: "external_shipper_receiver", label: "Ytri sendandi / móttakandi" }], notes: "Notes" },
     driver: { title: "Bílstjóri forrit", subtitle: "Sjálfsskráning - bíður samþykkis fyrir innskráningu.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Nafn fyrirtækis (valfrjálst)", companyCode: "Boðs- / fyrirtækjakóði (valfrjálst)", licenseNotes: "Leyfis- / ADR / GKI athugasemdir (valfrjálst)" },
     partner: { title: "Áhugi samstarfsaðila", subtitle: "Fyrirspurn sendanda, viðtakanda, vöruhúss eða tollfélaga.", companyName: "Nafn fyrirtækis *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Tollmiðlari" },{ value: "other_partner", label: "Annar félagi" }], contactName: "Nafn tengiliðar *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

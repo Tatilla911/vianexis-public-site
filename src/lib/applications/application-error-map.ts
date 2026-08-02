@@ -18,6 +18,11 @@ export type ApplicationSubmitSuccess = {
   status: string;
   submittedAt: string | null;
   applicationId?: number;
+  assessmentId?: number;
+  leadSaved?: boolean;
+  emailDeliveryStatus?: string | null;
+  emailSent?: boolean | null;
+  continueUrlIssued?: boolean;
 };
 
 export type ApplicationSubmitFailure = {
@@ -117,5 +122,14 @@ export function parseApplicationSuccess(body: unknown): ApplicationSubmitSuccess
         : typeof data.id === "number"
           ? data.id
           : undefined,
+    assessmentId:
+      typeof data.assessmentId === "number" ? data.assessmentId : undefined,
+    leadSaved: data.leadSaved !== false,
+    emailDeliveryStatus:
+      typeof data.emailDeliveryStatus === "string"
+        ? data.emailDeliveryStatus
+        : null,
+    emailSent: typeof data.emailSent === "boolean" ? data.emailSent : null,
+    continueUrlIssued: Boolean(data.continueUrlIssued),
   };
 }

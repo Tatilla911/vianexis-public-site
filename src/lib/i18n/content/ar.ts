@@ -276,10 +276,6 @@ export const contentAr: SiteContent = {
         label: "إدارة الوثائق",
       },
       {
-        value: "pallet-packaging",
-        label: "البليت / التعبئة والتغليف",
-      },
-      {
         value: "adr-customs",
         label: "ADR / الدعم الجمركي",
       },
@@ -337,7 +333,7 @@ export const contentAr: SiteContent = {
         network: "خطأ في الشبكة. تحقق من اتصالك وحاول مرة أخرى.",
       },
     },
-    company: { title: "تطبيق الشركة", subtitle: "تقدم بطلب للوصول إلى منصة شركة ViaNexis.", companyName: "اسم الشركة *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "اسم جهة الاتصال *", contactEmail: "البريد الالكتروني للتواصل *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "وحدات من الفائدة", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "بوابة الإرسال" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "الأسطول / الورشة" },{ value: "pallet_packaging", label: "البليت / التعبئة والتغليف" },{ value: "external_shipper_receiver", label: "الشاحن/المتلقي الخارجي" }], notes: "Notes" },
+    company: { title: "تطبيق الشركة", subtitle: "تقدم بطلب للوصول إلى منصة شركة ViaNexis.", companyName: "اسم الشركة *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "اسم جهة الاتصال *", contactEmail: "البريد الالكتروني للتواصل *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "وحدات من الفائدة", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "بوابة الإرسال" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "الأسطول / الورشة" },{ value: "external_shipper_receiver", label: "الشاحن/المتلقي الخارجي" }], notes: "Notes" },
     driver: { title: "تطبيق السائق", subtitle: "التسجيل الذاتي — في انتظار الموافقة قبل تسجيل الدخول.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "اسم الشركة (اختياري)", companyCode: "رمز الدعوة / الشركة (اختياري)", licenseNotes: "ملاحظات الترخيص / ADR / GKI (اختياري)" },
     partner: { title: "مصلحة الشريك", subtitle: "الاستعلام عن الشاحن أو المستلم أو المستودع أو الشريك الجمركي.", companyName: "اسم الشركة *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "وسيط جمركي" },{ value: "other_partner", label: "شريك آخر" }], contactName: "اسم جهة الاتصال *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

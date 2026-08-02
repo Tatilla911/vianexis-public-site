@@ -276,10 +276,6 @@ export const contentLv: SiteContent = {
         label: "Dokumentu pārvaldība",
       },
       {
-        value: "pallet-packaging",
-        label: "Palete / iepakojums",
-      },
-      {
         value: "adr-customs",
         label: "ADR / muitas atbalsts",
       },
@@ -337,7 +333,7 @@ export const contentLv: SiteContent = {
         network: "Tīkla kļūda. Pārbaudiet savienojumu un mēģiniet vēlreiz.",
       },
     },
-    company: { title: "Uzņēmuma pieteikums", subtitle: "Piesakieties ViaNexis uzņēmuma platformas piekļuvei.", companyName: "Uzņēmuma nosaukums*", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktpersonas vārds*", contactEmail: "Kontakta e-pasts*", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interesējošie moduļi", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Nosūtīšanas portāls" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flote / darbnīca" },{ value: "pallet_packaging", label: "Palete / iepakojums" },{ value: "external_shipper_receiver", label: "Ārējais nosūtītājs/saņēmējs" }], notes: "Notes" },
+    company: { title: "Uzņēmuma pieteikums", subtitle: "Piesakieties ViaNexis uzņēmuma platformas piekļuvei.", companyName: "Uzņēmuma nosaukums*", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktpersonas vārds*", contactEmail: "Kontakta e-pasts*", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interesējošie moduļi", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Nosūtīšanas portāls" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flote / darbnīca" },{ value: "external_shipper_receiver", label: "Ārējais nosūtītājs/saņēmējs" }], notes: "Notes" },
     driver: { title: "Vadītāja lietojumprogramma", subtitle: "Pašreģistrācija — gaida apstiprinājumu pirms pieteikšanās.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Uzņēmuma nosaukums (pēc izvēles)", companyCode: "Uzaicinājums/uzņēmuma kods (pēc izvēles)", licenseNotes: "Licence/ADR/GKI piezīmes (pēc izvēles)" },
     partner: { title: "Partnera interese", subtitle: "Nosūtītāja, saņēmēja, noliktavas vai muitas partnera aptauja.", companyName: "Uzņēmuma nosaukums*", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Muitas brokeris" },{ value: "other_partner", label: "Cits partneris" }], contactName: "Kontaktpersonas vārds*", email: "Email *", phone: "Phone", notes: "Notes" },
   },

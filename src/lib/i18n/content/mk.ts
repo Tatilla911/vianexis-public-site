@@ -276,10 +276,6 @@ export const contentMk: SiteContent = {
         label: "Управување со документи",
       },
       {
-        value: "pallet-packaging",
-        label: "Палета / пакување",
-      },
-      {
         value: "adr-customs",
         label: "ADR / царинска поддршка",
       },
@@ -337,7 +333,7 @@ export const contentMk: SiteContent = {
         network: "Мрежна грешка. Проверете ја врската и обидете се повторно.",
       },
     },
-    company: { title: "Апликација на компанијата", subtitle: "Аплицирајте за пристап до платформата на компанијата ViaNexis.", companyName: "Име на компанија *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Име на контакт *", contactEmail: "Е-пошта за контакт *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Модули од интерес", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Портал за испраќање" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Возен парк / работилница" },{ value: "pallet_packaging", label: "Палета / пакување" },{ value: "external_shipper_receiver", label: "Надворешен испраќач / примач" }], notes: "Notes" },
+    company: { title: "Апликација на компанијата", subtitle: "Аплицирајте за пристап до платформата на компанијата ViaNexis.", companyName: "Име на компанија *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Име на контакт *", contactEmail: "Е-пошта за контакт *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Модули од интерес", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Портал за испраќање" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Возен парк / работилница" },{ value: "external_shipper_receiver", label: "Надворешен испраќач / примач" }], notes: "Notes" },
     driver: { title: "Апликација за возачи", subtitle: "Саморегистрација - се чека одобрување пред да се најавите.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Име на компанија (изборно)", companyCode: "Код на покана / компанија (изборно)", licenseNotes: "Забелешки за лиценца / ADR / GKI (опционално)" },
     partner: { title: "Партнерски интерес", subtitle: "Прашање за испраќач, примач, складиште или царински партнер.", companyName: "Име на компанија *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Царински посредник" },{ value: "other_partner", label: "Друг партнер" }], contactName: "Име на контакт *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

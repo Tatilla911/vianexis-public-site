@@ -276,10 +276,6 @@ export const contentRu: SiteContent = {
         label: "Управление документами",
       },
       {
-        value: "pallet-packaging",
-        label: "Поддон/упаковка",
-      },
-      {
         value: "adr-customs",
         label: "ADR / таможенное сопровождение",
       },
@@ -337,7 +333,7 @@ export const contentRu: SiteContent = {
         network: "Ошибка сети. Проверьте подключение и повторите попытку.",
       },
     },
-    company: { title: "Приложение компании", subtitle: "Подайте заявку на доступ к платформе компании ViaNexis.", companyName: "Название компании *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Контактное имя *", contactEmail: "Контактный адрес электронной почты *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Интересующие модули", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Диспетчерский портал" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Автопарк/цех" },{ value: "pallet_packaging", label: "Поддон/упаковка" },{ value: "external_shipper_receiver", label: "Внешний отправитель/получатель" }], notes: "Notes" },
+    company: { title: "Приложение компании", subtitle: "Подайте заявку на доступ к платформе компании ViaNexis.", companyName: "Название компании *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Контактное имя *", contactEmail: "Контактный адрес электронной почты *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Интересующие модули", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Диспетчерский портал" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Автопарк/цех" },{ value: "external_shipper_receiver", label: "Внешний отправитель/получатель" }], notes: "Notes" },
     driver: { title: "Приложение для драйверов", subtitle: "Самостоятельная регистрация — ожидается одобрение перед входом в систему.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Название компании (необязательно)", companyCode: "Приглашение/код компании (необязательно)", licenseNotes: "Примечания лицензия / ADR / GKI (необязательно)" },
     partner: { title: "Партнерский интерес", subtitle: "Запрос отправителя, получателя, склада или таможенного партнера.", companyName: "Название компании *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Таможенный брокер" },{ value: "other_partner", label: "Другой партнер" }], contactName: "Контактное имя *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

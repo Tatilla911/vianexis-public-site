@@ -276,10 +276,6 @@ export const contentEl: SiteContent = {
         label: "Διαχείριση εγγράφων",
       },
       {
-        value: "pallet-packaging",
-        label: "Παλέτα / συσκευασία",
-      },
-      {
         value: "adr-customs",
         label: "ADR / τελωνειακή υποστήριξη",
       },
@@ -337,7 +333,7 @@ export const contentEl: SiteContent = {
         network: "Σφάλμα δικτύου. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.",
       },
     },
-    company: { title: "Αίτηση εταιρείας", subtitle: "Υποβάλετε αίτηση για πρόσβαση στην πλατφόρμα της εταιρείας ViaNexis.", companyName: "Όνομα εταιρείας *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Όνομα επικοινωνίας *", contactEmail: "email επικοινωνίας *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Ενότητες ενδιαφέροντος", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Πύλη αποστολής" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Στόλος / συνεργείο" },{ value: "pallet_packaging", label: "Παλέτα / συσκευασία" },{ value: "external_shipper_receiver", label: "Εξωτερικός αποστολέας / παραλήπτης" }], notes: "Notes" },
+    company: { title: "Αίτηση εταιρείας", subtitle: "Υποβάλετε αίτηση για πρόσβαση στην πλατφόρμα της εταιρείας ViaNexis.", companyName: "Όνομα εταιρείας *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Όνομα επικοινωνίας *", contactEmail: "email επικοινωνίας *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Ενότητες ενδιαφέροντος", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Πύλη αποστολής" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Στόλος / συνεργείο" },{ value: "external_shipper_receiver", label: "Εξωτερικός αποστολέας / παραλήπτης" }], notes: "Notes" },
     driver: { title: "Εφαρμογή προγράμματος οδήγησης", subtitle: "Αυτο-εγγραφή — εκκρεμεί έγκριση πριν από τη σύνδεση.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Όνομα εταιρείας (προαιρετικό)", companyCode: "Πρόσκληση / κωδικός εταιρείας (προαιρετικό)", licenseNotes: "Σημειώσεις άδειας / ADR / GKI (προαιρετικά)" },
     partner: { title: "Συμφέρον συνεργάτη", subtitle: "Ερώτηση αποστολέα, παραλήπτη, αποθήκης ή συνεργάτη τελωνείου.", companyName: "Όνομα εταιρείας *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "εκτελωνιστής" },{ value: "other_partner", label: "Άλλος συνεργάτης" }], contactName: "Όνομα επικοινωνίας *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

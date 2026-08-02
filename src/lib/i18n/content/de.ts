@@ -276,10 +276,6 @@ export const contentDe: SiteContent = {
         label: "Dokumentenmanagement",
       },
       {
-        value: "pallet-packaging",
-        label: "Palette / Verpackung",
-      },
-      {
         value: "adr-customs",
         label: "ADR / Zollunterstützung",
       },
@@ -353,7 +349,6 @@ export const contentDe: SiteContent = {
         { value: "dispatch_portal", label: "Disponenten-Portal" },
         { value: "documents", label: "Dokumentenverwaltung" },
         { value: "fleet_workshop", label: "Fuhrpark / Werkstatt" },
-        { value: "pallet_packaging", label: "Paletten / Verpackung" },
         { value: "external_shipper_receiver", label: "Externer Versender / Empfänger" },
       ],
       notes: "Bemerkung",

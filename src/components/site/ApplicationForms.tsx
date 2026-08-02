@@ -2,7 +2,8 @@
 
 import { PublicApplicationForm } from "@/components/site/PublicApplicationForm";
 import { getContent } from "@/lib/i18n";
-import { getCompanyExtraLabels } from "@/lib/i18n/company-extra-labels";
+import { getAccessRequestUiLabels } from "@/lib/i18n/access-request-labels";
+import { VIANEXIS_LANGUAGE_REGISTRY } from "@/lib/i18n/language-registry";
 import type { Locale } from "@/lib/i18n/types";
 
 function field(
@@ -27,25 +28,11 @@ function field(
   );
 }
 
-function composeCompanyNotes(
-  values: Record<string, string | boolean | string[]>,
-  locale: Locale,
-): string | undefined {
-  const extra = getCompanyExtraLabels(locale);
-  const parts: string[] = [];
-  const city = String(values.city ?? "").trim();
-  const driverCount = String(values.driverCount ?? "").trim();
-  const notes = String(values.notes ?? "").trim();
-  if (city) parts.push(`${extra.cityPrefix}: ${city}`);
-  if (driverCount) parts.push(`${extra.driversPrefix}: ${driverCount}`);
-  if (notes) parts.push(notes);
-  return parts.length ? parts.join("\n") : undefined;
-}
-
 export function CompanyApplicationForm({ locale }: { locale: Locale }) {
   const copy = getContent(locale).applicationForms.company;
   const common = getContent(locale).applicationForms.common;
-  const extra = getCompanyExtraLabels(locale);
+  const access = getAccessRequestUiLabels(locale);
+  const languages = VIANEXIS_LANGUAGE_REGISTRY.filter((l) => l.enabledForPublicSite);
 
   return (
     <PublicApplicationForm
@@ -58,82 +45,60 @@ export function CompanyApplicationForm({ locale }: { locale: Locale }) {
         if (!String(values.contactName ?? "").trim()) errors.contactName = common.errors.required;
         if (!String(values.contactEmail ?? "").trim()) errors.contactEmail = common.errors.email;
         if (!String(values.contactPhone ?? "").trim()) errors.contactPhone = common.errors.required;
+        if (!String(values.contactLanguage ?? "").trim()) errors.contactLanguage = common.errors.required;
         if (!values.privacyAccepted) errors.privacy = common.errors.privacy;
-        if (!values.termsAccepted) errors.terms = extra.termsError;
         return errors;
       }}
       buildPayload={(values) => ({
         companyName: String(values.companyName ?? "").trim(),
         country: String(values.country ?? "").trim(),
-        vatNumber: String(values.vatNumber ?? "").trim() || undefined,
         contactName: String(values.contactName ?? "").trim(),
         contactEmail: String(values.contactEmail ?? "").trim(),
         contactPhone: String(values.contactPhone ?? "").trim(),
-        fleetSize: String(values.fleetSize ?? "").trim() || undefined,
-        moduleInterests: values.moduleInterests,
-        notes: composeCompanyNotes(values, locale),
+        preferredLanguage: String(values.contactLanguage ?? locale).trim(),
+        notes: String(values.notes ?? "").trim() || undefined,
       })}
+      initialValues={{
+        privacyAccepted: false,
+        website: "",
+        contactLanguage: locale,
+      }}
     >
       {({ values, setValue, errors }) => (
         <div className="grid gap-4 md:grid-cols-2">
           <div className="md:col-span-2">
             <h2 className="text-subsection-title">{copy.title}</h2>
-            <p className="text-body text-neutral-grey">{copy.subtitle}</p>
+            <p className="text-body text-neutral-grey">{access.shortSubtitle}</p>
           </div>
           {field(copy.companyName, "companyName", values, setValue, errors)}
-          {field(copy.country, "country", values, setValue, errors)}
-          {field(extra.city, "city", values, setValue, errors)}
-          {field(copy.vatNumber, "vatNumber", values, setValue, errors)}
           {field(copy.contactName, "contactName", values, setValue, errors)}
           {field(copy.contactEmail, "contactEmail", values, setValue, errors, "email")}
           {field(copy.contactPhone, "contactPhone", values, setValue, errors)}
-          {field(copy.fleetSize, "fleetSize", values, setValue, errors)}
-          {field(extra.driverCount, "driverCount", values, setValue, errors)}
-          <label className="form-label md:col-span-2">
-            <span className="mb-1 block font-medium text-brand-ink">{copy.moduleInterests}</span>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {copy.moduleOptions.map((opt) => {
-                const selected = (values.moduleInterests as string[] | undefined) ?? [];
-                const checked = selected.includes(opt.value);
-                return (
-                  <label key={opt.value} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={(e) => {
-                        const next = new Set(selected);
-                        if (e.target.checked) next.add(opt.value);
-                        else next.delete(opt.value);
-                        setValue("moduleInterests", Array.from(next));
-                      }}
-                    />
-                    <span>{opt.label}</span>
-                  </label>
-                );
-              })}
-            </div>
+          {field(copy.country, "country", values, setValue, errors)}
+          <label className="form-label">
+            <span className="mb-1 block font-medium text-brand-ink">{access.contactLanguage}</span>
+            <select
+              className="form-control w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
+              value={String(values.contactLanguage ?? locale)}
+              onChange={(e) => setValue("contactLanguage", e.target.value)}
+            >
+              {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {lang.nativeName} ({lang.englishName})
+                </option>
+              ))}
+            </select>
+            {errors.contactLanguage ? (
+              <span className="form-error mt-1 block">{errors.contactLanguage}</span>
+            ) : null}
           </label>
           <label className="form-label md:col-span-2">
-            <span className="mb-1 block font-medium text-brand-ink">{copy.notes}</span>
+            <span className="mb-1 block font-medium text-brand-ink">{access.notesOptional}</span>
             <textarea
               className="form-control min-h-24 w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white placeholder:text-neutral-grey/50 focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25"
               value={String(values.notes ?? "")}
               onChange={(e) => setValue("notes", e.target.value)}
             />
-          </label>
-          <label className="form-label md:col-span-2 flex items-start gap-2">
-            <input
-              type="checkbox"
-              className="mt-1"
-              checked={Boolean(values.termsAccepted)}
-              onChange={(e) => setValue("termsAccepted", e.target.checked)}
-            />
-            <span>
-              {extra.terms}
-              {errors.terms ? (
-                <span className="form-error mt-1 block">{errors.terms}</span>
-              ) : null}
-            </span>
           </label>
         </div>
       )}

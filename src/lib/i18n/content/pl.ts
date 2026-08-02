@@ -276,10 +276,6 @@ export const contentPl: SiteContent = {
         label: "Zarządzanie dokumentami",
       },
       {
-        value: "pallet-packaging",
-        label: "Paleta/opakowanie",
-      },
-      {
         value: "adr-customs",
         label: "ADR / wsparcie celne",
       },
@@ -337,7 +333,7 @@ export const contentPl: SiteContent = {
         network: "Błąd sieci. Sprawdź połączenie i spróbuj ponownie.",
       },
     },
-    company: { title: "Aplikacja firmowa", subtitle: "Złóż wniosek o dostęp do platformy firmowej ViaNexis.", companyName: "Nazwa firmy *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nazwa kontaktu *", contactEmail: "Adres e-mail kontaktowy *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interesujące moduły", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portal wysyłkowy" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / warsztat" },{ value: "pallet_packaging", label: "Paleta/opakowanie" },{ value: "external_shipper_receiver", label: "Zewnętrzny nadawca/odbiorca" }], notes: "Notes" },
+    company: { title: "Aplikacja firmowa", subtitle: "Złóż wniosek o dostęp do platformy firmowej ViaNexis.", companyName: "Nazwa firmy *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nazwa kontaktu *", contactEmail: "Adres e-mail kontaktowy *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Interesujące moduły", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portal wysyłkowy" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / warsztat" },{ value: "external_shipper_receiver", label: "Zewnętrzny nadawca/odbiorca" }], notes: "Notes" },
     driver: { title: "Aplikacja sterownika", subtitle: "Samodzielna rejestracja — oczekuje na zatwierdzenie przed zalogowaniem.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Nazwa firmy (opcjonalnie)", companyCode: "Zaproszenie / kod firmowy (opcjonalnie)", licenseNotes: "Notatki licencyjne / ADR / GKI (opcjonalnie)" },
     partner: { title: "Zainteresowanie partnera", subtitle: "Zapytanie nadawcy, odbiorcy, magazynu lub partnera celnego.", companyName: "Nazwa firmy *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Broker celny" },{ value: "other_partner", label: "Inny partner" }], contactName: "Nazwa kontaktu *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

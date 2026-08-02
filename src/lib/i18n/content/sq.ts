@@ -276,10 +276,6 @@ export const contentSq: SiteContent = {
         label: "Menaxhimi i dokumenteve",
       },
       {
-        value: "pallet-packaging",
-        label: "Paletë / paketim",
-      },
-      {
         value: "adr-customs",
         label: "ADR / mbështetje doganore",
       },
@@ -337,7 +333,7 @@ export const contentSq: SiteContent = {
         network: "Gabim rrjeti. Kontrollo lidhjen tënde dhe provo sërish.",
       },
     },
-    company: { title: "Aplikimi i kompanisë", subtitle: "Aplikoni për akses në platformën e kompanisë ViaNexis.", companyName: "Emri i kompanisë *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Emri i kontaktit *", contactEmail: "Email kontakti *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Modulet me interes", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portali i dërgimit" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / punishte" },{ value: "pallet_packaging", label: "Paletë / paketim" },{ value: "external_shipper_receiver", label: "Dërgues/marrës i jashtëm" }], notes: "Notes" },
+    company: { title: "Aplikimi i kompanisë", subtitle: "Aplikoni për akses në platformën e kompanisë ViaNexis.", companyName: "Emri i kompanisë *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Emri i kontaktit *", contactEmail: "Email kontakti *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Modulet me interes", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portali i dërgimit" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / punishte" },{ value: "external_shipper_receiver", label: "Dërgues/marrës i jashtëm" }], notes: "Notes" },
     driver: { title: "Aplikimi i shoferit", subtitle: "Vetë-regjistrimi - në pritje të miratimit përpara hyrjes.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Emri i kompanisë (opsionale)", companyCode: "Ftesa / kodi i kompanisë (opsionale)", licenseNotes: "Shënime licence / ADR / GKI (opsionale)" },
     partner: { title: "Interesi i partnerit", subtitle: "Kërkim për dërguesin, marrësin, magazinë ose partnerin doganor.", companyName: "Emri i kompanisë *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Ndërmjetësi doganor" },{ value: "other_partner", label: "Partner tjetër" }], contactName: "Emri i kontaktit *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

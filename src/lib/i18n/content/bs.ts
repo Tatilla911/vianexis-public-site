@@ -276,10 +276,6 @@ export const contentBs: SiteContent = {
         label: "Upravljanje dokumentima",
       },
       {
-        value: "pallet-packaging",
-        label: "Paleta / pakovanje",
-      },
-      {
         value: "adr-customs",
         label: "ADR / carinska podrška",
       },
@@ -337,7 +333,7 @@ export const contentBs: SiteContent = {
         network: "Mrežna greška. Provjerite vezu i pokušajte ponovo.",
       },
     },
-    company: { title: "Prijava kompanije", subtitle: "Prijavite se za pristup platformi kompanije ViaNexis.", companyName: "Naziv kompanije *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Ime kontakta *", contactEmail: "Kontakt email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduli od interesa", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Dispečerski portal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / radionica" },{ value: "pallet_packaging", label: "Paleta / pakovanje" },{ value: "external_shipper_receiver", label: "Vanjski pošiljalac/primalac" }], notes: "Notes" },
+    company: { title: "Prijava kompanije", subtitle: "Prijavite se za pristup platformi kompanije ViaNexis.", companyName: "Naziv kompanije *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Ime kontakta *", contactEmail: "Kontakt email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduli od interesa", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Dispečerski portal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / radionica" },{ value: "external_shipper_receiver", label: "Vanjski pošiljalac/primalac" }], notes: "Notes" },
     driver: { title: "Aplikacija drajvera", subtitle: "Samoregistracija — čeka se odobrenje prije prijave.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Naziv kompanije (opcionalno)", companyCode: "Poziv/šifra kompanije (opcionalno)", licenseNotes: "Napomene o licenci / ADR / GKI (opcionalno)" },
     partner: { title: "Interes partnera", subtitle: "Upit otpremnika, primaoca, skladišta ili carinskog partnera.", companyName: "Naziv kompanije *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Carinski broker" },{ value: "other_partner", label: "Drugi partner" }], contactName: "Ime kontakta *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

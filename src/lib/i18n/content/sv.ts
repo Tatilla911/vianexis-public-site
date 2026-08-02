@@ -276,10 +276,6 @@ export const contentSv: SiteContent = {
         label: "Dokumenthantering",
       },
       {
-        value: "pallet-packaging",
-        label: "Pall/förpackning",
-      },
-      {
         value: "adr-customs",
         label: "ADR / tullstöd",
       },
@@ -337,7 +333,7 @@ export const contentSv: SiteContent = {
         network: "Nätverksfel. Kontrollera din anslutning och försök igen.",
       },
     },
-    company: { title: "Företagsansökan", subtitle: "Ansök om tillgång till ViaNexis företagsplattform.", companyName: "Företagsnamn *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktnamn *", contactEmail: "Kontakt e-post *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduler av intresse", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Utskicksportal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotta / verkstad" },{ value: "pallet_packaging", label: "Pall/förpackning" },{ value: "external_shipper_receiver", label: "Extern avsändare/mottagare" }], notes: "Notes" },
+    company: { title: "Företagsansökan", subtitle: "Ansök om tillgång till ViaNexis företagsplattform.", companyName: "Företagsnamn *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktnamn *", contactEmail: "Kontakt e-post *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduler av intresse", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Utskicksportal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotta / verkstad" },{ value: "external_shipper_receiver", label: "Extern avsändare/mottagare" }], notes: "Notes" },
     driver: { title: "Drivrutinsapplikation", subtitle: "Självregistrering — väntar på godkännande före inloggning.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Företagsnamn (valfritt)", companyCode: "Inbjudan/företagskod (valfritt)", licenseNotes: "Licens / ADR / GKI-anteckningar (valfritt)" },
     partner: { title: "Partnerintresse", subtitle: "Avsändare, mottagare, lager eller tullpartnerförfrågan.", companyName: "Företagsnamn *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Tullförmedlare" },{ value: "other_partner", label: "Annan partner" }], contactName: "Kontaktnamn *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

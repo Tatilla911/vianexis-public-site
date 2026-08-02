@@ -276,10 +276,6 @@ export const contentLt: SiteContent = {
         label: "Dokumentų valdymas",
       },
       {
-        value: "pallet-packaging",
-        label: "Padėklas / pakuotė",
-      },
-      {
         value: "adr-customs",
         label: "ADR / muitinės palaikymas",
       },
@@ -337,7 +333,7 @@ export const contentLt: SiteContent = {
         network: "Tinklo klaida. Patikrinkite ryšį ir bandykite dar kartą.",
       },
     },
-    company: { title: "Įmonės paraiška", subtitle: "Pateikite paraišką dėl ViaNexis įmonės platformos prieigos.", companyName: "Įmonės pavadinimas *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktinis vardas *", contactEmail: "Kontaktinis el. paštas *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Dominantys moduliai", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Siuntimo portalas" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Laivynas / dirbtuvės" },{ value: "pallet_packaging", label: "Padėklas / pakuotė" },{ value: "external_shipper_receiver", label: "Išorinis siuntėjas / gavėjas" }], notes: "Notes" },
+    company: { title: "Įmonės paraiška", subtitle: "Pateikite paraišką dėl ViaNexis įmonės platformos prieigos.", companyName: "Įmonės pavadinimas *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktinis vardas *", contactEmail: "Kontaktinis el. paštas *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Dominantys moduliai", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Siuntimo portalas" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Laivynas / dirbtuvės" },{ value: "external_shipper_receiver", label: "Išorinis siuntėjas / gavėjas" }], notes: "Notes" },
     driver: { title: "Vairuotojo programa", subtitle: "Savarankiška registracija – laukiama patvirtinimo prieš prisijungiant.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Įmonės pavadinimas (neprivaloma)", companyCode: "Kvietimas / įmonės kodas (neprivaloma)", licenseNotes: "Licencija / ADR / GKI pastabos (neprivaloma)" },
     partner: { title: "Partnerio susidomėjimas", subtitle: "Siuntėjo, gavėjo, sandėlio ar muitinės partnerio užklausa.", companyName: "Įmonės pavadinimas *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Muitinės tarpininkas" },{ value: "other_partner", label: "Kitas partneris" }], contactName: "Kontaktinis vardas *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

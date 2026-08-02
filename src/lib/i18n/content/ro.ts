@@ -276,10 +276,6 @@ export const contentRo: SiteContent = {
         label: "Managementul documentelor",
       },
       {
-        value: "pallet-packaging",
-        label: "Palet / ambalare",
-      },
-      {
         value: "adr-customs",
         label: "ADR / suport vamal",
       },
@@ -337,7 +333,7 @@ export const contentRo: SiteContent = {
         network: "Eroare de rețea. Verificați conexiunea și încercați din nou.",
       },
     },
-    company: { title: "Aplicația companiei", subtitle: "Solicitați accesul la platforma companiei ViaNexis.", companyName: "Numele companiei *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nume de contact *", contactEmail: "E-mail de contact *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Module de interes", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portal de expediere" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / atelier" },{ value: "pallet_packaging", label: "Palet / ambalare" },{ value: "external_shipper_receiver", label: "Expeditor/destinator extern" }], notes: "Notes" },
+    company: { title: "Aplicația companiei", subtitle: "Solicitați accesul la platforma companiei ViaNexis.", companyName: "Numele companiei *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Nume de contact *", contactEmail: "E-mail de contact *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Module de interes", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Portal de expediere" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flota / atelier" },{ value: "external_shipper_receiver", label: "Expeditor/destinator extern" }], notes: "Notes" },
     driver: { title: "Aplicație driver", subtitle: "Auto-înregistrare — în așteptarea aprobării înainte de autentificare.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Numele companiei (opțional)", companyCode: "Invitație/codul companiei (opțional)", licenseNotes: "Note de licență / ADR / GKI (opțional)" },
     partner: { title: "Interesul partenerului", subtitle: "Întrebare expeditor, destinatar, depozit sau partener vamal.", companyName: "Numele companiei *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Broker vamal" },{ value: "other_partner", label: "Alt partener" }], contactName: "Nume de contact *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

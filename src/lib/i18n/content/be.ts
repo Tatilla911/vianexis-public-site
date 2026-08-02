@@ -276,10 +276,6 @@ export const contentBe: SiteContent = {
         label: "Кіраванне дакументамі",
       },
       {
-        value: "pallet-packaging",
-        label: "Паддон / ўпакоўка",
-      },
-      {
         value: "adr-customs",
         label: "ADR / мытная падтрымка",
       },
@@ -337,7 +333,7 @@ export const contentBe: SiteContent = {
         network: "Памылка сеткі. Праверце падключэнне і паўтарыце спробу.",
       },
     },
-    company: { title: "Прыкладанне кампаніі", subtitle: "Падайце заяўку на доступ да платформы кампаніі ViaNexis.", companyName: "Назва кампаніі *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Кантактнае імя *", contactEmail: "Кантактны адрас электроннай пошты *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Цікавыя модулі", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Партал адпраўкі" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Флот / майстэрня" },{ value: "pallet_packaging", label: "Паддон / ўпакоўка" },{ value: "external_shipper_receiver", label: "Знешні грузаадпраўшчык / атрымальнік" }], notes: "Notes" },
+    company: { title: "Прыкладанне кампаніі", subtitle: "Падайце заяўку на доступ да платформы кампаніі ViaNexis.", companyName: "Назва кампаніі *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Кантактнае імя *", contactEmail: "Кантактны адрас электроннай пошты *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Цікавыя модулі", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Партал адпраўкі" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Флот / майстэрня" },{ value: "external_shipper_receiver", label: "Знешні грузаадпраўшчык / атрымальнік" }], notes: "Notes" },
     driver: { title: "Прыкладанне драйвера", subtitle: "Самарэгістрацыя — чакае зацвярджэння перад уваходам.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Назва кампаніі (неабавязкова)", companyCode: "Запрашэнне / код кампаніі (неабавязкова)", licenseNotes: "Заўвагі аб ліцэнзіі / ADR / GKI (неабавязкова)" },
     partner: { title: "Інтарэс партнёра", subtitle: "Запыт адпраўшчыка, атрымальніка, склада або мытнага партнёра.", companyName: "Назва кампаніі *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Мытны брокер" },{ value: "other_partner", label: "Іншы партнёр" }], contactName: "Кантактнае імя *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

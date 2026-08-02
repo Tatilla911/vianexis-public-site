@@ -276,10 +276,6 @@ export const contentFi: SiteContent = {
         label: "Asiakirjojen hallinta",
       },
       {
-        value: "pallet-packaging",
-        label: "Lava / pakkaus",
-      },
-      {
         value: "adr-customs",
         label: "ADR / tullituki",
       },
@@ -337,7 +333,7 @@ export const contentFi: SiteContent = {
         network: "Verkkovirhe. Tarkista yhteys ja yritä uudelleen.",
       },
     },
-    company: { title: "Yrityksen hakemus", subtitle: "Hae ViaNexis-yritysalustan käyttöoikeutta.", companyName: "Yrityksen nimi *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Yhteyshenkilön nimi *", contactEmail: "Sähköpostiosoite *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Kiinnostavat moduulit", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Lähetysportaali" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Laivasto / työpaja" },{ value: "pallet_packaging", label: "Lava / pakkaus" },{ value: "external_shipper_receiver", label: "Ulkoinen lähettäjä/vastaanottaja" }], notes: "Notes" },
+    company: { title: "Yrityksen hakemus", subtitle: "Hae ViaNexis-yritysalustan käyttöoikeutta.", companyName: "Yrityksen nimi *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Yhteyshenkilön nimi *", contactEmail: "Sähköpostiosoite *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Kiinnostavat moduulit", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Lähetysportaali" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Laivasto / työpaja" },{ value: "external_shipper_receiver", label: "Ulkoinen lähettäjä/vastaanottaja" }], notes: "Notes" },
     driver: { title: "Kuljettajan sovellus", subtitle: "Rekisteröityminen – odottaa hyväksyntää ennen kirjautumista.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Yrityksen nimi (valinnainen)", companyCode: "Kutsu/yrityskoodi (valinnainen)", licenseNotes: "Lisenssi / ADR / GKI-huomautukset (valinnainen)" },
     partner: { title: "Kumppanin kiinnostus", subtitle: "Lähettäjän, vastaanottajan, varaston tai tullikumppanin tiedustelu.", companyName: "Yrityksen nimi *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Tullin välittäjä" },{ value: "other_partner", label: "Toinen kumppani" }], contactName: "Yhteyshenkilön nimi *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

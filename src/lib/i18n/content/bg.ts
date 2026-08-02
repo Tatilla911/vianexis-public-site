@@ -276,10 +276,6 @@ export const contentBg: SiteContent = {
         label: "Управление на документи",
       },
       {
-        value: "pallet-packaging",
-        label: "Палет / опаковка",
-      },
-      {
         value: "adr-customs",
         label: "ADR / митническа поддръжка",
       },
@@ -337,7 +333,7 @@ export const contentBg: SiteContent = {
         network: "Мрежова грешка. Проверете връзката си и опитайте отново.",
       },
     },
-    company: { title: "Фирмено приложение", subtitle: "Кандидатствайте за достъп до фирмената платформа на ViaNexis.", companyName: "Име на фирмата *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Име за контакт *", contactEmail: "Имейл за връзка *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Интересни модули", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Портал за изпращане" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Автопарк / работилница" },{ value: "pallet_packaging", label: "Палет / опаковка" },{ value: "external_shipper_receiver", label: "Външен изпращач/получател" }], notes: "Notes" },
+    company: { title: "Фирмено приложение", subtitle: "Кандидатствайте за достъп до фирмената платформа на ViaNexis.", companyName: "Име на фирмата *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Име за контакт *", contactEmail: "Имейл за връзка *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Интересни модули", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Портал за изпращане" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Автопарк / работилница" },{ value: "external_shipper_receiver", label: "Външен изпращач/получател" }], notes: "Notes" },
     driver: { title: "Приложение за драйвер", subtitle: "Самостоятелна регистрация — чака одобрение преди влизане.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Име на фирмата (по избор)", companyCode: "Покана/фирмен код (по избор)", licenseNotes: "Бележки за лиценз / ADR / GKI (по избор)" },
     partner: { title: "Партньорски интерес", subtitle: "Изпращач, получател, склад или митнически партньор запитване.", companyName: "Име на фирмата *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Митнически брокер" },{ value: "other_partner", label: "Друг партньор" }], contactName: "Име за контакт *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

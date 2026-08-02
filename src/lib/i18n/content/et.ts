@@ -274,10 +274,6 @@ export const contentEt: SiteContent = {
         label: "Dokumendihaldus",
       },
       {
-        value: "pallet-packaging",
-        label: "Kaubaalus / pakend",
-      },
-      {
         value: "adr-customs",
         label: "ADR / tolli tugi",
       },
@@ -335,7 +331,7 @@ export const contentEt: SiteContent = {
         network: "Võrgu viga. Kontrollige ühendust ja proovige uuesti.",
       },
     },
-    company: { title: "Ettevõtte taotlus", subtitle: "Taotlege ViaNexise ettevõtte platvormile juurdepääsu.", companyName: "Ettevõtte nimi *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontakti nimi *", contactEmail: "Kontaktmeiliaadress *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Huvipakkuvad moodulid", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Väljasaatmisportaal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Laevastik / töökoda" },{ value: "pallet_packaging", label: "Kaubaalus / pakend" },{ value: "external_shipper_receiver", label: "Väline saatja/vastuvõtja" }], notes: "Notes" },
+    company: { title: "Ettevõtte taotlus", subtitle: "Taotlege ViaNexise ettevõtte platvormile juurdepääsu.", companyName: "Ettevõtte nimi *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontakti nimi *", contactEmail: "Kontaktmeiliaadress *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Huvipakkuvad moodulid", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Väljasaatmisportaal" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Laevastik / töökoda" },{ value: "external_shipper_receiver", label: "Väline saatja/vastuvõtja" }], notes: "Notes" },
     driver: { title: "Draiveri rakendus", subtitle: "Ise registreerimine – enne sisselogimist kinnitamine.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Ettevõtte nimi (valikuline)", companyCode: "Kutse / ettevõtte kood (valikuline)", licenseNotes: "Litsents / ADR / GKI märkmed (valikuline)" },
     partner: { title: "Partneri huvi", subtitle: "Saatja, vastuvõtja, lao või tollipartneri päring.", companyName: "Ettevõtte nimi *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Tollimaakler" },{ value: "other_partner", label: "Teine partner" }], contactName: "Kontakti nimi *", email: "Email *", phone: "Phone", notes: "Notes" },
   },

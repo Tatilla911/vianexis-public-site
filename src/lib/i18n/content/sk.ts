@@ -276,10 +276,6 @@ export const contentSk: SiteContent = {
         label: "Správa dokumentov",
       },
       {
-        value: "pallet-packaging",
-        label: "Paleta / balenie",
-      },
-      {
         value: "adr-customs",
         label: "ADR / colná podpora",
       },
@@ -337,7 +333,7 @@ export const contentSk: SiteContent = {
         network: "Chyba siete. Skontrolujte pripojenie a skúste to znova.",
       },
     },
-    company: { title: "Aplikácia spoločnosti", subtitle: "Požiadajte o prístup k platforme spoločnosti ViaNexis.", companyName: "Názov spoločnosti *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktné meno *", contactEmail: "Kontaktný email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduly záujmu", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Expedičný portál" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotila / dielňa" },{ value: "pallet_packaging", label: "Paleta / balenie" },{ value: "external_shipper_receiver", label: "Externý odosielateľ/príjemca" }], notes: "Notes" },
+    company: { title: "Aplikácia spoločnosti", subtitle: "Požiadajte o prístup k platforme spoločnosti ViaNexis.", companyName: "Názov spoločnosti *", country: "Country *", vatNumber: "VAT / tax ID", contactName: "Kontaktné meno *", contactEmail: "Kontaktný email *", contactPhone: "Phone *", fleetSize: "Fleet size", moduleInterests: "Moduly záujmu", moduleOptions: [{ value: "driver_app", label: "Driver app" },{ value: "dispatch_portal", label: "Expedičný portál" },{ value: "documents", label: "Documents" },{ value: "fleet_workshop", label: "Flotila / dielňa" },{ value: "external_shipper_receiver", label: "Externý odosielateľ/príjemca" }], notes: "Notes" },
     driver: { title: "Aplikácia ovládača", subtitle: "Samoregistrácia — čaká sa na schválenie pred prihlásením.", fullName: "Full name *", email: "Email *", password: "Password *", phone: "Phone", country: "Country", companyNameHint: "Názov spoločnosti (voliteľné)", companyCode: "Pozvánka / kód spoločnosti (voliteľné)", licenseNotes: "Poznámky k licencii / ADR / GKI (voliteľné)" },
     partner: { title: "Partnerský záujem", subtitle: "Dopyt odosielateľa, príjemcu, skladu alebo colného partnera.", companyName: "Názov spoločnosti *", role: "Role *", roleOptions: [{ value: "shipper", label: "Shipper" },{ value: "receiver", label: "Receiver" },{ value: "warehouse", label: "Warehouse" },{ value: "customs_broker", label: "Colný maklér" },{ value: "other_partner", label: "Iný partner" }], contactName: "Kontaktné meno *", email: "Email *", phone: "Phone", notes: "Notes" },
   },
