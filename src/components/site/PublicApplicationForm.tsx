@@ -315,8 +315,21 @@ export function PublicApplicationForm({
           </div>
           <div className="flex flex-wrap gap-2">
             <dt className="font-semibold text-brand-ink">{copy.common.statusLabel}</dt>
-            <dd>{copy.common.statusUnderReview}</dd>
+            <dd>
+              {success.continueUrlIssued
+                ? locale === "hu"
+                  ? "Részletes adatbekérőre vár"
+                  : "Awaiting detailed intake"
+                : copy.common.statusUnderReview}
+            </dd>
           </div>
+          {success.continueUrlIssued ? (
+            <p className="mt-2 text-body text-neutral-grey">
+              {locale === "hu"
+                ? "A folytató linket e-mailben küldtük. A végleges admin jóváhagyás csak a részletes adatbekérő beküldése után lehetséges."
+                : "A continuation link was emailed. Final admin approval is only possible after the detailed intake is submitted."}
+            </p>
+          ) : null}
           <div className="flex flex-wrap gap-2">
             <dt className="font-semibold text-brand-ink">{accessLabels.emailStatusLabel}</dt>
             <dd>{emailMessage}</dd>
