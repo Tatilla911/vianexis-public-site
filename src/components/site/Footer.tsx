@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/site/BrandLogo";
 import { WorldNetworkWatermark } from "@/components/site/visuals/WorldNetworkWatermark";
+import {
+  documentationNavLabel,
+  documentationPathForLocale,
+} from "@/lib/documentation/copy";
 import { getContent } from "@/lib/i18n";
 import { getFooterDriverAppLegalLabels } from "@/lib/i18n/driver-app-legal";
 import { localePath } from "@/lib/i18n/paths";
@@ -24,6 +28,13 @@ export function Footer({ locale }: FooterProps) {
       label: content.nav.companyPortal,
     },
     { href: localePath(locale, "/pilot"), label: content.nav.pilot },
+  ];
+
+  const resourceLinks = [
+    {
+      href: documentationPathForLocale(locale),
+      label: documentationNavLabel(locale),
+    },
   ];
 
   const legalLinks = [
@@ -60,7 +71,7 @@ export function Footer({ locale }: FooterProps) {
       </div>
       <div className="container-site relative z-10 py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <BrandLogo href={localePath(locale)} tone="dark" />
             <p className="text-body mt-4 max-w-md text-neutral-grey">
               {content.footer.tagline}
@@ -76,6 +87,24 @@ export function Footer({ locale }: FooterProps) {
             </h3>
             <ul className="mt-4 space-y-2.5">
               {productLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-nav text-neutral-grey transition-colors hover:text-cyan-glow"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-overline text-gold-core">
+              {locale === "hu" ? "Források" : "Resources"}
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              {resourceLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

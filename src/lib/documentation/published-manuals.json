@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-08-10",
+  "catalogVersion": "1.0",
+  "sourceCatalog": "docs/product-guides/pdf-template/manuals-catalog.json",
+  "manuals": [
+    {
+      "id": "quick-start",
+      "language": "hu",
+      "title": "ViaNexis – Gyors kezdési útmutató",
+      "description": "Rövid bevezető az első naphoz és az első élő fuvarhoz.",
+      "role": "Gyors kezdés",
+      "version": "1.0",
+      "updatedAt": "2026-08-10",
+      "accessLevel": "PUBLIC",
+      "order": 10,
+      "documentId": "VN-GUIDE-QUICK-START-HU",
+      "fileName": "ViaNexis-Gyors-Kezdesi-Utmutato.pdf",
+      "publicPath": "/docs/manuals/hu/ViaNexis-Gyors-Kezdesi-Utmutato.pdf",
+      "bytes": 402497
+    },
+    {
+      "id": "quick-start",
+      "language": "en",
+      "title": "ViaNexis – Quick Start Guide",
+      "description": "A short introduction for day one and the first live trip.",
+      "role": "Quick Start",
+      "version": "1.0",
+      "updatedAt": "2026-08-10",
+      "accessLevel": "PUBLIC",
+      "order": 10,
+      "documentId": "VN-GUIDE-QUICK-START-EN",
+      "fileName": "ViaNexis-Quick-Start-Guide.pdf",
+      "publicPath": "/docs/manuals/en/ViaNexis-Quick-Start-Guide.pdf",
+      "bytes": 372676
+    },
+    {
+      "id": "driver",
+      "language": "hu",
+      "title": "ViaNexis – Sofőr kézikönyv",
+      "description": "Sofőrapp használata: fuvarok, dokumentumok, aláírás és offline munka.",
+      "role": "Sofőr",
+      "version": "1.0",
+      "updatedAt": "2026-08-10",
+      "accessLevel": "PUBLIC",
+      "order": 20,
+      "documentId": "VN-GUIDE-DRIVER-HU",
+      "fileName": "ViaNexis-Sofor-Kezikonyv.pdf",
+      "publicPath": "/docs/manuals/hu/ViaNexis-Sofor-Kezikonyv.pdf",
+      "bytes": 569011
+    },
+    {
+      "id": "driver",
+      "language": "en",
+      "title": "ViaNexis – Driver Manual",
+      "description": "Using the driver app: trips, documents, signatures and offline work.",
+      "role": "Driver",
+      "version": "1.0",
+      "updatedAt": "2026-08-10",
+      "accessLevel": "PUBLIC",
+      "order": 20,
+      "documentId": "VN-GUIDE-DRIVER-EN",
+      "fileName": "ViaNexis-Driver-Manual.pdf",
+      "publicPath": "/docs/manuals/en/ViaNexis-Driver-Manual.pdf",
+      "bytes": 516911
+    }
+  ]
+}

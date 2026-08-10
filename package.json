@@ -12,7 +12,8 @@
     "test:legal": "node scripts/check-legal-content.mjs && node scripts/validate-legal-config.mjs",
     "typecheck": "tsc --noEmit",
     "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:legal && npm run lint && npm run typecheck && npm run build",
-    "smoke:public": "node scripts/smoke-public-site.mjs"
+    "smoke:public": "node scripts/smoke-public-site.mjs",
+    "manuals:publish": "python3 ../transdoc-backend/scripts/publish_public_manuals.py --site ."
   },
   "dependencies": {
     "clsx": "^2.1.1",

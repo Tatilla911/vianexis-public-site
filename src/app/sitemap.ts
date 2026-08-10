@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { documentationPathForLocale } from "@/lib/documentation/copy";
 import { locales } from "@/lib/i18n/locales";
 import { siteConfig } from "@/lib/site-config";
 
@@ -26,7 +27,7 @@ const publicPaths = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.domain;
 
-  return locales.flatMap((locale) =>
+  const pages = locales.flatMap((locale) =>
     publicPaths.map((path) => ({
       url: `${base}/${locale}${path}`,
       lastModified: new Date("2026-07-31"),
@@ -39,4 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
             : 0.7,
     })),
   );
+
+  const documentation = locales.map((locale) => ({
+    url: `${base}${documentationPathForLocale(locale)}`,
+    lastModified: new Date("2026-08-10"),
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
+  return [...pages, ...documentation];
 }

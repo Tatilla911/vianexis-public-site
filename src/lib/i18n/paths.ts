@@ -19,5 +19,10 @@ export function stripLocalePrefix(pathname: string): string {
 
 export function switchLocalePath(pathname: string, locale: Locale): string {
   const slug = stripLocalePrefix(pathname);
+  if (slug === "/dokumentacio" || slug === "/documentation") {
+    return locale === "hu"
+      ? localePath(locale, "/dokumentacio")
+      : localePath(locale, "/documentation");
+  }
   return localePath(locale, slug);
 }
