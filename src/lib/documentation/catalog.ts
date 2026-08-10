@@ -166,6 +166,48 @@ export const manualsCatalog: ManualCatalogEntry[] = [
     },
     fileName: null,
   },
+  {
+    id: "integration-overview",
+    order: 110,
+    accessLevel: "CUSTOMER",
+    role: { hu: "Technical Review", en: "Technical Review" },
+    title: {
+      hu: "ViaNexis – Integration Overview",
+      en: "ViaNexis – Integration Overview",
+    },
+    description: {
+      hu: "Confidential technical review: integration landscape, Telegram model and customer IT process.",
+      en: "Confidential technical review: integration landscape, Telegram model and customer IT process.",
+    },
+    version: "1.0",
+    updatedAt: "2026-07-29",
+    documentId: {
+      hu: "VN-TECH-INTEGRATION-OVERVIEW-EN",
+      en: "VN-TECH-INTEGRATION-OVERVIEW-EN",
+    },
+    fileName: null,
+  },
+  {
+    id: "ai-capabilities-overview",
+    order: 120,
+    accessLevel: "CUSTOMER",
+    role: { hu: "Technical Review", en: "Technical Review" },
+    title: {
+      hu: "ViaNexis – AI Capabilities Overview",
+      en: "ViaNexis – AI Capabilities Overview",
+    },
+    description: {
+      hu: "Confidential technical review: assistive AI capabilities, governance and customer AI coexistence.",
+      en: "Confidential technical review: assistive AI capabilities, governance and customer AI coexistence.",
+    },
+    version: "1.0",
+    updatedAt: "2026-07-29",
+    documentId: {
+      hu: "VN-TECH-AI-CAPABILITIES-EN",
+      en: "VN-TECH-AI-CAPABILITIES-EN",
+    },
+    fileName: null,
+  },
 ];
 
 export type ManualUiLang = "hu" | "en";
