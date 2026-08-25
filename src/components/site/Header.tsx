@@ -8,6 +8,7 @@ import { Button } from "@/components/site/Button";
 import { Icon } from "@/components/site/Icon";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import { getContent } from "@/lib/i18n";
+import { resolveBrandStory } from "@/lib/i18n/brand-story";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
 import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
@@ -22,6 +23,7 @@ export function Header({ locale }: HeaderProps) {
   const [menuPath, setMenuPath] = useState("");
   const [compact, setCompact] = useState(false);
   const content = getContent(locale);
+  const brandStory = resolveBrandStory(locale);
   const primaryNavLabel = resolveVisualMarketing(locale).ui.primaryNav;
   const pathname = usePathname();
   const menuId = useId();
@@ -181,8 +183,8 @@ export function Header({ locale }: HeaderProps) {
               <div className="overflow-hidden rounded-lg border border-navy-600 bg-navy-900/95 shadow-[0_20px_50px_rgb(0_0_0_/_0.55),0_0_40px_rgb(0_191_255_/_0.08)] backdrop-blur-xl">
                 <div className="border-b border-navy-700 bg-gradient-to-r from-navy-800 via-navy-900 to-navy-800 px-4 py-3">
                   <BrandWordmark size="sm" />
-                  <p className="text-body-sm mt-0.5 line-clamp-2 text-neutral-grey">
-                    {content.footer.tagline}
+                  <p className="text-overline mt-1 text-pretty text-gold-core">
+                    {brandStory.tagline}
                   </p>
                 </div>
 

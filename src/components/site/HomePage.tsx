@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandWordmark } from "@/components/site/BrandLogo";
+import { BrandStorySection } from "@/components/site/BrandStorySection";
 import { ConnectedWorkflowVisual } from "@/components/site/ConnectedWorkflowVisual";
 import { CTASection } from "@/components/site/CTASection";
 import { FeatureCard } from "@/components/site/FeatureCard";
@@ -14,6 +15,7 @@ import { NetworkGlobe } from "@/components/site/visuals/NetworkGlobe";
 import { NetworkMap } from "@/components/site/visuals/NetworkMap";
 import { TruckIcon } from "@/components/site/visuals/TruckIcon";
 import { getContent } from "@/lib/i18n";
+import { resolveBrandStory } from "@/lib/i18n/brand-story";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
 import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
@@ -26,12 +28,14 @@ type HomePageProps = {
 export function HomePage({ locale }: HomePageProps) {
   const content = getContent(locale);
   const visual = resolveVisualMarketing(locale);
+  const brandStory = resolveBrandStory(locale);
 
   return (
     <>
       <Hero
         title={content.hero.title}
         subtitle={content.hero.subtitle}
+        tagline={brandStory.tagline}
         highlightWord={content.hero.highlightWord}
         primaryCta={{
           href: localePath(locale, "/apply/company"),
@@ -44,6 +48,8 @@ export function HomePage({ locale }: HomePageProps) {
         stats={content.hero.stats}
         brandVisual
       />
+
+      <BrandStorySection locale={locale} />
 
       <Section
         variant="dark"

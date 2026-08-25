@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 type HeroProps = {
   title: string;
   subtitle: string;
+  /** Official ViaNexis tagline under the wordmark. */
+  tagline?: string;
   primaryCta: { href: string; label: string; variant?: ButtonVariant };
   secondaryCta?: { href: string; label: string };
   stats?: { label: string; value: string }[];
@@ -46,6 +48,7 @@ function renderTitle(title: string, highlightWord?: string) {
 export function Hero({
   title,
   subtitle,
+  tagline,
   primaryCta,
   secondaryCta,
   stats,
@@ -84,6 +87,11 @@ export function Hero({
             <div className="mb-3">
               <BrandWordmark size="lg" priority />
             </div>
+            {tagline ? (
+              <p className="text-overline mb-4 max-w-xl text-pretty text-gold-core">
+                {tagline}
+              </p>
+            ) : null}
             <div className="accent-beam mb-5" aria-hidden="true" />
               <h1
               className={cn(

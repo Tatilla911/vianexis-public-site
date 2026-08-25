@@ -6,6 +6,7 @@ import {
   documentationPathForLocale,
 } from "@/lib/documentation/copy";
 import { getContent } from "@/lib/i18n";
+import { resolveBrandStory } from "@/lib/i18n/brand-story";
 import { getFooterDriverAppLegalLabels } from "@/lib/i18n/driver-app-legal";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
@@ -17,6 +18,7 @@ type FooterProps = {
 
 export function Footer({ locale }: FooterProps) {
   const content = getContent(locale);
+  const brandStory = resolveBrandStory(locale);
   const labels = getFooterDriverAppLegalLabels(locale);
   const legalLocale = locale === "hu" ? "hu" : "en";
 
@@ -73,7 +75,10 @@ export function Footer({ locale }: FooterProps) {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <BrandLogo href={localePath(locale)} tone="dark" />
-            <p className="text-body mt-4 max-w-md text-neutral-grey">
+            <p className="text-overline mt-3 max-w-md text-pretty text-gold-core">
+              {brandStory.tagline}
+            </p>
+            <p className="text-body mt-3 max-w-md text-neutral-grey">
               {content.footer.tagline}
             </p>
             <p className="text-meta mt-4 text-text-tertiary">
