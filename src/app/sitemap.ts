@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { documentationPathForLocale } from "@/lib/documentation/copy";
 import { locales } from "@/lib/i18n/locales";
+import { quotePathForLocale } from "@/lib/quote-questionnaire/paths";
 import { siteConfig } from "@/lib/site-config";
+import type { Locale } from "@/lib/i18n/types";
 
 const publicPaths = [
   "",
@@ -48,5 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...pages, ...documentation];
+  const quote = (["hu", "en"] as Locale[]).map((locale) => ({
+    url: `${base}${quotePathForLocale(locale)}`,
+    lastModified: new Date("2026-08-28"),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...pages, ...documentation, ...quote];
 }

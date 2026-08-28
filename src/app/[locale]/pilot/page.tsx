@@ -7,6 +7,8 @@ import { Section } from "@/components/site/Section";
 import { getContent, resolveLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
+import { QUOTE_CTA } from "@/lib/quote-questionnaire";
+import { quotePathForLocale } from "@/lib/quote-questionnaire/paths";
 import { siteConfig } from "@/lib/site-config";
 
 type PageProps = {
@@ -49,6 +51,14 @@ export default async function PilotPage({ params }: PageProps) {
               className="font-semibold text-cyan-glow hover:underline"
             >
               {content.applicationForms.company.title}
+            </Link>
+          </p>
+          <p className="mt-3 text-body-sm text-neutral-grey">
+            <Link
+              href={quotePathForLocale(locale)}
+              className="font-semibold text-gold-core hover:underline"
+            >
+              {locale === "hu" ? QUOTE_CTA.hu : QUOTE_CTA.en}
             </Link>
           </p>
         </DisclaimerBox>

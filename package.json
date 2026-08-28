@@ -11,8 +11,9 @@
     "test:brand": "node scripts/check-brand-story.mjs",
     "test:locale": "node scripts/test-country-locale-policy.mjs",
     "test:legal": "node scripts/check-legal-content.mjs && node scripts/validate-legal-config.mjs",
+    "test:quote": "npx --yes tsx --test scripts/test-quote-questionnaire.ts",
     "typecheck": "tsc --noEmit",
-    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:brand && npm run test:legal && npm run lint && npm run typecheck && npm run build",
+    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:brand && npm run test:legal && npm run test:quote && npm run lint && npm run typecheck && npm run build",
     "smoke:public": "node scripts/smoke-public-site.mjs",
     "manuals:publish": "python3 ../transdoc-backend/scripts/publish_public_manuals.py --site ."
   },

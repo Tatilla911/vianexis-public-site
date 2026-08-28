@@ -24,5 +24,10 @@ export function switchLocalePath(pathname: string, locale: Locale): string {
       ? localePath(locale, "/dokumentacio")
       : localePath(locale, "/documentation");
   }
+  if (slug === "/ajanlatkeres" || slug === "/request-a-quote") {
+    return locale === "hu"
+      ? localePath(locale, "/ajanlatkeres")
+      : localePath(locale, "/request-a-quote");
+  }
   return localePath(locale, slug);
 }
