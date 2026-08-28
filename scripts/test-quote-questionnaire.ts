@@ -59,7 +59,7 @@ test("A: small company + no TMS → API questions hidden", () => {
   assert.equal(isQuestionVisible(api, answers), false);
   const visibleIds = visibleQuestions(answers).map((q) => q.id);
   assert.ok(!visibleIds.includes("api_available"));
-  assert.ok(visibleIds.length >= 15 && visibleIds.length <= 35);
+  assert.ok(visibleIds.length >= 15 && visibleIds.length <= 28);
 });
 
 test("B: TMS yes + integration yes → integration questions shown", () => {

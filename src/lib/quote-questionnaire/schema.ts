@@ -228,6 +228,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "base",
     pricingKey: "driver_seats",
+    shortPathHide: true,
   },
   {
     id: "vehicles_count",
@@ -251,6 +252,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "base",
     pricingKey: "vehicle_licences",
+    shortPathHide: true,
   },
   {
     id: "office_users_count",
@@ -583,6 +585,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "usage",
     pricingKey: "document_volume_band",
+    shortPathHide: true,
   },
   {
     id: "photos_monthly",
@@ -595,6 +598,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "usage",
     pricingKey: "photo_volume_band",
+    shortPathHide: true,
   },
   {
     id: "wants_ai",
@@ -687,6 +691,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "qualifier",
     pricingKey: "language_band",
+    shortPathHide: true,
   },
   {
     id: "driver_languages",
@@ -710,6 +715,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "qualifier",
     pricingKey: "language_band",
+    shortPathHide: true,
   },
   {
     id: "office_languages",
@@ -727,6 +733,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "qualifier",
     pricingKey: "language_band",
+    shortPathHide: true,
   },
   {
     id: "special_ops",
@@ -1007,6 +1014,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "qualifier",
     pricingKey: "security_complexity",
+    shortPathHide: true,
   },
   {
     id: "sso_required",
@@ -1019,6 +1027,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "setup",
     pricingKey: "security_complexity",
+    shortPathHide: true,
   },
   {
     id: "security_enterprise_features",
@@ -1059,6 +1068,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "setup",
     pricingKey: "setup_package",
+    shortPathHide: true,
   },
   {
     id: "training_needed",
@@ -1071,6 +1081,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "setup",
     pricingKey: "setup_package",
+    shortPathHide: true,
   },
   {
     id: "migration_needed",
@@ -1083,6 +1094,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "setup",
     pricingKey: "migration_complexity",
+    shortPathHide: true,
   },
   {
     id: "growth_24m",
@@ -1101,6 +1113,7 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     visibleWhen: { op: "always" },
     pricingImpact: "qualifier",
     pricingKey: "growth_commitment",
+    shortPathHide: true,
   },
   {
     id: "custom_requirements",
