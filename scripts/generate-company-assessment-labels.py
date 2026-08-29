@@ -130,8 +130,11 @@ def translate(text: str, locale: str, cache: dict) -> str:
         time.sleep(0.25 * (attempt + 1))
 
     # Accept identical output from last attempt as better than hanging
+    # ONLY when the target language naturally shares the English spelling
+    # (handled by curated seeds). Prefer leaving unresolved over silent EN
+    # leftovers so fix-company-assessment-unresolved.py can catch them.
     out = translate_once(text, locale)
-    if out:
+    if out and out != text:
         cache[key] = out
         return out
 

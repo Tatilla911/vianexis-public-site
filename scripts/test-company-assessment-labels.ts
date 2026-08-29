@@ -253,15 +253,95 @@ test("missing label falls back to EN then humanized text, not raw id", () => {
   assert.equal(moduleOut, "Driver app");
 });
 
-test("nav buttons localized for HU/EN", () => {
-  const hu = getCompanyAssessmentLabels("hu");
+test("P: draft locales have no EN source-language leftovers", () => {
   const en = getCompanyAssessmentLabels("en");
-  assert.equal(hu.back, "Vissza");
-  assert.equal(hu.next, "Tovább");
-  assert.equal(hu.save, "Piszkozat mentése");
-  assert.equal(hu.submit, "Igényfelmérés beküldése");
-  assert.equal(en.back, "Back");
-  assert.equal(en.next, "Continue");
-  assert.equal(en.save, "Save draft");
-  assert.equal(en.submit, "Submit assessment");
+  /** Native spellings that intentionally match EN (not fallback leftovers). */
+  const allowedIdentical = new Set(["es|No", "it|No"]);
+  for (const locale of COMPANY_ASSESSMENT_LOCALES) {
+    if (locale === "en" || locale === "hu") continue;
+    const labels = getCompanyAssessmentLabels(locale);
+    for (const key of COMPANY_ASSESSMENT_SHELL_KEYS) {
+      const value = String((labels as Record<string, unknown>)[key] ?? "");
+      const source = String((en as Record<string, unknown>)[key] ?? "");
+      if (value === source && allowedIdentical.has(`${locale}|${value}`)) {
+        continue;
+      }
+      assert.notEqual(
+        value,
+        source,
+        `${locale} shell.${key} still equals EN source`,
+      );
+    }
+    for (const key of COMPANY_ASSESSMENT_FIELD_KEYS) {
+      assert.notEqual(
+        labels.fields[key],
+        en.fields[key],
+        `${locale} fields.${key} still equals EN source`,
+      );
+    }
+    for (const key of Object.keys(en.helpers)) {
+      assert.notEqual(
+        labels.helpers[key],
+        en.helpers[key],
+        `${locale} helpers.${key} still equals EN source`,
+      );
+    }
+    for (const key of COMPANY_ASSESSMENT_MODULE_KEYS) {
+      assert.notEqual(
+        labels.modules[key],
+        en.modules[key],
+        `${locale} modules.${key} still equals EN source`,
+      );
+    }
+  }
+});
+
+test("Q: placeholder tokens preserved vs EN", () => {
+  const en = getCompanyAssessmentLabels("en");
+  const tokenRe = /(\{[^{}]+\}|\{\{[^{}]+\}\})/g;
+  for (const locale of COMPANY_ASSESSMENT_LOCALES) {
+    const labels = getCompanyAssessmentLabels(locale);
+    const pairs: Array<[string, string]> = [
+      ...COMPANY_ASSESSMENT_SHELL_KEYS.map(
+        (k) =>
+          [
+            String((en as Record<string, unknown>)[k] ?? ""),
+            String((labels as Record<string, unknown>)[k] ?? ""),
+          ] as [string, string],
+      ),
+      ...COMPANY_ASSESSMENT_FIELD_KEYS.map(
+        (k) => [en.fields[k], labels.fields[k]] as [string, string],
+      ),
+      ...Object.keys(en.helpers).map(
+        (k) => [en.helpers[k], labels.helpers[k]] as [string, string],
+      ),
+      ...COMPANY_ASSESSMENT_MODULE_KEYS.map(
+        (k) => [en.modules[k], labels.modules[k]] as [string, string],
+      ),
+    ];
+    for (const [source, value] of pairs) {
+      const srcTokens = [...source.matchAll(tokenRe)].map((m) => m[0]).sort();
+      const valTokens = [...value.matchAll(tokenRe)].map((m) => m[0]).sort();
+      assert.deepEqual(
+        valTokens,
+        srcTokens,
+        `${locale} placeholder mismatch for ${source}`,
+      );
+    }
+  }
+});
+
+test("R: generated catalog has no empty customer-facing values", () => {
+  for (const locale of COMPANY_ASSESSMENT_LOCALES) {
+    const labels = getCompanyAssessmentLabels(locale);
+    for (const key of COMPANY_ASSESSMENT_SHELL_KEYS) {
+      assert.ok(String((labels as Record<string, unknown>)[key] ?? "").trim());
+    }
+    for (const key of COMPANY_ASSESSMENT_FIELD_KEYS) {
+      assert.ok(labels.fields[key]?.trim());
+    }
+    for (const key of COMPANY_ASSESSMENT_MODULE_KEYS) {
+      assert.ok(labels.modules[key]?.trim());
+    }
+  }
 });
