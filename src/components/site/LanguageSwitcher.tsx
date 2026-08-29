@@ -46,7 +46,9 @@ export function LanguageSwitcher({
         onChange={(event) => {
           const next = event.target.value as Locale;
           persistManualLocale(next);
-          router.push(switchLocalePath(pathname, next));
+          const search =
+            typeof window !== "undefined" ? window.location.search : "";
+          router.push(`${switchLocalePath(pathname, next)}${search}`);
         }}
         className="form-control rounded-md border border-navy-600 bg-navy-800 px-2.5 py-2 font-semibold text-brand-ink"
         aria-label={ui.language}

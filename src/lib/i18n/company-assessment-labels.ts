@@ -1,5 +1,15 @@
-/** Company needs assessment wizard labels — prepared for all 35 locales. */
+/**
+ * Company needs assessment wizard labels — 35 public-site locales.
+ *
+ * Architecture:
+ * - Golden HU/EN live here (manually approved, never machine-overwritten).
+ * - Remaining locales come from company-assessment-labels.generated.ts
+ *   (machine draft from EN via scripts/generate-company-assessment-labels.py).
+ * - India Driver-App-only languages are excluded from this catalog.
+ */
 import type { Locale } from './types';
+import { companyAssessmentLabelsGenerated } from './company-assessment-labels.generated';
+import { locales } from './locales';
 
 export type CompanyAssessmentLabels = {
   title: string;
@@ -26,6 +36,8 @@ export type CompanyAssessmentLabels = {
   stepIntegrations: string;
   stepRollout: string;
   stepSummary: string;
+  yes: string;
+  no: string;
   /** Customer-facing field labels keyed by internal payload id (never rename keys). */
   fields: Record<string, string>;
   /** Optional helper text keyed by internal field id. */
@@ -35,7 +47,6 @@ export type CompanyAssessmentLabels = {
 };
 
 const EN_FIELDS: Record<string, string> = {
-  // Section 1 — company official
   legalName: 'Legal company name',
   tradingName: 'Trading / brand name',
   country: 'Country of registration',
@@ -51,7 +62,6 @@ const EN_FIELDS: Record<string, string> = {
   primaryContact: 'Primary contact name',
   phone: 'Phone number',
   contactLanguage: 'Preferred contact language',
-  // Section 2 — company size
   driversCount: 'Number of drivers',
   dispatchersCount: 'Number of dispatchers',
   adminUsersCount: 'Number of admin users',
@@ -64,7 +74,6 @@ const EN_FIELDS: Record<string, string> = {
   sitesCount: 'Number of sites / depots',
   estimatedActiveUsers: 'Estimated active users',
   operatingCountries: 'Operating countries',
-  // Section 3 — operations
   monthlyTrips: 'Estimated monthly trips',
   dailyActiveTrips: 'Average active trips per day',
   domesticSharePercent: 'Share of domestic trips (%)',
@@ -79,7 +88,6 @@ const EN_FIELDS: Record<string, string> = {
   subcontractedTrips: 'Trips handled by subcontractors',
   nightWeekendDispatch: 'Night / weekend dispatch operations',
   support247: '24/7 operations or support requirement',
-  // Section 5 — integrations
   tms: 'Current TMS (transport management system)',
   erp: 'Current ERP system',
   accounting: 'Accounting / finance system',
@@ -91,7 +99,6 @@ const EN_FIELDS: Record<string, string> = {
   api: 'API integration required',
   sso: 'Single sign-on (SSO) required',
   exportFormats: 'Preferred export formats',
-  // Section 6 — rollout
   plannedStartDate: 'Planned go-live date',
   pilotDate: 'Preferred pilot start date',
   desiredSla: 'Desired support / SLA level',
@@ -276,6 +283,8 @@ const en: CompanyAssessmentLabels = {
   stepIntegrations: 'Integrations',
   stepRollout: 'Rollout and support',
   stepSummary: 'Summary',
+  yes: 'Yes',
+  no: 'No',
   fields: EN_FIELDS,
   helpers: EN_HELPERS,
   modules: EN_MODULES,
@@ -308,163 +317,55 @@ const hu: CompanyAssessmentLabels = {
   stepIntegrations: 'Integrációk',
   stepRollout: 'Bevezetés és támogatás',
   stepSummary: 'Összegzés',
+  yes: 'Igen',
+  no: 'Nem',
   fields: HU_FIELDS,
   helpers: HU_HELPERS,
   modules: HU_MODULES,
 };
 
-function draft(overrides: Partial<CompanyAssessmentLabels> = {}): CompanyAssessmentLabels {
-  return {
-    ...en,
-    ...overrides,
-    fields: { ...en.fields, ...(overrides.fields ?? {}) },
-    helpers: { ...en.helpers, ...(overrides.helpers ?? {}) },
-    modules: { ...en.modules, ...(overrides.modules ?? {}) },
-  };
-}
-
-export const companyAssessmentLabels: Record<Locale, CompanyAssessmentLabels> = {
+/** Golden HU/EN packs — source of truth for generation + regression tests. */
+export const COMPANY_ASSESSMENT_GOLDEN = {
   en,
   hu,
-  de: draft({
-    title: 'Unternehmensbedarfsanalyse',
-    continueTitle: 'Bedarfsanalyse fortsetzen',
-    stepCompany: 'Offizielle Firmendaten',
-    stepSize: 'Unternehmensgröße und Flotte',
-    stepOperations: 'Transportbetrieb',
-    stepModules: 'Erforderliche ViaNexis-Module',
-    stepIntegrations: 'Integrationen',
-    stepRollout: 'Einführung und Support',
-    stepSummary: 'Zusammenfassung',
-  }),
-  ro: draft({
-    title: 'Evaluare nevoi companie',
-    continueTitle: 'Continuă evaluarea',
-    stepCompany: 'Date oficiale firmă',
-    stepSize: 'Dimensiune și flotă',
-    stepOperations: 'Operațiuni transport',
-    stepModules: 'Module ViaNexis necesare',
-    stepIntegrations: 'Integrări',
-    stepRollout: 'Implementare și suport',
-    stepSummary: 'Rezumat',
-  }),
-  sk: draft({
-    title: 'Firemný prieskum potrieb',
-    continueTitle: 'Pokračovať v prieskume',
-    stepCompany: 'Oficiálne firemné údaje',
-    stepSize: 'Veľkosť firmy a flotila',
-    stepOperations: 'Prevádzka prepráv',
-    stepModules: 'Požadované moduly ViaNexis',
-    stepIntegrations: 'Integrácie',
-    stepRollout: 'Nasadenie a podpora',
-    stepSummary: 'Súhrn',
-  }),
-  pl: draft({
-    title: 'Ocena potrzeb firmy',
-    continueTitle: 'Kontynuuj ocenę',
-    stepCompany: 'Oficjalne dane firmy',
-    stepSize: 'Wielkość firmy i flota',
-    stepOperations: 'Operacje transportowe',
-    stepModules: 'Wymagane moduły ViaNexis',
-    stepIntegrations: 'Integracje',
-    stepRollout: 'Wdrożenie i wsparcie',
-    stepSummary: 'Podsumowanie',
-  }),
-  cs: draft({
-    title: 'Průzkum potřeb společnosti',
-    continueTitle: 'Pokračovat v průzkumu',
-    stepCompany: 'Oficiální údaje společnosti',
-    stepSize: 'Velikost společnosti a flotila',
-    stepOperations: 'Provoz přeprav',
-    stepModules: 'Požadované moduly ViaNexis',
-    stepIntegrations: 'Integrace',
-    stepRollout: 'Zavedení a podpora',
-    stepSummary: 'Shrnutí',
-  }),
-  bg: draft(),
-  hr: draft(),
-  sr: draft(),
-  sl: draft(),
-  et: draft(),
-  lv: draft(),
-  lt: draft(),
-  fi: draft(),
-  sv: draft(),
-  da: draft(),
-  nb: draft(),
-  nl: draft({
-    title: 'Bedrijfsbehoefteanalyse',
-    continueTitle: 'Analyse voortzetten',
-    stepCompany: 'Officiële bedrijfsgegevens',
-    stepSize: 'Bedrijfsgrootte en vloot',
-    stepOperations: 'Transportoperaties',
-    stepModules: 'Benodigde ViaNexis-modules',
-    stepIntegrations: 'Integraties',
-    stepRollout: 'Uitrol en support',
-    stepSummary: 'Samenvatting',
-  }),
-  fr: draft({
-    title: "Évaluation des besoins de l'entreprise",
-    continueTitle: "Poursuivre l'évaluation",
-    stepCompany: "Données officielles de l'entreprise",
-    stepSize: "Taille de l'entreprise et flotte",
-    stepOperations: 'Opérations de transport',
-    stepModules: 'Modules ViaNexis requis',
-    stepIntegrations: 'Integrations',
-    stepRollout: 'Déploiement et support',
-    stepSummary: 'Résumé',
-  }),
-  es: draft({
-    title: 'Evaluación de necesidades de la empresa',
-    continueTitle: 'Continuar evaluación',
-    stepCompany: 'Datos oficiales de la empresa',
-    stepSize: 'Tamaño de la empresa y flota',
-    stepOperations: 'Operaciones de transporte',
-    stepModules: 'Módulos ViaNexis necesarios',
-    stepIntegrations: 'Integraciones',
-    stepRollout: 'Implantación y soporte',
-    stepSummary: 'Resumen',
-  }),
-  pt: draft({
-    title: 'Avaliação de necessidades da empresa',
-    continueTitle: 'Continuar avaliação',
-    stepCompany: 'Dados oficiais da empresa',
-    stepSize: 'Dimensão da empresa e frota',
-    stepOperations: 'Operações de transporte',
-    stepModules: 'Módulos ViaNexis necessários',
-    stepIntegrations: 'Integrações',
-    stepRollout: 'Implementação e suporte',
-    stepSummary: 'Resumo',
-  }),
-  it: draft({
-    title: 'Valutazione delle esigenze aziendali',
-    continueTitle: 'Continua valutazione',
-    stepCompany: 'Dati ufficiali azienda',
-    stepSize: 'Dimensione azienda e flotta',
-    stepOperations: 'Operazioni di trasporto',
-    stepModules: 'Moduli ViaNexis richiesti',
-    stepIntegrations: 'Integrazioni',
-    stepRollout: 'Avvio e supporto',
-    stepSummary: 'Riepilogo',
-  }),
-  el: draft(),
-  tr: draft(),
-  uk: draft(),
-  ru: draft(),
-  sq: draft(),
-  mk: draft(),
-  bs: draft(),
-  be: draft(),
-  ga: draft(),
-  mt: draft(),
-  is: draft(),
-  ar: draft(),
+} as const;
+
+export { EN_FIELDS, HU_FIELDS, EN_HELPERS, HU_HELPERS, EN_MODULES, HU_MODULES };
+
+/** Public-site assessment locales = canonical 35 (includes Arabic, excludes India Driver-only). */
+export const COMPANY_ASSESSMENT_LOCALES: readonly Locale[] = locales;
+
+/** India Driver-App-only languages — excluded from assessment/public system catalog. */
+export const INDIA_DRIVER_ONLY_LOCALES = [
+  'hi',
+  'bn',
+  'mr',
+  'te',
+  'ta',
+  'gu',
+  'kn',
+  'pa',
+] as const;
+
+export const ASSESSMENT_RTL_LOCALES: readonly Locale[] = ['ar'];
+
+export function isAssessmentRtlLocale(locale: Locale): boolean {
+  return (ASSESSMENT_RTL_LOCALES as readonly string[]).includes(locale);
+}
+
+/**
+ * Full catalog: golden HU/EN override generated drafts so approved copy cannot regress.
+ */
+export const companyAssessmentLabels: Record<Locale, CompanyAssessmentLabels> = {
+  ...companyAssessmentLabelsGenerated,
+  en,
+  hu,
 };
 
 export function getCompanyAssessmentLabels(
   locale: Locale,
 ): CompanyAssessmentLabels {
-  return companyAssessmentLabels[locale] ?? en;
+  return companyAssessmentLabels[locale] ?? companyAssessmentLabels.en ?? en;
 }
 
 /** Acronyms / short codes allowed in customer-facing UI. */
@@ -496,9 +397,9 @@ export function looksLikeRawInternalKey(text: string): boolean {
   const t = text.trim();
   if (!t) return false;
   if (ALLOWED_ACRONYMS.has(t)) return false;
-  if (/^[a-z]+(?:[A-Z][a-z0-9]*)+$/.test(t)) return true; // camelCase
-  if (/^[a-z][a-z0-9]*(?:_[a-z0-9]+)+$/.test(t)) return true; // snake_case
-  if (/^[a-z][a-z0-9]*(?:\.[a-z][a-z0-9]*)+$/.test(t)) return true; // dotted path
+  if (/^[a-z]+(?:[A-Z][a-z0-9]*)+$/.test(t)) return true;
+  if (/^[a-z][a-z0-9]*(?:_[a-z0-9]+)+$/.test(t)) return true;
+  if (/^[a-z][a-z0-9]*(?:\.[a-z][a-z0-9]*)+$/.test(t)) return true;
   return false;
 }
 
@@ -515,28 +416,41 @@ export function humanizeAssessmentKey(key: string): string {
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }
 
+function resolveWithFallback(
+  localeMap: Record<string, string> | undefined,
+  enMap: Record<string, string>,
+  key: string,
+  kind: 'field' | 'module',
+): string {
+  const mapped = localeMap?.[key]?.trim();
+  if (mapped && !looksLikeRawInternalKey(mapped)) return mapped;
+  const enMapped = enMap[key]?.trim();
+  if (enMapped && !looksLikeRawInternalKey(enMapped)) {
+    if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
+      console.warn(
+        `[company-assessment] Missing ${kind} label for key=${key}; falling back to EN`,
+      );
+    }
+    return enMapped;
+  }
+  if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
+    console.warn(`[company-assessment] Missing customer label for ${kind}: ${key}`);
+  }
+  return humanizeAssessmentKey(key);
+}
+
 export function resolveAssessmentFieldLabel(
   labels: CompanyAssessmentLabels,
   key: string,
 ): string {
-  const mapped = labels.fields[key]?.trim();
-  if (mapped && !looksLikeRawInternalKey(mapped)) return mapped;
-  if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
-    console.warn(`[company-assessment] Missing customer label for field: ${key}`);
-  }
-  return humanizeAssessmentKey(key);
+  return resolveWithFallback(labels.fields, EN_FIELDS, key, 'field');
 }
 
 export function resolveAssessmentModuleLabel(
   labels: CompanyAssessmentLabels,
   key: string,
 ): string {
-  const mapped = labels.modules[key]?.trim();
-  if (mapped && !looksLikeRawInternalKey(mapped)) return mapped;
-  if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
-    console.warn(`[company-assessment] Missing customer label for module: ${key}`);
-  }
-  return humanizeAssessmentKey(key);
+  return resolveWithFallback(labels.modules, EN_MODULES, key, 'module');
 }
 
 export function resolveAssessmentHelper(
@@ -544,8 +458,40 @@ export function resolveAssessmentHelper(
   key: string,
 ): string | undefined {
   const h = labels.helpers[key]?.trim();
-  return h || undefined;
+  if (h) return h;
+  const en = EN_HELPERS[key]?.trim();
+  return en || undefined;
 }
+
+/** Shell/nav keys required on every locale pack. */
+export const COMPANY_ASSESSMENT_SHELL_KEYS = [
+  'title',
+  'subtitle',
+  'continueTitle',
+  'save',
+  'saving',
+  'saved',
+  'next',
+  'back',
+  'submit',
+  'submitting',
+  'submittedTitle',
+  'submittedBody',
+  'summaryTitle',
+  'summaryEmpty',
+  'invalidLink',
+  'expiredLink',
+  'loading',
+  'stepCompany',
+  'stepSize',
+  'stepOperations',
+  'stepModules',
+  'stepIntegrations',
+  'stepRollout',
+  'stepSummary',
+  'yes',
+  'no',
+] as const;
 
 /** All known field keys rendered by the wizard (internal contract). */
 export const COMPANY_ASSESSMENT_FIELD_KEYS = Object.keys(EN_FIELDS);

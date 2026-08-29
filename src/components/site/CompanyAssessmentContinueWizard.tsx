@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   getCompanyAssessmentLabels,
+  isAssessmentRtlLocale,
   resolveAssessmentFieldLabel,
   resolveAssessmentHelper,
   resolveAssessmentModuleLabel,
@@ -133,8 +134,22 @@ const ROLLOUT_BOOL_KEYS = [
   "customDevNeeded",
 ] as const;
 
-function inputClass() {
-  return "form-control w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25";
+function inputClass(extra = "") {
+  return `form-control w-full rounded-md border border-navy-700 bg-navy-800 px-3 py-2 text-white focus:border-cyan-accent focus:outline-none focus:ring-2 focus:ring-cyan-accent/25 ${extra}`.trim();
+}
+
+const LTR_FIELD_KEYS = new Set([
+  "website",
+  "billingEmail",
+  "vatNumber",
+  "registrationNumber",
+  "phone",
+  "postalCode",
+  "operatingCountries",
+]);
+
+function valueDir(key: string): "ltr" | undefined {
+  return LTR_FIELD_KEYS.has(key) ? "ltr" : undefined;
 }
 
 function FieldLabel({
@@ -176,12 +191,10 @@ export function CompanyAssessmentContinueWizard({
 }) {
   const labels = getCompanyAssessmentLabels(locale);
   const yesNo = useMemo(
-    () =>
-      locale === "hu"
-        ? { yes: "Igen", no: "Nem" }
-        : { yes: "Yes", no: "No" },
-    [locale],
+    () => ({ yes: labels.yes, no: labels.no }),
+    [labels.yes, labels.no],
   );
+  const isRtl = isAssessmentRtlLocale(locale);
   const field = useCallback(
     (key: string) => resolveAssessmentFieldLabel(labels, key),
     [labels],
@@ -491,7 +504,7 @@ export function CompanyAssessmentContinueWizard({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir={isRtl ? "rtl" : "ltr"}>
       <div>
         <h2 className="text-subsection-title">{labels.continueTitle}</h2>
         <p className="text-body text-neutral-grey">{labels.subtitle}</p>
@@ -500,7 +513,8 @@ export function CompanyAssessmentContinueWizard({
         </p>
         {savedAt ? (
           <p className="mt-1 text-sm text-neutral-grey">
-            {labels.saved}: {new Date(savedAt).toLocaleString()}
+            {labels.saved}:{" "}
+            <span dir="ltr">{new Date(savedAt).toLocaleString()}</span>
           </p>
         ) : null}
       </div>
@@ -512,6 +526,7 @@ export function CompanyAssessmentContinueWizard({
               <FieldLabel label={field(key)} helper={helper(key)} />
               <input
                 className={inputClass()}
+                dir={valueDir(key)}
                 value={String(payload.companyOfficial?.[key] ?? "")}
                 onChange={(e) => setOfficial(key, e.target.value)}
               />
@@ -529,6 +544,7 @@ export function CompanyAssessmentContinueWizard({
                 className={inputClass()}
                 type="number"
                 min={0}
+                dir="ltr"
                 value={
                   payload.companySize?.[key] === undefined
                     ? ""
@@ -545,6 +561,7 @@ export function CompanyAssessmentContinueWizard({
             />
             <input
               className={inputClass()}
+              dir="ltr"
               placeholder="HU, DE, AT"
               value={
                 Array.isArray(payload.companySize?.operatingCountries)
@@ -578,6 +595,7 @@ export function CompanyAssessmentContinueWizard({
               <input
                 className={inputClass()}
                 type="number"
+                dir="ltr"
                 value={
                   payload.operations?.[key] === undefined
                     ? ""
@@ -641,6 +659,7 @@ export function CompanyAssessmentContinueWizard({
               <FieldLabel label={field(key)} helper={helper(key)} />
               <input
                 className={inputClass()}
+                dir="auto"
                 value={String(payload.integrations?.[key] ?? "")}
                 onChange={(e) => setIntegration(key, e.target.value)}
               />
@@ -682,6 +701,7 @@ export function CompanyAssessmentContinueWizard({
             <input
               className={inputClass()}
               type="number"
+              dir="ltr"
               value={
                 payload.rollout?.pilotUsers === undefined
                   ? ""
@@ -745,7 +765,7 @@ export function CompanyAssessmentContinueWizard({
                         <dt className="text-sm text-neutral-grey">
                           {item.label}
                         </dt>
-                        <dd className="break-words text-sm text-brand-ink">
+                        <dd className="break-words text-sm text-brand-ink" dir="auto">
                           {item.value}
                         </dd>
                       </div>
