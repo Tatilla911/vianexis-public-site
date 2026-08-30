@@ -10,7 +10,7 @@
 
 **Fő üzenet:** ViaNexis Driver + Company Control Platform — digitális fuvarbizonyíték, sofőr munkafolyamat és céges irányítás egy ökoszisztémában.
 
-**Nem állítunk:** éles production platform, tanúsított eFTI, minden országban hivatalos elfogadás, hibátlan AI/OCR/fordítás, Play Store letöltés.
+**Nem állítunk:** éles production platform, tanúsított eFTI, minden országban hivatalos elfogadás, hibátlan AI/OCR/fordítás, Play Store letöltés, hogy minden TMS / provider már csatlakoztatva van, vagy hogy név szerint ellenőrizetlen vendorok „integráltak”.
 
 ---
 
@@ -29,6 +29,7 @@
 | Authority / eFTI foundation | ✅ `/authority-efti` | Nem minősített — disclaimer erős |
 | Security / audit | ✅ `/security-audit` | |
 | Company onboarding / pilot | 🟡 `/pilot` | Form még nem küld backendre |
+| Enterprise integrations | ✅ homepage `#integrations` | Two-way, provider-neutral capability — **no vendor logos**; coexistence with TMS/ERP; capability depends on external interface |
 
 ---
 
@@ -40,6 +41,9 @@
 - eFTI certification **not claimed** — csak „eFTI-ready foundation”
 - Push/FCM még nem éles
 - Google Play belső teszt előkészítés alatt
+- Nem állítjuk, hogy minden TMS / provider már csatlakoztatva van; `#integrations` provider-neutral capability, vendor logók nélkül
+
+Public product note: [public-enterprise-integration-message.md](public-enterprise-integration-message.md).
 
 ---
 
