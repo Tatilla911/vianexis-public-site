@@ -1,4 +1,5 @@
 import { DisclaimerBox } from "@/components/site/DisclaimerBox";
+import { EnterpriseIntegrationSection } from "@/components/site/EnterpriseIntegrationSection";
 import { Hero } from "@/components/site/Hero";
 import { ModuleCard } from "@/components/site/ModuleCard";
 import { Section } from "@/components/site/Section";
@@ -40,6 +41,7 @@ export default async function FeaturesPage({ params }: PageProps) {
           ))}
         </div>
       </Section>
+      <EnterpriseIntegrationSection locale={locale} />
       <Section variant="dark" title={content.home.disclaimersSection.title}>
         <div className="grid gap-4 lg:grid-cols-3">
           <DisclaimerBox title={content.disclaimers.adr.title}>

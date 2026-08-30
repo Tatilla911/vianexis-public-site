@@ -3,6 +3,7 @@ import { BrandWordmark } from "@/components/site/BrandLogo";
 import { BrandStorySection } from "@/components/site/BrandStorySection";
 import { ConnectedWorkflowVisual } from "@/components/site/ConnectedWorkflowVisual";
 import { CTASection } from "@/components/site/CTASection";
+import { EnterpriseIntegrationSection } from "@/components/site/EnterpriseIntegrationSection";
 import { FeatureCard } from "@/components/site/FeatureCard";
 import { FeatureModuleCard } from "@/components/site/FeatureModuleCard";
 import { Hero } from "@/components/site/Hero";
@@ -199,6 +200,8 @@ export function HomePage({ locale }: HomePageProps) {
           </Link>
         </div>
       </Section>
+
+      <EnterpriseIntegrationSection locale={locale} />
 
       <Section
         id="security"
