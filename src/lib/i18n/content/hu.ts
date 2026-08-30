@@ -5,7 +5,7 @@ export const contentHu: SiteContent = {
   meta: {
     title: "ViaNexis Driver és céges fuvarirányítás",
     description:
-      "Sofőralkalmazás, céges irányítás, dokumentumkezelés, üzenetek és többnyelvű fuvarfolyamat egy kontrollált rendszerben. Hozzáférés jelenleg pilotprogramon keresztül.",
+      "Sofőralkalmazás, céges irányítás, dokumentumkezelés, üzenetek és szolgáltatófüggetlen integráció meglévő TMS, ERP és telematics rendszerekkel. Hozzáférés jelenleg pilotprogramon keresztül.",
     ogLocale: "hu_HU",
     ogAlternateLocale: "en_US",
   },

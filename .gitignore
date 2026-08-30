@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# locale MT / draft caches (do not commit)
+.wip-locale-draft/

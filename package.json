@@ -13,8 +13,9 @@
     "test:legal": "node scripts/check-legal-content.mjs && node scripts/validate-legal-config.mjs",
     "test:quote": "npx --yes tsx --test scripts/test-quote-questionnaire.ts",
     "test:assessment": "npx --yes tsx --test scripts/test-company-assessment-labels.ts",
+    "test:integrations": "npx --yes tsx --test scripts/test-enterprise-integration-labels.ts",
     "typecheck": "tsc --noEmit",
-    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:brand && npm run test:legal && npm run test:quote && npm run test:assessment && npm run lint && npm run typecheck && npm run build",
+    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:brand && npm run test:legal && npm run test:quote && npm run test:assessment && npm run test:integrations && npm run lint && npm run typecheck && npm run build",
     "smoke:public": "node scripts/smoke-public-site.mjs",
     "manuals:publish": "python3 ../transdoc-backend/scripts/publish_public_manuals.py --site ."
   },

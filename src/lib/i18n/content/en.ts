@@ -5,7 +5,7 @@ export const contentEn: SiteContent = {
   meta: {
     title: "ViaNexis Driver and company transport operations",
     description:
-      "Driver app, company control, document management, messaging, notifications, and multilingual trip workflows in one system. Access is currently available through a pilot program.",
+      "Driver app, company control, document management, messaging, and provider-neutral integration with existing TMS, ERP and telematics systems. Access is currently available through a pilot program.",
     ogLocale: "en_US",
     ogAlternateLocale: "hu_HU",
   },
