@@ -9,6 +9,7 @@
  */
 import type { Locale } from './types';
 import { companyAssessmentLabelsGenerated } from './company-assessment-labels.generated';
+import { ADDRESS_FIELD_DRAFTS } from './company-assessment-address-field-drafts';
 import { locales } from './locales';
 
 export type CompanyAssessmentLabels = {
@@ -109,6 +110,23 @@ const EN_FIELDS: Record<string, string> = {
   onboardingSupport: 'Onboarding support required',
   customDevNeeded: 'Custom development required',
   notes: 'Additional notes',
+  registeredOffice: 'Registered office',
+  operatingSites: 'Operating sites',
+  addOperatingSite: 'Add operating site',
+  removeOperatingSite: 'Remove operating site',
+  billingAddress: 'Billing address',
+  billingAddressSameAsRegisteredOffice:
+    'Billing address is the same as the registered office',
+  addressCountry: 'Country',
+  siteName: 'Site name',
+  siteType: 'Site type',
+  siteActive: 'Active site',
+  siteTypeDepot: 'Depot',
+  siteTypeWarehouse: 'Warehouse',
+  siteTypeOffice: 'Office',
+  siteTypeWorkshop: 'Workshop',
+  siteTypeParkingYard: 'Parking yard',
+  siteTypeOther: 'Other',
 };
 
 const HU_FIELDS: Record<string, string> = {
@@ -174,6 +192,23 @@ const HU_FIELDS: Record<string, string> = {
   onboardingSupport: 'Bevezetési támogatás szükséges',
   customDevNeeded: 'Egyedi fejlesztés szükséges',
   notes: 'Egyéb megjegyzések',
+  registeredOffice: 'Székhely',
+  operatingSites: 'Telephelyek',
+  addOperatingSite: 'Telephely hozzáadása',
+  removeOperatingSite: 'Telephely eltávolítása',
+  billingAddress: 'Számlázási cím',
+  billingAddressSameAsRegisteredOffice:
+    'A számlázási cím megegyezik a székhellyel',
+  addressCountry: 'Ország',
+  siteName: 'Telephely neve',
+  siteType: 'Típus',
+  siteActive: 'Aktív telephely',
+  siteTypeDepot: 'Depó',
+  siteTypeWarehouse: 'Raktár',
+  siteTypeOffice: 'Iroda',
+  siteTypeWorkshop: 'Műhely',
+  siteTypeParkingYard: 'Parkoló',
+  siteTypeOther: 'Egyéb',
 };
 
 const EN_HELPERS: Record<string, string> = {
@@ -353,14 +388,33 @@ export function isAssessmentRtlLocale(locale: Locale): boolean {
   return (ASSESSMENT_RTL_LOCALES as readonly string[]).includes(locale);
 }
 
+function withAddressFieldDrafts(
+  locale: Locale,
+  pack: CompanyAssessmentLabels,
+): CompanyAssessmentLabels {
+  const drafts = ADDRESS_FIELD_DRAFTS[locale];
+  if (!drafts) return pack;
+  return {
+    ...pack,
+    fields: {
+      ...drafts,
+      ...pack.fields,
+    },
+  };
+}
+
 /**
  * Full catalog: golden HU/EN override generated drafts so approved copy cannot regress.
  */
 export const companyAssessmentLabels: Record<Locale, CompanyAssessmentLabels> = {
-  ...companyAssessmentLabelsGenerated,
+  ...Object.fromEntries(
+    (Object.entries(companyAssessmentLabelsGenerated) as Array<
+      [Locale, CompanyAssessmentLabels]
+    >).map(([locale, pack]) => [locale, withAddressFieldDrafts(locale, pack)]),
+  ),
   en,
   hu,
-};
+} as Record<Locale, CompanyAssessmentLabels>;
 
 export function getCompanyAssessmentLabels(
   locale: Locale,

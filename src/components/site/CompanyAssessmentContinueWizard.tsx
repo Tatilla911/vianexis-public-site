@@ -10,8 +10,43 @@ import {
 } from "@/lib/i18n/company-assessment-labels";
 import type { Locale } from "@/lib/i18n/types";
 
+type PostalAddress = {
+  country?: string;
+  postalCode?: string;
+  city?: string;
+  streetAddress?: string;
+};
+
+type OperatingSite = PostalAddress & {
+  name?: string;
+  type?: string;
+  active?: boolean;
+};
+
+type CompanyOfficial = {
+  legalName?: string;
+  tradingName?: string;
+  country?: string;
+  headquarters?: string;
+  postalCode?: string;
+  city?: string;
+  street?: string;
+  registeredOffice?: PostalAddress;
+  operatingSites?: OperatingSite[];
+  billingAddressSameAsRegisteredOffice?: boolean;
+  billingAddress?: PostalAddress | null;
+  vatNumber?: string;
+  registrationNumber?: string;
+  website?: string;
+  billingEmail?: string;
+  billingContact?: string;
+  primaryContact?: string;
+  phone?: string;
+  contactLanguage?: string;
+};
+
 type Payload = {
-  companyOfficial?: Record<string, string | undefined>;
+  companyOfficial?: CompanyOfficial;
   companySize?: Record<string, number | string[] | undefined>;
   operations?: Record<string, number | boolean | undefined>;
   modules?: string[];
@@ -56,14 +91,9 @@ const MODULE_OPTIONS = [
   "custom_workflow",
 ] as const;
 
-const OFFICIAL_KEYS = [
-  "legalName",
-  "tradingName",
-  "country",
-  "headquarters",
-  "postalCode",
-  "city",
-  "street",
+const OFFICIAL_IDENTITY_KEYS = ["legalName", "tradingName"] as const;
+
+const OFFICIAL_CONTACT_KEYS = [
   "vatNumber",
   "registrationNumber",
   "website",
@@ -73,6 +103,31 @@ const OFFICIAL_KEYS = [
   "phone",
   "contactLanguage",
 ] as const;
+
+const ADDRESS_FIELD_KEYS = [
+  "addressCountry",
+  "postalCode",
+  "city",
+  "street",
+] as const;
+
+const SITE_TYPES = [
+  "depot",
+  "warehouse",
+  "office",
+  "workshop",
+  "parking_yard",
+  "other",
+] as const;
+
+const SITE_TYPE_LABEL_KEYS: Record<(typeof SITE_TYPES)[number], string> = {
+  depot: "siteTypeDepot",
+  warehouse: "siteTypeWarehouse",
+  office: "siteTypeOffice",
+  workshop: "siteTypeWorkshop",
+  parking_yard: "siteTypeParkingYard",
+  other: "siteTypeOther",
+};
 
 const SIZE_KEYS = [
   "driversCount",
@@ -84,7 +139,6 @@ const SIZE_KEYS = [
   "ownedTrailersCount",
   "subcontractedDriversCount",
   "subcontractedCompaniesCount",
-  "sitesCount",
   "estimatedActiveUsers",
 ] as const;
 
@@ -146,10 +200,102 @@ const LTR_FIELD_KEYS = new Set([
   "phone",
   "postalCode",
   "operatingCountries",
+  "addressCountry",
 ]);
 
 function valueDir(key: string): "ltr" | undefined {
   return LTR_FIELD_KEYS.has(key) ? "ltr" : undefined;
+}
+
+function emptyAddress(): PostalAddress {
+  return { country: "", postalCode: "", city: "", streetAddress: "" };
+}
+
+function emptySite(country = ""): OperatingSite {
+  return {
+    name: "",
+    type: "depot",
+    active: true,
+    country,
+    postalCode: "",
+    city: "",
+    streetAddress: "",
+  };
+}
+
+function readAddress(raw: unknown): PostalAddress {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    return emptyAddress();
+  }
+  const row = raw as Record<string, unknown>;
+  return {
+    country: String(row.country ?? ""),
+    postalCode: String(row.postalCode ?? ""),
+    city: String(row.city ?? ""),
+    streetAddress: String(row.streetAddress ?? row.street ?? ""),
+  };
+}
+
+function formatAddress(address: PostalAddress | null | undefined): string {
+  if (!address) return "";
+  const locality = [address.postalCode, address.city].filter(Boolean).join(" ");
+  return [address.streetAddress, locality || undefined, address.country]
+    .filter(Boolean)
+    .join(", ");
+}
+
+function addressValue(address: PostalAddress, key: (typeof ADDRESS_FIELD_KEYS)[number]): string {
+  if (key === "addressCountry") return address.country ?? "";
+  if (key === "street") return address.streetAddress ?? "";
+  return address[key] ?? "";
+}
+
+function patchAddress(
+  address: PostalAddress,
+  key: (typeof ADDRESS_FIELD_KEYS)[number],
+  value: string,
+): PostalAddress {
+  if (key === "addressCountry") return { ...address, country: value };
+  if (key === "street") return { ...address, streetAddress: value };
+  return { ...address, [key]: value };
+}
+
+function hydrateOfficial(official: CompanyOfficial | undefined): CompanyOfficial {
+  const current = official ?? {};
+  const nested = readAddress(current.registeredOffice);
+  const registeredOffice: PostalAddress = {
+    country: nested.country || String(current.country ?? ""),
+    postalCode: nested.postalCode || String(current.postalCode ?? ""),
+    city: nested.city || String(current.city ?? ""),
+    streetAddress:
+      nested.streetAddress ||
+      String(current.street ?? current.headquarters ?? ""),
+  };
+  const operatingSites = Array.isArray(current.operatingSites)
+    ? current.operatingSites.map((site) => {
+        const address = readAddress(site);
+        return {
+          name: String(site.name ?? ""),
+          type: SITE_TYPES.includes(site.type as (typeof SITE_TYPES)[number])
+            ? site.type
+            : site.type === "parking"
+              ? "parking_yard"
+              : "other",
+          active: site.active !== false,
+          ...address,
+        };
+      })
+    : [];
+  const billingSame = current.billingAddressSameAsRegisteredOffice !== false;
+  return {
+    ...current,
+    registeredOffice,
+    operatingSites,
+    billingAddressSameAsRegisteredOffice: billingSame,
+    billingAddress: billingSame
+      ? emptyAddress()
+      : readAddress(current.billingAddress),
+  };
 }
 
 function FieldLabel({
@@ -258,7 +404,11 @@ export function CompanyAssessmentContinueWizard({
           setLoading(false);
           return;
         }
-        setPayload(body.currentPayload ?? {});
+        const incoming = body.currentPayload ?? {};
+        setPayload({
+          ...incoming,
+          companyOfficial: hydrateOfficial(incoming.companyOfficial),
+        });
         setSubmitted(Boolean(body.submitted));
         const idx = STEPS.indexOf(
           (body.currentPayload?.currentStep as (typeof STEPS)[number]) ??
@@ -334,11 +484,96 @@ export function CompanyAssessmentContinueWizard({
     }
   }
 
-  function setOfficial(key: string, value: string) {
+  function setOfficial(key: keyof CompanyOfficial, value: string) {
     setPayload((p) => ({
       ...p,
       companyOfficial: { ...(p.companyOfficial ?? {}), [key]: value },
     }));
+  }
+
+  function setRegisteredOffice(key: (typeof ADDRESS_FIELD_KEYS)[number], value: string) {
+    setPayload((p) => {
+      const official = hydrateOfficial(p.companyOfficial);
+      const registeredOffice = patchAddress(
+        official.registeredOffice ?? emptyAddress(),
+        key,
+        value,
+      );
+      return {
+        ...p,
+        companyOfficial: {
+          ...official,
+          registeredOffice,
+          country:
+            key === "addressCountry"
+              ? value
+              : official.country || registeredOffice.country,
+        },
+      };
+    });
+  }
+
+  function setBillingAddress(key: (typeof ADDRESS_FIELD_KEYS)[number], value: string) {
+    setPayload((p) => {
+      const official = hydrateOfficial(p.companyOfficial);
+      return {
+        ...p,
+        companyOfficial: {
+          ...official,
+          billingAddressSameAsRegisteredOffice: false,
+          billingAddress: patchAddress(
+            official.billingAddress ?? emptyAddress(),
+            key,
+            value,
+          ),
+        },
+      };
+    });
+  }
+
+  function setBillingSame(same: boolean) {
+    setPayload((p) => {
+      const official = hydrateOfficial(p.companyOfficial);
+      return {
+        ...p,
+        companyOfficial: {
+          ...official,
+          billingAddressSameAsRegisteredOffice: same,
+          billingAddress: same ? emptyAddress() : official.billingAddress,
+        },
+      };
+    });
+  }
+
+  function updateSites(sites: OperatingSite[]) {
+    setPayload((p) => ({
+      ...p,
+      companyOfficial: {
+        ...hydrateOfficial(p.companyOfficial),
+        operatingSites: sites,
+      },
+      companySize: {
+        ...(p.companySize ?? {}),
+        sitesCount: sites.length,
+      },
+    }));
+  }
+
+  function setSite(index: number, patch: Partial<OperatingSite>) {
+    const sites = [...(payload.companyOfficial?.operatingSites ?? [])];
+    sites[index] = { ...sites[index], ...patch };
+    updateSites(sites);
+  }
+
+  function setSiteAddress(
+    index: number,
+    key: (typeof ADDRESS_FIELD_KEYS)[number],
+    value: string,
+  ) {
+    const sites = [...(payload.companyOfficial?.operatingSites ?? [])];
+    const current = sites[index] ?? emptySite();
+    sites[index] = { ...current, ...patchAddress(current, key, value) };
+    updateSites(sites);
   }
 
   function setSize(key: string, value: string) {
@@ -385,14 +620,45 @@ export function CompanyAssessmentContinueWizard({
     const rows: { section: string; items: { label: string; value: string }[] }[] =
       [];
 
-    const officialItems = OFFICIAL_KEYS.map((key) => ({
-      label: field(key),
-      value: formatDisplayValue(
-        payload.companyOfficial?.[key],
-        yesNo.yes,
-        yesNo.no,
-      ),
-    })).filter((i) => i.value !== "—");
+    const official = hydrateOfficial(payload.companyOfficial);
+    const officialItems = [
+      ...OFFICIAL_IDENTITY_KEYS.map((key) => ({
+        label: field(key),
+        value: formatDisplayValue(official[key], yesNo.yes, yesNo.no),
+      })),
+      {
+        label: field("registeredOffice"),
+        value: formatDisplayValue(
+          formatAddress(official.registeredOffice),
+          yesNo.yes,
+          yesNo.no,
+        ),
+      },
+      ...(official.operatingSites ?? []).map((site, index) => ({
+        label: `${field("operatingSites")} ${index + 1}`,
+        value: formatDisplayValue(
+          [site.name, field(SITE_TYPE_LABEL_KEYS[(site.type as (typeof SITE_TYPES)[number]) ?? "other"] ?? "siteTypeOther"), formatAddress(site)]
+            .filter(Boolean)
+            .join(" — "),
+          yesNo.yes,
+          yesNo.no,
+        ),
+      })),
+      {
+        label: field("billingAddress"),
+        value: official.billingAddressSameAsRegisteredOffice
+          ? field("billingAddressSameAsRegisteredOffice")
+          : formatDisplayValue(
+              formatAddress(official.billingAddress),
+              yesNo.yes,
+              yesNo.no,
+            ),
+      },
+      ...OFFICIAL_CONTACT_KEYS.map((key) => ({
+        label: field(key),
+        value: formatDisplayValue(official[key], yesNo.yes, yesNo.no),
+      })),
+    ].filter((i) => i.value !== "—");
     rows.push({ section: labels.stepCompany, items: officialItems });
 
     const sizeItems = [
@@ -521,7 +787,179 @@ export function CompanyAssessmentContinueWizard({
 
       {step === "companyOfficial" ? (
         <div className="grid gap-3 md:grid-cols-2">
-          {OFFICIAL_KEYS.map((key) => (
+          {OFFICIAL_IDENTITY_KEYS.map((key) => (
+            <label key={key} className="form-label min-w-0">
+              <FieldLabel label={field(key)} helper={helper(key)} />
+              <input
+                className={inputClass()}
+                dir={valueDir(key)}
+                value={String(payload.companyOfficial?.[key] ?? "")}
+                onChange={(e) => setOfficial(key, e.target.value)}
+              />
+            </label>
+          ))}
+
+          <fieldset className="min-w-0 space-y-3 rounded-md border border-navy-700 p-3 md:col-span-2">
+            <legend className="px-1 text-sm font-semibold text-cyan-glow">
+              {field("registeredOffice")}
+            </legend>
+            <div className="grid gap-3 md:grid-cols-2">
+              {ADDRESS_FIELD_KEYS.map((key) => (
+                <label key={key} className="form-label min-w-0">
+                  <FieldLabel
+                    label={field(key === "street" ? "street" : key)}
+                  />
+                  <input
+                    className={inputClass()}
+                    dir={valueDir(key === "addressCountry" ? "addressCountry" : key)}
+                    value={addressValue(
+                      payload.companyOfficial?.registeredOffice ?? emptyAddress(),
+                      key,
+                    )}
+                    onChange={(e) => setRegisteredOffice(key, e.target.value)}
+                  />
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div className="min-w-0 space-y-3 md:col-span-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-sm font-semibold text-cyan-glow">
+                {field("operatingSites")}
+              </h3>
+              <button
+                type="button"
+                className="rounded-md border border-cyan-accent/40 px-3 py-1.5 text-sm text-cyan-glow"
+                onClick={() =>
+                  updateSites([
+                    ...(payload.companyOfficial?.operatingSites ?? []),
+                    emptySite(
+                      payload.companyOfficial?.registeredOffice?.country ?? "",
+                    ),
+                  ])
+                }
+              >
+                {field("addOperatingSite")}
+              </button>
+            </div>
+            {(payload.companyOfficial?.operatingSites ?? []).map((site, index) => (
+              <fieldset
+                key={`site-${index}`}
+                className="space-y-3 rounded-md border border-navy-700 p-3"
+              >
+                <legend className="px-1 text-sm text-neutral-grey">
+                  {field("operatingSites")} {index + 1}
+                </legend>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <label className="form-label min-w-0">
+                    <FieldLabel label={field("siteName")} />
+                    <input
+                      className={inputClass()}
+                      value={site.name ?? ""}
+                      onChange={(e) => setSite(index, { name: e.target.value })}
+                    />
+                  </label>
+                  <label className="form-label min-w-0">
+                    <FieldLabel label={field("siteType")} />
+                    <select
+                      className={inputClass()}
+                      value={site.type ?? "depot"}
+                      onChange={(e) => setSite(index, { type: e.target.value })}
+                    >
+                      {SITE_TYPES.map((type) => (
+                        <option key={type} value={type}>
+                          {field(SITE_TYPE_LABEL_KEYS[type])}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {ADDRESS_FIELD_KEYS.map((key) => (
+                    <label key={key} className="form-label min-w-0">
+                      <FieldLabel
+                        label={field(key === "street" ? "street" : key)}
+                      />
+                      <input
+                        className={inputClass()}
+                        dir={valueDir(key === "addressCountry" ? "addressCountry" : key)}
+                        value={addressValue(site, key)}
+                        onChange={(e) =>
+                          setSiteAddress(index, key, e.target.value)
+                        }
+                      />
+                    </label>
+                  ))}
+                  <label className="flex min-w-0 items-start gap-2 text-brand-ink">
+                    <input
+                      className="mt-1 shrink-0"
+                      type="checkbox"
+                      checked={site.active !== false}
+                      onChange={(e) =>
+                        setSite(index, { active: e.target.checked })
+                      }
+                    />
+                    <span className="leading-snug">{field("siteActive")}</span>
+                  </label>
+                  <button
+                    type="button"
+                    className="justify-self-start rounded-md border border-navy-600 px-3 py-1.5 text-sm text-brand-ink"
+                    onClick={() =>
+                      updateSites(
+                        (payload.companyOfficial?.operatingSites ?? []).filter(
+                          (_row, rowIndex) => rowIndex !== index,
+                        ),
+                      )
+                    }
+                  >
+                    {field("removeOperatingSite")}
+                  </button>
+                </div>
+              </fieldset>
+            ))}
+          </div>
+
+          <fieldset className="min-w-0 space-y-3 rounded-md border border-navy-700 p-3 md:col-span-2">
+            <legend className="px-1 text-sm font-semibold text-cyan-glow">
+              {field("billingAddress")}
+            </legend>
+            <label className="flex min-w-0 items-start gap-2 text-brand-ink">
+              <input
+                className="mt-1 shrink-0"
+                type="checkbox"
+                checked={
+                  payload.companyOfficial?.billingAddressSameAsRegisteredOffice !==
+                  false
+                }
+                onChange={(e) => setBillingSame(e.target.checked)}
+              />
+              <span className="leading-snug">
+                {field("billingAddressSameAsRegisteredOffice")}
+              </span>
+            </label>
+            {payload.companyOfficial?.billingAddressSameAsRegisteredOffice ===
+            false ? (
+              <div className="grid gap-3 md:grid-cols-2">
+                {ADDRESS_FIELD_KEYS.map((key) => (
+                  <label key={key} className="form-label min-w-0">
+                    <FieldLabel
+                      label={field(key === "street" ? "street" : key)}
+                    />
+                    <input
+                      className={inputClass()}
+                      dir={valueDir(key === "addressCountry" ? "addressCountry" : key)}
+                      value={addressValue(
+                        payload.companyOfficial?.billingAddress ?? emptyAddress(),
+                        key,
+                      )}
+                      onChange={(e) => setBillingAddress(key, e.target.value)}
+                    />
+                  </label>
+                ))}
+              </div>
+            ) : null}
+          </fieldset>
+
+          {OFFICIAL_CONTACT_KEYS.map((key) => (
             <label key={key} className="form-label min-w-0">
               <FieldLabel label={field(key)} helper={helper(key)} />
               <input

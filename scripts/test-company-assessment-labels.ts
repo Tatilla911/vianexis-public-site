@@ -105,6 +105,16 @@ test("D/E: HU and EN golden copy preserved", () => {
   );
   assert.equal(en.yes, "Yes");
   assert.equal(en.no, "No");
+  assert.equal(hu.fields.registeredOffice, "Székhely");
+  assert.equal(hu.fields.operatingSites, "Telephelyek");
+  assert.equal(hu.fields.addOperatingSite, "Telephely hozzáadása");
+  assert.equal(hu.fields.billingAddress, "Számlázási cím");
+  assert.equal(
+    hu.fields.billingAddressSameAsRegisteredOffice,
+    "A számlázási cím megegyezik a székhellyel",
+  );
+  assert.equal(en.fields.registeredOffice, "Registered office");
+  assert.equal(en.fields.operatingSites, "Operating sites");
 });
 
 test("F: all 35 locales complete for shell/fields/modules", () => {
