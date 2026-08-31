@@ -1,6 +1,14 @@
 /**
- * ViaNexis 35-language registry — mirrors transdoc-backend/src/i18n/language-registry.ts
- * Do not replace with ad-hoc locale lists; backend registry is source of truth.
+ * ViaNexis public-site language registry.
+ *
+ * Mirrors the backend **public-site enabled** slice of
+ * `transdoc-backend/src/i18n/language-registry.ts` (35 locales).
+ *
+ * Indian corridor languages (`hi`,`bn`,`mr`,`te`,`ta`,`gu`,`kn`,`pa`) are
+ * intentionally excluded here (`enabledForPublicSite: false` on backend) —
+ * they are Driver App / driver-communication targets only.
+ *
+ * Do not invent ad-hoc locale lists; align with backend registry roles.
  */
 
 export enum LanguageReviewStatus {

@@ -35,10 +35,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
   const content = getContent(raw as Locale);
   const visual = resolveVisualMarketing(raw);
+  const locale = raw as Locale;
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <>
-      <LocaleHtml locale={raw as Locale} />
+    <div lang={locale} dir={dir} className="min-h-screen">
+      <LocaleHtml locale={locale} />
       <a href="#main-content" className="skip-link">
         {visual.skipToContent}
       </a>
@@ -55,6 +57,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         {children}
       </main>
       <Footer locale={raw as Locale} />
-    </>
+    </div>
   );
 }
