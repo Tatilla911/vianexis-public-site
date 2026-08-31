@@ -9,6 +9,8 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import {
   ASSESSMENT_RTL_LOCALES,
+  canonicalizeAssessmentModules,
+  COMMERCIAL_ASSESSMENT_MODULE_IDS,
   COMPANY_ASSESSMENT_FIELD_KEYS,
   COMPANY_ASSESSMENT_LOCALES,
   COMPANY_ASSESSMENT_MODULE_KEYS,
@@ -183,6 +185,10 @@ test("H/I: internal field and module ids remain stable", () => {
   assert.ok(COMPANY_ASSESSMENT_FIELD_KEYS.includes("legalName"));
   assert.ok(COMPANY_ASSESSMENT_MODULE_KEYS.includes("driver_app"));
   assert.ok(COMPANY_ASSESSMENT_MODULE_KEYS.includes("custom_workflow"));
+  assert.ok(COMPANY_ASSESSMENT_MODULE_KEYS.includes("company_operations"));
+  assert.ok(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("driver_app"));
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("adr"), false);
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("efti"), false);
   for (const key of COMPANY_ASSESSMENT_MODULE_KEYS) {
     assert.match(key, /^[a-z][a-z0-9_]*$/);
   }
@@ -390,6 +396,77 @@ test("E: transport scope option labels are localized, not raw enums", () => {
   assert.notEqual(en.fields.transportScopeDomestic, "domestic");
   assert.equal(hu.fields.transportScopeDomestic, "Belföldi fuvarozás");
   assert.equal(en.fields.transportScopeInternational, "International transport");
+});
+
+test("commercial modules: wizard shows only the 8 operational modules", () => {
+  const wizard = readFileSync(
+    join(
+      dirname(fileURLToPath(import.meta.url)),
+      "../src/components/site/CompanyAssessmentContinueWizard.tsx",
+    ),
+    "utf8",
+  );
+  assert.equal(wizard.includes("COMMERCIAL_ASSESSMENT_MODULE_IDS"), true);
+  assert.equal(wizard.includes("company_portal"), false);
+  assert.equal(wizard.includes("platform_admin_support"), false);
+  assert.equal(wizard.includes("digital_signature"), false);
+  assert.equal(wizard.includes("evidence_pack"), false);
+  assert.equal(wizard.includes("truck_map"), false);
+  assert.equal(wizard.includes("authority_access"), false);
+  assert.equal(wizard.includes("custom_workflow"), false);
+  assert.deepEqual([...COMMERCIAL_ASSESSMENT_MODULE_IDS], [
+    "driver_app",
+    "company_operations",
+    "workshop",
+    "warehouse",
+    "vehicle_qr",
+    "trailer_container_qr",
+    "customs",
+    "external_integrations",
+  ]);
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("adr"), false);
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("efti"), false);
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("ai"), false);
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("cmr"), false);
+  assert.equal(COMMERCIAL_ASSESSMENT_MODULE_IDS.includes("map"), false);
+  assert.deepEqual(
+    canonicalizeAssessmentModules(["company_portal", "adr", "efti", "api"]),
+    ["company_operations", "external_integrations"],
+  );
+});
+
+test("commercial module labels are localized HU/EN, not raw ids", () => {
+  const hu = getCompanyAssessmentLabels("hu");
+  const en = getCompanyAssessmentLabels("en");
+  assert.equal(hu.stepModules, "Mely ViaNexis modulokra van szükségük?");
+  assert.equal(en.stepModules, "Which ViaNexis modules do you need?");
+  assert.equal(hu.modules.driver_app, "Sofőralkalmazás");
+  assert.equal(hu.modules.company_operations, "Diszpécseri / céges operációs modul");
+  assert.equal(hu.modules.workshop, "Műhely modul");
+  assert.equal(hu.modules.warehouse, "Raktári modul");
+  assert.equal(hu.modules.vehicle_qr, "Járművek QR-kódos azonosítása");
+  assert.equal(
+    hu.modules.trailer_container_qr,
+    "Pótkocsik és konténerek QR-kódos azonosítása",
+  );
+  assert.equal(hu.modules.customs, "Vámkezelési modul");
+  assert.equal(hu.modules.external_integrations, "Külső integrációk");
+  assert.equal(en.modules.company_operations, "Dispatcher / Company Operations");
+  assert.equal(en.modules.workshop, "Workshop");
+  assert.equal(en.modules.warehouse, "Warehouse");
+  assert.equal(en.modules.vehicle_qr, "Vehicle QR Identification");
+  assert.equal(
+    en.modules.trailer_container_qr,
+    "Trailer & Container QR Identification",
+  );
+  assert.equal(en.modules.customs, "Customs");
+  assert.equal(en.modules.external_integrations, "External Integrations");
+  for (const key of COMMERCIAL_ASSESSMENT_MODULE_IDS) {
+    assert.notEqual(hu.modules[key], key);
+    assert.notEqual(en.modules[key], key);
+    assert.equal(looksLikeRawInternalKey(hu.modules[key]), false);
+    assert.equal(looksLikeRawInternalKey(en.modules[key]), false);
+  }
 });
 
 test("F: contact language shows localized display label, not raw hu", () => {

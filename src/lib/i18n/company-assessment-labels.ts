@@ -11,6 +11,7 @@ import type { Locale } from './types';
 import { companyAssessmentLabelsGenerated } from './company-assessment-labels.generated';
 import { ADDRESS_FIELD_DRAFTS } from './company-assessment-address-field-drafts';
 import { TRANSPORT_SCOPE_FIELD_DRAFTS } from './company-assessment-transport-scope-drafts';
+import { COMMERCIAL_MODULE_LABEL_DRAFTS } from './company-assessment-module-drafts';
 import { locales } from './locales';
 
 export type CompanyAssessmentLabels = {
@@ -250,7 +251,14 @@ const HU_HELPERS: Record<string, string> = {
 
 const EN_MODULES: Record<string, string> = {
   driver_app: 'Driver app',
-  company_portal: 'Company portal',
+  company_operations: 'Dispatcher / Company Operations',
+  workshop: 'Workshop',
+  warehouse: 'Warehouse',
+  vehicle_qr: 'Vehicle QR Identification',
+  trailer_container_qr: 'Trailer & Container QR Identification',
+  customs: 'Customs',
+  external_integrations: 'External Integrations',
+  company_portal: 'Dispatcher / Company Operations',
   platform_admin_support: 'Platform admin support',
   documents: 'Document management',
   cmr: 'CMR / consignment notes',
@@ -264,7 +272,6 @@ const EN_MODULES: Record<string, string> = {
   map: 'Map',
   truck_map: 'Truck map / routing',
   adr: 'ADR / dangerous goods module',
-  customs: 'Customs module',
   ai: 'AI / OCR assistance',
   efti: 'eFTI readiness',
   authority_access: 'Authority access',
@@ -276,7 +283,14 @@ const EN_MODULES: Record<string, string> = {
 
 const HU_MODULES: Record<string, string> = {
   driver_app: 'Sofőralkalmazás',
-  company_portal: 'Céges portál',
+  company_operations: 'Diszpécseri / céges operációs modul',
+  workshop: 'Műhely modul',
+  warehouse: 'Raktári modul',
+  vehicle_qr: 'Járművek QR-kódos azonosítása',
+  trailer_container_qr: 'Pótkocsik és konténerek QR-kódos azonosítása',
+  customs: 'Vámkezelési modul',
+  external_integrations: 'Külső integrációk',
+  company_portal: 'Diszpécseri / céges operációs modul',
   platform_admin_support: 'Platform admin támogatás',
   documents: 'Dokumentumkezelés',
   cmr: 'CMR / fuvarlevelek',
@@ -290,7 +304,6 @@ const HU_MODULES: Record<string, string> = {
   map: 'Térkép',
   truck_map: 'Kamiontérkép / útvonal',
   adr: 'ADR / veszélyes áru modul',
-  customs: 'Vám modul',
   ai: 'AI / OCR támogatás',
   efti: 'eFTI felkészültség',
   authority_access: 'Hatósági hozzáférés',
@@ -323,7 +336,7 @@ const en: CompanyAssessmentLabels = {
   stepCompany: 'Official company data',
   stepSize: 'Company size and fleet',
   stepOperations: 'Trip operations',
-  stepModules: 'Required ViaNexis modules',
+  stepModules: 'Which ViaNexis modules do you need?',
   stepIntegrations: 'Integrations',
   stepRollout: 'Rollout and support',
   stepSummary: 'Summary',
@@ -357,7 +370,7 @@ const hu: CompanyAssessmentLabels = {
   stepCompany: 'Hivatalos cégadatok',
   stepSize: 'Cégméret és flotta',
   stepOperations: 'Fuvarozási működés',
-  stepModules: 'Szükséges ViaNexis modulok',
+  stepModules: 'Mely ViaNexis modulokra van szükségük?',
   stepIntegrations: 'Integrációk',
   stepRollout: 'Bevezetés és támogatás',
   stepSummary: 'Összegzés',
@@ -401,17 +414,30 @@ function withAddressFieldDrafts(
   locale: Locale,
   pack: CompanyAssessmentLabels,
 ): CompanyAssessmentLabels {
-  const drafts = {
+  const fieldDrafts = {
     ...(ADDRESS_FIELD_DRAFTS[locale] ?? {}),
     ...(TRANSPORT_SCOPE_FIELD_DRAFTS[locale] ?? {}),
   };
-  if (Object.keys(drafts).length === 0) return pack;
+  const moduleDrafts = COMMERCIAL_MODULE_LABEL_DRAFTS[locale] ?? {};
+  const nextFields =
+    Object.keys(fieldDrafts).length === 0
+      ? pack.fields
+      : {
+          ...fieldDrafts,
+          ...pack.fields,
+        };
+  const nextModules =
+    Object.keys(moduleDrafts).length === 0
+      ? pack.modules
+      : {
+          ...moduleDrafts,
+          ...pack.modules,
+        };
+  if (nextFields === pack.fields && nextModules === pack.modules) return pack;
   return {
     ...pack,
-    fields: {
-      ...drafts,
-      ...pack.fields,
-    },
+    fields: nextFields,
+    modules: nextModules,
   };
 }
 
@@ -561,6 +587,46 @@ export const COMPANY_ASSESSMENT_SHELL_KEYS = [
 
 /** All known field keys rendered by the wizard (internal contract). */
 export const COMPANY_ASSESSMENT_FIELD_KEYS = Object.keys(EN_FIELDS);
+
+/**
+ * Selectable commercial modules in the assessment wizard.
+ * Legacy micro-feature keys remain in EN_MODULES for old payloads.
+ */
+export const COMMERCIAL_ASSESSMENT_MODULE_IDS = [
+  'driver_app',
+  'company_operations',
+  'workshop',
+  'warehouse',
+  'vehicle_qr',
+  'trailer_container_qr',
+  'customs',
+  'external_integrations',
+] as const;
+
+const COMMERCIAL_MODULE_SET = new Set<string>(COMMERCIAL_ASSESSMENT_MODULE_IDS);
+
+const ASSESSMENT_MODULE_ALIASES: Record<
+  string,
+  (typeof COMMERCIAL_ASSESSMENT_MODULE_IDS)[number]
+> = {
+  company_portal: 'company_operations',
+  external_partner: 'external_integrations',
+  api: 'external_integrations',
+};
+
+/** Map stored module ids to the commercial list shown in the wizard. */
+export function canonicalizeAssessmentModules(raw: unknown): string[] {
+  const selected = new Set<string>();
+  if (!Array.isArray(raw)) return [];
+  for (const item of raw) {
+    if (typeof item !== 'string') continue;
+    const key = item.trim().toLowerCase();
+    if (!key) continue;
+    const mapped = ASSESSMENT_MODULE_ALIASES[key] ?? key;
+    if (COMMERCIAL_MODULE_SET.has(mapped)) selected.add(mapped);
+  }
+  return COMMERCIAL_ASSESSMENT_MODULE_IDS.filter((id) => selected.has(id));
+}
 
 /** All known module option keys stored in payload.modules. */
 export const COMPANY_ASSESSMENT_MODULE_KEYS = Object.keys(EN_MODULES);

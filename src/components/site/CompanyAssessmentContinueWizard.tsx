@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  canonicalizeAssessmentModules,
+  COMMERCIAL_ASSESSMENT_MODULE_IDS,
   getCompanyAssessmentLabels,
   isAssessmentRtlLocale,
   resolveAssessmentFieldLabel,
@@ -69,31 +71,7 @@ const STEPS = [
   "summary",
 ] as const;
 
-const MODULE_OPTIONS = [
-  "driver_app",
-  "company_portal",
-  "platform_admin_support",
-  "documents",
-  "cmr",
-  "digital_signature",
-  "checklist",
-  "weekly_walkaround",
-  "incident",
-  "evidence_pack",
-  "messaging",
-  "notifications",
-  "map",
-  "truck_map",
-  "adr",
-  "customs",
-  "ai",
-  "efti",
-  "authority_access",
-  "external_partner",
-  "api",
-  "custom_report",
-  "custom_workflow",
-] as const;
+const MODULE_OPTIONS = COMMERCIAL_ASSESSMENT_MODULE_IDS;
 
 const OFFICIAL_IDENTITY_KEYS = ["legalName", "tradingName"] as const;
 
@@ -421,6 +399,7 @@ export function CompanyAssessmentContinueWizard({
         setPayload({
           ...incoming,
           companyOfficial: hydrateOfficial(incoming.companyOfficial),
+          modules: canonicalizeAssessmentModules(incoming.modules),
         });
         setSubmitted(Boolean(body.submitted));
         const idx = STEPS.indexOf(
@@ -730,10 +709,12 @@ export function CompanyAssessmentContinueWizard({
     ].filter((i) => i.value !== "—");
     rows.push({ section: labels.stepOperations, items: opsItems });
 
-    const moduleItems = (payload.modules ?? []).map((key) => ({
-      label: moduleLabel(key),
-      value: yesNo.yes,
-    }));
+    const moduleItems = canonicalizeAssessmentModules(payload.modules).map(
+      (key) => ({
+        label: moduleLabel(key),
+        value: yesNo.yes,
+      }),
+    );
     rows.push({ section: labels.stepModules, items: moduleItems });
 
     const integrationItems = [
@@ -1123,10 +1104,15 @@ export function CompanyAssessmentContinueWizard({
                   type="checkbox"
                   checked={checked}
                   onChange={(e) => {
-                    const next = new Set(selected);
+                    const next = new Set(
+                      canonicalizeAssessmentModules(selected),
+                    );
                     if (e.target.checked) next.add(opt);
                     else next.delete(opt);
-                    setPayload((p) => ({ ...p, modules: Array.from(next) }));
+                    setPayload((p) => ({
+                      ...p,
+                      modules: canonicalizeAssessmentModules(Array.from(next)),
+                    }));
                   }}
                 />
                 <span className="leading-snug">{moduleLabel(opt)}</span>
