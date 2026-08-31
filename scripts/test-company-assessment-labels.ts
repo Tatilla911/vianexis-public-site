@@ -3,7 +3,10 @@
  * Run: npx --yes tsx --test scripts/test-company-assessment-labels.ts
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 import {
   ASSESSMENT_RTL_LOCALES,
   COMPANY_ASSESSMENT_FIELD_KEYS,
@@ -18,7 +21,10 @@ import {
   resolveAssessmentFieldLabel,
   resolveAssessmentModuleLabel,
 } from "../src/lib/i18n/company-assessment-labels";
-import { PUBLIC_SITE_LOCALE_COUNT } from "../src/lib/i18n/language-registry";
+import {
+  formatContactLanguageLabel,
+  PUBLIC_SITE_LOCALE_COUNT,
+} from "../src/lib/i18n/language-registry";
 import { locales } from "../src/lib/i18n/locales";
 import { switchLocalePath } from "../src/lib/i18n/paths";
 
@@ -115,6 +121,14 @@ test("D/E: HU and EN golden copy preserved", () => {
   );
   assert.equal(en.fields.registeredOffice, "Registered office");
   assert.equal(en.fields.operatingSites, "Operating sites");
+  assert.equal(hu.fields.transportScope, "Fuvarozási hatókör");
+  assert.equal(hu.fields.transportScopeDomestic, "Belföldi fuvarozás");
+  assert.equal(hu.fields.transportScopeInternational, "Nemzetközi fuvarozás");
+  assert.equal(hu.fields.transportScopeMixed, "Vegyes");
+  assert.equal(en.fields.transportScope, "Transport scope");
+  assert.equal(en.fields.transportScopeDomestic, "Domestic transport");
+  assert.equal(en.fields.transportScopeInternational, "International transport");
+  assert.equal(en.fields.transportScopeMixed, "Mixed");
 });
 
 test("F: all 35 locales complete for shell/fields/modules", () => {
@@ -354,4 +368,32 @@ test("R: generated catalog has no empty customer-facing values", () => {
       assert.ok(labels.modules[key]?.trim());
     }
   }
+});
+
+test("D: operatingCountries is not shown in the assessment wizard", () => {
+  const wizard = readFileSync(
+    join(
+      dirname(fileURLToPath(import.meta.url)),
+      "../src/components/site/CompanyAssessmentContinueWizard.tsx",
+    ),
+    "utf8",
+  );
+  assert.equal(wizard.includes("operatingCountries"), false);
+  assert.equal(wizard.includes("HU, DE, AT"), false);
+  assert.equal(wizard.includes("transportScope"), true);
+});
+
+test("E: transport scope option labels are localized, not raw enums", () => {
+  const hu = getCompanyAssessmentLabels("hu");
+  const en = getCompanyAssessmentLabels("en");
+  assert.notEqual(hu.fields.transportScopeDomestic, "domestic");
+  assert.notEqual(en.fields.transportScopeDomestic, "domestic");
+  assert.equal(hu.fields.transportScopeDomestic, "Belföldi fuvarozás");
+  assert.equal(en.fields.transportScopeInternational, "International transport");
+});
+
+test("F: contact language shows localized display label, not raw hu", () => {
+  assert.equal(formatContactLanguageLabel("hu", "hu"), "Magyar (HU)");
+  assert.equal(formatContactLanguageLabel("hu", "en"), "Hungarian (HU)");
+  assert.notEqual(formatContactLanguageLabel("hu", "hu"), "hu");
 });

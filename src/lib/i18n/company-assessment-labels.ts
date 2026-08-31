@@ -10,6 +10,7 @@
 import type { Locale } from './types';
 import { companyAssessmentLabelsGenerated } from './company-assessment-labels.generated';
 import { ADDRESS_FIELD_DRAFTS } from './company-assessment-address-field-drafts';
+import { TRANSPORT_SCOPE_FIELD_DRAFTS } from './company-assessment-transport-scope-drafts';
 import { locales } from './locales';
 
 export type CompanyAssessmentLabels = {
@@ -127,6 +128,10 @@ const EN_FIELDS: Record<string, string> = {
   siteTypeWorkshop: 'Workshop',
   siteTypeParkingYard: 'Parking yard',
   siteTypeOther: 'Other',
+  transportScope: 'Transport scope',
+  transportScopeDomestic: 'Domestic transport',
+  transportScopeInternational: 'International transport',
+  transportScopeMixed: 'Mixed',
 };
 
 const HU_FIELDS: Record<string, string> = {
@@ -209,6 +214,10 @@ const HU_FIELDS: Record<string, string> = {
   siteTypeWorkshop: 'Műhely',
   siteTypeParkingYard: 'Parkoló',
   siteTypeOther: 'Egyéb',
+  transportScope: 'Fuvarozási hatókör',
+  transportScopeDomestic: 'Belföldi fuvarozás',
+  transportScopeInternational: 'Nemzetközi fuvarozás',
+  transportScopeMixed: 'Vegyes',
 };
 
 const EN_HELPERS: Record<string, string> = {
@@ -392,8 +401,11 @@ function withAddressFieldDrafts(
   locale: Locale,
   pack: CompanyAssessmentLabels,
 ): CompanyAssessmentLabels {
-  const drafts = ADDRESS_FIELD_DRAFTS[locale];
-  if (!drafts) return pack;
+  const drafts = {
+    ...(ADDRESS_FIELD_DRAFTS[locale] ?? {}),
+    ...(TRANSPORT_SCOPE_FIELD_DRAFTS[locale] ?? {}),
+  };
+  if (Object.keys(drafts).length === 0) return pack;
   return {
     ...pack,
     fields: {

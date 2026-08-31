@@ -144,4 +144,24 @@ export function listLanguagesForPublicSite(): LanguageRegistryEntry[] {
   return VIANEXIS_LANGUAGE_REGISTRY.filter((entry) => entry.enabledForPublicSite);
 }
 
+/**
+ * Customer-facing language label. Stores remain canonical locale codes.
+ * HU UI + hu → Magyar (HU); EN UI + hu → Hungarian (HU).
+ */
+export function formatContactLanguageLabel(
+  code: string | null | undefined,
+  uiLocale: string,
+): string {
+  const entry = findLanguageEntry(code);
+  const displayCode = (normalizeLanguageCode(code) ?? "").toUpperCase();
+  if (!entry) {
+    return displayCode || "";
+  }
+  const name =
+    normalizeLanguageCode(uiLocale) === "en"
+      ? entry.englishName
+      : entry.nativeName;
+  return `${name} (${entry.code.toUpperCase()})`;
+}
+
 export const PUBLIC_SITE_LOCALE_COUNT = VIANEXIS_LANGUAGE_REGISTRY.length;

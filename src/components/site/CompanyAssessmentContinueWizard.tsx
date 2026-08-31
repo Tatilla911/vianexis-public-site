@@ -9,6 +9,10 @@ import {
   resolveAssessmentModuleLabel,
 } from "@/lib/i18n/company-assessment-labels";
 import type { Locale } from "@/lib/i18n/types";
+import {
+  formatContactLanguageLabel,
+  listLanguagesForPublicSite,
+} from "@/lib/i18n/language-registry";
 
 type PostalAddress = {
   country?: string;
@@ -48,7 +52,7 @@ type CompanyOfficial = {
 type Payload = {
   companyOfficial?: CompanyOfficial;
   companySize?: Record<string, number | string[] | undefined>;
-  operations?: Record<string, number | boolean | undefined>;
+  operations?: Record<string, number | boolean | string | undefined>;
   modules?: string[];
   integrations?: Record<string, string | boolean | string[] | undefined>;
   rollout?: Record<string, string | number | boolean | undefined>;
@@ -101,7 +105,6 @@ const OFFICIAL_CONTACT_KEYS = [
   "billingContact",
   "primaryContact",
   "phone",
-  "contactLanguage",
 ] as const;
 
 const ADDRESS_FIELD_KEYS = [
@@ -127,6 +130,17 @@ const SITE_TYPE_LABEL_KEYS: Record<(typeof SITE_TYPES)[number], string> = {
   workshop: "siteTypeWorkshop",
   parking_yard: "siteTypeParkingYard",
   other: "siteTypeOther",
+};
+
+const TRANSPORT_SCOPES = ["domestic", "international", "mixed"] as const;
+
+const TRANSPORT_SCOPE_LABEL_KEYS: Record<
+  (typeof TRANSPORT_SCOPES)[number],
+  string
+> = {
+  domestic: "transportScopeDomestic",
+  international: "transportScopeInternational",
+  mixed: "transportScopeMixed",
 };
 
 const SIZE_KEYS = [
@@ -199,7 +213,6 @@ const LTR_FIELD_KEYS = new Set([
   "registrationNumber",
   "phone",
   "postalCode",
-  "operatingCountries",
   "addressCountry",
 ]);
 
@@ -658,6 +671,14 @@ export function CompanyAssessmentContinueWizard({
         label: field(key),
         value: formatDisplayValue(official[key], yesNo.yes, yesNo.no),
       })),
+      {
+        label: field("contactLanguage"),
+        value: formatDisplayValue(
+          formatContactLanguageLabel(official.contactLanguage, locale),
+          yesNo.yes,
+          yesNo.no,
+        ),
+      },
     ].filter((i) => i.value !== "—");
     rows.push({ section: labels.stepCompany, items: officialItems });
 
@@ -671,9 +692,17 @@ export function CompanyAssessmentContinueWizard({
         ),
       })),
       {
-        label: field("operatingCountries"),
+        label: field("transportScope"),
         value: formatDisplayValue(
-          payload.companySize?.operatingCountries,
+          TRANSPORT_SCOPES.includes(
+            payload.operations?.transportScope as (typeof TRANSPORT_SCOPES)[number],
+          )
+            ? field(
+                TRANSPORT_SCOPE_LABEL_KEYS[
+                  payload.operations?.transportScope as (typeof TRANSPORT_SCOPES)[number]
+                ],
+              )
+            : "",
           yesNo.yes,
           yesNo.no,
         ),
@@ -752,7 +781,7 @@ export function CompanyAssessmentContinueWizard({
     rows.push({ section: labels.stepRollout, items: rolloutItems });
 
     return rows;
-  }, [field, labels, moduleLabel, payload, yesNo]);
+  }, [field, labels, locale, moduleLabel, payload, yesNo]);
 
   if (loading) {
     return <p className="text-neutral-grey">{labels.loading}</p>;
@@ -970,6 +999,20 @@ export function CompanyAssessmentContinueWizard({
               />
             </label>
           ))}
+          <label className="form-label min-w-0">
+            <FieldLabel label={field("contactLanguage")} />
+            <select
+              className={inputClass()}
+              value={payload.companyOfficial?.contactLanguage || locale}
+              onChange={(e) => setOfficial("contactLanguage", e.target.value)}
+            >
+              {listLanguagesForPublicSite().map((lang) => (
+                <option key={lang.code} value={lang.code}>
+                  {formatContactLanguageLabel(lang.code, locale)}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
       ) : null}
 
@@ -992,36 +1035,39 @@ export function CompanyAssessmentContinueWizard({
               />
             </label>
           ))}
-          <label className="form-label min-w-0 md:col-span-2">
-            <FieldLabel
-              label={field("operatingCountries")}
-              helper={helper("operatingCountries")}
-            />
-            <input
-              className={inputClass()}
-              dir="ltr"
-              placeholder="HU, DE, AT"
-              value={
-                Array.isArray(payload.companySize?.operatingCountries)
-                  ? (payload.companySize?.operatingCountries as string[]).join(
-                      ", ",
-                    )
-                  : ""
-              }
-              onChange={(e) =>
-                setPayload((p) => ({
-                  ...p,
-                  companySize: {
-                    ...(p.companySize ?? {}),
-                    operatingCountries: e.target.value
-                      .split(",")
-                      .map((s) => s.trim())
-                      .filter(Boolean),
-                  },
-                }))
-              }
-            />
-          </label>
+          <fieldset className="min-w-0 space-y-2 rounded-md border border-navy-700 p-3 md:col-span-2">
+            <legend className="px-1 text-sm font-semibold text-cyan-glow">
+              {field("transportScope")}
+            </legend>
+            <div className="grid gap-2 sm:grid-cols-3">
+              {TRANSPORT_SCOPES.map((scope) => (
+                <label
+                  key={scope}
+                  className="flex min-w-0 items-start gap-2 text-brand-ink"
+                >
+                  <input
+                    className="mt-1 shrink-0"
+                    type="radio"
+                    name="transportScope"
+                    value={scope}
+                    checked={payload.operations?.transportScope === scope}
+                    onChange={() =>
+                      setPayload((p) => ({
+                        ...p,
+                        operations: {
+                          ...(p.operations ?? {}),
+                          transportScope: scope,
+                        },
+                      }))
+                    }
+                  />
+                  <span className="leading-snug">
+                    {field(TRANSPORT_SCOPE_LABEL_KEYS[scope])}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         </div>
       ) : null}
 
