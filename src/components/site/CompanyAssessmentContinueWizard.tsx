@@ -16,6 +16,10 @@ import {
   normalizeAssessmentIntegrations,
   type AssessmentIntegrations,
 } from "@/lib/company-assessment-integrations";
+import {
+  normalizeAssessmentRollout,
+  type AssessmentRollout,
+} from "@/lib/company-assessment-rollout";
 import type { Locale } from "@/lib/i18n/types";
 import {
   formatContactLanguageLabel,
@@ -63,7 +67,7 @@ type Payload = {
   operations?: Record<string, number | boolean | string | undefined>;
   modules?: string[];
   integrations?: AssessmentIntegrations;
-  rollout?: Record<string, string | number | boolean | undefined>;
+  rollout?: AssessmentRollout;
   currentStep?: string;
 };
 
@@ -183,16 +187,9 @@ const INTEGRATION_CATEGORIES = [
   },
 ] as const;
 
-const ROLLOUT_TEXT_KEYS = [
-  "plannedStartDate",
-  "pilotDate",
-  "desiredSla",
-  "supportLanguage",
-] as const;
+const ROLLOUT_DATE_KEYS = ["plannedStartDate", "pilotDate"] as const;
 
-const ROLLOUT_BOOL_KEYS = [
-  "trainingNeeded",
-  "onsiteTraining",
+const ROLLOUT_YES_NO_KEYS = [
   "onboardingSupport",
   "customDevNeeded",
 ] as const;
@@ -419,6 +416,7 @@ export function CompanyAssessmentContinueWizard({
           companyOfficial: hydrateOfficial(incoming.companyOfficial),
           modules: canonicalizeAssessmentModules(incoming.modules),
           integrations: normalizeAssessmentIntegrations(incoming.integrations),
+          rollout: normalizeAssessmentRollout(incoming.rollout),
         });
         setSubmitted(Boolean(body.submitted));
         const idx = STEPS.indexOf(
@@ -479,6 +477,7 @@ export function CompanyAssessmentContinueWizard({
       ...payload,
       currentStep: nextStep,
       integrations: normalizeAssessmentIntegrations(payload.integrations),
+      rollout: normalizeAssessmentRollout(payload.rollout),
     };
     setPayload(nextPayload);
     setStepIndex(next);
@@ -497,6 +496,7 @@ export function CompanyAssessmentContinueWizard({
           ...payload,
           currentStep: "summary",
           integrations: normalizeAssessmentIntegrations(payload.integrations),
+          rollout: normalizeAssessmentRollout(payload.rollout),
         },
         "summary",
       );
@@ -670,10 +670,13 @@ export function CompanyAssessmentContinueWizard({
     setStepError(null);
   }
 
-  function setRollout(key: string, value: string | boolean | number) {
+  function setRollout(key: keyof AssessmentRollout, value: string | boolean | number) {
     setPayload((p) => ({
       ...p,
-      rollout: { ...(p.rollout ?? {}), [key]: value },
+      rollout: normalizeAssessmentRollout({
+        ...(p.rollout ?? {}),
+        [key]: value,
+      }),
     }));
   }
 
@@ -824,26 +827,39 @@ export function CompanyAssessmentContinueWizard({
     ].filter((i) => i.value !== "—");
     rows.push({ section: labels.stepIntegrations, items: integrationItems });
 
+    const rollout = normalizeAssessmentRollout(payload.rollout);
     const rolloutItems = [
-      ...ROLLOUT_TEXT_KEYS.map((key) => ({
+      ...ROLLOUT_DATE_KEYS.map((key) => ({
         label: field(key),
-        value: formatDisplayValue(payload.rollout?.[key], yesNo.yes, yesNo.no),
+        value: formatDisplayValue(rollout[key], yesNo.yes, yesNo.no),
       })),
       {
         label: field("pilotUsers"),
-        value: formatDisplayValue(
-          payload.rollout?.pilotUsers,
-          yesNo.yes,
-          yesNo.no,
-        ),
+        value: formatDisplayValue(rollout.pilotUsers, yesNo.yes, yesNo.no),
       },
-      ...ROLLOUT_BOOL_KEYS.map((key) => ({
+      {
+        label: field("trainingNeeded"),
+        value: formatDisplayValue(rollout.trainingNeeded, yesNo.yes, yesNo.no),
+      },
+      ...(rollout.trainingNeeded
+        ? [
+            {
+              label: field("onsiteTraining"),
+              value: formatDisplayValue(
+                rollout.onsiteTraining,
+                yesNo.yes,
+                yesNo.no,
+              ),
+            },
+          ]
+        : []),
+      ...ROLLOUT_YES_NO_KEYS.map((key) => ({
         label: field(key),
-        value: formatDisplayValue(payload.rollout?.[key], yesNo.yes, yesNo.no),
+        value: formatDisplayValue(rollout[key], yesNo.yes, yesNo.no),
       })),
       {
         label: field("notes"),
-        value: formatDisplayValue(payload.rollout?.notes, yesNo.yes, yesNo.no),
+        value: formatDisplayValue(rollout.notes, yesNo.yes, yesNo.no),
       },
     ].filter((i) => i.value !== "—");
     rows.push({ section: labels.stepRollout, items: rolloutItems });
@@ -1316,7 +1332,7 @@ export function CompanyAssessmentContinueWizard({
 
       {step === "rollout" ? (
         <div className="grid gap-3 md:grid-cols-2">
-          {ROLLOUT_TEXT_KEYS.map((key) => (
+          {ROLLOUT_DATE_KEYS.map((key) => (
             <label key={key} className="form-label min-w-0">
               <FieldLabel label={field(key)} helper={helper(key)} />
               <input
@@ -1331,6 +1347,7 @@ export function CompanyAssessmentContinueWizard({
             <input
               className={inputClass()}
               type="number"
+              min={0}
               dir="ltr"
               value={
                 payload.rollout?.pilotUsers === undefined
@@ -1340,27 +1357,54 @@ export function CompanyAssessmentContinueWizard({
               onChange={(e) =>
                 setRollout(
                   "pilotUsers",
-                  e.target.value.trim() === "" ? "" : Number(e.target.value),
+                  e.target.value.trim() === ""
+                    ? ""
+                    : Math.max(0, Number(e.target.value)),
                 )
               }
             />
           </label>
-          <div className="grid gap-2 md:col-span-2 sm:grid-cols-2">
-            {ROLLOUT_BOOL_KEYS.map((key) => (
-              <label
-                key={key}
-                className="flex min-w-0 items-start gap-2 text-brand-ink"
+          <label className="form-label min-w-0">
+            <FieldLabel label={field("trainingNeeded")} />
+            <select
+              className={inputClass()}
+              value={payload.rollout?.trainingNeeded ? "yes" : "no"}
+              onChange={(e) =>
+                setRollout("trainingNeeded", e.target.value === "yes")
+              }
+            >
+              <option value="no">{labels.no}</option>
+              <option value="yes">{labels.yes}</option>
+            </select>
+          </label>
+          {payload.rollout?.trainingNeeded ? (
+            <label className="form-label min-w-0">
+              <FieldLabel label={field("onsiteTraining")} />
+              <select
+                className={inputClass()}
+                value={payload.rollout?.onsiteTraining ? "yes" : "no"}
+                onChange={(e) =>
+                  setRollout("onsiteTraining", e.target.value === "yes")
+                }
               >
-                <input
-                  className="mt-1 shrink-0"
-                  type="checkbox"
-                  checked={Boolean(payload.rollout?.[key])}
-                  onChange={(e) => setRollout(key, e.target.checked)}
-                />
-                <span className="leading-snug">{field(key)}</span>
-              </label>
-            ))}
-          </div>
+                <option value="no">{labels.no}</option>
+                <option value="yes">{labels.yes}</option>
+              </select>
+            </label>
+          ) : null}
+          {ROLLOUT_YES_NO_KEYS.map((key) => (
+            <label key={key} className="form-label min-w-0">
+              <FieldLabel label={field(key)} />
+              <select
+                className={inputClass()}
+                value={payload.rollout?.[key] ? "yes" : "no"}
+                onChange={(e) => setRollout(key, e.target.value === "yes")}
+              >
+                <option value="no">{labels.no}</option>
+                <option value="yes">{labels.yes}</option>
+              </select>
+            </label>
+          ))}
           <label className="form-label min-w-0 md:col-span-2">
             <FieldLabel label={field("notes")} helper={helper("notes")} />
             <textarea
@@ -1449,6 +1493,7 @@ export function CompanyAssessmentContinueWizard({
                 integrations: normalizeAssessmentIntegrations(
                   payload.integrations,
                 ),
+                rollout: normalizeAssessmentRollout(payload.rollout),
               },
               step,
             )

@@ -33,6 +33,7 @@ import {
   missingRequiredIntegrationNames,
   normalizeAssessmentIntegrations,
 } from "../src/lib/company-assessment-integrations";
+import { normalizeAssessmentRollout } from "../src/lib/company-assessment-rollout";
 
 const KNOWN_RAW_KEYS = [
   "monthlyTrips",
@@ -581,4 +582,83 @@ test("conditional integrations: wizard hides accounting and stale names", () => 
   });
   assert.equal(legacy.tmsEnabled, true);
   assert.equal(legacy.accounting, "Navision");
+});
+
+test("step 6 rollout: no SLA/language fields; training is conditional", () => {
+  const wizard = readFileSync(
+    join(
+      dirname(fileURLToPath(import.meta.url)),
+      "../src/components/site/CompanyAssessmentContinueWizard.tsx",
+    ),
+    "utf8",
+  );
+  // A / B: new wizard does not collect support language or SLA.
+  assert.equal(wizard.includes("desiredSla"), false);
+  assert.equal(wizard.includes("supportLanguage"), false);
+  assert.equal(wizard.includes("ROLLOUT_DATE_KEYS"), true);
+  assert.equal(wizard.includes("trainingNeeded"), true);
+  assert.equal(wizard.includes("onsiteTraining"), true);
+  assert.equal(wizard.includes("onboardingSupport"), true);
+  assert.equal(wizard.includes("customDevNeeded"), true);
+
+  const hu = getCompanyAssessmentLabels("hu");
+  const en = getCompanyAssessmentLabels("en");
+  assert.equal(hu.fields.plannedStartDate, "Tervezett élesindítás dátuma");
+  assert.equal(hu.fields.pilotDate, "Preferált pilot kezdés");
+  assert.equal(hu.fields.pilotUsers, "Pilot felhasználók száma");
+  assert.equal(hu.fields.trainingNeeded, "Oktatás szükséges");
+  assert.equal(hu.fields.onsiteTraining, "Helyszíni oktatás preferált");
+  assert.equal(hu.fields.onboardingSupport, "Bevezetési támogatás szükséges");
+  assert.equal(hu.fields.customDevNeeded, "Egyedi fejlesztés szükséges");
+  assert.equal(hu.fields.notes, "Egyéb megjegyzések");
+  assert.equal(en.fields.plannedStartDate, "Planned go-live date");
+  assert.equal(en.fields.pilotDate, "Preferred pilot start date");
+
+  // C / D / E
+  const dates = normalizeAssessmentRollout({
+    plannedStartDate: "2026-10-01",
+    pilotDate: "2026-09-15",
+    pilotUsers: 8,
+  });
+  assert.equal(dates.plannedStartDate, "2026-10-01");
+  assert.equal(dates.pilotDate, "2026-09-15");
+  assert.equal(dates.pilotUsers, 8);
+  assert.equal(
+    normalizeAssessmentRollout({ pilotUsers: -1 }).pilotUsers,
+    undefined,
+  );
+
+  // F: training NO does not submit stale on-site preference
+  const trainingNo = normalizeAssessmentRollout({
+    trainingNeeded: false,
+    onsiteTraining: true,
+  });
+  assert.equal(trainingNo.trainingNeeded, false);
+  assert.equal(trainingNo.onsiteTraining, undefined);
+
+  // G: training YES keeps on-site preference
+  const trainingYes = normalizeAssessmentRollout({
+    trainingNeeded: true,
+    onsiteTraining: true,
+  });
+  assert.equal(trainingYes.trainingNeeded, true);
+  assert.equal(trainingYes.onsiteTraining, true);
+
+  // H / I
+  const flags = normalizeAssessmentRollout({
+    onboardingSupport: true,
+    customDevNeeded: true,
+    notes: "later discovery",
+  });
+  assert.equal(flags.onboardingSupport, true);
+  assert.equal(flags.customDevNeeded, true);
+  assert.equal(flags.notes, "later discovery");
+
+  // J: legacy payload remains readable
+  const legacy = normalizeAssessmentRollout({
+    desiredSla: "24/7",
+    supportLanguage: "hu",
+  });
+  assert.equal(legacy.desiredSla, "24/7");
+  assert.equal(legacy.supportLanguage, "hu");
 });
