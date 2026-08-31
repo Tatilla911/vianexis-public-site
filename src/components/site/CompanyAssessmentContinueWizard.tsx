@@ -10,6 +10,12 @@ import {
   resolveAssessmentHelper,
   resolveAssessmentModuleLabel,
 } from "@/lib/i18n/company-assessment-labels";
+import {
+  hasAnyExternalIntegration,
+  missingRequiredIntegrationNames,
+  normalizeAssessmentIntegrations,
+  type AssessmentIntegrations,
+} from "@/lib/company-assessment-integrations";
 import type { Locale } from "@/lib/i18n/types";
 import {
   formatContactLanguageLabel,
@@ -56,7 +62,7 @@ type Payload = {
   companySize?: Record<string, number | string[] | undefined>;
   operations?: Record<string, number | boolean | string | undefined>;
   modules?: string[];
-  integrations?: Record<string, string | boolean | string[] | undefined>;
+  integrations?: AssessmentIntegrations;
   rollout?: Record<string, string | number | boolean | undefined>;
   currentStep?: string;
 };
@@ -154,17 +160,28 @@ const OPS_BOOL_KEYS = [
   "support247",
 ] as const;
 
-const INTEGRATION_TEXT_KEYS = [
-  "tms",
-  "erp",
-  "accounting",
-  "gps",
-  "documentStore",
-  "migrationNotes",
-  "customIntegrationNotes",
+const INTEGRATION_CATEGORIES = [
+  {
+    enabledKey: "tmsEnabled",
+    nameKey: "tms",
+  },
+  {
+    enabledKey: "erpEnabled",
+    nameKey: "erp",
+  },
+  {
+    enabledKey: "gpsEnabled",
+    nameKey: "gps",
+  },
+  {
+    enabledKey: "documentStoreEnabled",
+    nameKey: "documentStore",
+  },
+  {
+    enabledKey: "customEnabled",
+    nameKey: "customSystemName",
+  },
 ] as const;
-
-const INTEGRATION_BOOL_KEYS = ["emailImport", "api", "sso"] as const;
 
 const ROLLOUT_TEXT_KEYS = [
   "plannedStartDate",
@@ -347,6 +364,7 @@ export function CompanyAssessmentContinueWizard({
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [stepError, setStepError] = useState<string | null>(null);
   const [payload, setPayload] = useState<Payload>({});
   const [stepIndex, setStepIndex] = useState(0);
   const [saving, setSaving] = useState(false);
@@ -400,6 +418,7 @@ export function CompanyAssessmentContinueWizard({
           ...incoming,
           companyOfficial: hydrateOfficial(incoming.companyOfficial),
           modules: canonicalizeAssessmentModules(incoming.modules),
+          integrations: normalizeAssessmentIntegrations(incoming.integrations),
         });
         setSubmitted(Boolean(body.submitted));
         const idx = STEPS.indexOf(
@@ -446,9 +465,21 @@ export function CompanyAssessmentContinueWizard({
   );
 
   async function goNext() {
+    if (step === "integrations") {
+      const missing = missingRequiredIntegrationNames(payload.integrations);
+      if (missing.length > 0) {
+        setStepError(field("integrationSystemRequired"));
+        return;
+      }
+    }
+    setStepError(null);
     const next = Math.min(stepIndex + 1, STEPS.length - 1);
     const nextStep = STEPS[next];
-    const nextPayload = { ...payload, currentStep: nextStep };
+    const nextPayload = {
+      ...payload,
+      currentStep: nextStep,
+      integrations: normalizeAssessmentIntegrations(payload.integrations),
+    };
     setPayload(nextPayload);
     setStepIndex(next);
     await save(nextPayload, nextStep);
@@ -461,7 +492,14 @@ export function CompanyAssessmentContinueWizard({
   async function handleSubmit() {
     setSubmitting(true);
     try {
-      await save({ ...payload, currentStep: "summary" }, "summary");
+      await save(
+        {
+          ...payload,
+          currentStep: "summary",
+          integrations: normalizeAssessmentIntegrations(payload.integrations),
+        },
+        "summary",
+      );
       const res = await fetch(
         `/api/company-assessments/continue/${encodeURIComponent(token)}/submit`,
         { method: "POST" },
@@ -594,11 +632,42 @@ export function CompanyAssessmentContinueWizard({
     }));
   }
 
-  function setIntegration(key: string, value: string | boolean) {
+  function setIntegrationFlag(
+    enabledKey: (typeof INTEGRATION_CATEGORIES)[number]["enabledKey"],
+    enabled: boolean,
+  ) {
+    setPayload((p) => {
+      const current = { ...(p.integrations ?? {}) };
+      current[enabledKey] = enabled;
+      if (!enabled) {
+        const category = INTEGRATION_CATEGORIES.find(
+          (item) => item.enabledKey === enabledKey,
+        );
+        if (category) current[category.nameKey] = undefined;
+        if (enabledKey === "customEnabled") {
+          current.customIntegrationNotes = undefined;
+        }
+      }
+      return {
+        ...p,
+        integrations: normalizeAssessmentIntegrations(current),
+      };
+    });
+    setStepError(null);
+  }
+
+  function setIntegrationValue(
+    key: keyof AssessmentIntegrations,
+    value: string | boolean,
+  ) {
     setPayload((p) => ({
       ...p,
-      integrations: { ...(p.integrations ?? {}), [key]: value },
+      integrations: normalizeAssessmentIntegrations({
+        ...(p.integrations ?? {}),
+        [key]: value,
+      }),
     }));
+    setStepError(null);
   }
 
   function setRollout(key: string, value: string | boolean | number) {
@@ -717,23 +786,41 @@ export function CompanyAssessmentContinueWizard({
     );
     rows.push({ section: labels.stepModules, items: moduleItems });
 
+    const integrations = normalizeAssessmentIntegrations(payload.integrations);
     const integrationItems = [
-      ...INTEGRATION_TEXT_KEYS.map((key) => ({
-        label: field(key),
-        value: formatDisplayValue(
-          payload.integrations?.[key],
-          yesNo.yes,
-          yesNo.no,
-        ),
-      })),
-      ...INTEGRATION_BOOL_KEYS.map((key) => ({
-        label: field(key),
-        value: formatDisplayValue(
-          payload.integrations?.[key],
-          yesNo.yes,
-          yesNo.no,
-        ),
-      })),
+      ...INTEGRATION_CATEGORIES.flatMap((category) => {
+        if (!integrations[category.enabledKey]) return [];
+        return [
+          {
+            label: field(category.nameKey),
+            value: formatDisplayValue(
+              integrations[category.nameKey],
+              yesNo.yes,
+              yesNo.no,
+            ),
+          },
+        ];
+      }),
+      ...(integrations.customEnabled && integrations.customIntegrationNotes
+        ? [
+            {
+              label: field("customIntegrationNotes"),
+              value: integrations.customIntegrationNotes,
+            },
+          ]
+        : []),
+      ...(integrations.dataMigrationRequired
+        ? [
+            {
+              label: field("migrationNotes"),
+              value: formatDisplayValue(
+                integrations.migrationNotes,
+                yesNo.yes,
+                yesNo.no,
+              ),
+            },
+          ]
+        : []),
     ].filter((i) => i.value !== "—");
     rows.push({ section: labels.stepIntegrations, items: integrationItems });
 
@@ -1123,34 +1210,107 @@ export function CompanyAssessmentContinueWizard({
       ) : null}
 
       {step === "integrations" ? (
-        <div className="grid gap-3 md:grid-cols-2">
-          {INTEGRATION_TEXT_KEYS.map((key) => (
-            <label key={key} className="form-label min-w-0 md:col-span-2">
-              <FieldLabel label={field(key)} helper={helper(key)} />
-              <input
-                className={inputClass()}
-                dir="auto"
-                value={String(payload.integrations?.[key] ?? "")}
-                onChange={(e) => setIntegration(key, e.target.value)}
-              />
-            </label>
-          ))}
-          <div className="grid gap-2 md:col-span-2 sm:grid-cols-2">
-            {INTEGRATION_BOOL_KEYS.map((key) => (
-              <label
-                key={key}
-                className="flex min-w-0 items-start gap-2 text-brand-ink"
+        <div className="grid gap-4">
+          {INTEGRATION_CATEGORIES.map((category) => {
+            const enabled = Boolean(
+              payload.integrations?.[category.enabledKey],
+            );
+            return (
+              <div
+                key={category.enabledKey}
+                className="grid gap-3 rounded-md border border-navy-700 p-3"
               >
-                <input
-                  className="mt-1 shrink-0"
-                  type="checkbox"
-                  checked={Boolean(payload.integrations?.[key])}
-                  onChange={(e) => setIntegration(key, e.target.checked)}
-                />
-                <span className="leading-snug">{field(key)}</span>
+                <label className="form-label min-w-0">
+                  <FieldLabel label={field(category.enabledKey)} />
+                  <select
+                    className={inputClass()}
+                    value={enabled ? "yes" : "no"}
+                    onChange={(e) =>
+                      setIntegrationFlag(
+                        category.enabledKey,
+                        e.target.value === "yes",
+                      )
+                    }
+                  >
+                    <option value="no">{labels.no}</option>
+                    <option value="yes">{labels.yes}</option>
+                  </select>
+                </label>
+                {enabled ? (
+                  <label className="form-label min-w-0">
+                    <FieldLabel
+                      label={field(category.nameKey)}
+                      helper={helper(category.nameKey)}
+                    />
+                    <input
+                      className={inputClass()}
+                      dir="auto"
+                      value={String(
+                        payload.integrations?.[category.nameKey] ?? "",
+                      )}
+                      onChange={(e) =>
+                        setIntegrationValue(category.nameKey, e.target.value)
+                      }
+                    />
+                  </label>
+                ) : null}
+                {category.enabledKey === "customEnabled" && enabled ? (
+                  <label className="form-label min-w-0">
+                    <FieldLabel label={field("customIntegrationNotes")} />
+                    <textarea
+                      className={`${inputClass()} min-h-24`}
+                      value={String(
+                        payload.integrations?.customIntegrationNotes ?? "",
+                      )}
+                      onChange={(e) =>
+                        setIntegrationValue(
+                          "customIntegrationNotes",
+                          e.target.value,
+                        )
+                      }
+                    />
+                  </label>
+                ) : null}
+              </div>
+            );
+          })}
+          {hasAnyExternalIntegration(payload.integrations) ? (
+            <div className="grid gap-3 rounded-md border border-navy-700 p-3">
+              <label className="form-label min-w-0">
+                <FieldLabel label={field("dataMigrationRequired")} />
+                <select
+                  className={inputClass()}
+                  value={
+                    payload.integrations?.dataMigrationRequired ? "yes" : "no"
+                  }
+                  onChange={(e) =>
+                    setIntegrationValue(
+                      "dataMigrationRequired",
+                      e.target.value === "yes",
+                    )
+                  }
+                >
+                  <option value="no">{labels.no}</option>
+                  <option value="yes">{labels.yes}</option>
+                </select>
               </label>
-            ))}
-          </div>
+              {payload.integrations?.dataMigrationRequired ? (
+                <label className="form-label min-w-0">
+                  <FieldLabel
+                    label={field("migrationNotes")}
+                    helper={helper("migrationNotes")}
+                  />
+                  <textarea
+                    className={`${inputClass()} min-h-24`}
+                    value={String(payload.integrations?.migrationNotes ?? "")}
+                    onChange={(e) =>
+                      setIntegrationValue("migrationNotes", e.target.value)
+                    }
+                  />
+                </label>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       ) : null}
 
@@ -1248,6 +1408,8 @@ export function CompanyAssessmentContinueWizard({
         </div>
       ) : null}
 
+      {stepError ? <p className="text-danger">{stepError}</p> : null}
+
       <div className="flex flex-wrap gap-3">
         <button
           type="button"
@@ -1279,7 +1441,18 @@ export function CompanyAssessmentContinueWizard({
         <button
           type="button"
           className="rounded-md border border-cyan-accent/40 px-4 py-2 text-cyan-glow"
-          onClick={() => void save({ ...payload, currentStep: step }, step)}
+          onClick={() =>
+            void save(
+              {
+                ...payload,
+                currentStep: step,
+                integrations: normalizeAssessmentIntegrations(
+                  payload.integrations,
+                ),
+              },
+              step,
+            )
+          }
           disabled={saving || submitting}
         >
           {saving ? labels.saving : labels.save}

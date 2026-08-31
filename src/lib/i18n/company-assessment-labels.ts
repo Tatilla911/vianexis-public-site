@@ -12,6 +12,7 @@ import { companyAssessmentLabelsGenerated } from './company-assessment-labels.ge
 import { ADDRESS_FIELD_DRAFTS } from './company-assessment-address-field-drafts';
 import { TRANSPORT_SCOPE_FIELD_DRAFTS } from './company-assessment-transport-scope-drafts';
 import { COMMERCIAL_MODULE_LABEL_DRAFTS } from './company-assessment-module-drafts';
+import { INTEGRATION_FIELD_DRAFTS, INTEGRATION_HELPER_DRAFTS } from './company-assessment-integration-drafts';
 import { locales } from './locales';
 
 export type CompanyAssessmentLabels = {
@@ -91,13 +92,22 @@ const EN_FIELDS: Record<string, string> = {
   subcontractedTrips: 'Trips handled by subcontractors',
   nightWeekendDispatch: 'Night / weekend dispatch operations',
   support247: '24/7 operations or support requirement',
-  tms: 'Current TMS (transport management system)',
-  erp: 'Current ERP system',
+  tmsEnabled: 'Do you currently use a TMS / transport management system?',
+  tms: 'Which TMS do you use?',
+  erpEnabled: 'Do you currently use an ERP system?',
+  erp: 'Which ERP system do you use?',
+  gpsEnabled: 'Do you currently use a GPS / telematics system?',
+  gps: 'Which GPS / telematics provider do you use?',
+  documentStoreEnabled:
+    'Do you currently use an external document storage system?',
+  documentStore: 'Which document storage system do you use?',
+  customEnabled: 'Do you need any other external system integration?',
+  customSystemName: 'Which system would you like to connect to ViaNexis?',
+  customIntegrationNotes: 'Additional integration notes (optional)',
+  dataMigrationRequired: 'Do you need to migrate existing data?',
+  migrationNotes: 'Which data / from which system would you like to migrate?',
+  integrationSystemRequired: 'Please name the system.',
   accounting: 'Accounting / finance system',
-  gps: 'GPS / telematics provider',
-  documentStore: 'Document storage system',
-  migrationNotes: 'Data migration notes',
-  customIntegrationNotes: 'Custom integration notes',
   emailImport: 'Email-based document import',
   api: 'API integration required',
   sso: 'Single sign-on (SSO) required',
@@ -177,13 +187,21 @@ const HU_FIELDS: Record<string, string> = {
   subcontractedTrips: 'Alvállalkozóval végzett fuvarok',
   nightWeekendDispatch: 'Éjszakai / hétvégi diszpécserszolgálat',
   support247: '24/7 működés vagy támogatási igény',
-  tms: 'Jelenlegi TMS (fuvarszervező rendszer)',
-  erp: 'Jelenlegi ERP rendszer',
+  tmsEnabled: 'Használnak jelenleg TMS / fuvarszervező rendszert?',
+  tms: 'Milyen TMS rendszert használnak?',
+  erpEnabled: 'Használnak jelenleg ERP rendszert?',
+  erp: 'Milyen ERP rendszert használnak?',
+  gpsEnabled: 'Használnak GPS / telematikai rendszert?',
+  gps: 'Milyen GPS / telematikai szolgáltatót használnak?',
+  documentStoreEnabled: 'Használnak külső dokumentumtároló rendszert?',
+  documentStore: 'Milyen dokumentumtároló rendszert használnak?',
+  customEnabled: 'Szükségük van egyéb külső rendszer integrációjára?',
+  customSystemName: 'Milyen rendszerrel szeretnék összekapcsolni a ViaNexist?',
+  customIntegrationNotes: 'További integrációs megjegyzések (opcionális)',
+  dataMigrationRequired: 'Szükséges meglévő adatok migrálása?',
+  migrationNotes: 'Milyen adatokat / rendszerből szeretnének migrálni?',
+  integrationSystemRequired: 'Kérjük, nevezzék meg a rendszert.',
   accounting: 'Könyvelési / pénzügyi rendszer',
-  gps: 'GPS / telematikai szolgáltató',
-  documentStore: 'Dokumentumtároló rendszer',
-  migrationNotes: 'Adatmigrációs megjegyzések',
-  customIntegrationNotes: 'Egyedi integrációs megjegyzések',
   emailImport: 'E-mail alapú dokumentumimport',
   api: 'API-integráció szükséges',
   sso: 'Egyszeri bejelentkezés (SSO) szükséges',
@@ -229,9 +247,14 @@ const EN_HELPERS: Record<string, string> = {
   operatingCountries: 'Use country codes separated by commas (e.g. HU, DE, AT).',
   tms: 'If you are not sure, your technical contact can provide this later.',
   erp: 'If you are not sure, your technical contact can provide this later.',
+  gps: 'If you are not sure, your technical contact can provide this later.',
+  documentStore:
+    'If you are not sure, your technical contact can provide this later.',
+  customSystemName:
+    'Name the system only — no passwords, API keys, or account secrets.',
   api: 'If you are not sure, your technical contact can provide this later.',
   sso: 'If you are not sure, your technical contact can provide this later.',
-  migrationNotes: 'Briefly note systems or data that may need migration.',
+  migrationNotes: 'Describe the data and the source system at a high level.',
   desiredSla: 'E.g. standard business hours, extended, or 24/7.',
 };
 
@@ -243,9 +266,15 @@ const HU_HELPERS: Record<string, string> = {
   operatingCountries: 'Országkódok vesszővel elválasztva (pl. HU, DE, AT).',
   tms: 'Ha ezt nem tudja, később a technikai kapcsolattartó is megadhatja.',
   erp: 'Ha ezt nem tudja, később a technikai kapcsolattartó is megadhatja.',
+  gps: 'Ha ezt nem tudja, később a technikai kapcsolattartó is megadhatja.',
+  documentStore:
+    'Ha ezt nem tudja, később a technikai kapcsolattartó is megadhatja.',
+  customSystemName:
+    'Csak a rendszer nevét adja meg — jelszót, API-kulcsot vagy fióktitkot ne.',
   api: 'Ha ezt nem tudja, később a technikai kapcsolattartó is megadhatja.',
   sso: 'Ha ezt nem tudja, később a technikai kapcsolattartó is megadhatja.',
-  migrationNotes: 'Röviden jelezze, milyen rendszerek vagy adatok migrációja merülhet fel.',
+  migrationNotes:
+    'Röviden jelezze, milyen adatok és melyik rendszerből kerülnének át.',
   desiredSla: 'Pl. munkaidős, kiterjesztett vagy 24/7 támogatás.',
 };
 
@@ -417,8 +446,10 @@ function withAddressFieldDrafts(
   const fieldDrafts = {
     ...(ADDRESS_FIELD_DRAFTS[locale] ?? {}),
     ...(TRANSPORT_SCOPE_FIELD_DRAFTS[locale] ?? {}),
+    ...(INTEGRATION_FIELD_DRAFTS[locale] ?? {}),
   };
   const moduleDrafts = COMMERCIAL_MODULE_LABEL_DRAFTS[locale] ?? {};
+  const helperDrafts = INTEGRATION_HELPER_DRAFTS[locale] ?? {};
   const nextFields =
     Object.keys(fieldDrafts).length === 0
       ? pack.fields
@@ -433,10 +464,24 @@ function withAddressFieldDrafts(
           ...moduleDrafts,
           ...pack.modules,
         };
-  if (nextFields === pack.fields && nextModules === pack.modules) return pack;
+  const nextHelpers =
+    Object.keys(helperDrafts).length === 0
+      ? pack.helpers
+      : {
+          ...helperDrafts,
+          ...pack.helpers,
+        };
+  if (
+    nextFields === pack.fields &&
+    nextModules === pack.modules &&
+    nextHelpers === pack.helpers
+  ) {
+    return pack;
+  }
   return {
     ...pack,
     fields: nextFields,
+    helpers: nextHelpers,
     modules: nextModules,
   };
 }

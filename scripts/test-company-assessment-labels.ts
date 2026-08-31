@@ -29,6 +29,10 @@ import {
 } from "../src/lib/i18n/language-registry";
 import { locales } from "../src/lib/i18n/locales";
 import { switchLocalePath } from "../src/lib/i18n/paths";
+import {
+  missingRequiredIntegrationNames,
+  normalizeAssessmentIntegrations,
+} from "../src/lib/company-assessment-integrations";
 
 const KNOWN_RAW_KEYS = [
   "monthlyTrips",
@@ -473,4 +477,108 @@ test("F: contact language shows localized display label, not raw hu", () => {
   assert.equal(formatContactLanguageLabel("hu", "hu"), "Magyar (HU)");
   assert.equal(formatContactLanguageLabel("hu", "en"), "Hungarian (HU)");
   assert.notEqual(formatContactLanguageLabel("hu", "hu"), "hu");
+});
+
+test("conditional integrations: wizard hides accounting and stale names", () => {
+  const wizard = readFileSync(
+    join(
+      dirname(fileURLToPath(import.meta.url)),
+      "../src/components/site/CompanyAssessmentContinueWizard.tsx",
+    ),
+    "utf8",
+  );
+  assert.equal(wizard.includes("accounting"), false);
+  assert.equal(wizard.includes("emailImport"), false);
+  assert.equal(wizard.includes("INTEGRATION_TEXT_KEYS"), false);
+  assert.equal(wizard.includes("password"), false);
+  assert.equal(wizard.includes("apiKey"), false);
+  assert.equal(wizard.includes("api_key"), false);
+  assert.equal(wizard.includes("tmsEnabled"), true);
+  assert.equal(wizard.includes("dataMigrationRequired"), true);
+
+  const hu = getCompanyAssessmentLabels("hu");
+  const en = getCompanyAssessmentLabels("en");
+  assert.equal(
+    hu.fields.tmsEnabled,
+    "Használnak jelenleg TMS / fuvarszervező rendszert?",
+  );
+  assert.equal(hu.fields.tms, "Milyen TMS rendszert használnak?");
+  assert.equal(hu.fields.erpEnabled, "Használnak jelenleg ERP rendszert?");
+  assert.equal(hu.fields.gpsEnabled, "Használnak GPS / telematikai rendszert?");
+  assert.equal(
+    hu.fields.documentStoreEnabled,
+    "Használnak külső dokumentumtároló rendszert?",
+  );
+  assert.equal(
+    hu.fields.customEnabled,
+    "Szükségük van egyéb külső rendszer integrációjára?",
+  );
+  assert.equal(
+    hu.fields.dataMigrationRequired,
+    "Szükséges meglévő adatok migrálása?",
+  );
+  assert.equal(
+    en.fields.tmsEnabled,
+    "Do you currently use a TMS / transport management system?",
+  );
+
+  const tmsNo = normalizeAssessmentIntegrations({
+    tmsEnabled: false,
+    tms: "Transics",
+  });
+  assert.equal(tmsNo.tmsEnabled, false);
+  assert.equal(tmsNo.tms, undefined);
+
+  const tmsYes = normalizeAssessmentIntegrations({
+    tmsEnabled: true,
+    tms: "Transics",
+  });
+  assert.equal(tmsYes.tms, "Transics");
+  assert.deepEqual(missingRequiredIntegrationNames(tmsYes), []);
+  assert.deepEqual(
+    missingRequiredIntegrationNames({ tmsEnabled: true, tms: "" }),
+    ["tms"],
+  );
+
+  const erp = normalizeAssessmentIntegrations({ erpEnabled: true, erp: "SAP" });
+  assert.equal(erp.erp, "SAP");
+  const gps = normalizeAssessmentIntegrations({
+    gpsEnabled: true,
+    gps: "Webfleet",
+  });
+  assert.equal(gps.gps, "Webfleet");
+  const docs = normalizeAssessmentIntegrations({
+    documentStoreEnabled: true,
+    documentStore: "SharePoint",
+  });
+  assert.equal(docs.documentStore, "SharePoint");
+  const custom = normalizeAssessmentIntegrations({
+    customEnabled: true,
+    customSystemName: "Partner API",
+  });
+  assert.equal(custom.customSystemName, "Partner API");
+
+  const migrationOff = normalizeAssessmentIntegrations({
+    tmsEnabled: false,
+    dataMigrationRequired: true,
+    migrationNotes: "import trips",
+  });
+  assert.equal(migrationOff.dataMigrationRequired, false);
+  assert.equal(migrationOff.migrationNotes, undefined);
+
+  const migrationOn = normalizeAssessmentIntegrations({
+    tmsEnabled: true,
+    tms: "Transics",
+    dataMigrationRequired: true,
+    migrationNotes: "trips from Transics",
+  });
+  assert.equal(migrationOn.dataMigrationRequired, true);
+  assert.equal(migrationOn.migrationNotes, "trips from Transics");
+
+  const legacy = normalizeAssessmentIntegrations({
+    tms: "Transics",
+    accounting: "Navision",
+  });
+  assert.equal(legacy.tmsEnabled, true);
+  assert.equal(legacy.accounting, "Navision");
 });
