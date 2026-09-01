@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   assertNoSecrets,
   buildUpstreamQuoteBody,
+  resolveQuoteLocale,
   validateVisibleAnswers,
   type QuoteAnswers,
   type QuoteLocale,
@@ -58,7 +59,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "privacy_required" }, { status: 400 });
   }
 
-  const locale: QuoteLocale = body.locale === "hu" ? "hu" : "en";
+  const locale: QuoteLocale = resolveQuoteLocale(String(body.locale ?? "en"));
   const answers: QuoteAnswers =
     body.answers && typeof body.answers === "object" ? body.answers : {};
 

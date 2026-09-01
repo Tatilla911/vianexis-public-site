@@ -20,7 +20,7 @@ import { resolveBrandStory } from "@/lib/i18n/brand-story";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
 import { resolveVisualMarketing } from "@/lib/i18n/visual-marketing";
-import { QUOTE_CTA } from "@/lib/quote-questionnaire";
+import { getQuoteCtaLabel } from "@/lib/quote-questionnaire";
 import { quotePathForLocale } from "@/lib/quote-questionnaire/paths";
 import { siteConfig } from "@/lib/site-config";
 
@@ -248,7 +248,7 @@ export function HomePage({ locale }: HomePageProps) {
         }}
         secondaryCta={{
           href: quotePathForLocale(locale),
-          label: locale === "hu" ? QUOTE_CTA.hu : QUOTE_CTA.en,
+          label: getQuoteCtaLabel(locale),
         }}
       />
 

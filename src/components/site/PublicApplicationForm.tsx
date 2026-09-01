@@ -14,6 +14,11 @@ import {
   getAccessRequestUiLabels,
 } from "@/lib/i18n/access-request-labels";
 import {
+  applicationSuccessContinueUrlNote,
+  applicationSuccessStatusAwaitingIntake,
+} from "@/lib/i18n/application-success-copy";
+import { resolveDateTimeLocale } from "@/lib/i18n/bilingual-resolver";
+import {
   DETECTED_COUNTRY_COOKIE_NAME,
   LOCALE_SOURCE_COOKIE_NAME,
   normalizeAppLocale,
@@ -286,7 +291,7 @@ export function PublicApplicationForm({
 
   if (success) {
     const submittedLabel = success.submittedAt
-      ? new Date(success.submittedAt).toLocaleString(locale === "hu" ? "hu-HU" : "en-GB")
+      ? new Date(success.submittedAt).toLocaleString(resolveDateTimeLocale(locale))
       : "—";
     const emailMessage = describeEmailDeliveryStatus(
       locale,
@@ -317,17 +322,13 @@ export function PublicApplicationForm({
             <dt className="font-semibold text-brand-ink">{copy.common.statusLabel}</dt>
             <dd>
               {success.continueUrlIssued
-                ? locale === "hu"
-                  ? "Részletes adatbekérőre vár"
-                  : "Awaiting detailed intake"
+                ? applicationSuccessStatusAwaitingIntake(locale)
                 : copy.common.statusUnderReview}
             </dd>
           </div>
           {success.continueUrlIssued ? (
             <p className="mt-2 text-body text-neutral-grey">
-              {locale === "hu"
-                ? "A folytató linket e-mailben küldtük. A végleges admin jóváhagyás csak a részletes adatbekérő beküldése után lehetséges."
-                : "A continuation link was emailed. Final admin approval is only possible after the detailed intake is submitted."}
+              {applicationSuccessContinueUrlNote(locale)}
             </p>
           ) : null}
           <div className="flex flex-wrap gap-2">

@@ -5,9 +5,9 @@ import {
   labelFor,
   optionLabel,
   type QuoteAnswers,
-  type QuoteLocale,
   type QuoteQuestion,
 } from "./schema";
+import { resolveBilingualText, type QuoteLocale } from "./locale-resolver";
 import { isQuestionVisible, resolveQuotePath } from "./visibility";
 
 export type ReviewSection = {
@@ -65,7 +65,7 @@ export function buildReviewSections(
     if (items.length === 0) continue;
     sections.push({
       stepId: step.id,
-      title: locale === "hu" ? step.hu : step.en,
+      title: resolveBilingualText(locale, step.hu, step.en),
       items,
     });
   }

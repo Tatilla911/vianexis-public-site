@@ -1,4 +1,8 @@
-import type { QuoteLocale } from "./schema";
+import {
+  resolveBilingualText,
+  resolveQuoteLocale,
+  type QuoteLocale,
+} from "./locale-resolver";
 import { QUOTE_QUESTIONNAIRE_VERSION } from "./schema";
 
 export type QuoteUiCopy = {
@@ -25,6 +29,8 @@ export type QuoteUiCopy = {
   submitError: string;
   intakeUnavailable: string;
   exactOptional: string;
+  selectPlaceholder: string;
+  backToHome: string;
 };
 
 const HU: QuoteUiCopy = {
@@ -55,6 +61,8 @@ const HU: QuoteUiCopy = {
   intakeUnavailable:
     "Az ajánlatkérő űrlap jelenleg nem érhető el. Kérjük, vegye fel a kapcsolatot velünk e-mailben.",
   exactOptional: "Pontos szám (opcionális)",
+  selectPlaceholder: "Válasszon…",
+  backToHome: "Vissza a főoldalra",
 };
 
 const EN: QuoteUiCopy = {
@@ -86,10 +94,16 @@ const EN: QuoteUiCopy = {
   intakeUnavailable:
     "The quote request form is currently unavailable. Please contact us by email.",
   exactOptional: "Exact number (optional)",
+  selectPlaceholder: "Select…",
+  backToHome: "Back to home",
 };
 
 export function getQuoteUiCopy(locale: QuoteLocale): QuoteUiCopy {
-  return locale === "hu" ? HU : EN;
+  return resolveQuoteLocale(locale) === "hu" ? HU : EN;
+}
+
+export function getQuoteCtaLabel(locale: QuoteLocale): string {
+  return resolveBilingualText(locale, QUOTE_CTA.hu, QUOTE_CTA.en);
 }
 
 export function quoteDraftStorageKey(locale: QuoteLocale): string {

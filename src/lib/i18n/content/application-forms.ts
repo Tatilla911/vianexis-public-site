@@ -1,3 +1,5 @@
+import { resolveLanguageWithFallback } from "../language-registry";
+
 export const applicationFormsEn = {
   common: {
     privacy: "I accept the privacy policy and consent to data processing. *",
@@ -140,5 +142,6 @@ export const applicationFormsHu = {
 } as const;
 
 export function resolveApplicationForms(locale: string) {
-  return locale === "hu" ? applicationFormsHu : applicationFormsEn;
+  const code = resolveLanguageWithFallback(locale).code;
+  return code === "hu" ? applicationFormsHu : applicationFormsEn;
 }

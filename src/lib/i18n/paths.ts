@@ -1,5 +1,6 @@
 import { locales } from "./locales";
 import type { Locale } from "./types";
+import { resolveLanguageWithFallback } from "./language-registry";
 
 export function localePath(locale: Locale, path = "/"): string {
   if (path === "/") return `/${locale}`;
@@ -25,7 +26,8 @@ export function switchLocalePath(pathname: string, locale: Locale): string {
       : localePath(locale, "/documentation");
   }
   if (slug === "/ajanlatkeres" || slug === "/request-a-quote") {
-    return locale === "hu"
+    const code = resolveLanguageWithFallback(locale).code;
+    return code === "hu"
       ? localePath(locale, "/ajanlatkeres")
       : localePath(locale, "/request-a-quote");
   }

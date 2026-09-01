@@ -3,9 +3,11 @@
  * Source: Step 2 customer-facing HU/EN + conditions. No list prices.
  */
 
-export const QUOTE_QUESTIONNAIRE_VERSION = "pricing-questionnaire-v1";
+import type { QuoteLocale } from "./locale-resolver";
 
-export type QuoteLocale = "hu" | "en";
+export type { QuoteLocale };
+
+export const QUOTE_QUESTIONNAIRE_VERSION = "pricing-questionnaire-v1";
 
 export type AnswerType =
   | "yes_no_unsure"
@@ -1130,23 +1132,26 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
   },
 ];
 
+import { resolveBilingualText } from "./locale-resolver";
+
 export function labelFor(
   q: QuoteQuestion,
   locale: QuoteLocale,
 ): string {
-  return locale === "hu" ? q.hu : q.en;
+  return resolveBilingualText(locale, q.hu, q.en);
 }
 
 export function helpFor(
   q: QuoteQuestion,
   locale: QuoteLocale,
 ): string | undefined {
-  return locale === "hu" ? q.helpHu : q.helpEn;
+  const help = resolveBilingualText(locale, q.helpHu ?? "", q.helpEn ?? "");
+  return help || undefined;
 }
 
 export function optionLabel(
   opt: QuoteOption,
   locale: QuoteLocale,
 ): string {
-  return locale === "hu" ? opt.hu : opt.en;
+  return resolveBilingualText(locale, opt.hu, opt.en);
 }

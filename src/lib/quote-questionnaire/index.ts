@@ -20,7 +20,12 @@ export {
 } from "./visibility";
 export { normalizePricingInputs, asModuleList } from "./normalize";
 export { validateQuestion, validateStep, validateVisibleAnswers } from "./validation";
-export { getQuoteUiCopy, QUOTE_CTA, quoteDraftStorageKey } from "./ui-copy";
+export { getQuoteUiCopy, getQuoteCtaLabel, QUOTE_CTA, quoteDraftStorageKey } from "./ui-copy";
+export {
+  resolveBilingualText,
+  resolveDateTimeLocale,
+  resolveQuoteLocale,
+} from "./locale-resolver";
 export { loadQuoteDraft, saveQuoteDraft, clearQuoteDraft } from "./draft";
 export { buildReviewSections } from "./review";
 export {

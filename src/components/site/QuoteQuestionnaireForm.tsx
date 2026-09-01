@@ -22,6 +22,8 @@ import {
   loadQuoteDraft,
   optionLabel,
   questionsForStep,
+  resolveBilingualText,
+  resolveQuoteLocale,
   saveQuoteDraft,
   validateStep,
   validateVisibleAnswers,
@@ -226,11 +228,11 @@ function QuestionField({
           onChange={(e) => onChange(e.target.value || null)}
         >
           <option value="">
-            {locale === "hu" ? "Válasszon…" : "Select…"}
+            {resolveBilingualText(locale, "Válasszon…", "Select…")}
           </option>
           {COUNTRIES.map((c) => (
             <option key={c.value} value={c.value}>
-              {locale === "hu" ? c.hu : c.en}
+              {resolveBilingualText(locale, c.hu, c.en)}
             </option>
           ))}
         </select>
@@ -312,7 +314,7 @@ function QuestionField({
 }
 
 export function QuoteQuestionnaireForm({ locale }: { locale: Locale }) {
-  const quoteLocale: QuoteLocale = locale === "hu" ? "hu" : "en";
+  const quoteLocale: QuoteLocale = resolveQuoteLocale(locale);
   const copy = getQuoteUiCopy(quoteLocale);
   const [answers, setAnswers] = useState<QuoteAnswers>({});
   const [stepId, setStepId] = useState("company");
@@ -584,7 +586,7 @@ export function QuoteQuestionnaireForm({ locale }: { locale: Locale }) {
           <span className="font-semibold text-gold-core">{success.reference}</span>
         </p>
         <Button href={localePath(locale)} variant="secondary">
-          {locale === "hu" ? "Vissza a főoldalra" : "Back to home"}
+          {copy.backToHome}
         </Button>
       </div>
     );

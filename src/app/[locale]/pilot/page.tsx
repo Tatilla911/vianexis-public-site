@@ -7,7 +7,7 @@ import { Section } from "@/components/site/Section";
 import { getContent, resolveLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
-import { QUOTE_CTA } from "@/lib/quote-questionnaire";
+import { getQuoteCtaLabel } from "@/lib/quote-questionnaire";
 import { quotePathForLocale } from "@/lib/quote-questionnaire/paths";
 import { siteConfig } from "@/lib/site-config";
 
@@ -58,7 +58,7 @@ export default async function PilotPage({ params }: PageProps) {
               href={quotePathForLocale(locale)}
               className="font-semibold text-gold-core hover:underline"
             >
-              {locale === "hu" ? QUOTE_CTA.hu : QUOTE_CTA.en}
+              {getQuoteCtaLabel(locale)}
             </Link>
           </p>
         </DisclaimerBox>

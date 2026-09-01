@@ -1,8 +1,40 @@
-import type { QuoteAnswers, QuoteLocale, QuoteQuestion } from "./schema";
+import type { QuoteAnswers, QuoteQuestion } from "./schema";
 import { QUOTE_QUESTIONS } from "./schema";
+import { resolveBilingualText, type QuoteLocale } from "./locale-resolver";
 import { isQuestionVisible, resolveQuotePath } from "./visibility";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const VALIDATION = {
+  required: {
+    hu: "Kötelező mező.",
+    en: "This field is required.",
+  },
+  emailInvalid: {
+    hu: "Érvényes e-mail-címet adjon meg.",
+    en: "Enter a valid email address.",
+  },
+  numberInvalid: {
+    hu: "Érvényes, nem negatív számot adjon meg.",
+    en: "Enter a valid non-negative number.",
+  },
+  activityOther: {
+    hu: "Kérjük, röviden írja le az egyéb tevékenységet.",
+    en: "Please briefly describe the other activity.",
+  },
+  forbiddenSecret: {
+    hu: "Ne adjon meg jelszót, API-kulcsot vagy titkos hitelesítőt.",
+    en: "Do not enter passwords, API keys or secrets.",
+  },
+} as const;
+
+function validationMessage(
+  locale: QuoteLocale,
+  key: keyof typeof VALIDATION,
+): string {
+  const entry = VALIDATION[key];
+  return resolveBilingualText(locale, entry.hu, entry.en);
+}
 
 export function validateQuestion(
   q: QuoteQuestion,
@@ -19,14 +51,12 @@ export function validateQuestion(
     (Array.isArray(raw) && raw.length === 0);
 
   if (q.required && empty) {
-    return locale === "hu" ? "Kötelező mező." : "This field is required.";
+    return validationMessage(locale, "required");
   }
   if (empty) return null;
 
   if (q.type === "email" && !EMAIL_RE.test(String(raw).trim())) {
-    return locale === "hu"
-      ? "Érvényes e-mail-címet adjon meg."
-      : "Enter a valid email address.";
+    return validationMessage(locale, "emailInvalid");
   }
 
   if (
@@ -35,9 +65,7 @@ export function validateQuestion(
   ) {
     const n = Number(String(raw).replace(/[^\d]/g, ""));
     if (!Number.isFinite(n) || n < 0 || n > 100000) {
-      return locale === "hu"
-        ? "Érvényes, nem negatív számot adjon meg."
-        : "Enter a valid non-negative number.";
+      return validationMessage(locale, "numberInvalid");
     }
   }
 
@@ -47,9 +75,7 @@ export function validateQuestion(
     answers.activity_types.includes("other") &&
     String(raw).trim() === ""
   ) {
-    return locale === "hu"
-      ? "Kérjük, röviden írja le az egyéb tevékenységet."
-      : "Please briefly describe the other activity.";
+    return validationMessage(locale, "activityOther");
   }
 
   const forbidden =
@@ -58,9 +84,7 @@ export function validateQuestion(
     (q.type === "text" || q.type === "textarea") &&
     forbidden.test(String(raw))
   ) {
-    return locale === "hu"
-      ? "Ne adjon meg jelszót, API-kulcsot vagy titkos hitelesítőt."
-      : "Do not enter passwords, API keys or secrets.";
+    return validationMessage(locale, "forbiddenSecret");
   }
 
   return null;
