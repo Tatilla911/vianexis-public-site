@@ -548,6 +548,31 @@ test("conditional integrations: wizard hides accounting and stale names", () => 
     gps: "Webfleet",
   });
   assert.equal(gps.gps, "Webfleet");
+  const telematics = normalizeAssessmentIntegrations({
+    gpsEnabled: true,
+    gps: "HolAzAutó",
+    telematicsIntegrationRequested: true,
+    telematicsVehicleCount: 50,
+    telematicsCapabilities: { tachograph: true, fuel: false },
+  });
+  assert.equal(telematics.telematicsIntegrationRequested, true);
+  assert.equal(telematics.telematicsVehicleCount, 50);
+  assert.equal(telematics.telematicsCapabilities?.tachograph, true);
+  assert.equal(telematics.telematicsCapabilities?.fuel, undefined);
+  assert.equal(
+    hu.fields.telematicsIntegrationRequested,
+    "Kérik, hogy a ViaNexis integrálja ezt a telematikai szolgáltatót?",
+  );
+  assert.match(en.fields.telematicsVehicleCount, /active vehicles/);
+  const noSecrets = readFileSync(
+    join(
+      dirname(fileURLToPath(import.meta.url)),
+      "../src/components/site/CompanyAssessmentContinueWizard.tsx",
+    ),
+    "utf8",
+  );
+  assert.equal(noSecrets.includes("apiKey"), false);
+  assert.equal(noSecrets.includes("password"), false);
   const docs = normalizeAssessmentIntegrations({
     documentStoreEnabled: true,
     documentStore: "SharePoint",

@@ -5,6 +5,15 @@ export type AssessmentIntegrations = {
   erp?: string;
   gpsEnabled?: boolean;
   gps?: string;
+  telematicsIntegrationRequested?: boolean;
+  telematicsVehicleCount?: number;
+  telematicsCapabilities?: {
+    tachograph?: boolean;
+    temperature?: boolean;
+    odometer?: boolean;
+    fuel?: boolean;
+    livePosition?: boolean;
+  };
   documentStoreEnabled?: boolean;
   documentStore?: string;
   customEnabled?: boolean;
@@ -82,6 +91,28 @@ export function normalizeAssessmentIntegrations(
       ? asTrimmed(src.migrationNotes) || undefined
       : undefined,
   };
+  if (gpsEnabled) {
+    if (src.telematicsIntegrationRequested === true) {
+      next.telematicsIntegrationRequested = true;
+    } else if (src.telematicsIntegrationRequested === false) {
+      next.telematicsIntegrationRequested = false;
+    }
+    const vehicleCount = Number(src.telematicsVehicleCount);
+    if (Number.isFinite(vehicleCount) && vehicleCount > 0) {
+      next.telematicsVehicleCount = Math.trunc(vehicleCount);
+    }
+    const caps = src.telematicsCapabilities ?? {};
+    const nextCaps = {
+      tachograph: caps.tachograph === true ? true : undefined,
+      temperature: caps.temperature === true ? true : undefined,
+      odometer: caps.odometer === true ? true : undefined,
+      fuel: caps.fuel === true ? true : undefined,
+      livePosition: caps.livePosition === true ? true : undefined,
+    };
+    if (Object.values(nextCaps).some(Boolean)) {
+      next.telematicsCapabilities = nextCaps;
+    }
+  }
   const accounting = asTrimmed(src.accounting);
   if (accounting) next.accounting = accounting;
   if (src.emailImport === true) next.emailImport = true;

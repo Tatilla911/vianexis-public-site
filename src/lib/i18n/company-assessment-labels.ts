@@ -13,6 +13,7 @@ import { ADDRESS_FIELD_DRAFTS } from './company-assessment-address-field-drafts'
 import { TRANSPORT_SCOPE_FIELD_DRAFTS } from './company-assessment-transport-scope-drafts';
 import { COMMERCIAL_MODULE_LABEL_DRAFTS } from './company-assessment-module-drafts';
 import { INTEGRATION_FIELD_DRAFTS, INTEGRATION_HELPER_DRAFTS } from './company-assessment-integration-drafts';
+import { TELEMATICS_FIELD_DRAFTS } from './company-assessment-telematics-drafts';
 import { locales } from './locales';
 
 export type CompanyAssessmentLabels = {
@@ -98,6 +99,15 @@ const EN_FIELDS: Record<string, string> = {
   erp: 'Which ERP system do you use?',
   gpsEnabled: 'Do you currently use a GPS / telematics system?',
   gps: 'Which GPS / telematics provider do you use?',
+  telematicsIntegrationRequested:
+    'Do you want ViaNexis to integrate this telematics provider?',
+  telematicsVehicleCount:
+    'How many active vehicles should be mapped for telematics integration?',
+  telematicsCapTachograph: 'Tachograph data interest (optional)',
+  telematicsCapTemperature: 'Temperature data interest (optional)',
+  telematicsCapOdometer: 'Odometer data interest (optional)',
+  telematicsCapFuel: 'Fuel data interest (optional)',
+  telematicsCapLivePosition: 'Live position / event data interest (optional)',
   documentStoreEnabled:
     'Do you currently use an external document storage system?',
   documentStore: 'Which document storage system do you use?',
@@ -193,6 +203,15 @@ const HU_FIELDS: Record<string, string> = {
   erp: 'Milyen ERP rendszert használnak?',
   gpsEnabled: 'Használnak GPS / telematikai rendszert?',
   gps: 'Milyen GPS / telematikai szolgáltatót használnak?',
+  telematicsIntegrationRequested:
+    'Kérik, hogy a ViaNexis integrálja ezt a telematikai szolgáltatót?',
+  telematicsVehicleCount:
+    'Hány aktív járművet kellene telematikai integrációhoz leképezni?',
+  telematicsCapTachograph: 'Tahográf adat érdeklődés (opcionális)',
+  telematicsCapTemperature: 'Hőmérséklet adat érdeklődés (opcionális)',
+  telematicsCapOdometer: 'Kilométeróra adat érdeklődés (opcionális)',
+  telematicsCapFuel: 'Üzemanyag adat érdeklődés (opcionális)',
+  telematicsCapLivePosition: 'Élő pozíció / eseményadat érdeklődés (opcionális)',
   documentStoreEnabled: 'Használnak külső dokumentumtároló rendszert?',
   documentStore: 'Milyen dokumentumtároló rendszert használnak?',
   customEnabled: 'Szükségük van egyéb külső rendszer integrációjára?',
@@ -447,6 +466,7 @@ function withAddressFieldDrafts(
     ...(ADDRESS_FIELD_DRAFTS[locale] ?? {}),
     ...(TRANSPORT_SCOPE_FIELD_DRAFTS[locale] ?? {}),
     ...(INTEGRATION_FIELD_DRAFTS[locale] ?? {}),
+    ...(TELEMATICS_FIELD_DRAFTS[locale] ?? {}),
   };
   const moduleDrafts = COMMERCIAL_MODULE_LABEL_DRAFTS[locale] ?? {};
   const helperDrafts = INTEGRATION_HELPER_DRAFTS[locale] ?? {};

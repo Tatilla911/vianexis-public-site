@@ -658,14 +658,14 @@ export function CompanyAssessmentContinueWizard({
 
   function setIntegrationValue(
     key: keyof AssessmentIntegrations,
-    value: string | boolean,
+    value: string | boolean | number | AssessmentIntegrations["telematicsCapabilities"],
   ) {
     setPayload((p) => ({
       ...p,
       integrations: normalizeAssessmentIntegrations({
         ...(p.integrations ?? {}),
         [key]: value,
-      }),
+      } as AssessmentIntegrations),
     }));
     setStepError(null);
   }
@@ -1269,6 +1269,88 @@ export function CompanyAssessmentContinueWizard({
                       }
                     />
                   </label>
+                ) : null}
+                {category.enabledKey === "gpsEnabled" && enabled ? (
+                  <>
+                    <label className="form-label min-w-0">
+                      <FieldLabel label={field("telematicsIntegrationRequested")} />
+                      <select
+                        className={inputClass()}
+                        value={
+                          payload.integrations?.telematicsIntegrationRequested ===
+                          true
+                            ? "yes"
+                            : "no"
+                        }
+                        onChange={(e) =>
+                          setIntegrationValue(
+                            "telematicsIntegrationRequested",
+                            e.target.value === "yes",
+                          )
+                        }
+                      >
+                        <option value="no">{labels.no}</option>
+                        <option value="yes">{labels.yes}</option>
+                      </select>
+                    </label>
+                    {payload.integrations?.telematicsIntegrationRequested ===
+                    true ? (
+                      <label className="form-label min-w-0">
+                        <FieldLabel label={field("telematicsVehicleCount")} />
+                        <input
+                          className={inputClass()}
+                          type="number"
+                          min={1}
+                          inputMode="numeric"
+                          value={String(
+                            payload.integrations?.telematicsVehicleCount ?? "",
+                          )}
+                          onChange={(e) =>
+                            setIntegrationValue(
+                              "telematicsVehicleCount",
+                              e.target.value
+                                ? Number(e.target.value)
+                                : undefined,
+                            )
+                          }
+                        />
+                      </label>
+                    ) : null}
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      {(
+                        [
+                          ["telematicsCapTachograph", "tachograph"],
+                          ["telematicsCapTemperature", "temperature"],
+                          ["telematicsCapOdometer", "odometer"],
+                          ["telematicsCapFuel", "fuel"],
+                          ["telematicsCapLivePosition", "livePosition"],
+                        ] as const
+                      ).map(([labelKey, capKey]) => (
+                        <label
+                          key={capKey}
+                          className="flex items-center gap-2 text-body-sm text-brand-ink"
+                        >
+                          <input
+                            type="checkbox"
+                            className="accent-gold-core"
+                            checked={Boolean(
+                              payload.integrations?.telematicsCapabilities?.[
+                                capKey
+                              ],
+                            )}
+                            onChange={(e) =>
+                              setIntegrationValue("telematicsCapabilities", {
+                                ...(payload.integrations
+                                  ?.telematicsCapabilities ?? {}),
+                                [capKey]: e.target.checked,
+                              })
+                            }
+                          />
+                          <span>{field(labelKey)}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </>
                 ) : null}
                 {category.enabledKey === "customEnabled" && enabled ? (
                   <label className="form-label min-w-0">
