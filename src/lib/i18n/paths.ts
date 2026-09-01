@@ -31,5 +31,14 @@ export function switchLocalePath(pathname: string, locale: Locale): string {
       ? localePath(locale, "/ajanlatkeres")
       : localePath(locale, "/request-a-quote");
   }
+  if (
+    slug === "/telematikai-integraciok" ||
+    slug === "/telematics-integrations"
+  ) {
+    const code = resolveLanguageWithFallback(locale).code;
+    return code === "hu"
+      ? localePath(locale, "/telematikai-integraciok")
+      : localePath(locale, "/telematics-integrations");
+  }
   return localePath(locale, slug);
 }

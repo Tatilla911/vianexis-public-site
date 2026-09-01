@@ -9,6 +9,10 @@ import { getContent } from "@/lib/i18n";
 import { resolveBrandStory } from "@/lib/i18n/brand-story";
 import { getFooterDriverAppLegalLabels } from "@/lib/i18n/driver-app-legal";
 import { localePath } from "@/lib/i18n/paths";
+import {
+  resolveTelematicsIntegrationsContent,
+  telematicsIntegrationsPath,
+} from "@/lib/i18n/telematics-integrations";
 import type { Locale } from "@/lib/i18n/types";
 import { siteConfig } from "@/lib/site-config";
 
@@ -24,6 +28,10 @@ export function Footer({ locale }: FooterProps) {
 
   const productLinks = [
     { href: localePath(locale, "/features"), label: content.nav.features },
+    {
+      href: telematicsIntegrationsPath(locale),
+      label: resolveTelematicsIntegrationsContent(locale).navLabel,
+    },
     { href: localePath(locale, "/driver-app"), label: content.nav.driverApp },
     {
       href: localePath(locale, "/company-portal"),

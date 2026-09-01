@@ -14,8 +14,9 @@
     "test:quote": "npx --yes tsx --test scripts/test-quote-questionnaire.ts",
     "test:assessment": "npx --yes tsx --test scripts/test-company-assessment-labels.ts",
     "test:integrations": "npx --yes tsx --test scripts/test-enterprise-integration-labels.ts",
+    "test:telematics": "npx --yes tsx --test scripts/test-telematics-integrations.ts",
     "typecheck": "tsc --noEmit",
-    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:brand && npm run test:legal && npm run test:quote && npm run test:assessment && npm run test:integrations && npm run lint && npm run typecheck && npm run build",
+    "validate": "node scripts/validate-locales.mjs && npm run test:locale && npm run test:hero && npm run test:brand && npm run test:legal && npm run test:quote && npm run test:assessment && npm run test:integrations && npm run test:telematics && npm run lint && npm run typecheck && npm run build",
     "smoke:public": "node scripts/smoke-public-site.mjs",
     "manuals:publish": "python3 ../transdoc-backend/scripts/publish_public_manuals.py --site ."
   },
