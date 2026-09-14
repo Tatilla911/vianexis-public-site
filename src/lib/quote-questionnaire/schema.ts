@@ -4,6 +4,7 @@
  */
 
 import type { QuoteLocale } from "./locale-resolver";
+import { TRAINING_SUPPORT_GOLDEN } from "../i18n/training-support-copy";
 
 export type { QuoteLocale };
 
@@ -1079,6 +1080,8 @@ export const QUOTE_QUESTIONS: QuoteQuestion[] = [
     type: "yes_no_unsure",
     hu: "Szükséges betanítás / onboarding workshop?",
     en: "Is onboarding / training needed?",
+    helpHu: TRAINING_SUPPORT_GOLDEN.hu.compact,
+    helpEn: TRAINING_SUPPORT_GOLDEN.en.compact,
     options: YES_NO_UNSURE,
     visibleWhen: { op: "always" },
     pricingImpact: "setup",

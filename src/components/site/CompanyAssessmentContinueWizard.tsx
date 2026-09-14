@@ -10,6 +10,7 @@ import {
   resolveAssessmentHelper,
   resolveAssessmentModuleLabel,
 } from "@/lib/i18n/company-assessment-labels";
+import { getTrainingSupportCopy } from "@/lib/i18n/training-support-copy";
 import {
   hasAnyExternalIntegration,
   missingRequiredIntegrationNames,
@@ -341,6 +342,7 @@ export function CompanyAssessmentContinueWizard({
   token: string;
 }) {
   const labels = getCompanyAssessmentLabels(locale);
+  const trainingSupport = getTrainingSupportCopy(locale);
   const yesNo = useMemo(
     () => ({ yes: labels.yes, no: labels.no }),
     [labels.yes, labels.no],
@@ -1414,6 +1416,11 @@ export function CompanyAssessmentContinueWizard({
 
       {step === "rollout" ? (
         <div className="grid gap-3 md:grid-cols-2">
+          <div className="md:col-span-2 rounded-md border border-navy-700 bg-navy-900/40 p-3 text-sm text-neutral-grey">
+            <p className="font-medium text-brand-ink">
+              {trainingSupport.compact}
+            </p>
+          </div>
           {ROLLOUT_DATE_KEYS.map((key) => (
             <label key={key} className="form-label min-w-0">
               <FieldLabel label={field(key)} helper={helper(key)} />
@@ -1447,7 +1454,10 @@ export function CompanyAssessmentContinueWizard({
             />
           </label>
           <label className="form-label min-w-0">
-            <FieldLabel label={field("trainingNeeded")} />
+            <FieldLabel
+              label={field("trainingNeeded")}
+              helper={trainingSupport.compact}
+            />
             <select
               className={inputClass()}
               value={payload.rollout?.trainingNeeded ? "yes" : "no"}
@@ -1461,7 +1471,10 @@ export function CompanyAssessmentContinueWizard({
           </label>
           {payload.rollout?.trainingNeeded ? (
             <label className="form-label min-w-0">
-              <FieldLabel label={field("onsiteTraining")} />
+              <FieldLabel
+                label={field("onsiteTraining")}
+                helper={trainingSupport.compact}
+              />
               <select
                 className={inputClass()}
                 value={payload.rollout?.onsiteTraining ? "yes" : "no"}
@@ -1476,7 +1489,14 @@ export function CompanyAssessmentContinueWizard({
           ) : null}
           {ROLLOUT_YES_NO_KEYS.map((key) => (
             <label key={key} className="form-label min-w-0">
-              <FieldLabel label={field(key)} />
+              <FieldLabel
+                label={field(key)}
+                helper={
+                  key === "onboardingSupport"
+                    ? trainingSupport.compact
+                    : helper(key)
+                }
+              />
               <select
                 className={inputClass()}
                 value={payload.rollout?.[key] ? "yes" : "no"}

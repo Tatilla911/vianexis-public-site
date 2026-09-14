@@ -34,6 +34,7 @@ import {
   normalizeAssessmentIntegrations,
 } from "../src/lib/company-assessment-integrations";
 import { normalizeAssessmentRollout } from "../src/lib/company-assessment-rollout";
+import { getTrainingSupportCopy } from "../src/lib/i18n/training-support-copy";
 
 const KNOWN_RAW_KEYS = [
   "monthlyTrips",
@@ -638,6 +639,14 @@ test("step 6 rollout: no SLA/language fields; training is conditional", () => {
   assert.equal(hu.fields.notes, "Egyéb megjegyzések");
   assert.equal(en.fields.plannedStartDate, "Planned go-live date");
   assert.equal(en.fields.pilotDate, "Preferred pilot start date");
+  assert.equal(wizard.includes("getTrainingSupportCopy"), true);
+  assert.equal(wizard.includes("trainingSupport.compact"), true);
+  assert.match(getTrainingSupportCopy("hu").compact, /tolmács/i);
+  assert.match(getTrainingSupportCopy("en").compact, /interpreter/i);
+  assert.doesNotMatch(
+    getTrainingSupportCopy("en").compact,
+    /every app language/i,
+  );
 
   // C / D / E
   const dates = normalizeAssessmentRollout({

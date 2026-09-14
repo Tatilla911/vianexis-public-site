@@ -4,6 +4,7 @@ import { CompanyApplicationForm } from "@/components/site/ApplicationForms";
 import { Hero } from "@/components/site/Hero";
 import { ContactLeadForm } from "@/components/site/ContactLeadForm";
 import { Section } from "@/components/site/Section";
+import { TrainingSupportSection } from "@/components/site/TrainingSupportSection";
 import { getContent, resolveLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/i18n/paths";
 import type { Locale } from "@/lib/i18n/types";
@@ -62,6 +63,9 @@ export default async function PilotPage({ params }: PageProps) {
             </Link>
           </p>
         </DisclaimerBox>
+      </Section>
+      <Section>
+        <TrainingSupportSection locale={locale} />
       </Section>
       <Section variant="muted" id="company-apply" title={content.nav.requestAccess}>
         <div className="mx-auto max-w-2xl">

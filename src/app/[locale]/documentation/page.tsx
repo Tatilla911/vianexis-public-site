@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DocumentationLibrary } from "@/components/site/DocumentationLibrary";
 import { Hero } from "@/components/site/Hero";
 import { Section } from "@/components/site/Section";
+import { TrainingSupportSection } from "@/components/site/TrainingSupportSection";
 import {
   documentationPathForLocale,
   getDocumentationCopy,
@@ -66,6 +67,9 @@ export default async function DocumentationPage({ params }: PageProps) {
           label: content.nav.contact,
         }}
       />
+      <Section>
+        <TrainingSupportSection locale={locale} />
+      </Section>
       <Section variant="muted">
         <DocumentationLibrary locale={locale} />
       </Section>
