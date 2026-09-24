@@ -121,7 +121,8 @@ Enabling static export would require a larger refactor (remove API routes, repla
 | https://vianexis.eu/en/privacy | **Play Console privacy URL (EN)** |
 | https://vianexis.eu/hu/contact | Contact form |
 | https://vianexis.eu/sitemap.xml | SEO sitemap (35 locales) |
-| https://vianexis.eu/robots.txt | `allow: /` + sitemap pointer |
+| https://vianexis.eu/robots.txt | `allow: /` + sitemap pointer; ADR packs disallowed |
+| https://vianexis.eu/driver-app/adr-content/{relativePath} | Driver ADR language-pack PDFs (static) |
 
 Legacy redirects (middleware):
 

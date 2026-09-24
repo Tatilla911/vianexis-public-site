@@ -34,6 +34,13 @@ const pages = [
   { path: "/sitemap.xml", expectStatus: 200 },
 ];
 
+const adrPdfs = [
+  "/driver-app/adr-content/adr/books/hu/adr_book.pdf",
+  "/driver-app/adr-content/adr/books/en/adr_book1.pdf",
+  "/driver-app/adr-content/adr/written_instructions/Hungarian_2017.pdf",
+  "/driver-app/adr-content/adr/written_instructions/English_2017.pdf",
+];
+
 const redirects = [
   { path: "/", expectedLocation: "/en" },
   { path: "/privacy", expectedLocation: "/en/privacy" },
@@ -116,6 +123,29 @@ for (const redirect of redirects) {
 
 for (const page of pages) {
   await checkPage(page);
+}
+
+async function checkAdrPdf(path) {
+  const url = `${baseUrl}${path}`;
+  try {
+    const response = await fetch(url, { method: "HEAD", redirect: "follow" });
+    const mime = (response.headers.get("content-type") ?? "")
+      .split(";")[0]
+      .trim()
+      .toLowerCase();
+    const ok = response.status === 200 && mime === "application/pdf";
+    record(
+      `ADR ${path} HEAD PDF`,
+      ok,
+      `status ${response.status} mime ${response.headers.get("content-type") ?? "(none)"}`,
+    );
+  } catch (error) {
+    record(`ADR ${path} HEAD PDF`, false, String(error));
+  }
+}
+
+for (const pdfPath of adrPdfs) {
+  await checkAdrPdf(pdfPath);
 }
 
 const failed = results.filter((r) => !r.ok);
