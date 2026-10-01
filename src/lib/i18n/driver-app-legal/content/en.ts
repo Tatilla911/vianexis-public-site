@@ -239,7 +239,7 @@ export const driverAppLegalEn: DriverAppLegalBundle = {
           "Right to restriction of processing: in certain situations, you can ask us to temporarily limit processing",
           "Right to object: where processing relies on legitimate interest, you can object to it",
           "Right to data portability: you can ask to receive data processed on the basis of consent or contract in a structured, machine-readable format",
-          "Right to withdraw consent: you can withdraw consent-based processing (e.g. location, push notifications) at any time, without needing to give a reason",
+          "Right to withdraw consent: where processing is based on consent, you can withdraw your consent at any time without giving a reason. Revoking location or notification permissions in the operating system may technically limit the relevant feature, but does not in every case, by itself, constitute withdrawal of consent under the GDPR.",
         ],
       },
       {

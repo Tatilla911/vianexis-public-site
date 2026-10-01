@@ -239,7 +239,7 @@ export const driverAppLegalHu: DriverAppLegalBundle = {
           "Az adatkezelés korlátozásához való jog: bizonyos helyzetekben kérheted az adatkezelés átmeneti korlátozását",
           "Tiltakozáshoz való jog: jogos érdeken alapuló adatkezelés esetén tiltakozhatsz az adatkezelés ellen",
           "Adathordozhatósághoz való jog: kérheted, hogy a hozzájárulás vagy szerződés alapján kezelt adataidat tagolt, géppel olvasható formátumban megkapd",
-          "A hozzájárulás visszavonásához való jog: a hozzájáruláson alapuló adatkezelést (pl. helyadat, push értesítés) bármikor, indokolás nélkül visszavonhatod",
+          "A hozzájárulás visszavonásához való jog: a hozzájáruláson alapuló adatkezelések esetén a hozzájárulásodat bármikor, indokolás nélkül visszavonhatod. Az operációs rendszerben adott hely- vagy értesítési engedély visszavonása technikailag korlátozhatja az adott funkció működését, de önmagában nem minden esetben azonos a GDPR szerinti hozzájárulás visszavonásával.",
         ],
       },
       {
