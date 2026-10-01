@@ -227,8 +227,8 @@ assert.equal(
   ),
   false,
 );
-assert.match(termsHu, /Teljes közösségi hálózatot vagy közösségi helymegosztó szolgáltatást a jelen Feltételek nem állítanak aktívként/);
-assert.match(termsEn, /do not treat a full community network or community location-sharing service as active/);
+assert.match(termsHu, /A sofőrök közötti térképi helymegosztás opcionális, külön engedélyezhető és visszavonható/);
+assert.match(termsEn, /Driver-to-driver map sharing is optional, separately enabled and revocable/);
 
 function termsIds(source) {
   return [...source.matchAll(/\n\s*id:\s*"([^"]+)"/g)].map((m) => m[1]);
@@ -522,8 +522,8 @@ assert.match(legalConfig, /disclaimersUrlHu/);
 assert.match(legalConfig, /dataSafetyUrlHu/);
 assert.match(legalConfig, /driverAppLegalUrlHu/);
 assert.match(legalConfig, /showPublicLegalReviewStatus/);
-assert.match(legalConfig, /privacyUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/privacy`\)/);
-assert.match(legalConfig, /privacyUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/privacy`\)/);
+assert.match(legalConfig, /privacyUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/driver-app\/privacy`\)/);
+assert.match(legalConfig, /privacyUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/driver-app\/privacy`\)/);
 assert.match(legalConfig, /termsUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/terms`\)/);
 assert.match(legalConfig, /termsUrlEn:\s*confirmed\(`\$\{DOMAIN\}\/en\/terms`\)/);
 assert.match(legalConfig, /disclaimersUrlHu:\s*confirmed\(`\$\{DOMAIN\}\/hu\/disclaimers`\)/);

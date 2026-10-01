@@ -132,7 +132,7 @@ ${OPERATOR_STATEMENT_EN}`,
   {
     id: "electronic-signatures-and-evidence",
     title: "16. Electronic signatures and evidence data",
-    body: "The evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture and applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence.\n\nA signature may be linked to the document and to the related role, timestamp and audit data. Incorrect or unauthorised signatures must be reported. Deletion or invalidation of a signature may be limited and does not automatically erase the audit trail. Manipulating a signature is prohibited.",
+    body: "The evidential value and legal effect of a recorded signature depend on the type of document, the circumstances of capture and applicable law. ViaNexis does not guarantee that a recorded signature qualifies as a qualified electronic signature in every country or procedure, or that it is by itself fully conclusive evidence.\n\nA signature may be linked to the document and to the related role, timestamp and audit data. Incorrect or unauthorised signatures must be reported. Deletion or invalidation of a signature may be limited and does not automatically erase the audit trail. Manipulating a signature is prohibited.\n\nViaNexis supports recording electronic signatures and associated evidence, but signatures recorded through ViaNexis are not represented as qualified electronic signatures (QES), and do not replace a qualified signature where required by law or contract.",
   },
   {
     id: "adr-customs-border-route-aids",
@@ -157,7 +157,7 @@ ${OPERATOR_STATEMENT_EN}`,
   {
     id: "map-and-community-features",
     title: "21. Map and community features",
-    body: "In the currently distributed version, map features may be limited and may primarily serve as orientation or own-position display aids where the feature and map-provider configuration are available. The map is not a certified navigation system and does not replace official route or traffic information.\n\nThese Terms do not treat a full community network or community location-sharing service as active. If a community feature is later activated, its rules — including nickname use, avoiding full names and plate numbers, location-sharing controls, reporting/blocking and prohibition of unlawful content — will appear in updated Terms or feature-specific rules before that release.",
+    body: "Displaying your own position, recording point GPS with a signature or document, and recording trip or stop location evidence are separate functions. They do not automatically share your position with other drivers. Location capture depends on operating-system permission and use of the relevant feature.\n\nDriver-to-driver map sharing is optional, separately enabled and revocable. Publishing requires your own opt-in and current backend evidence that both participants in the connection have consented. Messaging-only connections do not permit location sharing. Revocation stops further publishing from the device; server-side revocation requires a network connection. A blocked relationship does not permit sharing. Messaging remains separate from disabling map sharing.\n\nThis is not continuous background fleet tracking. Disabling map sharing does not itself delete evidence previously recorded with a document, signature, trip or stop.",
   },
   {
     id: "intellectual-property",

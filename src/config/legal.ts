@@ -49,7 +49,7 @@ export const legalConfig = {
   /** Present in existing driver-app-legal/operator.ts in this repository. */
   registeredAddress: confirmed({
     hu: "5093 Vezseny, Földvári utca 22., Magyarország",
-    en: "5093 Vezseny, Földvári utca 22., Hungary",
+    en: "22 Földvári Street, 5093 Vezseny, Hungary",
   }),
   registrationNumber: confirmed("61994454", "Egyéni vállalkozói nyilvántartási szám (repo operator.ts)"),
   taxNumber: confirmed("79264161-1-36", "Repo operator.ts"),
@@ -62,9 +62,9 @@ export const legalConfig = {
   /** General site contact — not a substitute for privacy@ */
   generalContactEmail: confirmed("info@vianexis.eu"),
   websiteUrl: confirmed(DOMAIN),
-  privacyPolicyVersion: confirmed("1.0"),
-  privacyPolicyEffectiveDate: confirmed("2026-07-31"),
-  privacyPolicyLastUpdatedDate: confirmed("2026-07-31"),
+  privacyPolicyVersion: confirmed("1.1"),
+  privacyPolicyEffectiveDate: confirmed("2026-10-01"),
+  privacyPolicyLastUpdatedDate: confirmed("2026-10-01"),
   supervisoryAuthorityName: confirmed({
     hu: "Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)",
     en: "Hungarian National Authority for Data Protection and Freedom of Information (NAIH)",
@@ -78,8 +78,8 @@ export const legalConfig = {
   ),
   dpoName: pending<string>("No DPO designation found in repository."),
   dpoEmail: pending<string>("No separate DPO email found; use privacy@ / gdpr@ until decided."),
-  privacyUrlHu: confirmed(`${DOMAIN}/hu/privacy`),
-  privacyUrlEn: confirmed(`${DOMAIN}/en/privacy`),
+  privacyUrlHu: confirmed(`${DOMAIN}/hu/driver-app/privacy`),
+  privacyUrlEn: confirmed(`${DOMAIN}/en/driver-app/privacy`),
   accountDeletionUrlHu: confirmed(`${DOMAIN}/hu/driver-app/account-deletion`),
   accountDeletionUrlEn: confirmed(`${DOMAIN}/en/driver-app/account-deletion`),
   privacyRequestUrlHu: confirmed(`${DOMAIN}/hu/privacy-request`),
@@ -197,7 +197,7 @@ export function validateLegalConfigForProduction(): {
 
 export const legalOperatorStatement = {
   hu: "A ViaNexis szolgáltatást Turul Atilla egyéni vállalkozó üzemelteti.",
-  en: "The ViaNexis service is operated by Atilla Turul, a sole proprietor registered in Hungary.",
+  en: "The ViaNexis service is operated by Turul Atilla, sole proprietor.",
 } as const;
 
 export const legalControllerLabel = {
