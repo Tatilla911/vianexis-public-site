@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { truckBanCopy, truckBanPath } from "@/lib/i18n/truck-ban";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { BrandLogo, BrandWordmark } from "@/components/site/BrandLogo";
@@ -33,6 +34,7 @@ export function Header({ locale }: HeaderProps) {
   const isMenuVisible = menuOpen && menuPath === pathname;
 
   const navLinks = [
+    { href: truckBanPath(locale), label: truckBanCopy(locale).nav },
     { href: localePath(locale, "/features"), label: content.nav.features },
     { href: localePath(locale, "/driver-app"), label: content.nav.driverApp },
     {

@@ -57,5 +57,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...pages, ...documentation, ...quote];
+  return [...pages, ...documentation, ...quote, ...["/hu/kamionstop", "/en/truck-restrictions"].map(path => ({url: `${base}${path}`, changeFrequency: "daily" as const, priority: 0.8}))];
 }
